@@ -1,11 +1,13 @@
 package main
 
 import (
+	"image/color"
 	"machine"
 	"time"
 
 	"github.com/aykevl/fixpoint"
 	"github.com/aykevl/ledsgo"
+	"github.com/aykevl/tinygo-drivers"
 	"github.com/aykevl/tinygo-drivers/mpu6050"
 	"github.com/aykevl/tinygo-drivers/ws2812"
 )
@@ -43,8 +45,8 @@ func main() {
 	pin := machine.GPIO{ledPin}
 	pin.Configure(machine.GPIOConfig{Mode: machine.GPIO_OUTPUT})
 	strip := ws2812.New(pin)
-	colors := ledsgo.Strip(make([]uint32, numLeds))
-	colors.FillSolid(0) // turn off all LEDs
+	colors := ledsgo.Strip(make([]color.RGBA, numLeds))
+	colors.FillSolid(color.RGBA{}) // turn off all LEDs
 	strip.WriteColors(colors)
 
 	// Initialize MPU6050
@@ -63,9 +65,9 @@ func main() {
 	mpuTest2(colors, strip, mpu)
 }
 
-func configureMPU(colors ledsgo.Strip, strip ws2812.Device, mpu mpu6050.Device) {
+func configureMPU(colors ledsgo.Strip, strip drivers.LEDArray, mpu mpu6050.Device) {
 	if !mpu.Connected() {
-		flashColor(colors, strip, 0xff0000)
+		flashColor(colors, strip, color.RGBA{0xff, 0, 0, 0})
 	}
 
 	mpu.Configure()
@@ -73,14 +75,14 @@ func configureMPU(colors ledsgo.Strip, strip ws2812.Device, mpu mpu6050.Device) 
 
 // flashColor sets the color of the globe to the given color for one second.
 // Useful for debugging.
-func flashColor(colors ledsgo.Strip, strip ws2812.Device, color uint32) {
+func flashColor(colors ledsgo.Strip, strip drivers.LEDArray, color color.RGBA) {
 	colors.FillSolid(color)
 	strip.WriteColors(colors)
 	time.Sleep(time.Second)
 }
 
 // Random noise.
-func noise(colors ledsgo.Strip, strip ws2812.Device) {
+func noise(colors ledsgo.Strip, strip drivers.LEDArray) {
 	for {
 		fillNoise(colors)
 		strip.WriteColors(colors)
@@ -100,37 +102,37 @@ func fillNoise(colors ledsgo.Strip) {
 }
 
 // Map positive acceleration to R, G, B colors.
-func mpuTest1(colors ledsgo.Strip, strip ws2812.Device, mpu mpu6050.Device) {
+func mpuTest1(colors ledsgo.Strip, strip drivers.LEDArray, mpu mpu6050.Device) {
 	configureMPU(colors, strip, mpu)
 
 	for {
 		x, y, z := mpu.ReadAcceleration()
-		var r, g, b uint32
+		var r, g, b uint8
 		if x > 0 {
-			r = uint32(x >> 8)
+			r = uint8(x >> 8)
 		}
 		if y > 0 {
-			g = uint32(y >> 8)
+			g = uint8(y >> 8)
 		}
 		if z > 0 {
-			b = uint32(z >> 8)
+			b = uint8(z >> 8)
 		}
-		colors.FillSolid(r<<16 | g<<8 | b)
+		colors.FillSolid(color.RGBA{r, g, b, 0})
 		strip.WriteColors(colors)
 		time.Sleep(100 * time.Millisecond)
 	}
 }
 
 // Gradient sets all LEDs to a red-blue gradient across the globe.
-func gradient(colors ledsgo.Strip, strip ws2812.Device) {
+func gradient(colors ledsgo.Strip, strip drivers.LEDArray) {
 	for {
 		for i := 0; i < len(vectors); i++ {
 			vec := vectors[i]
 			const brightness = 32
 			val := vec.X.Int32Scaled(brightness)
-			r := uint32(brightness + val)
-			b := uint32(brightness - val)
-			colors[i] = r<<16 | b
+			r := uint8(brightness + val)
+			b := uint8(brightness - val)
+			colors[i] = color.RGBA{r, 0, b, 0}
 		}
 		strip.WriteColors(colors)
 		time.Sleep(10 * time.Millisecond)
@@ -138,7 +140,7 @@ func gradient(colors ledsgo.Strip, strip ws2812.Device) {
 }
 
 // Rotate sets a rotating gradient across all LEDs.
-func rotate(colors ledsgo.Strip, strip ws2812.Device) {
+func rotate(colors ledsgo.Strip, strip drivers.LEDArray) {
 	// Set up rotation
 	inc := fixpoint.QuatQ24{fixpoint.Q24FromInt32(0), fixpoint.Vec3Q24FromFloat(0, 0, 0.005)}
 	inc.W = fixpoint.Q24FromInt32(1).Sub(fixpoint.Q24FromFloat(0.5).Mul(inc.X().Mul(inc.X()).Add(inc.Y().Mul(inc.Y())).Add(inc.Z().Mul(inc.Z()))))
@@ -151,9 +153,9 @@ func rotate(colors ledsgo.Strip, strip ws2812.Device) {
 			vec := rot.Rotate(vectors[i])
 			const brightness = 32
 			val := vec.X.Int32Scaled(brightness)
-			r := uint32(brightness + val)
-			b := uint32(brightness - val)
-			colors[i] = r<<16 | b
+			r := uint8(brightness + val)
+			b := uint8(brightness - val)
+			colors[i] = color.RGBA{r, 0, b, 0}
 		}
 		strip.WriteColors(colors)
 		time.Sleep(10 * time.Millisecond)
@@ -162,7 +164,7 @@ func rotate(colors ledsgo.Strip, strip ws2812.Device) {
 
 // mpuTest2 sets a linear gradient across the globe that should be stable when
 // it gets rotated.
-func mpuTest2(colors ledsgo.Strip, strip ws2812.Device, mpu mpu6050.Device) {
+func mpuTest2(colors ledsgo.Strip, strip drivers.LEDArray, mpu mpu6050.Device) {
 	configureMPU(colors, strip, mpu)
 
 	// How far we've rotated so far.
@@ -190,9 +192,9 @@ func mpuTest2(colors ledsgo.Strip, strip ws2812.Device, mpu mpu6050.Device) {
 			vec := orientation.Rotate(vectors[i])
 			const brightness = 32
 			val := vec.X.Int32Scaled(brightness)
-			r := uint32(brightness + val)
-			b := uint32(brightness - val)
-			colors[i] = r<<16 | b
+			r := uint8(brightness + val)
+			b := uint8(brightness - val)
+			colors[i] = color.RGBA{r, 0, b, 0}
 		}
 		strip.WriteColors(colors)
 
