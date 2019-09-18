@@ -4,10 +4,7 @@ import (
 	"time"
 
 	"github.com/aykevl/ledsgo"
-	"github.com/aykevl/things/hub75"
 )
-
-var display *hub75.Device
 
 const (
 	brightness = 0xff
@@ -16,8 +13,6 @@ const (
 )
 
 func main() {
-	display = hub75.New(22, 23, 24, 25, 20, 19, 18, 17)
-
 	fullRefreshes := uint(0)
 	previousSecond := int64(0)
 	for {
@@ -30,7 +25,7 @@ func main() {
 		}
 		display.Display()
 
-		second := (time.Now().UnixNano() / int64(time.Second))
+		second := (start.UnixNano() / int64(time.Second))
 		if second != previousSecond {
 			previousSecond = second
 			newFullRefreshes := display.FullRefreshes()

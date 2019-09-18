@@ -1,3 +1,5 @@
+// +build nrf52
+
 package hub75
 
 import (
