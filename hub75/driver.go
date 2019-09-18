@@ -71,7 +71,7 @@ type Device struct {
 	spiReady          uint8            // 1 when the SPI is finished sending, 0 otherwise (signaled from the interrupt)
 	timerReady        uint8            // 1 when the timer has expried, 0 otherwise (signaled from the interrupt)
 	framebuf          [3][32][32]uint8 // contains RGB data to be sent to the screen with the next call to Display()
-	displayBitstrings [16][8][]uint8   // data that can be directly sent over SPI using DMA
+	displayBitstrings [16][8][24]uint8   // data that can be directly sent over SPI using DMA
 	brightness        uint32           // at least 1, higher means brighter screen but slower updates
 }
 
@@ -132,9 +132,6 @@ func (d *Device) flush() {
 	for row := uint(0); row < 32; row++ {
 		for colorIndex := 2; colorIndex >= 0; colorIndex-- {
 			for bit := uint(0); bit < 8; bit++ {
-				if d.displayBitstrings[row%16][bit] == nil {
-					d.displayBitstrings[row%16][bit] = make([]uint8, 24)
-				}
 				for colByte := uint(0); colByte < 4; colByte++ {
 					// Unroll this loop for slightly higher performance.
 					c := uint8(0)
@@ -181,11 +178,14 @@ func (d *Device) Display() error {
 
 	// Check if the driver is already running, and start it if it is not.
 	if !d.running {
-		d.running = true
+		//d.running = true
 		// Start by sending the first bitstring over SPI, and pretend that the
 		// timer of the previous buffer has already been finished.
 		d.timerReady = 1
-		d.startTransfer()
+		for i := 0; i < 8*16; i++ {
+			d.sendNext()
+		}
+		//d.startTransfer()
 	}
 	return nil
 }
@@ -209,11 +209,11 @@ func (d *Device) sendNext() {
 	d.startOutputEnableTimer()
 
 	// Switch to the next row and possibly next color bit level.
-	d.row = (d.row + 1) % 16
-	if d.row == 0 {
-		d.colorBit++
-		if d.colorBit >= 8 {
-			d.colorBit = 0
+	d.colorBit++
+	if d.colorBit >= 8 {
+		d.colorBit = 0
+		d.row = (d.row + 1) % 16
+		if d.row == 0 {
 			d.fullRefreshes++
 		}
 	}
