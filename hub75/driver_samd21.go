@@ -6,6 +6,7 @@ import (
 	"device/arm"
 	"device/sam"
 	"machine"
+	"runtime/volatile"
 	"unsafe"
 )
 
@@ -18,8 +19,10 @@ var dmaDescriptorSection [dmaDescriptors]dmaDescriptor
 var dmaDescriptorWritebackSection [dmaDescriptors]dmaDescriptor
 
 type chipSpecificSettings struct {
-	bus        *machine.SPI
-	dmaChannel uint8
+	bus          *machine.SPI
+	dmaChannel   uint8
+	timer        *sam.TCC_Type
+	timerChannel *volatile.Register32
 }
 
 type dmaDescriptor struct {
@@ -35,7 +38,7 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	d.bus = &machine.SPI0      // must be SERCOM0
 	const triggerSource = 0x02 // SERCOM0_DMAC_ID_TX
 	d.bus.Configure(machine.SPIConfig{
-		Frequency: 4000000,
+		Frequency: 8000000,
 		Mode:      0,
 	})
 
@@ -74,6 +77,30 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 
 	// Enable DMA block transfer complete interrupt.
 	sam.DMAC.CHINTENSET.SetBits(sam.DMAC_CHINTENSET_TCMPL)
+
+	// Next up, configure the timer/counter used for precisely timing the Output
+	// Enable pin.
+	// d.oe == D4 == PA07
+	// PA07 is on TCC1 CC[1]
+	machine.InitPWM()
+	pwm := machine.PWM{d.oe}
+	pwm.Configure()
+	d.timer = sam.TCC1
+	d.timerChannel = &d.timer.CC1
+
+	// Enable an interrupt on CC1 match.
+	d.timer.INTENSET.Set(sam.TCC_INTENSET_MC1)
+	arm.EnableIRQ(sam.IRQ_TCC1)
+
+	// Set to one-shot and count down.
+	d.timer.CTRLBSET.SetBits(sam.TCC_CTRLBSET_ONESHOT | sam.TCC_CTRLBSET_DIR)
+	for d.timer.SYNCBUSY.HasBits(sam.TCC_SYNCBUSY_CTRLB) {
+	}
+
+	// Enable TCC output.
+	d.timer.CTRLA.SetBits(sam.TCC_CTRLA_ENABLE)
+	for d.timer.SYNCBUSY.HasBits(sam.TCC_SYNCBUSY_ENABLE) {
+	}
 }
 
 // startTransfer starts the SPI transaction to send the next row to the screen.
@@ -91,11 +118,13 @@ func (d *Device) startTransfer() {
 // startOutputEnableTimer will enable and disable the screen for a very short
 // time, depending on which bit is currently enabled.
 func (d *Device) startOutputEnableTimer() {
-	count := d.brightness << d.colorBit
-	for i := uint32(0); i < count; i++ {
-		d.oe.Low()
+	// Multiplying the brightness by 3 to be consistent with the nrf52 driver
+	// (48MHz vs 16MHz).
+	count := (d.brightness * 3) << d.colorBit
+	d.timerChannel.Set(0xffff - count)
+	for d.timer.SYNCBUSY.HasBits(sam.TCC_SYNCBUSY_CC0 | sam.TCC_SYNCBUSY_CC1 | sam.TCC_SYNCBUSY_CC2 | sam.TCC_SYNCBUSY_CC3) {
 	}
-	d.oe.High()
+	d.timer.CTRLBSET.Set(sam.TCC_CTRLBSET_CMD_RETRIGGER << sam.TCC_CTRLBSET_CMD_Pos)
 }
 
 //go:export DMAC_IRQHandler
@@ -104,5 +133,13 @@ func dmacHandler() {
 	// continuously.
 	sam.DMAC.CHINTFLAG.Set(sam.DMAC_CHINTENCLR_TERR | sam.DMAC_CHINTENCLR_TCMPL | sam.DMAC_CHINTENCLR_SUSP)
 
-	display.sendNext()
+	display.handleSPIEvent()
+}
+
+//go:export TCC1_IRQHandler
+func tcc1Handler() {
+	// Clear the interrupt flag.
+	sam.TCC1.INTFLAG.Set(sam.TCC_INTFLAG_MC1)
+
+	display.handleTimerEvent()
 }
