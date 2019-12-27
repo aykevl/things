@@ -54,6 +54,7 @@ import (
 	"image/color"
 	"machine"
 	"runtime/volatile"
+	"unsafe"
 )
 
 type Device struct {
@@ -128,45 +129,40 @@ func (d *Device) SetPixel(x int16, y int16, c color.RGBA) {
 
 // flush copies the data in the frame buffer to the output bit strings that can
 // be sent over SPI.
+//go:nobounds
 func (d *Device) flush() {
+	// Make sure all bitstrings are present.
+	for row := 0; row < 16; row++ {
+		for bit := 0; bit < 8; bit++ {
+			if d.displayBitstrings[row][bit] == nil {
+				d.displayBitstrings[row][bit] = make([]uint8, 24)
+			}
+		}
+	}
+
 	for row := uint(0); row < 32; row++ {
 		for colorIndex := 2; colorIndex >= 0; colorIndex-- {
 			for bit := uint(0); bit < 8; bit++ {
-				if d.displayBitstrings[row%16][bit] == nil {
-					d.displayBitstrings[row%16][bit] = make([]uint8, 24)
-				}
 				for colByte := uint(0); colByte < 4; colByte++ {
 					// Unroll this loop for slightly higher performance.
-					c := uint8(0)
-					if d.framebuf[colorIndex][row][colByte*8+0]&(1<<bit) != 0 {
-						c |= 128
-					}
-					if d.framebuf[colorIndex][row][colByte*8+1]&(1<<bit) != 0 {
-						c |= 64
-					}
-					if d.framebuf[colorIndex][row][colByte*8+2]&(1<<bit) != 0 {
-						c |= 32
-					}
-					if d.framebuf[colorIndex][row][colByte*8+3]&(1<<bit) != 0 {
-						c |= 16
-					}
-					if d.framebuf[colorIndex][row][colByte*8+4]&(1<<bit) != 0 {
-						c |= 8
-					}
-					if d.framebuf[colorIndex][row][colByte*8+5]&(1<<bit) != 0 {
-						c |= 4
-					}
-					if d.framebuf[colorIndex][row][colByte*8+6]&(1<<bit) != 0 {
-						c |= 2
-					}
-					if d.framebuf[colorIndex][row][colByte*8+7]&(1<<bit) != 0 {
-						c |= 1
-					}
+					c := uint32(0)
+					word := *(*uint32)(unsafe.Pointer(&d.framebuf[colorIndex][row][colByte*8+0]))
+					word >>= bit
+					c |= (word & (1 << 0)) << 7
+					c |= (word & (1 << 8)) >> 2
+					c |= (word & (1 << 16)) >> 11
+					c |= (word & (1 << 24)) >> 20
+					word = *(*uint32)(unsafe.Pointer(&d.framebuf[colorIndex][row][colByte*8+4]))
+					word >>= bit
+					c |= (word & (1 << 0)) << 3
+					c |= (word & (1 << 8)) >> 6
+					c |= (word & (1 << 16)) >> 15
+					c |= (word & (1 << 24)) >> 24
 					bitstringIndex := colByte + uint(2-colorIndex)*8
 					if (row % 32) < 16 {
 						bitstringIndex += 4
 					}
-					d.displayBitstrings[row%16][bit][bitstringIndex] = c
+					d.displayBitstrings[row%16][bit][bitstringIndex] = uint8(c)
 				}
 			}
 		}
