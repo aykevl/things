@@ -196,10 +196,10 @@ func (d *Device) sendNext() {
 	d.lat.High()
 
 	// Update the row selection to match the current row.
-	d.a.Set(d.row&0x08 != 0)
-	d.b.Set(d.row&0x04 != 0)
-	d.c.Set(d.row&0x02 != 0)
-	d.d.Set(d.row&0x01 != 0)
+	d.a.Set(d.row&0x01 != 0)
+	d.b.Set(d.row&0x02 != 0)
+	d.c.Set(d.row&0x04 != 0)
+	d.d.Set(d.row&0x08 != 0)
 
 	// Start the 'output enable' timer.
 	d.startOutputEnableTimer()
