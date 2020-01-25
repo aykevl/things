@@ -170,6 +170,10 @@ func (d *Device) flush() {
 
 	for row := uint(0); row < 32; row++ {
 		for colorIndex := 2; colorIndex >= 0; colorIndex-- {
+			bitstringIndex := uint(2-colorIndex) * 8 * uint(d.numScreens)
+			if (row % 32) < 16 {
+				bitstringIndex += 4 * uint(d.numScreens)
+			}
 			for bit := uint(0); bit < 8; bit++ {
 				for colByte := uint(0); colByte < 4*uint(d.numScreens); colByte++ {
 					// Unroll this loop for slightly higher performance.
@@ -186,11 +190,7 @@ func (d *Device) flush() {
 					c |= (word & (1 << 8)) >> 6
 					c |= (word & (1 << 16)) >> 15
 					c |= (word & (1 << 24)) >> 24
-					bitstringIndex := colByte + uint(2-colorIndex)*8*uint(d.numScreens)
-					if (row % 32) < 16 {
-						bitstringIndex += 4 * uint(d.numScreens)
-					}
-					d.displayBitstrings[row%16][bit][bitstringIndex] = uint8(c)
+					d.displayBitstrings[row%16][bit][colByte+bitstringIndex] = uint8(c)
 				}
 			}
 		}
