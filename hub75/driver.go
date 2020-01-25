@@ -62,17 +62,18 @@ type Device struct {
 	b                 machine.Pin
 	c                 machine.Pin
 	d                 machine.Pin
-	oe                machine.Pin      // output enable pin
-	lat               machine.Pin      // latch pin
-	colorBit          uint8            // 0..7: which bit is currently drawn using binary coded modulation
-	row               uint8            // 0..15: the row that is currently selected in the pin mux
-	running           bool             // true if the driver is currently running (handling interrupts etc.)
-	fullRefreshes     uint             // counter for the number of full refreshes, useful for statistics
-	spiReady          uint8            // 1 when the SPI is finished sending, 0 otherwise (signaled from the interrupt)
-	timerReady        uint8            // 1 when the timer has expried, 0 otherwise (signaled from the interrupt)
-	framebuf          [3][32][32]uint8 // contains RGB data to be sent to the screen with the next call to Display()
-	displayBitstrings [16][8][]uint8   // data that can be directly sent over SPI using DMA
-	brightness        uint32           // at least 1, higher means brighter screen but slower updates
+	oe                machine.Pin    // output enable pin
+	lat               machine.Pin    // latch pin
+	colorBit          uint8          // 0..7: which bit is currently drawn using binary coded modulation
+	row               uint8          // 0..15: the row that is currently selected in the pin mux
+	running           bool           // true if the driver is currently running (handling interrupts etc.)
+	fullRefreshes     uint           // counter for the number of full refreshes, useful for statistics
+	spiReady          uint8          // 1 when the SPI is finished sending, 0 otherwise (signaled from the interrupt)
+	timerReady        uint8          // 1 when the timer has expried, 0 otherwise (signaled from the interrupt)
+	framebuf          [3][32][]uint8 // contains RGB data to be sent to the screen with the next call to Display()
+	displayBitstrings [16][8][]uint8 // data that can be directly sent over SPI using DMA
+	brightness        uint32         // at least 1, higher means brighter screen but slower updates
+	numScreens        int
 }
 
 // Config contains the configuration for a given hub75 instance.
@@ -82,6 +83,7 @@ type Config struct {
 	Latch        machine.Pin // also called strobe
 	OutputEnable machine.Pin
 	A, B, C, D   machine.Pin
+	NumScreens   int
 }
 
 var display *Device
@@ -89,6 +91,9 @@ var display *Device
 // New returns a new HUB75 driver. This is a singleton, don't attempt to use
 // more than one.
 func New(config Config) *Device {
+	if config.NumScreens == 0 {
+		config.NumScreens = 1 // default config
+	}
 	d := &Device{
 		a:          config.A,
 		b:          config.B,
@@ -97,6 +102,13 @@ func New(config Config) *Device {
 		oe:         config.OutputEnable,
 		lat:        config.Latch,
 		brightness: 1, // must be at least 1
+		numScreens: config.NumScreens,
+	}
+
+	for colorIndex := 0; colorIndex < 3; colorIndex++ {
+		for row := 0; row < 32; row++ {
+			d.framebuf[colorIndex][row] = make([]byte, 32*d.numScreens)
+		}
 	}
 
 	if display != nil {
@@ -130,9 +142,9 @@ func (d *Device) FullRefreshes() uint {
 
 // SetPixel updates the pixel RGB values at index x, y.
 func (d *Device) SetPixel(x int16, y int16, c color.RGBA) {
-	d.framebuf[0][x][y] = c.R
-	d.framebuf[1][x][y] = c.G
-	d.framebuf[2][x][y] = c.B
+	d.framebuf[0][y][x] = c.R
+	d.framebuf[1][y][x] = c.G
+	d.framebuf[2][y][x] = c.B
 }
 
 // flush copies the data in the frame buffer to the output bit strings that can
@@ -143,7 +155,7 @@ func (d *Device) flush() {
 	for row := 0; row < 16; row++ {
 		for bit := 0; bit < 8; bit++ {
 			if d.displayBitstrings[row][bit] == nil {
-				d.displayBitstrings[row][bit] = make([]uint8, 24)
+				d.displayBitstrings[row][bit] = make([]uint8, 24*d.numScreens)
 			}
 		}
 	}
@@ -151,7 +163,7 @@ func (d *Device) flush() {
 	for row := uint(0); row < 32; row++ {
 		for colorIndex := 2; colorIndex >= 0; colorIndex-- {
 			for bit := uint(0); bit < 8; bit++ {
-				for colByte := uint(0); colByte < 4; colByte++ {
+				for colByte := uint(0); colByte < 4*uint(d.numScreens); colByte++ {
 					// Unroll this loop for slightly higher performance.
 					c := uint32(0)
 					word := *(*uint32)(unsafe.Pointer(&d.framebuf[colorIndex][row][colByte*8+0]))
@@ -166,9 +178,9 @@ func (d *Device) flush() {
 					c |= (word & (1 << 8)) >> 6
 					c |= (word & (1 << 16)) >> 15
 					c |= (word & (1 << 24)) >> 24
-					bitstringIndex := colByte + uint(2-colorIndex)*8
+					bitstringIndex := colByte + uint(2-colorIndex)*8*uint(d.numScreens)
 					if (row % 32) < 16 {
-						bitstringIndex += 4
+						bitstringIndex += 4 * uint(d.numScreens)
 					}
 					d.displayBitstrings[row%16][bit][bitstringIndex] = uint8(c)
 				}

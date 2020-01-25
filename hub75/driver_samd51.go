@@ -62,7 +62,6 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 			(0 << 11) | // DSTINC: Destination Address Increment Enable
 			(1 << 12) | // STEPSEL=SRC: Step Selection
 			(0 << 13), // STEPSIZE=X1: Address Increment Step Size
-		btcnt:   24, // beat count
 		dstaddr: unsafe.Pointer(&d.bus.Bus.DATA.Reg),
 	}
 
@@ -113,7 +112,9 @@ func (d *Device) startTransfer() {
 
 	// For some reason, you have to provide the address just past the end of the
 	// array instead of the address of the array.
-	dmaDescriptorSection[d.dmaChannel].srcaddr = unsafe.Pointer(uintptr(unsafe.Pointer(&bitstring[0])) + uintptr(len(bitstring)))
+	descriptor := &dmaDescriptorSection[d.dmaChannel]
+	descriptor.srcaddr = unsafe.Pointer(uintptr(unsafe.Pointer(&bitstring[0])) + uintptr(len(bitstring)))
+	descriptor.btcnt = uint16(len(bitstring)) // beat count
 
 	// Start the transfer.
 	sam.DMAC.CHANNEL[d.dmaChannel].CHCTRLA.SetBits(sam.DMAC_CHANNEL_CHCTRLA_ENABLE)
