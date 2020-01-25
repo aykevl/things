@@ -20,8 +20,7 @@ package hub75
 //     current row lights up with the data latched from the shift register.
 //   Latch:
 //     Also known as strobe. Copy the contents of the shift registers to the
-//     output. It appears that it is normally high, and needs to be pulled low
-//     to update.
+//     output. It is normally low and it needs to be pulled high to update.
 //
 // This driver tries to use all available hardware on a chip to make the screen
 // update as smoothly as possible while using as little CPU power in the process
@@ -192,8 +191,8 @@ func (d *Device) sendNext() {
 	// Send the latch signal.
 	// This means that everything that was shifted into the shift register will
 	// now be set as the output value of the shift register.
-	d.lat.Low()
 	d.lat.High()
+	d.lat.Low()
 
 	// Update the row selection to match the current row.
 	d.a.Set(d.row&0x01 != 0)

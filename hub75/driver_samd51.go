@@ -38,12 +38,9 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	d.bus = &machine.SPI0      // must be SERCOM1
 	const triggerSource = 0x07 // SERCOM1_DMAC_ID_TX
 	d.bus.Configure(machine.SPIConfig{
-		Frequency: 24000000,
+		Frequency: 16000000,
 		Mode:      0,
 	})
-
-	// Enable DMA IRQ.
-	arm.EnableIRQ(sam.IRQ_DMAC_0)
 
 	// Init DMAC.
 	// First configure the clocks, then configure the DMA descriptors. Those
@@ -77,8 +74,13 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	sam.DMAC.CHANNEL[d.dmaChannel].CHPRILVL.Set(0)
 	sam.DMAC.CHANNEL[d.dmaChannel].CHCTRLA.Set((sam.DMAC_CHANNEL_CHCTRLA_TRIGACT_BURST << sam.DMAC_CHANNEL_CHCTRLA_TRIGACT_Pos) | (triggerSource << sam.DMAC_CHANNEL_CHCTRLA_TRIGSRC_Pos) | (sam.DMAC_CHANNEL_CHCTRLA_BURSTLEN_SINGLE << sam.DMAC_CHANNEL_CHCTRLA_BURSTLEN_Pos))
 
-	// Enable DMA block transfer complete interrupt.
-	sam.DMAC.CHANNEL[d.dmaChannel].CHINTENSET.SetBits(sam.DMAC_CHANNEL_CHINTENSET_TCMPL)
+	// Enable SPI TXC interrupt.
+	// Note that we're waiting for the TXC interrupt instead of the DMA complete
+	// interrupt, because the DMA complete interrupt triggers before all data
+	// has been shifted out completely (but presumably after the DMAC has sent
+	// the last byte to the SPI peripheral).
+	d.bus.Bus.INTENSET.Set(sam.SERCOM_SPIM_INTENSET_TXC)
+	arm.EnableIRQ(sam.IRQ_SERCOM1_1)
 
 	// Next up, configure the timer/counter used for precisely timing the Output
 	// Enable pin.
@@ -129,11 +131,11 @@ func (d *Device) startOutputEnableTimer() {
 	d.timer.CTRLBSET.Set(sam.TCC_CTRLBSET_CMD_RETRIGGER << sam.TCC_CTRLBSET_CMD_Pos)
 }
 
-//export DMAC_0_IRQHandler
-func dmacHandler() {
-	// Clear interrupt flags, otherwise this interrupt will trigger
-	// continuously.
-	sam.DMAC.CHANNEL[display.dmaChannel].CHINTFLAG.Set(sam.DMAC_CHANNEL_CHINTENCLR_TERR | sam.DMAC_CHANNEL_CHINTENCLR_TCMPL | sam.DMAC_CHANNEL_CHINTENCLR_SUSP)
+// SPI TXC interrupt is on interrupt line 1.
+//export SERCOM1_1_IRQHandler
+func spiHandler() {
+	// Clear the interrupt flag.
+	display.bus.Bus.INTFLAG.Set(sam.SERCOM_SPIM_INTFLAG_TXC)
 
 	display.handleSPIEvent()
 }
