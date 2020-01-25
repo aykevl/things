@@ -83,6 +83,7 @@ type Config struct {
 	Latch        machine.Pin // also called strobe
 	OutputEnable machine.Pin
 	A, B, C, D   machine.Pin
+	Brightness   uint32
 	NumScreens   int
 }
 
@@ -94,6 +95,9 @@ func New(config Config) *Device {
 	if config.NumScreens == 0 {
 		config.NumScreens = 1 // default config
 	}
+	if config.Brightness == 0 {
+		config.Brightness = 1 // default config (and minimum)
+	}
 	d := &Device{
 		a:          config.A,
 		b:          config.B,
@@ -101,7 +105,7 @@ func New(config Config) *Device {
 		d:          config.D,
 		oe:         config.OutputEnable,
 		lat:        config.Latch,
-		brightness: 1, // must be at least 1
+		brightness: config.Brightness,
 		numScreens: config.NumScreens,
 	}
 
