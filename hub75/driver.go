@@ -134,6 +134,10 @@ func New(config Config) *Device {
 	return d
 }
 
+func (d *Device) Size() (int16, int16) {
+	return 32 * int16(d.numScreens), 32
+}
+
 // FullRefreshes returns the number of full screen refreshes (all rows + all
 // brightness levels) since this driver was started.
 func (d *Device) FullRefreshes() uint {
