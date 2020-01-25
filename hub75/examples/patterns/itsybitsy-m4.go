@@ -8,5 +8,13 @@ import (
 	"github.com/aykevl/things/hub75"
 )
 
-// data, clock, latch, oe, abcd
-var display = hub75.New(machine.NoPin, machine.NoPin, machine.D5, machine.D7, machine.D9, machine.D10, machine.D11, machine.D12)
+var display = hub75.New(hub75.Config{
+	Data:         machine.NoPin,
+	Clock:        machine.NoPin,
+	Latch:        machine.D5,
+	OutputEnable: machine.D7,
+	A:            machine.D9,
+	B:            machine.D10,
+	C:            machine.D11,
+	D:            machine.D12,
+})

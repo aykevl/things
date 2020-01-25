@@ -75,18 +75,27 @@ type Device struct {
 	brightness        uint32           // at least 1, higher means brighter screen but slower updates
 }
 
+// Config contains the configuration for a given hub75 instance.
+type Config struct {
+	Data         machine.Pin // SPI TX
+	Clock        machine.Pin // SPI CLK
+	Latch        machine.Pin // also called strobe
+	OutputEnable machine.Pin
+	A, B, C, D   machine.Pin
+}
+
 var display *Device
 
 // New returns a new HUB75 driver. This is a singleton, don't attempt to use
 // more than one.
-func New(dataPin, clockPin, latPin, oePin, aPin, bPin, cPin, dPin machine.Pin) *Device {
+func New(config Config) *Device {
 	d := &Device{
-		a:          aPin,
-		b:          bPin,
-		c:          cPin,
-		d:          dPin,
-		oe:         oePin,
-		lat:        latPin,
+		a:          config.A,
+		b:          config.B,
+		c:          config.C,
+		d:          config.D,
+		oe:         config.OutputEnable,
+		lat:        config.Latch,
 		brightness: 1, // must be at least 1
 	}
 
@@ -108,7 +117,7 @@ func New(dataPin, clockPin, latPin, oePin, aPin, bPin, cPin, dPin machine.Pin) *
 	d.d.Low()
 	d.lat.High()
 
-	d.configureChip(dataPin, clockPin)
+	d.configureChip(config.Data, config.Clock)
 
 	return d
 }
