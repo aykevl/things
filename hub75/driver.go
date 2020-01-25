@@ -115,6 +115,15 @@ func New(config Config) *Device {
 		}
 	}
 
+	// Make sure all bitstrings are present.
+	for row := 0; row < 16; row++ {
+		for bit := 0; bit < 8; bit++ {
+			if d.displayBitstrings[row][bit] == nil {
+				d.displayBitstrings[row][bit] = make([]uint8, 24*d.numScreens)
+			}
+		}
+	}
+
 	if display != nil {
 		panic("trying to instantiate more than one hub75 driver")
 	}
@@ -159,15 +168,6 @@ func (d *Device) SetPixel(x int16, y int16, c color.RGBA) {
 // be sent over SPI.
 //go:nobounds
 func (d *Device) flush() {
-	// Make sure all bitstrings are present.
-	for row := 0; row < 16; row++ {
-		for bit := 0; bit < 8; bit++ {
-			if d.displayBitstrings[row][bit] == nil {
-				d.displayBitstrings[row][bit] = make([]uint8, 24*d.numScreens)
-			}
-		}
-	}
-
 	for row := uint(0); row < 32; row++ {
 		for colorIndex := 2; colorIndex >= 0; colorIndex-- {
 			bitstringIndex := uint(2-colorIndex) * 8 * uint(d.numScreens)
