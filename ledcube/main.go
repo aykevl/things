@@ -18,6 +18,7 @@ func main() {
 	demo := noiseAt
 	//demo := fireAt
 	//demo := radiance
+	//demo := hyperspace
 	for {
 		start := time.Now()
 		drawPixels(start, demo)
@@ -114,4 +115,33 @@ func radiance(x, y, z int, now time.Time) color.RGBA {
 	distance := ledsgo.Sqrt((px*px + py*py)) // .8
 	hue := uint16(ledsgo.Noise1(int32(distance>>0)-int32(now.UnixNano()>>18))) + 0x8000
 	return ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
+}
+
+// hyperspace is a demo that should look a little bit like a hyperspace scene in
+// a sci-fi movie.
+func hyperspace(x, y, z int, now time.Time) color.RGBA {
+	const circleX = (size/2 + 0.5) * 256
+	const circleY = (size/2 + 0.5) * 256
+	const cylinderRadius = 50 * 256 // higher number means more complexity
+	// Calculate distance from the circle center.
+	px := (x << 8) - circleX                 // .8
+	py := (y << 8) - circleY                 // .8
+	distance := ledsgo.Sqrt((px*px + py*py)) // .8
+
+	// Normalize this distance.
+	px = px * cylinderRadius / distance
+	py = py * cylinderRadius / distance
+
+	// Now the tricky part. Imagine this is a cyliner with px and py on
+	// the outer circle of the cylinder. The cylinder moves through 3D
+	// space in the direction of one of the flat sides of the cylinder
+	// (the third coordinate).
+	alpha := int(ledsgo.Noise3(int32(px), int32(py), int32(distance/4)-int32(now.UnixNano()>>16)))
+	alpha -= 10000
+	if alpha < 0 {
+		alpha = 0
+	}
+	c := color.RGBA{0xaa, 0xaa, 0xff, 0xff}
+	c = ledsgo.ApplyAlpha(c, uint8(alpha/256))
+	return c
 }
