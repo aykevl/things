@@ -7,6 +7,10 @@ import (
 	"github.com/aykevl/ledsgo"
 )
 
+const (
+	size = 32
+)
+
 func main() {
 	fullRefreshes := uint(0)
 	previousSecond := int64(0)
@@ -37,14 +41,14 @@ func main() {
 func drawPixels(t time.Time, getColor func(x, y, z int, t time.Time) color.RGBA) {
 	// Somewhat arbitrarily picking the top left of the topmost panel as the (0,
 	// 0, 31) of the 3D cube.
-	for x := 0; x < 32; x++ {
-		for y := 0; y < 32; y++ {
-			display.SetPixel(int16(x+32*5), int16(y), getColor(x+1, y+1, 0, t))
-			display.SetPixel(int16(x+32*4), int16(y), getColor(0, x+1, y+1, t))
-			display.SetPixel(int16(x+32*3), int16(y), getColor(32-x, 0, y+1, t))
-			display.SetPixel(int16(x+32*2), int16(y), getColor(33, 32-x, y+1, t))
-			display.SetPixel(int16(x+32*1), int16(y), getColor(x+1, 33, y+1, t))
-			display.SetPixel(int16(x+32*0), int16(y), getColor(x+1, 32-y, 33, t))
+	for x := 0; x < size; x++ {
+		for y := 0; y < size; y++ {
+			display.SetPixel(int16(x+size*5), int16(y), getColor(x+1, y+1, 0, t))
+			display.SetPixel(int16(x+size*4), int16(y), getColor(0, x+1, y+1, t))
+			display.SetPixel(int16(x+size*3), int16(y), getColor(size-x, 0, y+1, t))
+			display.SetPixel(int16(x+size*2), int16(y), getColor(size+1, size-x, y+1, t))
+			display.SetPixel(int16(x+size*1), int16(y), getColor(x+1, size+1, y+1, t))
+			display.SetPixel(int16(x+size*0), int16(y), getColor(x+1, size-y, size+1, t))
 		}
 	}
 }
@@ -52,20 +56,20 @@ func drawPixels(t time.Time, getColor func(x, y, z int, t time.Time) color.RGBA)
 // noiseAt returns noise at the specified location.
 func noiseAt(x, y, z int, t time.Time) color.RGBA {
 	const (
-		spread = 7  // higher means the noise gets more detailed
-		speed  = 20 // higher means slower
+		spread = 4096 / size // higher means the noise gets more detailed
+		speed  = 20          // higher means slower
 	)
-	hue := uint16(ledsgo.Noise4(int32(t.UnixNano()>>speed), int32(x<<spread), int32(y<<spread), int32(z<<spread))) * 2
+	hue := uint16(ledsgo.Noise4(int32(t.UnixNano()>>speed), int32(x*spread), int32(y*spread), int32(z*spread))) * 2
 	return ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 }
 
 // fireAt returns fire at the specified location.
 func fireAt(x, y, z int, t time.Time) color.RGBA {
-	const pointsPerCircle = 12 // how many LEDs there are per turn of the torch
-	const cooling = 56         // higher means faster cooling
-	const detail = 400         // higher means more detailed flames
-	const speed = 12           // higher means faster
-	const screenHeight = 33
+	const pointsPerCircle = 12  // how many LEDs there are per turn of the torch
+	const cooling = 1792 / size // higher means faster cooling
+	const detail = 12800 / size // higher means more detailed flames
+	const speed = 12            // higher means faster
+	const screenHeight = size + 1
 	if z == 0 {
 		return color.RGBA{}
 	}
@@ -98,15 +102,15 @@ func colorCoordinateAt(x, y, z int, t time.Time) color.RGBA {
 	// X represents red (more red to the right)
 	// Y represents green (more green to the bottom)
 	// Z represents blue (more blue to the bottom)
-	return color.RGBA{uint8(x * 255 / 33), uint8(y * 255 / 33), uint8(z * 255 / 33), 0xff}
+	return color.RGBA{uint8(x * 255 / (size + 1)), uint8(y * 255 / (size + 1)), uint8(z * 255 / (size + 1)), 0xff}
 }
 
 // radiance shows colors radiating out of the center.
 func radiance(x, y, z int, now time.Time) color.RGBA {
-	const circleX = 15.5 * 256
-	const circleY = 15.5 * 256
-	px := (x << 8) - circleX                 // .8
-	py := (y << 8) - circleY                 // .8
+	const circleX = 33 / 2 * 256
+	const circleY = 33 / 2 * 256
+	px := (x * (8192 / size)) - 4224         // .8
+	py := (y * (8192 / size)) - 4224         // .8
 	distance := ledsgo.Sqrt((px*px + py*py)) // .8
 	hue := uint16(ledsgo.Noise1(int32(distance>>0)-int32(now.UnixNano()>>18))) + 0x8000
 	return ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
