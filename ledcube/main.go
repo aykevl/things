@@ -13,6 +13,7 @@ func main() {
 	//demo := colorCoordinateAt
 	demo := noiseAt
 	//demo := fireAt
+	//demo := radiance
 	for {
 		start := time.Now()
 		drawPixels(start, demo)
@@ -98,4 +99,15 @@ func colorCoordinateAt(x, y, z int, t time.Time) color.RGBA {
 	// Y represents green (more green to the bottom)
 	// Z represents blue (more blue to the bottom)
 	return color.RGBA{uint8(x * 255 / 33), uint8(y * 255 / 33), uint8(z * 255 / 33), 0xff}
+}
+
+// radiance shows colors radiating out of the center.
+func radiance(x, y, z int, now time.Time) color.RGBA {
+	const circleX = 15.5 * 256
+	const circleY = 15.5 * 256
+	px := (x << 8) - circleX                 // .8
+	py := (y << 8) - circleY                 // .8
+	distance := ledsgo.Sqrt((px*px + py*py)) // .8
+	hue := uint16(ledsgo.Noise1(int32(distance>>0)-int32(now.UnixNano()>>18))) + 0x8000
+	return ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 }
