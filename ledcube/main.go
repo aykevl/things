@@ -21,7 +21,7 @@ func main() {
 		second := (start.UnixNano() / int64(time.Second))
 		if second != previousSecond {
 			previousSecond = second
-			newFullRefreshes := display.FullRefreshes()
+			newFullRefreshes := getFullRefreshes()
 			animationTime := time.Since(start)
 			animationFPS := int64(10 * time.Second / animationTime)
 			print("#", second, " screen=", newFullRefreshes-fullRefreshes, "fps animation=", animationTime.String(), "/", (animationFPS / 10), ".", animationFPS%10, "fps\r\n")
