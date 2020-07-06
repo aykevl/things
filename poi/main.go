@@ -23,6 +23,7 @@ var (
 	speed          uint8 = 10
 )
 
+// List of animations that can be selected over BLE.
 var animations = []func(time.Time){
 	solid,
 	noise,
@@ -67,6 +68,7 @@ func main() {
 	}
 }
 
+// Colorful noise.
 func noise(now time.Time) {
 	const x = 0
 	const spread = 7
@@ -78,6 +80,7 @@ func noise(now time.Time) {
 	}
 }
 
+// Looks a bit like spikes from inside to the outside.
 func iris(now time.Time) {
 	expansion := (ledsgo.Noise1(int32(now.UnixNano()>>(21-speed))) / 256) + 128 - 50
 	for y := int16(0); y < height; y++ {
@@ -91,6 +94,7 @@ func iris(now time.Time) {
 	}
 }
 
+// Looks like a typical blocky gear, with square gear teeth.
 func gear(now time.Time) {
 	long := int16((now.UnixNano()>>(32-speed))%8) == 0
 	for y := int16(0); y < height; y++ {
@@ -102,6 +106,8 @@ func gear(now time.Time) {
 	}
 }
 
+// Somewhat improperly named. When two poi are spinning in opposite direction,
+// it has a somewhat palm tree like appearance.
 func halfcircles(now time.Time) {
 	chosenOne := int16((now.UnixNano() >> (32 - speed)) % height)
 	for y := int16(0); y < height; y++ {
@@ -113,6 +119,7 @@ func halfcircles(now time.Time) {
 	}
 }
 
+// Simple > arrows pointing in the direction the poi is moving.
 func arrows(now time.Time) {
 	// First make them all black.
 	for y := int16(0); y < height; y++ {
@@ -125,6 +132,8 @@ func arrows(now time.Time) {
 	leds[height-1-index] = baseColor
 }
 
+// Random colored specles. Looks great in the dark because the poi itself is
+// (nearly) invisible showing only these speckles.
 func glitter(now time.Time) {
 	// Make all LEDs black.
 	for y := int16(0); y < height; y++ {
@@ -148,18 +157,24 @@ func glitter(now time.Time) {
 	leds[index] = c
 }
 
+// Solid color. Useful to reduce distraction, for testing and as a not too
+// distracting startup color.
 func solid(now time.Time) {
 	for y := int16(0); y < height; y++ {
 		leds[y] = baseColor
 	}
 }
 
+// Disable all LEDs. LEDs will still consume power as they use around 1mA even
+// when they're dark.
 func black(now time.Time) {
 	for y := int16(0); y < height; y++ {
 		leds[y] = color.RGBA{}
 	}
 }
 
+// Fire animation. The flame is the configured color, so you can not only have a
+// red flame, but also a green or blue flame. Red looks the best IMHO, though.
 func fire(now time.Time) {
 	var cooling = (14 * 16) / height // higher means faster cooling
 	const detail = 400               // higher means more detailed flames
@@ -175,6 +190,8 @@ func fire(now time.Time) {
 	}
 }
 
+// Colored flame. Like a heat map, but the lowest temperatures are not fixed red
+// but instead use the configured color.
 func coloredFlame(index uint8) color.RGBA {
 	if index < 128 {
 		// <color>
@@ -193,6 +210,8 @@ func coloredFlame(index uint8) color.RGBA {
 	return color.RGBA{255, 255, (index - 224) * 8, 255}
 }
 
+// Heat map, where lower numbers are colder. Previously used in the fire
+// animation.
 func heatMap(index uint8) color.RGBA {
 	if index < 128 {
 		return color.RGBA{index * 2, 0, 0, 255}
