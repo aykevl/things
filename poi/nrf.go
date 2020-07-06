@@ -15,6 +15,7 @@ var (
 )
 
 func initHardware() {
+	println("init hardware")
 	// Initialize the adapter.
 	adapter := bluetooth.DefaultAdapter
 	err := adapter.Enable()
@@ -26,7 +27,8 @@ func initHardware() {
 	// Start advertising.
 	adv := adapter.DefaultAdvertisement()
 	err = adv.Configure(bluetooth.AdvertisementOptions{
-		LocalName: bluetoothName,
+		LocalName:    bluetoothName,
+		ServiceUUIDs: []bluetooth.UUID{serviceUUID},
 	})
 	if err != nil {
 		println("could not configure advertisement:", err.Error())
@@ -43,14 +45,14 @@ func initHardware() {
 		Characteristics: []bluetooth.CharacteristicConfig{
 			{
 				UUID:  animationUUID,
-				Value: []byte{0},
+				Value: []byte{animationIndex},
 				Flags: bluetooth.CharacteristicReadPermission | bluetooth.CharacteristicWritePermission,
 				WriteEvent: func(client bluetooth.Connection, offset int, value []byte) {
 					if offset != 0 || len(value) < 1 {
 						return
 					}
 					if int(value[0]) < len(animations) {
-						animationIndex = int(value[0])
+						animationIndex = value[0]
 						println("animation is now:", animationIndex)
 					}
 				},
