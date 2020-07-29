@@ -44,8 +44,8 @@ func main() {
 		Frequency: spiFrequency,
 		Mode:      0,
 		SCK:       spiClockPin,
-		MOSI:      spiDataPin,
-		MISO:      machine.NoPin,
+		SDO:       spiDataPin,
+		SDI:       machine.NoPin,
 	})
 
 	a := apa102.New(machine.SPI0)

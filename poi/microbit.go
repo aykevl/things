@@ -20,5 +20,5 @@ var (
 const (
 	spiFrequency = 8000000
 	spiClockPin  = machine.SPI0_SCK_PIN
-	spiDataPin   = machine.SPI0_MOSI_PIN
+	spiDataPin   = machine.SPI0_SDO_PIN
 )
