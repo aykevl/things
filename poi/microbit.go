@@ -18,7 +18,16 @@ var (
 
 // Hardware configuration.
 const (
-	spiFrequency = 8000000
 	spiClockPin  = machine.SPI0_SCK_PIN
 	spiDataPin   = machine.SPI0_SDO_PIN
+	spiFrequency = 8000000
+
+	mosfetPin = machine.NoPin
+
+	serialTxPin = machine.NoPin
+
+	hasBMI160 = false
+
+	numLeds = 30 // number of LEDs in the strip
+	height  = 14 // number of LEDs to be animated
 )

@@ -1,4 +1,3 @@
-// Connects to an APA102 SPI RGB LED strip with 30 LEDS.
 package main
 
 import (
@@ -9,13 +8,14 @@ import (
 	"github.com/aykevl/ledsgo"
 	"github.com/spaolacci/murmur3"
 	"tinygo.org/x/drivers/apa102"
+	"tinygo.org/x/drivers/bmi160"
 )
 
-var leds = make([]color.RGBA, 60)
+var leds = make([]color.RGBA, numLeds)
 
-const (
-	height = 14
-)
+var imu *bmi160.DeviceSPI
+
+const debug = false
 
 // Parameters that are controlled with Bluetooth.
 var (
@@ -24,9 +24,9 @@ var (
 )
 
 // List of animations that can be selected over BLE.
-var animations = []func(time.Time){
+var animations = []func(time.Time, movement){
 	solid,
-	noise,
+	new(noiseState).noise,
 	fire,
 	iris,
 	gear,
@@ -37,9 +37,101 @@ var animations = []func(time.Time){
 }
 
 func main() {
+	if serialTxPin != machine.NoPin {
+		// Reconfigure UART on a different pin.
+		machine.UART0.Configure(machine.UARTConfig{
+			TX: serialTxPin,
+			RX: machine.NoPin,
+		})
+	}
 	println("starting")
 	initHardware()
 
+	if hasBMI160 {
+		machine.SPI1.Configure(machine.SPIConfig{
+			SCK:       6, // connected to SCX of BMI160 (also SCK)
+			SDO:       5, // connected to SDX of BMI160 (also SDI)
+			SDI:       4, // connected to SDO of BMI160
+			Mode:      0, // both mode 0 and mode 3 are supported
+			Frequency: 8e6,
+		})
+		csb := machine.Pin(7)
+		imu = bmi160.NewSPI(csb, machine.SPI1)
+	}
+
+	if mosfetPin != machine.NoPin {
+		mosfetPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	}
+	enable()
+
+	a := apa102.New(machine.SPI0)
+
+	for i := uint(0); ; i++ {
+		if int(animationIndex) == len(animations)-1 {
+			// Disable all LEDs (for compatibility with poi that don't have a
+			// MOSFET to control LED power).
+			for y := range leds {
+				leds[y] = color.RGBA{}
+			}
+			a.WriteColors(leds)
+			time.Sleep(time.Millisecond) // wait until data is fully sent (?)
+
+			// Turn off many peripherals.
+			disable()
+
+			for int(animationIndex) == len(animations)-1 {
+				// Wait until we're not sleeping anymore.
+				if debug {
+					println("sleeping")
+				}
+				time.Sleep(time.Second)
+			}
+
+			// Enable all peripherals again.
+			enable()
+		}
+
+		now := time.Now()
+
+		// Default values, for when the MPU isn't available.
+		m := movement{
+			rotationSpeed: 54000, // 1½ rotation per second
+		}
+
+		if imu != nil {
+			// Ignore gyroX because it just shows how much the poi rotates around
+			// its own axis and is thus noise. The other two (gyroY and gyroZ) show
+			// how fast the poi is actually spinning.
+			_, gyroY, gyroZ, _ := imu.ReadRotation()
+
+			// The gyro number here is in units of .01°/s.
+			m.rotationSpeed = ledsgo.Sqrt(int(((gyroY / 10000) * (gyroY / 10000)) + ((gyroZ / 10000) * (gyroZ / 10000))))
+		}
+
+		animation := animations[animationIndex]
+		animation(now, m)
+
+		if height != len(leds) {
+			// This is a poi with two sides that wraps around.
+			// Make sure the other side is also colored properly (animations
+			// only color one side).
+			for i := 0; i < len(leds)/2; i++ {
+				leds[len(leds)-i-1] = leds[i]
+			}
+		}
+		a.WriteColors(leds)
+
+		// print speed
+		if debug && i%500 == 0 {
+			//duration := time.Since(now)
+			//println("duration:", duration.String())
+		}
+	}
+}
+
+// enable enables all peripherals that might be disabled when in standby mode.
+func enable() {
+	// Enable LEDs.
 	machine.SPI0.Configure(machine.SPIConfig{
 		Frequency: spiFrequency,
 		Mode:      0,
@@ -47,33 +139,68 @@ func main() {
 		SDO:       spiDataPin,
 		SDI:       machine.NoPin,
 	})
+	if mosfetPin != machine.NoPin {
+		mosfetPin.Set(true)
+	}
 
-	a := apa102.New(machine.SPI0)
-
-	for i := uint(0); ; i++ {
-		now := time.Now()
-		animation := animations[animationIndex]
-		animation(now)
-
-		for i := 0; i < 16; i++ {
-			leds[29-i] = leds[i]
-		}
-		a.WriteColors(leds)
-
-		// print speed
-		if i%100 == 0 {
-			//duration := time.Since(now)
-			//println("duration:", duration.String())
-		}
+	// Enable IMU.
+	if imu != nil {
+		imu.Configure()
 	}
 }
 
+// disable turns off peripherals that can be disabled to save power.
+// Perhaps most importantly, it turns off all LEDs to massively reduce current
+// consumption.
+func disable() {
+	// Disable LEDs.
+	machine.SPI0.Bus.ENABLE.Set(0)
+	if mosfetPin != machine.NoPin {
+		mosfetPin.Set(false)
+	}
+
+	// Disable IMU.
+	if imu != nil {
+		imu.Reset()
+	}
+}
+
+// Type movement contains information about the current movement that might be
+// relevant to animations. Some animations may change depending on how the poi
+// moves.
+type movement struct {
+	// Rotation speed in 0.01°/s.
+	// A poi will usually spin at 1-2 rotations per second, which means the
+	// rotation speed will usually be in the range of 36000 to 72000 when
+	// rotating.
+	// This number is either zero or positive (although exactly zero is
+	// unlikely).
+	rotationSpeed int
+}
+
+// State for the noise function.
+type noiseState struct {
+	lastTime      time.Time
+	noisePosition int64
+}
+
 // Colorful noise.
-func noise(now time.Time) {
-	const x = 0
+func (n *noiseState) noise(now time.Time, m movement) {
 	const spread = 7
+	const minAnimationSpeed = 1000
+
+	// Update position.
+	timeElapsed := now.Sub(n.lastTime)
+	animationSpeed := m.rotationSpeed
+	if animationSpeed < minAnimationSpeed {
+		animationSpeed = minAnimationSpeed
+	}
+	n.noisePosition += (int64(timeElapsed) * int64(animationSpeed)) >> (32 - speed)
+	n.lastTime = now
+
+	// Color each pixel.
 	for y := int16(0); y < height; y++ {
-		hue := uint16(ledsgo.Noise2(int32(now.UnixNano()>>(26-speed)), int32(y<<spread))) * 2
+		hue := uint16(ledsgo.Noise2(int32(n.noisePosition>>10), int32(y<<spread))) * 2
 		c := ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 		c.A = baseColor.A
 		leds[y] = c
@@ -81,10 +208,10 @@ func noise(now time.Time) {
 }
 
 // Looks a bit like spikes from inside to the outside.
-func iris(now time.Time) {
+func iris(now time.Time, m movement) {
 	expansion := (ledsgo.Noise1(int32(now.UnixNano()>>(21-speed))) / 256) + 128 - 50
 	for y := int16(0); y < height; y++ {
-		intensity := expansion - y*16
+		intensity := expansion - y*224/height
 		if intensity < 0 {
 			intensity = 0
 		}
@@ -95,11 +222,11 @@ func iris(now time.Time) {
 }
 
 // Looks like a typical blocky gear, with square gear teeth.
-func gear(now time.Time) {
+func gear(now time.Time, m movement) {
 	long := int16((now.UnixNano()>>(32-speed))%8) == 0
 	for y := int16(0); y < height; y++ {
 		c := color.RGBA{}
-		if long || y < 3 {
+		if long || y < height/4 {
 			c = baseColor
 		}
 		leds[y] = c
@@ -108,11 +235,11 @@ func gear(now time.Time) {
 
 // Somewhat improperly named. When two poi are spinning in opposite direction,
 // it has a somewhat palm tree like appearance.
-func halfcircles(now time.Time) {
+func halfcircles(now time.Time, m movement) {
 	chosenOne := int16((now.UnixNano() >> (32 - speed)) % height)
 	for y := int16(0); y < height; y++ {
 		c := color.RGBA{}
-		if y == chosenOne || y == chosenOne+1 {
+		if y >= chosenOne && y < chosenOne+(height/7) {
 			c = baseColor
 		}
 		leds[y] = c
@@ -120,7 +247,7 @@ func halfcircles(now time.Time) {
 }
 
 // Simple > arrows pointing in the direction the poi is moving.
-func arrows(now time.Time) {
+func arrows(now time.Time, m movement) {
 	// First make them all black.
 	for y := int16(0); y < height; y++ {
 		leds[y] = color.RGBA{}
@@ -134,7 +261,7 @@ func arrows(now time.Time) {
 
 // Random colored specles. Looks great in the dark because the poi itself is
 // (nearly) invisible showing only these speckles.
-func glitter(now time.Time) {
+func glitter(now time.Time, m movement) {
 	// Make all LEDs black.
 	for y := int16(0); y < height; y++ {
 		leds[y] = color.RGBA{}
@@ -159,7 +286,7 @@ func glitter(now time.Time) {
 
 // Solid color. Useful to reduce distraction, for testing and as a not too
 // distracting startup color.
-func solid(now time.Time) {
+func solid(now time.Time, m movement) {
 	for y := int16(0); y < height; y++ {
 		leds[y] = baseColor
 	}
@@ -167,7 +294,7 @@ func solid(now time.Time) {
 
 // Disable all LEDs. LEDs will still consume power as they use around 1mA even
 // when they're dark.
-func black(now time.Time) {
+func black(now time.Time, m movement) {
 	for y := int16(0); y < height; y++ {
 		leds[y] = color.RGBA{}
 	}
@@ -175,7 +302,7 @@ func black(now time.Time) {
 
 // Fire animation. The flame is the configured color, so you can not only have a
 // red flame, but also a green or blue flame. Red looks the best IMHO, though.
-func fire(now time.Time) {
+func fire(now time.Time, m movement) {
 	var cooling = (14 * 16) / height // higher means faster cooling
 	const detail = 400               // higher means more detailed flames
 	for y := int16(0); y < height; y++ {
