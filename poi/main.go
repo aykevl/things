@@ -1,6 +1,7 @@
 package main
 
 import (
+	"device/nrf"
 	"image/color"
 	"machine"
 	"time"
@@ -37,14 +38,22 @@ var animations = []func(time.Time, movement){
 }
 
 func main() {
-	if serialTxPin != machine.NoPin {
-		// Reconfigure UART on a different pin.
-		machine.UART0.Configure(machine.UARTConfig{
-			TX: serialTxPin,
-			RX: machine.NoPin,
-		})
+	if debug {
+		if serialTxPin != machine.NoPin {
+			// Reconfigure UART on a different pin.
+			machine.UART0.Configure(machine.UARTConfig{
+				TX: serialTxPin,
+				RX: machine.NoPin,
+			})
+		}
+	} else {
+		// The UART consumes a lot of current in sleep mode when left enabled.
+		nrf.UART0.ENABLE.Set(0)
 	}
-	println("starting")
+
+	if debug {
+		println("starting")
+	}
 	initHardware()
 
 	if hasBMI160 {

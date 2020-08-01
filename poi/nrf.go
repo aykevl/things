@@ -15,7 +15,9 @@ var (
 )
 
 func initHardware() {
-	println("init hardware")
+	if debug {
+		println("init hardware")
+	}
 	// Initialize the adapter.
 	adapter := bluetooth.DefaultAdapter
 	err := adapter.Enable()
@@ -53,7 +55,9 @@ func initHardware() {
 					}
 					if int(value[0]) < len(animations) {
 						animationIndex = value[0]
-						println("animation is now:", animationIndex)
+						if debug {
+							println("animation is now:", animationIndex)
+						}
 					}
 				},
 			},
@@ -66,7 +70,9 @@ func initHardware() {
 						return
 					}
 					speed = value[0]
-					println("speed is now:", speed)
+					if debug {
+						println("speed is now:", speed)
+					}
 				},
 			},
 			{
@@ -78,7 +84,9 @@ func initHardware() {
 						return
 					}
 					baseColor.A = value[0]
-					println("brightness is now:", baseColor.A)
+					if debug {
+						println("brightness is now:", baseColor.A)
+					}
 				},
 			},
 			{
@@ -92,7 +100,9 @@ func initHardware() {
 					baseColor.R = value[0]
 					baseColor.G = value[1]
 					baseColor.B = value[2]
-					println("updated color")
+					if debug {
+						println("updated color")
+					}
 				},
 			},
 		},
