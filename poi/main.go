@@ -120,14 +120,6 @@ func main() {
 		animation := animations[animationIndex]
 		animation(now, m)
 
-		if height != len(leds) {
-			// This is a poi with two sides that wraps around.
-			// Make sure the other side is also colored properly (animations
-			// only color one side).
-			for i := 0; i < len(leds)/2; i++ {
-				leds[len(leds)-i-1] = leds[i]
-			}
-		}
 		a.WriteColors(leds)
 
 		// print speed
@@ -212,7 +204,7 @@ func (n *noiseState) noise(now time.Time, m movement) {
 		hue := uint16(ledsgo.Noise2(int32(n.noisePosition>>10), int32(y<<spread))) * 2
 		c := ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 		c.A = baseColor.A
-		leds[y] = c
+		setLED(y, c)
 	}
 }
 
@@ -226,7 +218,7 @@ func iris(now time.Time, m movement) {
 		}
 		c := ledsgo.ApplyAlpha(baseColor, uint8(intensity))
 		c.A = baseColor.A
-		leds[y] = c
+		setLED(y, c)
 	}
 }
 
@@ -238,7 +230,7 @@ func gear(now time.Time, m movement) {
 		if long || y < height/4 {
 			c = baseColor
 		}
-		leds[y] = c
+		setLED(y, c)
 	}
 }
 
@@ -251,7 +243,7 @@ func halfcircles(now time.Time, m movement) {
 		if y >= chosenOne && y < chosenOne+(height/7) {
 			c = baseColor
 		}
-		leds[y] = c
+		setLED(y, c)
 	}
 }
 
@@ -259,13 +251,13 @@ func halfcircles(now time.Time, m movement) {
 func arrows(now time.Time, m movement) {
 	// First make them all black.
 	for y := int16(0); y < height; y++ {
-		leds[y] = color.RGBA{}
+		setLED(y, color.RGBA{})
 	}
 
 	// Turn the two LEDs on that are part of the arrow.
 	index := int16((now.UnixNano() >> (32 - speed)) % (height / 2))
-	leds[index] = baseColor
-	leds[height-1-index] = baseColor
+	setLED(index, baseColor)
+	setLED(height-1-index, baseColor)
 }
 
 // Random colored specles. Looks great in the dark because the poi itself is
@@ -273,7 +265,7 @@ func arrows(now time.Time, m movement) {
 func glitter(now time.Time, m movement) {
 	// Make all LEDs black.
 	for y := int16(0); y < height; y++ {
-		leds[y] = color.RGBA{}
+		setLED(y, color.RGBA{})
 	}
 
 	// Get a random number based on the time.
@@ -281,7 +273,7 @@ func glitter(now time.Time, m movement) {
 	hash := murmur3.Sum32([]byte{byte(t), byte(t >> 8), byte(t >> 16), byte(t >> 24)})
 
 	// Use this number to get an index.
-	index := hash % (height * 2)
+	index := int16(hash % (height * 2))
 	if index >= height {
 		return // don't sparkle all the time
 	}
@@ -290,14 +282,14 @@ func glitter(now time.Time, m movement) {
 	c := ledsgo.Color{uint16((hash >> 7)), 0xff, 0xff}.Spectrum()
 	c.A = baseColor.A
 
-	leds[index] = c
+	setLED(index, c)
 }
 
 // Solid color. Useful to reduce distraction, for testing and as a not too
 // distracting startup color.
 func solid(now time.Time, m movement) {
 	for y := int16(0); y < height; y++ {
-		leds[y] = baseColor
+		setLED(y, baseColor)
 	}
 }
 
@@ -305,7 +297,7 @@ func solid(now time.Time, m movement) {
 // when they're dark.
 func black(now time.Time, m movement) {
 	for y := int16(0); y < height; y++ {
-		leds[y] = color.RGBA{}
+		setLED(y, color.RGBA{})
 	}
 }
 
@@ -322,7 +314,7 @@ func fire(now time.Time, m movement) {
 		}
 		c := coloredFlame(uint8(heat))
 		c.A = baseColor.A
-		leds[y] = c
+		setLED(y, c)
 	}
 }
 

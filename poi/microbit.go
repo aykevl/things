@@ -31,3 +31,11 @@ const (
 	numLeds = 30 // number of LEDs in the strip
 	height  = 14 // number of LEDs to be animated
 )
+
+//go:inline
+func setLED(y int16, c color.RGBA) {
+	// This is a poi with two sides that wraps around.
+	// Make sure the other side is also colored properly.
+	leds[y] = c
+	leds[len(leds)-int(y)-1] = c
+}
