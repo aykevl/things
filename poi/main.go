@@ -104,7 +104,7 @@ func main() {
 
 		// Default values, for when the MPU isn't available.
 		m := movement{
-			rotationSpeed: 54000, // 1½ rotation per second
+			rotationSpeed: 360 * 30 / 2, // 1½ rotation per second
 		}
 
 		if imu != nil {
@@ -113,8 +113,8 @@ func main() {
 			// how fast the poi is actually spinning.
 			_, gyroY, gyroZ, _ := imu.ReadRotation()
 
-			// The gyro number here is in units of .01°/s.
-			m.rotationSpeed = ledsgo.Sqrt(int(((gyroY / 10000) * (gyroY / 10000)) + ((gyroZ / 10000) * (gyroZ / 10000))))
+			// The gyro number here is in units of .1°/s.
+			m.rotationSpeed = ledsgo.Sqrt(int(((gyroY / 100000) * (gyroY / 100000)) + ((gyroZ / 100000) * (gyroZ / 100000))))
 		}
 
 		animation := animations[animationIndex]
@@ -196,7 +196,7 @@ type noiseState struct {
 // Colorful noise.
 func (n *noiseState) noise(now time.Time, m movement) {
 	const spread = 7
-	const minAnimationSpeed = 1000
+	const minAnimationSpeed = 50
 
 	// Update position.
 	timeElapsed := now.Sub(n.lastTime)
@@ -204,7 +204,7 @@ func (n *noiseState) noise(now time.Time, m movement) {
 	if animationSpeed < minAnimationSpeed {
 		animationSpeed = minAnimationSpeed
 	}
-	n.noisePosition += (int64(timeElapsed) * int64(animationSpeed)) >> (32 - speed)
+	n.noisePosition += (int64(timeElapsed) * int64(animationSpeed)) >> (27 - speed)
 	n.lastTime = now
 
 	// Color each pixel.
