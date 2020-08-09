@@ -11,12 +11,6 @@ import (
 	"machine"
 )
 
-// Appearance configuration.
-var (
-	baseColor     = color.RGBA{0xff, 0, 0, 0x11}
-	bluetoothName = "red poi"
-)
-
 // Hardware configuration.
 const (
 	spiClockPin  machine.Pin = 26
