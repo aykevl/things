@@ -27,7 +27,7 @@ var (
 // List of animations that can be selected over BLE.
 var animations = []func(time.Time, movement){
 	solid,
-	new(noiseState).noise,
+	noise,
 	fire,
 	iris,
 	gear,
@@ -75,6 +75,12 @@ func main() {
 
 	a := apa102.New(machine.SPI0)
 
+	// Default values, for when the MPU isn't available.
+	m := movement{
+		rotationSpeed: 360 * 30 / 2, // 1½ rotation per second
+	}
+
+	now := time.Now()
 	for i := uint(0); ; i++ {
 		if int(animationIndex) == len(animations)-1 {
 			// Disable all LEDs (for compatibility with poi that don't have a
@@ -100,12 +106,8 @@ func main() {
 			enable()
 		}
 
-		now := time.Now()
-
-		// Default values, for when the MPU isn't available.
-		m := movement{
-			rotationSpeed: 360 * 30 / 2, // 1½ rotation per second
-		}
+		lastTime := now
+		now = time.Now()
 
 		if imu != nil {
 			// Ignore gyroX because it just shows how much the poi rotates around
@@ -116,6 +118,16 @@ func main() {
 			// The gyro number here is in units of .1°/s.
 			m.rotationSpeed = ledsgo.Sqrt(int(((gyroY / 100000) * (gyroY / 100000)) + ((gyroZ / 100000) * (gyroZ / 100000))))
 		}
+
+		const minAnimationSpeed = 50
+
+		// Update position.
+		timeElapsed := now.Sub(lastTime)
+		animationSpeed := m.rotationSpeed
+		if animationSpeed < minAnimationSpeed {
+			animationSpeed = minAnimationSpeed
+		}
+		m.animationPosition += (int64(timeElapsed) * int64(animationSpeed)) >> (27 - speed)
 
 		animation := animations[animationIndex]
 		animation(now, m)
@@ -177,31 +189,21 @@ type movement struct {
 	// This number is either zero or positive (although exactly zero is
 	// unlikely).
 	rotationSpeed int
-}
 
-// State for the noise function.
-type noiseState struct {
-	lastTime      time.Time
-	noisePosition int64
+	// Custom value that indicates the position in an animation, in a somewhat
+	// undefined way. It increments quickly as the poi moves fast but keeps
+	// incrementing when the poi moves slowly. This is a replacement for basing
+	// an animation entirely on the current time and is usually better.
+	animationPosition int64
 }
 
 // Colorful noise.
-func (n *noiseState) noise(now time.Time, m movement) {
+func noise(now time.Time, m movement) {
 	const spread = 7
-	const minAnimationSpeed = 50
-
-	// Update position.
-	timeElapsed := now.Sub(n.lastTime)
-	animationSpeed := m.rotationSpeed
-	if animationSpeed < minAnimationSpeed {
-		animationSpeed = minAnimationSpeed
-	}
-	n.noisePosition += (int64(timeElapsed) * int64(animationSpeed)) >> (27 - speed)
-	n.lastTime = now
 
 	// Color each pixel.
 	for y := int16(0); y < height; y++ {
-		hue := uint16(ledsgo.Noise2(int32(n.noisePosition>>10), int32(y<<spread))) * 2
+		hue := uint16(ledsgo.Noise2(int32(m.animationPosition>>10), int32(y<<spread))) * 2
 		c := ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 		c.A = baseColor.A
 		setLED(y, c)
@@ -210,7 +212,7 @@ func (n *noiseState) noise(now time.Time, m movement) {
 
 // Looks a bit like spikes from inside to the outside.
 func iris(now time.Time, m movement) {
-	expansion := (ledsgo.Noise1(int32(now.UnixNano()>>(21-speed))) / 256) + 128 - 50
+	expansion := (ledsgo.Noise1(int32(m.animationPosition>>7)) / 256) + 128 - 50
 	for y := int16(0); y < height; y++ {
 		intensity := expansion - y*224/height
 		if intensity < 0 {
@@ -224,7 +226,7 @@ func iris(now time.Time, m movement) {
 
 // Looks like a typical blocky gear, with square gear teeth.
 func gear(now time.Time, m movement) {
-	long := int16((now.UnixNano()>>(32-speed))%8) == 0
+	long := int16((m.animationPosition>>18)%8) == 0
 	for y := int16(0); y < height; y++ {
 		c := color.RGBA{}
 		if long || y < height/4 {
@@ -237,7 +239,7 @@ func gear(now time.Time, m movement) {
 // Somewhat improperly named. When two poi are spinning in opposite direction,
 // it has a somewhat palm tree like appearance.
 func halfcircles(now time.Time, m movement) {
-	chosenOne := int16((now.UnixNano() >> (32 - speed)) % height)
+	chosenOne := int16((m.animationPosition >> 16) % height)
 	for y := int16(0); y < height; y++ {
 		c := color.RGBA{}
 		if y >= chosenOne && y < chosenOne+(height/7) {
@@ -255,7 +257,7 @@ func arrows(now time.Time, m movement) {
 	}
 
 	// Turn the two LEDs on that are part of the arrow.
-	index := int16((now.UnixNano() >> (32 - speed)) % (height / 2))
+	index := int16((m.animationPosition >> 17) % (height / 2))
 	setLED(index, baseColor)
 	setLED(height-1-index, baseColor)
 }
@@ -269,7 +271,7 @@ func glitter(now time.Time, m movement) {
 	}
 
 	// Get a random number based on the time.
-	t := uint32(now.UnixNano() >> (32 - speed))
+	t := uint32(m.animationPosition >> 17)
 	hash := murmur3.Sum32([]byte{byte(t), byte(t >> 8), byte(t >> 16), byte(t >> 24)})
 
 	// Use this number to get an index.
@@ -307,7 +309,7 @@ func fire(now time.Time, m movement) {
 	var cooling = (14 * 16) / height // higher means faster cooling
 	const detail = 400               // higher means more detailed flames
 	for y := int16(0); y < height; y++ {
-		heat := ledsgo.Noise2(int32((now.UnixNano()>>(23-speed))), int32(y)*detail)/256 + 128
+		heat := ledsgo.Noise2(int32(m.animationPosition>>8), int32(y)*detail)/256 + 128
 		heat -= y * int16(cooling)
 		if heat < 0 {
 			heat = 0

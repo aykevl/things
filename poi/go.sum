@@ -2,6 +2,7 @@ github.com/aykevl/ledsgo v0.0.0-20200119211932-0aefdb264dcb h1:tEzSCopMFviG1u9V9
 github.com/aykevl/ledsgo v0.0.0-20200119211932-0aefdb264dcb/go.mod h1:hlqQ+R48ckoOVbAuvQACRzOfh9Xvwx84ydG8NJ6nffs=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/eclipse/paho.mqtt.golang v1.2.0/go.mod h1:H9keYFcgq3Qr5OUJm/JZI/i6U7joQ8SYLhZwfeOo6Ts=
 github.com/fatih/structs v1.1.0/go.mod h1:9NiDSp5zOcgEDl+j00MP/WkGVPOlPRLejGD8Ga6PJ7M=
 github.com/go-ole/go-ole v1.2.4/go.mod h1:XCwSNxSkXRo4vlyPy93sltvi/qJq0jqQhjqQNIwKuxM=
 github.com/godbus/dbus/v5 v5.0.3/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
@@ -36,5 +37,5 @@ gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 gopkg.in/yaml.v2 v2.2.8/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-tinygo.org/x/drivers v0.12.1-0.20200730133651-c8b49e0d8ca3 h1:FmYO50FwbIzWG2aaJH0LIObjybkWI8ChgaRwUvB6p+s=
-tinygo.org/x/drivers v0.12.1-0.20200730133651-c8b49e0d8ca3/go.mod h1:Hx9iLjCg4p2jdWFwGVhQoWsOs2ROAqB2rw98baWRYlk=
+tinygo.org/x/drivers v0.13.0 h1:ohzhFiPb/5dcRop3X+Gdvsr6uswmnpfMX9KsAMtgtTM=
+tinygo.org/x/drivers v0.13.0/go.mod h1:mShi1lpVtJFpApkZgwyrzDKHToeGfWIuB08utyHxZ7g=
