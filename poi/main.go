@@ -178,6 +178,22 @@ func disable() {
 	}
 }
 
+// applyBrightness applies the lower 3 bits of brightness control to the color.
+// Normally, the SK9822 LEDs only support 5 bits of brightness, therefore the
+// lower 3 bits are wasted. However, lowering the brightness further is still
+// very useful in low-light situations. Therefore, this function applies the
+// brightness into the color itself, to regain more brightness control at a loss
+// of a bit of fidelity.
+func applyBrightness(c color.RGBA) color.RGBA {
+	if c.A < 8 {
+		c.R = uint8(uint32(c.R) * uint32(c.A) / 8)
+		c.G = uint8(uint32(c.G) * uint32(c.A) / 8)
+		c.B = uint8(uint32(c.B) * uint32(c.A) / 8)
+		c.A = 8
+	}
+	return c
+}
+
 // Type movement contains information about the current movement that might be
 // relevant to animations. Some animations may change depending on how the poi
 // moves.

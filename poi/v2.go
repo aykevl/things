@@ -29,5 +29,5 @@ const (
 
 //go:inline
 func setLED(y int16, c color.RGBA) {
-	leds[height-y-1] = c
+	leds[height-y-1] = applyBrightness(c)
 }
