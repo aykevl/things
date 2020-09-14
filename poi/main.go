@@ -20,21 +20,21 @@ const debug = false
 
 // Parameters that are controlled with Bluetooth.
 var (
-	animationIndex uint8 = 0
+	animationIndex uint8 = 1
 	speed          uint8 = 10
 )
 
 // List of animations that can be selected over BLE.
 var animations = []func(time.Time, movement){
+	nil,
 	solid,
 	noise,
 	fire,
+	glitter,
 	iris,
+	arrows,
 	gear,
 	halfcircles,
-	arrows,
-	glitter,
-	black,
 }
 
 func main() {
@@ -82,7 +82,7 @@ func main() {
 
 	now := time.Now()
 	for i := uint(0); ; i++ {
-		if int(animationIndex) == len(animations)-1 {
+		if animationIndex == 0 {
 			// Disable all LEDs (for compatibility with poi that don't have a
 			// MOSFET to control LED power).
 			for y := range leds {
@@ -94,7 +94,7 @@ func main() {
 			// Turn off many peripherals.
 			disable()
 
-			for int(animationIndex) == len(animations)-1 {
+			for animationIndex == 0 {
 				// Wait until we're not sleeping anymore.
 				if debug {
 					println("sleeping")
@@ -305,14 +305,6 @@ func glitter(now time.Time, m movement) {
 func solid(now time.Time, m movement) {
 	for y := int16(0); y < height; y++ {
 		setLED(y, baseColor)
-	}
-}
-
-// Disable all LEDs. LEDs will still consume power as they use around 1mA even
-// when they're dark.
-func black(now time.Time, m movement) {
-	for y := int16(0); y < height; y++ {
-		setLED(y, color.RGBA{})
 	}
 }
 
