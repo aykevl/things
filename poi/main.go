@@ -291,10 +291,7 @@ func glitter(now time.Time, m movement) {
 	hash := murmur3.Sum32([]byte{byte(t), byte(t >> 8), byte(t >> 16), byte(t >> 24)})
 
 	// Use this number to get an index.
-	index := int16(hash % (height * 2))
-	if index >= height {
-		return // don't sparkle all the time
-	}
+	index := int16(hash % height)
 
 	// Get a random color on the color wheel.
 	c := ledsgo.Color{uint16((hash >> 7)), 0xff, 0xff}.Spectrum()
