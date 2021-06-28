@@ -3,6 +3,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/tinygo-org/bluetooth"
 )
 
@@ -31,6 +33,7 @@ func initHardware() {
 	err = adv.Configure(bluetooth.AdvertisementOptions{
 		LocalName:    bluetoothName,
 		ServiceUUIDs: []bluetooth.UUID{serviceUUID},
+		Interval:     bluetooth.NewDuration(760 * time.Millisecond),
 	})
 	if err != nil {
 		println("could not configure advertisement:", err.Error())
