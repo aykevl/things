@@ -33,7 +33,7 @@ var animations = []func(time.Time, movement){
 	glitter,
 	iris,
 	arrows,
-	gear,
+	colorarrows,
 	halfcircles,
 }
 
@@ -240,15 +240,27 @@ func iris(now time.Time, m movement) {
 	}
 }
 
-// Looks like a typical blocky gear, with square gear teeth.
-func gear(now time.Time, m movement) {
-	long := int16((m.animationPosition>>18)%8) == 0
-	for y := int16(0); y < height; y++ {
-		c := color.RGBA{}
-		if long || y < height/4 {
-			c = baseColor
+var rainbowColors = []color.RGBA{
+	color.RGBA{255, 0, 0, 255},   // red
+	color.RGBA{233, 22, 0, 255},  // orange
+	color.RGBA{180, 75, 0, 255},  // yellow
+	color.RGBA{0, 255, 0, 255},   // green
+	color.RGBA{0, 0, 255, 255},   // blue
+	color.RGBA{128, 0, 127, 255}, // purple
+}
+
+// Make a series of arrows in rainbow colors.
+func colorarrows(now time.Time, m movement) {
+	for y := int16(0); y < height/2; y++ {
+		position := m.animationPosition>>17 - int64(y)
+		c := rainbowColors[(position/(height/2))%int64(len(rainbowColors))]
+		c.A = baseColor.A
+		if position%(height/2) == 0 {
+			// Make the position between the arrow colors black.
+			c = color.RGBA{}
 		}
 		setLED(y, c)
+		setLED(height-1-y, c)
 	}
 }
 
