@@ -290,6 +290,9 @@ func arrows(now time.Time, m movement) {
 	setLED(height-1-index, baseColor)
 }
 
+// Avoid heap allocation by allocating this globally.
+var glitterBuf [4]byte
+
 // Random colored specles. Looks great in the dark because the poi itself is
 // (nearly) invisible showing only these speckles.
 func glitter(now time.Time, m movement) {
@@ -300,7 +303,11 @@ func glitter(now time.Time, m movement) {
 
 	// Get a random number based on the time.
 	t := uint32(m.animationPosition >> 17)
-	hash := murmur3.Sum32([]byte{byte(t), byte(t >> 8), byte(t >> 16), byte(t >> 24)})
+	glitterBuf[0] = byte(t)
+	glitterBuf[1] = byte(t >> 8)
+	glitterBuf[2] = byte(t >> 16)
+	glitterBuf[3] = byte(t >> 24)
+	hash := murmur3.Sum32(glitterBuf[:])
 
 	// Use this number to get an index.
 	index := int16(hash % height)
