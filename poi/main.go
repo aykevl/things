@@ -20,7 +20,7 @@ const debug = false
 
 // Parameters that are controlled with Bluetooth.
 var (
-	animationIndex uint8 = 1
+	animationIndex uint8 = 0
 	speed          uint8 = 10
 )
 
