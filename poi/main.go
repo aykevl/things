@@ -130,6 +130,14 @@ func main() {
 		m.animationPosition += (int64(timeElapsed) * int64(animationSpeed)) >> (27 - speed)
 
 		animation := animations[animationIndex]
+		if animation == nil {
+			// Avoid a race condition. If animationIndex is set to zero between
+			// the sleep loop above and now, the animation will be the first one
+			// and it'll result in a nil panic.
+			// Still technically a race condition but hopefully not an actually
+			// buggy one.
+			continue
+		}
 		animation(now, m)
 
 		a.WriteColors(leds)
