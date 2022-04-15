@@ -13,8 +13,8 @@ import (
 
 // Hardware configuration.
 const (
-	spiClockPin  machine.Pin = 26
-	spiDataPin   machine.Pin = 25
+	spiClockPin  machine.Pin = 25
+	spiDataPin   machine.Pin = 26
 	spiFrequency             = 8000000
 
 	mosfetPin machine.Pin = 27
@@ -23,8 +23,8 @@ const (
 
 	hasBMI160 = true
 
-	numLeds = 36 // number of LEDs in the strip
-	height  = 36 // number of LEDs to be animated
+	numLeds = 24 // number of LEDs in the strip
+	height  = 24 // number of LEDs to be animated
 )
 
 //go:inline
