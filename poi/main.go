@@ -227,7 +227,7 @@ func noise(now time.Time, m movement) {
 
 	// Color each pixel.
 	for y := int16(0); y < height; y++ {
-		hue := uint16(ledsgo.Noise2(int32(m.animationPosition>>10), int32(y<<spread))) * 2
+		hue := ledsgo.Noise2(uint32(m.animationPosition>>10), uint32(y<<spread)) * 2
 		c := ledsgo.Color{hue, 0xff, 0xff}.Spectrum()
 		c.A = baseColor.A
 		setLED(y, c)
@@ -236,7 +236,7 @@ func noise(now time.Time, m movement) {
 
 // Looks a bit like spikes from inside to the outside.
 func iris(now time.Time, m movement) {
-	expansion := (ledsgo.Noise1(int32(m.animationPosition>>7)) / 256) + 128 - 50
+	expansion := int16(ledsgo.Noise1(uint32(m.animationPosition>>7)) / 256) - 50
 	for y := int16(0); y < height; y++ {
 		intensity := expansion - y*224/height
 		if intensity < 0 {
@@ -341,7 +341,7 @@ func fire(now time.Time, m movement) {
 	var cooling = (14 * 16) / height // higher means faster cooling
 	const detail = 400               // higher means more detailed flames
 	for y := int16(0); y < height; y++ {
-		heat := ledsgo.Noise2(int32(m.animationPosition>>8), int32(y)*detail)/256 + 128
+		heat := int16(ledsgo.Noise2(uint32(m.animationPosition>>8), uint32(y)*detail)/256)
 		heat -= y * int16(cooling)
 		if heat < 0 {
 			heat = 0

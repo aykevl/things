@@ -1,5 +1,6 @@
-github.com/aykevl/ledsgo v0.0.0-20200119211932-0aefdb264dcb h1:tEzSCopMFviG1u9V9j0xyBT/PtdrIoQhAKfBKbzW2rU=
-github.com/aykevl/ledsgo v0.0.0-20200119211932-0aefdb264dcb/go.mod h1:hlqQ+R48ckoOVbAuvQACRzOfh9Xvwx84ydG8NJ6nffs=
+github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da/go.mod h1:Bn4qAbkSY0k0/wrXdqQ8bWPTv/Uww3uIJuQv/knzDdQ=
+github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2 h1:NcmN0bjs7hmLKSARz88oxXF6OU50/d4Xeo5QWEE5y7w=
+github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -10,6 +11,7 @@ github.com/go-ole/go-ole v1.2.4/go.mod h1:XCwSNxSkXRo4vlyPy93sltvi/qJq0jqQhjqQNI
 github.com/godbus/dbus/v5 v5.0.3/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=
 github.com/google/uuid v1.1.1/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/kettek/apng v0.0.0-20191108220231-414630eed80f/go.mod h1:x78/VRQYKuCftMWS0uK5e+F5RJ7S4gSlESRWI0Prl6Q=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/konsorten/go-windows-terminal-sequences v1.0.2/go.mod h1:T0+1ngSBFLxvqU3pZ+m/2kptfBszLMUkC4ZK/EgS/cQ=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
