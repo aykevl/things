@@ -16,7 +16,7 @@ func main() {
 
 	spi := machine.SPI2
 	err := spi.Configure(machine.SPIConfig{
-		Frequency: 16_000_000,
+		Frequency: 40_000_000, // the ESP32 supports up to 40MHz SPI
 		SCK:       18,
 		SDO:       23,
 		SDI:       35,
@@ -30,25 +30,30 @@ func main() {
 	})
 
 	buffer := make([]uint16, 320*240*2)
-	for {
-		now := time.Now()
+	for i := 0; ; i++ {
+		start := time.Now()
 		for j := range buffer {
 			x := j % 320
 			y := j / 320
-			x0 := x % 2
-			y0 := y % 2
+			x0 := x % 4
+			y0 := y % 4
 			if x0 == 0 && y0 == 0 {
 				value := ledsgo.Noise3(
 					uint32(x)<<4,
 					uint32(y)<<4,
-					uint32(now.UnixNano()>>23))
+					uint32(start.UnixNano()>>22))
 				c := ledsgo.PartyColors.ColorAt(value * 2)
 				buffer[j] = makeColor(c.R, c.G, c.B)
 			} else {
 				buffer[j] = buffer[(y-y0)*320+(x-x0)]
 			}
 		}
+		draw := time.Now()
 		display.DrawRGBBitmap(0, 0, buffer, 320, 240)
+		if i%16 == 0 {
+			println("frame update:", draw.Sub(start).String())
+			println("frame draw:  ", time.Since(draw).String())
+		}
 	}
 }
 
