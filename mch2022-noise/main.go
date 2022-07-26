@@ -8,6 +8,11 @@ import (
 	"tinygo.org/x/drivers/ili9341"
 )
 
+const (
+	width  = 320
+	height = 240
+)
+
 func main() {
 	println("starting...")
 
@@ -29,30 +34,32 @@ func main() {
 		Rotation: ili9341.Rotation90,
 	})
 
-	buffer := make([]uint16, 320*240*2)
-	for i := 0; ; i++ {
+	const size = 4
+	buffer := make([]uint16, width*height)
+	for cycle := 0; ; cycle++ {
 		start := time.Now()
-		for j := range buffer {
-			x := j % 320
-			y := j / 320
-			x0 := x % 4
-			y0 := y % 4
-			if x0 == 0 && y0 == 0 {
+		for y := 0; y < height; y += size {
+			for x := 0; x < width; x += size {
 				value := ledsgo.Noise3(
 					uint32(x)<<4,
 					uint32(y)<<4,
-					uint32(start.UnixNano()>>22))
+					uint32(start.UnixNano()>>21))
 				c := ledsgo.PartyColors.ColorAt(value * 2)
-				buffer[j] = makeColor(c.R, c.G, c.B)
-			} else {
-				buffer[j] = buffer[(y-y0)*320+(x-x0)]
+				raw := makeColor(c.R, c.G, c.B)
+				for x2 := x; x2 < x+size; x2++ {
+					for y2 := y; y2 < y+size; y2++ {
+						buffer[y2*width+x2] = raw
+					}
+				}
 			}
 		}
 		draw := time.Now()
-		display.DrawRGBBitmap(0, 0, buffer, 320, 240)
-		if i%16 == 0 {
+		display.DrawRGBBitmap(0, 0, buffer, width, height)
+		if cycle%16 == 0 {
+			end := time.Now()
 			println("frame update:", draw.Sub(start).String())
-			println("frame draw:  ", time.Since(draw).String())
+			println("frame draw:  ", end.Sub(draw).String())
+			println("frame:", end.Sub(start).String(), time.Second/end.Sub(start))
 		}
 	}
 }
@@ -73,7 +80,8 @@ func makeColor(r, g, b uint8) uint16 {
 	c := uint16(r&0xF8)<<8 +
 		uint16(g&0xFC)<<3 +
 		uint16(b&0xF8)>>3
-	return c>>8 | c<<8 // swap endianness
+	c = c>>8 | c<<8 // swap endianness
+	return c
 }
 
 // Gamma brightness lookup table <https://victornpb.github.io/gamma-table-generator>
