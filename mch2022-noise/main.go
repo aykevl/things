@@ -21,7 +21,7 @@ func main() {
 
 	spi := machine.SPI2
 	err := spi.Configure(machine.SPIConfig{
-		Frequency: 40_000_000, // the ESP32 supports up to 40MHz SPI
+		Frequency: 80_000_000, // This is probably overclocking the ILI9341 but it seems to work.
 		SCK:       18,
 		SDO:       23,
 		SDI:       35,
@@ -59,7 +59,7 @@ func main() {
 			end := time.Now()
 			println("frame update:", draw.Sub(start).String())
 			println("frame draw:  ", end.Sub(draw).String())
-			println("frame:", end.Sub(start).String(), time.Second/end.Sub(start))
+			println("frame:       ", end.Sub(start).String(), time.Second/end.Sub(start))
 		}
 	}
 }
