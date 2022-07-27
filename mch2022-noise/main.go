@@ -35,7 +35,7 @@ func main() {
 	})
 
 	const size = 4
-	buffer := make([]uint16, width*height)
+	buffer := make([]uint8, width*height*2)
 	for cycle := 0; ; cycle++ {
 		start := time.Now()
 		for y := 0; y < height; y += size {
@@ -45,16 +45,17 @@ func main() {
 					uint32(y)<<4,
 					uint32(start.UnixNano()>>21))
 				c := ledsgo.PartyColors.ColorAt(value * 2)
-				raw := makeColor(c.R, c.G, c.B)
+				raw1, raw2 := makeColor(c.R, c.G, c.B)
 				for x2 := x; x2 < x+size; x2++ {
 					for y2 := y; y2 < y+size; y2++ {
-						buffer[y2*width+x2] = raw
+						buffer[(y2*width+x2)*2+0] = raw1
+						buffer[(y2*width+x2)*2+1] = raw2
 					}
 				}
 			}
 		}
 		draw := time.Now()
-		display.DrawRGBBitmap(0, 0, buffer, width, height)
+		display.DrawRGBBitmap8(0, 0, buffer, width, height)
 		if cycle%16 == 0 {
 			end := time.Now()
 			println("frame update:", draw.Sub(start).String())
@@ -73,15 +74,14 @@ func handleError(err error) {
 	}
 }
 
-func makeColor(r, g, b uint8) uint16 {
+func makeColor(r, g, b uint8) (uint8, uint8) {
 	r = gamma8[r]
 	g = gamma8[g]
 	b = gamma8[b]
 	c := uint16(r&0xF8)<<8 +
 		uint16(g&0xFC)<<3 +
 		uint16(b&0xF8)>>3
-	c = c>>8 | c<<8 // swap endianness
-	return c
+	return uint8(c >> 8), uint8(c)
 }
 
 // Gamma brightness lookup table <https://victornpb.github.io/gamma-table-generator>
