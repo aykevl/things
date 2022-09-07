@@ -1,6 +1,11 @@
 #include <avr/io.h>
 #include <avr/sleep.h>
 
+// Control the number of light level bits to use for the LEDs.
+// A higher number means a better resolution (noticeable at low light levels)
+// but also increases the amount of flickering.
+#define MAX_BRIGHTNESS 128
+
 // For each LED, the PORTB and DDRB registers.
 // DDRB is the lower 4 bits while PORTB is the higher 4 bits.
 static const uint8_t states[6] = {
@@ -95,7 +100,7 @@ int main(void) {
         if (b & 32) {
           b--;
         }
-        if (b) {
+        if (b > (256 / MAX_BRIGHTNESS)) {
           if ((cycle % 4) == 0) {
             b--;
           }
@@ -113,12 +118,14 @@ int main(void) {
     }
 
     // Update LEDs using charlieplexing.
-    for (uint8_t delay = 0; delay < 4; delay++) {
+    for (uint8_t delay = 0; delay < (1024 / MAX_BRIGHTNESS); delay++) {
       // Turn each LED on for just the right amount of time.
       for (uint8_t i=0; i<6; i++) {
         uint8_t state = states[i];
-        uint8_t b = brightness[i];
-        for (uint8_t bit = 128; bit != 0; bit >>= 1) {
+        // TODO: use dithering to increase the perceived resolution at a higher
+        // brightness while reducing the amount of flickering?
+        uint8_t b = brightness[i] / (256 / MAX_BRIGHTNESS);
+        for (uint8_t bit = MAX_BRIGHTNESS / 2; bit != 0; bit >>= 1) {
           PORTB = state >> 4;
           if ((b & bit) != 0) {
             // Note: this should be (state & 0x0f) but the hardware
