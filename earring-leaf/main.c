@@ -9,9 +9,9 @@
 // For each LED, the PORTB and DDRB registers.
 // DDRB is the lower 4 bits while PORTB is the higher 4 bits.
 static const uint8_t states[6] = {
-  0b00010011, // 1
-  0b00010101, // 3
   0b00100110, // 5
+  0b00010101, // 3
+  0b00010011, // 1
   0b01000110, // 6
   0b01000101, // 4
   0b00100011, // 2
