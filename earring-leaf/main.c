@@ -52,6 +52,10 @@ int main(void) {
   //CCP = 0xD8;
   //CLKPSR = 0;
 
+  // Reduce clock speed to 250kHz.
+  CCP = 0xD8;      // unlock protected registers
+  CLKPSR = 0b0101; // division factor 32 (8 / 32 = 0.25)
+
   if ((RSTFLR & EXTRF) == 0) {
     // Not an external reset, so probably a power on reset.
     // Initialize global variables.
@@ -128,26 +132,65 @@ int main(void) {
     }
 
     // Update LEDs using charlieplexing.
-    for (uint8_t delay = 0; delay < (1024 / MAX_BRIGHTNESS); delay++) {
+    for (uint8_t delay = 0; delay < (768 / MAX_BRIGHTNESS); delay++) {
       // Turn each LED on for just the right amount of time.
       for (uint8_t i=0; i<6; i++) {
         uint8_t state = states[i];
-        // TODO: use dithering to increase the perceived resolution at a higher
-        // brightness while reducing the amount of flickering?
-        uint8_t b = brightness[i] / (256 / MAX_BRIGHTNESS);
-        for (uint8_t bit = MAX_BRIGHTNESS / 2; bit != 0; bit >>= 1) {
-          PORTB = state >> 4;
-          if ((b & bit) != 0) {
-            // Note: this should be (state & 0x0f) but the hardware
-            // ignores the upper 4 bits and avoiding the mask avoids two
-            // instructions.
-            DDRB = state;
-          }
-          for (uint8_t j=bit; j != 0; j--) {
-            __asm__ volatile("");
-          }
-          DDRB = 0;
-        }
+
+        // Configure port to only turn a particular LED on.
+        PORTB = state >> 4;
+
+        // The number of clock cycles the output should be active for.
+        uint8_t numCycles = brightness[i];
+
+        // Use custom assembly to turn the LEDs on for exactly the given number
+        // of clock cycles, while keeping the code constant-time.
+        // By lowering the resolution to 1 cycle, we can reduce the chip speed a
+        // lot, which is a significant reduction in power consumption.
+        __asm__ volatile(
+          // 1 cycle: output bit 0 (least-significant bit)
+          "lsr %[num]\n\t"
+          "brcc 1f\n\t"
+          "out %[port], %[state]\n\t"
+          "1:\n\t"
+          "out %[port], __zero_reg__\n\t"
+
+          // 2 cycles: output bit 1
+          "lsr %[num]\n\t"
+          "brcc 1f\n\t"
+          "out %[port], %[state]\n\t"
+          "1:\n\t"
+          "nop\n\t"
+          "out %[port], __zero_reg__\n\t"
+
+          // 4 cycles: output bit 2
+          "lsr %[num]\n\t"
+          "brcc 1f\n\t"
+          "out %[port], %[state]\n\t"
+          "1:\n\t"
+          "nop\n\t"
+          "nop\n\t"
+          "nop\n\t"
+          "out %[port], __zero_reg__\n\t"
+
+          // 8 cycle loop: output bit 3-7
+          "cpse %[num], __zero_reg__\n\t"      // if num != 0:
+          "out %[port], %[state]\n\t"          //   LEDs on
+          "ldi __tmp_reg__, %[iterations]\n\t" // i = 32
+          "1:\n\t"                             // loop:
+          "nop\n\t"                            //   wait 2 cycles
+          "nop\n\t"                            //
+          "subi %[num], 1\n\t"                 //   num--
+          "brpl 2f\n\t"                        //   if num == -1:
+          "out %[port], __zero_reg__\n\t"      //     LEDs off
+          "2:\n\t"                             //
+          "subi __tmp_reg__, 1\n\t"            //   i--
+          "brne 1b\n\t"                        //   if i == 0: goto loop
+          : [num]"+r"(numCycles)
+          : [port]"I"(_SFR_IO_ADDR(DDRB)),
+            [state]"r"(state),
+            [iterations]"I"(MAX_BRIGHTNESS / 8)
+        );
       }
     }
   }
