@@ -92,12 +92,12 @@ int main(void) {
         // does.
         uint8_t b = brightness[i];
         if (b & 128) {
-          b -= 4;
-        }
-        if (b & 64) {
           b -= 2;
         }
-        if (b & 32) {
+        if (b & 64) {
+          b -= 1;
+        }
+        if ((b & 32) && ((cycle % 2) == 0)) {
           b--;
         }
         if (b > (256 / MAX_BRIGHTNESS)) {
@@ -107,12 +107,14 @@ int main(void) {
         }
         brightness[i] = b;
       }
-      uint8_t r = rnd();
-      if ((r & 0b11110000) == 0b11110000) {
-        // Pick one LED at random and turn it on.
-        uint8_t index = r % 6;
-        if (brightness[index] < r) {
-          brightness[index] = r;
+      if (cycle % 8 == 0) {
+        uint8_t r = rnd();
+        if ((r & 0b11000000) == 0b11000000) {
+          // Pick one LED at random and turn it on.
+          uint8_t index = r % 6;
+          if (brightness[index] < r) {
+            brightness[index] = r;
+          }
         }
       }
     }
