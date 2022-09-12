@@ -21,6 +21,14 @@ static const uint8_t sinewave[64] = {
   0, 0, 2, 4, 7, 11, 17, 23, 31, 39, 49, 59, 70, 82, 94, 106, 119, 132, 145, 157, 170, 182, 193, 204, 214, 223, 231, 238, 244, 249, 252, 254, 255, 254, 252, 249, 244, 238, 231, 223, 214, 204, 193, 182, 170, 157, 145, 132, 119, 106, 94, 82, 70, 59, 49, 39, 31, 23, 17, 11, 7, 4, 2, 0
 };
 
+// Define modes that can be cycled through.
+enum {
+  mode_sparkling, // also the power on mode
+  mode_wave,
+  mode_off,
+  num_modes,
+};
+
 // Source: https://www.avrfreaks.net/forum/tiny-fast-prng
 __attribute__((section(".noinit")))
 static uint8_t rnd_s, rnd_a;
@@ -53,12 +61,12 @@ int main(void) {
   } else {
     // Reset pin triggered, so go to the next mode.
     mode++;
-    if (mode > 2) {
+    if (mode >= num_modes) {
       mode = 0;
     }
   }
 
-  if (mode == 2) {
+  if (mode == mode_off) {
     // Power down the chip entirely. It will only awake when the reset pin
     // is pressed.
     // This reduces power consumption to around 1µA, or as low as my
@@ -74,7 +82,7 @@ int main(void) {
     cycle++;
 
     // Run next step in the animation.
-    if (mode == 1) {
+    if (mode == mode_wave) {
       // Do a sine wave in a circle.
       for (int8_t i=5; i >= 0; i--) {
         uint8_t index = cycle - (uint8_t)(i * 42);
