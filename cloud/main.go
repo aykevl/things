@@ -14,12 +14,14 @@ const NUM_LEDS = 50
 var leds = make([]color.RGBA, NUM_LEDS)
 
 const animationSpeed = 2 // higher means faster
-const brightness = 127
+var brightness uint8 = 127
 
 type ledPosition struct {
 	X uint8
 	Y uint8
 }
+
+var brightnessMap = [10]uint8{2, 7, 17, 32, 52, 77, 108, 146, 189, 238}
 
 var positions = [...]ledPosition{
 	{43, 16}, {44, 16}, {44, 19}, {37, 19}, {39, 9}, {44, 19}, {50, 13}, {41, 12}, {39, 9}, // ball 1
@@ -39,14 +41,43 @@ func main() {
 	LED_PIN.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	strip := ws2812.New(LED_PIN)
 
+	var command byte
+	animation := noise
 	for {
+		if command == 0 {
+			// Read command.
+			if machine.Serial.Buffered() != 0 {
+				command, _ = machine.Serial.ReadByte()
+			}
+		}
+		if command != 0 {
+			switch command {
+			case 'N': // noise
+				animation = noise
+				command = 0
+			case 'L': // lightning
+				animation = lightning
+				command = 0
+			case 'D': // disable
+				animation = poweroff
+				command = 0
+			case 'b': // brightness
+				if machine.Serial.Buffered() != 0 {
+					b, _ := machine.Serial.ReadByte()
+					if b >= '0' && b <= '9' {
+						brightness = brightnessMap[b-'0']
+					}
+					command = 0
+				}
+			}
+		}
+
 		// Update colors.
 		var t uint64
 		if animationSpeed != 0 {
 			t = uint64(time.Now().UnixNano() >> (26 - animationSpeed))
 		}
-		noise(t, leds)
-		//lightning(t, leds)
+		animation(t, leds)
 
 		// Send new colors to LEDs.
 		for _, c := range leds {
@@ -65,7 +96,7 @@ func noise(t uint64, leds []color.RGBA) {
 		const spread = 24 // higher means more detail
 		val := ledsgo.Noise3(uint32(t), uint32(pos.X)*spread, uint32(pos.Y)*spread)
 		c := ledsgo.PartyColors.ColorAt(val)
-		leds[i] = ledsgo.ApplyAlpha(c, 127)
+		leds[i] = ledsgo.ApplyAlpha(c, brightness)
 	}
 }
 
@@ -74,6 +105,12 @@ func lightning(t uint64, leds []color.RGBA) {
 	elapsed := interval - t%interval
 	for i := range leds[:10] {
 		leds[i] = color.RGBA{0, 0, 0, uint8(elapsed / (interval / 100))}
+	}
+}
+
+func poweroff(t uint64, leds []color.RGBA) {
+	for i := range leds {
+		leds[i] = color.RGBA{}
 	}
 }
 
