@@ -10,6 +10,7 @@ CLOUD_SERIALS = [
 ]
 
 EFFECTS = [
+    'white',
     'noise',
     'lightning',
 ]
@@ -61,6 +62,8 @@ class Cloud:
     def update_cloud(self):
         if not self.on:
             self.serial.write(b'D')
+        elif self.effect == 'white':
+            self.serial.write(b'W')
         elif self.effect == 'noise':
             self.serial.write(b'N')
         elif self.effect == 'lightning':

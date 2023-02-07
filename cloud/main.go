@@ -58,6 +58,9 @@ func main() {
 			case 'L': // lightning
 				animation = lightning
 				command = 0
+			case 'W': // white
+				animation = white
+				command = 0
 			case 'D': // disable
 				animation = poweroff
 				command = 0
@@ -84,7 +87,7 @@ func main() {
 			strip.WriteByte(c.G) // G
 			strip.WriteByte(c.R) // R
 			strip.WriteByte(c.B) // B
-			strip.WriteByte(0)   // W (alpha channel, used as white channel)
+			strip.WriteByte(c.A) // W (alpha channel, used as white channel)
 		}
 		time.Sleep(1 * time.Millisecond)
 	}
@@ -105,6 +108,12 @@ func lightning(t uint64, leds []color.RGBA) {
 	elapsed := interval - t%interval
 	for i := range leds[:10] {
 		leds[i] = color.RGBA{0, 0, 0, uint8(elapsed / (interval / 100))}
+	}
+}
+
+func white(t uint64, leds []color.RGBA) {
+	for i := range leds {
+		leds[i] = color.RGBA{A: brightness}
 	}
 }
 
