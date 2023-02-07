@@ -85,6 +85,7 @@ class Cloud:
         self.set_state(self.on)
         self.set_effect(self.effect)
         self.set_brightness(self.brightness)
+        self.client.publish('cloud/light/online', 'online', retain=True)
 
     def on_message(self, userdata, msg):
         if msg.topic == 'cloud/light/switch':
@@ -117,10 +118,14 @@ def main():
             cloud = Cloud(ser, client)
             client.on_connect = lambda client, userdata, flags, rc: cloud.on_connect()
             client.on_message = lambda client, userdata, msg: cloud.on_message(userdata, msg)
+            client.will_set('cloud/light/online', 'offline', retain=True)
             client.connect('localhost')
             client.loop_forever()
         except serial.serialutil.SerialException:
             print('Lost serial connection.')
+            client.publish('cloud/light/online', 'offline', retain=True)
+            client.disconnect()
+            client.loop_stop()
 
 if __name__ == '__main__':
    main()
