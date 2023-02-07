@@ -20,7 +20,7 @@ def get_port():
             continue
         if '%04X:%04X' % (port.vid, port.pid) in CLOUD_SERIALS:
             return port.device
-    raise ValueError('could not find serial port')
+    return None # no port found
 
 class Cloud:
     def __init__(self, serial, client):
@@ -91,18 +91,27 @@ class Cloud:
 
 
 def main():
-    # Open serial port.
-    port = get_port()
-    print('Opening port:', port)
-    ser = serial.Serial(port)
+    while True:
+        try:
+            # Open serial port.
+            port = get_port()
+            if not port:
+                print('Looking for port...')
+                while not port:
+                    time.sleep(5)
+                    port = get_port()
+            print('Opening port:', port)
+            ser = serial.Serial(port)
 
-    # Connect to MQTT broker.
-    client = mqtt.Client()
-    cloud = Cloud(ser, client)
-    client.on_connect = lambda client, userdata, flags, rc: cloud.on_connect()
-    client.on_message = lambda client, userdata, msg: cloud.on_message(userdata, msg)
-    client.connect('localhost')
-    client.loop_forever()
+            # Connect to MQTT broker.
+            client = mqtt.Client()
+            cloud = Cloud(ser, client)
+            client.on_connect = lambda client, userdata, flags, rc: cloud.on_connect()
+            client.on_message = lambda client, userdata, msg: cloud.on_message(userdata, msg)
+            client.connect('localhost')
+            client.loop_forever()
+        except serial.serialutil.SerialException:
+            print('Lost serial connection.')
 
 if __name__ == '__main__':
    main()
