@@ -109,6 +109,7 @@ func noise(t uint64, leds []color.RGBA) {
 		const spread = 24 // higher means more detail
 		val := ledsgo.Noise3(uint32(t), uint32(pos.X)*spread, uint32(pos.Y)*spread)
 		c := palette.ColorAt(val)
+		c.A = 0 // the alpha channel is used as white channel, so don't use it
 		leds[i] = ledsgo.ApplyAlpha(c, brightness)
 	}
 }
