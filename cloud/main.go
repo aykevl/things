@@ -15,6 +15,7 @@ var leds = make([]color.RGBA, NUM_LEDS)
 
 const animationSpeed = 2 // higher means faster
 var brightness uint8 = 127
+var palette = ledsgo.PartyColors
 
 type ledPosition struct {
 	X uint8
@@ -52,17 +53,26 @@ func main() {
 		}
 		if command != 0 {
 			switch command {
-			case 'N': // noise
-				animation = noise
-				command = 0
-			case 'L': // lightning
-				animation = lightning
+			case 'D': // disable
+				animation = poweroff
 				command = 0
 			case 'W': // white
 				animation = white
 				command = 0
-			case 'D': // disable
-				animation = poweroff
+			case 'P':
+				animation = noise
+				palette = ledsgo.PartyColors
+				command = 0
+			case 'F':
+				animation = noise
+				palette = ledsgo.ForestColors
+				command = 0
+			case 'O':
+				animation = noise
+				palette = ledsgo.OceanColors
+				command = 0
+			case 'L': // lightning
+				animation = lightning
 				command = 0
 			case 'b': // brightness
 				if machine.Serial.Buffered() != 0 {
@@ -98,7 +108,7 @@ func noise(t uint64, leds []color.RGBA) {
 		pos := positions[i]
 		const spread = 24 // higher means more detail
 		val := ledsgo.Noise3(uint32(t), uint32(pos.X)*spread, uint32(pos.Y)*spread)
-		c := ledsgo.PartyColors.ColorAt(val)
+		c := palette.ColorAt(val)
 		leds[i] = ledsgo.ApplyAlpha(c, brightness)
 	}
 }

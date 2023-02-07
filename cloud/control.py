@@ -11,7 +11,9 @@ CLOUD_SERIALS = [
 
 EFFECTS = [
     'white',
-    'noise',
+    'party',
+    'forest',
+    'ocean',
     'lightning',
 ]
 
@@ -28,7 +30,7 @@ class Cloud:
         self.serial = serial
         self.client = client
         self.on = False
-        self.effect = 'noise'
+        self.effect = 'party'
         self.brightness = 8
 
     def set_state(self, on):
@@ -64,8 +66,12 @@ class Cloud:
             self.serial.write(b'D')
         elif self.effect == 'white':
             self.serial.write(b'W')
-        elif self.effect == 'noise':
-            self.serial.write(b'N')
+        elif self.effect == 'party':
+            self.serial.write(b'P')
+        elif self.effect == 'forest':
+            self.serial.write(b'F')
+        elif self.effect == 'ocean':
+            self.serial.write(b'O')
         elif self.effect == 'lightning':
             self.serial.write(b'L')
         else:
