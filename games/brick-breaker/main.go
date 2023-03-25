@@ -63,8 +63,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	const paddleWidth = 24
 	const paddleHeight = 6
 	const ballSize = 3 * 256
-	const initialBallSpeedX = 200
-	const initialBallSpeedY = -300
+	const initialBallRotation = 256 - 40 // 64 equals 90°
 	const (
 		stateStart = iota
 		statePlay
@@ -74,8 +73,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	// Initialize the game.
 	ballX := -10 * 256 // off-screen, will be moved in first frame
 	ballY := -10 * 256
-	ballMoveX := 0
-	ballMoveY := 0
+	ballRotation := uint8(initialBallRotation)
 	points := 0
 	state := 0
 	canvas.Clear()
@@ -129,8 +127,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 				case stateStart:
 					// Start the game.
 					state = statePlay
-					ballMoveX = initialBallSpeedX
-					ballMoveY = initialBallSpeedY
+					ballRotation = initialBallRotation
 					title.SetText("0")
 				case stateFinished:
 					// Exit the game.
@@ -151,18 +148,19 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 			ballY = y*256 - ballSize
 		case statePlay, stateFinished:
 			// Playing the game.
+			ballMoveX, ballMoveY := rotationToVector(ballRotation)
 			ballX += ballMoveX
 			ballY += ballMoveY
 			if ballX+ballSize > cw*256 {
-				ballMoveX = -ballMoveX
+				ballRotation = rotationFlipX(ballRotation)
 				ballX -= (ballX + ballSize) - cw*256
 			}
 			if ballX < 0 {
-				ballMoveX = -ballMoveX
+				ballRotation = rotationFlipX(ballRotation)
 				ballX -= 0
 			}
 			if ballY < 0 {
-				ballMoveY = -ballMoveY
+				ballRotation = rotationFlipY(ballRotation)
 				ballY -= ballY
 			}
 			switch state {
@@ -172,11 +170,12 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 				paddleX *= 256
 				paddleY *= 256
 				paddleW *= 256
-				if ballMoveY > 0 { // moving down
+				if _, ballMoveY := rotationToVector(ballRotation); ballMoveY > 0 { // moving down
 					if ballY+ballSize >= paddleY && ballX >= paddleX && ballX <= paddleX+paddleW {
 						// Ball is on the paddle, so bounce it.
-						ballMoveY = -ballMoveY
-						ballY -= (ballY + ballSize) - paddleY
+						ballRotation = rotationFlipY(ballRotation)
+						ballRotation += uint8(frameStart.UnixNano()>>16)/16 - 8 // add a bit of randomness
+						ballRotation += uint8((ballX - (paddleX + paddleW/2)) / 128)
 					}
 					if ballY+ballSize >= ch*256 {
 						// Ball fell on the ground, game over.
@@ -203,21 +202,22 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 						if points == len(bricks) {
 							title.SetText("finished!")
 							state = stateFinished
-						}
-						title.SetText(strconv.Itoa(points))
-						// TODO: treat brick as round while bouncing
-						if dx > dy {
-							ballMoveY = -ballMoveY
 						} else {
-							ballMoveX = -ballMoveX
+							title.SetText(strconv.Itoa(points))
+							// TODO: treat brick as round while bouncing (to
+							// make it look more random).
+							if dx > dy {
+								ballRotation = rotationFlipY(ballRotation)
+							} else {
+								ballRotation = rotationFlipX(ballRotation)
+							}
 						}
 					}
 				}
 			case stateFinished:
-				// Make sure the ball doesn't continue moving after it left the screen.
+				// Don't continue to (visibly) move the ball once it leaves the screen.
 				if ballY > ch {
-					ballMoveX = 0
-					ballMoveY = 0
+					ball.SetHidden(true)
 				}
 			}
 		}
@@ -232,4 +232,36 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 		}
 		time.Sleep(time.Second/60 - duration) // try to hit 60fps
 	}
+}
+
+// Python oneliner:
+//
+//	list([int(round(math.sin(n / 32 * math.pi / 2)*255)) for n in range(32)])
+var sinuses = [32]uint8{0, 13, 25, 37, 50, 62, 74, 86, 98, 109, 120, 131, 142, 152, 162, 171, 180, 189, 197, 205, 212, 219, 225, 231, 236, 240, 244, 247, 250, 252, 254, 255}
+
+// Change a rotation (256 equals 360°, starting at the right side of the unit
+// circle) to a vector (where positive coordinates go down and to the right).
+func rotationToVector(rotation uint8) (x, y int) {
+	rotation /= 2
+	switch rotation / 32 {
+	case 0: // bottom right
+		return int(sinuses[31-rotation]), int(sinuses[rotation])
+	case 1: // bottom left
+		return -int(sinuses[rotation-32]), int(sinuses[63-rotation])
+	case 2: // top left
+		return -int(sinuses[95-rotation]), -int(sinuses[rotation-64])
+	case 3: // top right
+		return int(sinuses[rotation-96]), -int(sinuses[127-rotation])
+	}
+	return 0, 0 // unreachable
+}
+
+// Flip the rotation across the X axis.
+func rotationFlipX(rotation uint8) uint8 {
+	return 128 - rotation
+}
+
+// Flip the rotation across the Y axis.
+func rotationFlipY(rotation uint8) uint8 {
+	return rotationFlipX(rotation+64) - 64
 }
