@@ -20,7 +20,6 @@ import (
 var buttons shifter.Device
 
 func main() {
-	time.Sleep(time.Second)
 	machine.SPI1.Configure(machine.SPIConfig{
 		SCK:       machine.SPI1_SCK_PIN,
 		SDO:       machine.SPI1_SDO_PIN,
