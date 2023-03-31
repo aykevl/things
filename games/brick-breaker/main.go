@@ -4,50 +4,39 @@ package main
 
 import (
 	"image/color"
-	"machine"
 	"strconv"
 	"time"
 
+	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/gfx"
 	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
-	"tinygo.org/x/drivers/shifter"
-	"tinygo.org/x/drivers/st7735"
 	"tinygo.org/x/tinyfont/freesans"
 )
 
-var buttons shifter.Device
-
 func main() {
-	machine.SPI1.Configure(machine.SPIConfig{
-		SCK:       machine.SPI1_SCK_PIN,
-		SDO:       machine.SPI1_SDO_PIN,
-		SDI:       machine.SPI1_SDI_PIN,
-		Frequency: 15_000_000, // datasheet says 66ns (~15.15MHz) is the max speed
-	})
-	display := st7735.New(machine.SPI1, machine.TFT_RST, machine.TFT_DC, machine.TFT_CS, machine.TFT_LITE)
-	display.Configure(st7735.Config{
-		Rotation: st7735.ROTATION_90,
-	})
+	board.Buttons.Configure()
+	display := board.Display.Configure()
+	runUI(display)
+}
+
+func runUI[T pixel.Color](display board.Displayer[T]) {
 	width, height := display.Size()
 
 	// Base style (100% scale, blue background, white foreground).
 	font := &freesans.Regular9pt7b
-	foreground := pixel.NewRGB565BE(0xff, 0xff, 0xff)
-	background := pixel.NewRGB565BE(64, 64, 64)
+	foreground := pixel.NewColor[T](0xff, 0xff, 0xff)
+	background := pixel.NewColor[T](64, 64, 64)
 	base := style.New(100, foreground, background, font)
 
-	buf := make([]pixel.RGB565BE, width*height/10)
-	screen := tinygl.NewScreen(&display, base, buf)
+	buf := make([]T, int(width)*int(height)/10)
+	screen := tinygl.NewScreen(display, base, buf)
 
 	title := tinygl.NewText(base.WithBackground(color.RGBA{R: 255, A: 255}), "")
 	canvas := gfx.NewCanvas(base.WithBackground(color.RGBA{A: 255}), 96, 96)
-	all := tinygl.NewVBox[pixel.RGB565BE](base, title, canvas)
+	all := tinygl.NewVBox[T](base, title, canvas)
 	screen.SetChild(all)
-
-	buttons = shifter.NewButtons()
-	buttons.Configure()
 
 	// run brick breaker game
 	screen.Layout()
@@ -74,7 +63,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	ballY := -10 * 256
 	ballRotation := uint8(initialBallRotation)
 	points := 0
-	state := 0
+	state := stateStart
 	canvas.Clear()
 	title.SetText("Brick Breaker")
 
@@ -96,14 +85,39 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	paddle := canvas.CreateRect(cw/2-paddleWidth/2, ch-paddleHeight, paddleWidth, paddleHeight, color.RGBA{R: 255})
 	ball := canvas.CreateRect(ballX/256, ballY/256, ballSize/256, ballSize/256, color.RGBA{R: 255, G: 255})
 
-	startPressed := true // usually false, but when restarting the game, 'start' is still pressed
+	var leftDown, rightDown bool
 	for {
 		frameStart := time.Now()
 
 		// Read input (buttons etc).
-		buttons.ReadInput()
+		board.Buttons.ReadInput()
+		for {
+			event := board.Buttons.NextEvent()
+			if event == board.NoKeyEvent {
+				break
+			}
+			switch event.Key() {
+			case board.KeyLeft:
+				leftDown = event.Pressed()
+			case board.KeyRight:
+				rightDown = event.Pressed()
+			case board.KeyStart, board.KeyA, board.KeySpace:
+				if event.Pressed() {
+					switch state {
+					case stateStart:
+						// Start the game.
+						state = statePlay
+						ballRotation = initialBallRotation
+						title.SetText("0")
+					case stateFinished:
+						// Exit the game.
+						return
+					}
+				}
+			}
+		}
 		if state == stateStart || state == statePlay {
-			if buttons.Pins[shifter.BUTTON_LEFT].Get() {
+			if leftDown {
 				x, y, _, _ := paddle.Bounds()
 				x -= 3
 				if x < 0 {
@@ -111,7 +125,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 				}
 				paddle.Move(x, y)
 			}
-			if buttons.Pins[shifter.BUTTON_RIGHT].Get() {
+			if rightDown {
 				x, y, _, _ := paddle.Bounds()
 				x += 3
 				if x > cw-paddleWidth {
@@ -119,23 +133,6 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 				}
 				paddle.Move(x, y)
 			}
-		}
-		if buttons.Pins[shifter.BUTTON_START].Get() {
-			if !startPressed {
-				switch state {
-				case stateStart:
-					// Start the game.
-					state = statePlay
-					ballRotation = initialBallRotation
-					title.SetText("0")
-				case stateFinished:
-					// Exit the game.
-					return
-				}
-			}
-			startPressed = true
-		} else {
-			startPressed = false
 		}
 
 		// Update game state (movement, etc).
