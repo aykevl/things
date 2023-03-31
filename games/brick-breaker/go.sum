@@ -1,7 +1,7 @@
 github.com/aykevl/board v0.0.0-20230331234651-c5c5e8c0ee44 h1:lG7akTGAU6FkjO7QW4ty+1I8Ty/L9a0P9C6L4qm/Dhw=
 github.com/aykevl/board v0.0.0-20230331234651-c5c5e8c0ee44/go.mod h1:ppTJfl3SyndM5Blrz6sdueY7gulVGG5tBi+FR1c26Lw=
-github.com/aykevl/tinygl v0.0.0-20230326225620-89a5c88047f7 h1:sOcu05oUcGK5iixBDHpcqJ+XapDiMcS82X9EBWLCSIY=
-github.com/aykevl/tinygl v0.0.0-20230326225620-89a5c88047f7/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
+github.com/aykevl/tinygl v0.0.0-20230331165301-37aa51b919e4 h1:OsUgMg3376P2w0ATfGGdqabp8lxdbsBDvomBdjLh46k=
+github.com/aykevl/tinygl v0.0.0-20230331165301-37aa51b919e4/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
 github.com/eclipse/paho.mqtt.golang v1.2.0/go.mod h1:H9keYFcgq3Qr5OUJm/JZI/i6U7joQ8SYLhZwfeOo6Ts=
 github.com/frankban/quicktest v1.10.2/go.mod h1:K+q6oSqb0W0Ininfk863uOk1lMy69l/P6txr3mVT54s=

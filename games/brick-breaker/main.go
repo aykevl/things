@@ -35,6 +35,7 @@ func runUI[T pixel.Color](display board.Displayer[T]) {
 
 	title := tinygl.NewText(base.WithBackground(color.RGBA{R: 255, A: 255}), "")
 	canvas := gfx.NewCanvas(base.WithBackground(color.RGBA{A: 255}), 96, 96)
+	canvas.SetGrowable(0, 1)
 	all := tinygl.NewVBox[T](base, title, canvas)
 	screen.SetChild(all)
 
