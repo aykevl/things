@@ -1,11 +1,10 @@
 package main
 
 import (
-	"machine"
 	"time"
 
+	"github.com/aykevl/board"
 	"github.com/aykevl/ledsgo"
-	"tinygo.org/x/drivers/ili9341"
 )
 
 const (
@@ -16,23 +15,7 @@ const (
 func main() {
 	println("starting...")
 
-	machine.LCD_MODE.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	machine.LCD_MODE.Low()
-
-	spi := machine.SPI2
-	err := spi.Configure(machine.SPIConfig{
-		Frequency: 80_000_000, // This is probably overclocking the ILI9341 but it seems to work.
-		SCK:       18,
-		SDO:       23,
-		SDI:       35,
-	})
-	if err != nil {
-		println("couldn't configure SPI:", err)
-	}
-	display := ili9341.NewSPI(spi, machine.LCD_DC, machine.SPI0_CS_LCD_PIN, machine.LCD_RESET)
-	display.Configure(ili9341.Config{
-		Rotation: ili9341.Rotation90,
-	})
+	display := board.Display.Configure()
 
 	const size = 4
 	buffer := make([]uint8, width*height*2)
