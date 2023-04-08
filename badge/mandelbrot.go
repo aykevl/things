@@ -77,6 +77,7 @@ func mandelbrot[T pixel.Color](display board.Displayer[T], buffer []T) {
 					for x := 0; x < width; x++ {
 						r += stepX
 						iterations := mandelbrotAt(r>>frac, i>>frac)
+						//iterations := mandelbrotPreciseAt(r, i)
 						rawColor := pixel.NewColor[T](0, 0, 0)
 						if iterations != 255 {
 							c := ledsgo.RainbowColors.ColorAt(uint16(iterations * 2048))
@@ -125,32 +126,27 @@ func mandelbrotAt(x0, y0 int) int {
 }
 
 // Improved precision version of the mandelbrot function.
-// With this, you can increase frac to a larger value.
-func mandelbrotPreciseAt(x0, y0 int) int {
-	x := 0
-	y := 0
+// This is a bit slower (~40%) on chips with a 32x32=64 multiply instruction
+// (like smull on ARM, available in Cortex-M3 and above). It is _much_ slower on
+// chips without such a multiply instruction.
+func mandelbrotPreciseAt(_x0, _y0 int) int {
+	const frac2 = 24
+	x0 := int32(_x0) >> (frac*2 - frac2)
+	y0 := int32(_y0) >> (frac*2 - frac2)
+	x := int32(0)
+	y := int32(0)
 	iteration := 1
-	x2 := 0 // .frac*2
-	y2 := 0 // .frac*2
-	for x2+y2 <= 4<<(frac) {
-		// 2*x*y is replaced by square(x+y) - square(x) - square(y).
-		// See: https://www.reenigne.org/blog/arbitrary-precision-mandelbrot-sets/
-		y = square(x+y) - x2 - y2 + y0
-		x = (x2 - y2) + x0
-		x2 = square(x)
-		y2 = square(y)
+	x2 := int64(0) // .frac*2
+	y2 := int64(0) // .frac*2
+	for x2+y2 <= 4<<(frac2*2) {
+		y = int32((int64(x)*int64(y))>>(frac2-1)) + y0
+		x = int32((x2-y2)>>frac2) + x0
+		x2 = int64(x) * int64(x)
+		y2 = int64(y) * int64(y)
 		iteration++
 		if iteration == maxIterations {
 			return 255
 		}
 	}
 	return iteration
-}
-
-// Return the square of x, at the frac fixed point level.
-func square(x int) int {
-	// TODO: I don't think this is correct with frac > 16.
-	top := x >> frac
-	bottom := x & (1<<frac - 1)
-	return (top*bottom)*2 + (top*top)<<frac + (bottom*bottom)>>frac
 }
