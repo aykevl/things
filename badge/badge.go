@@ -32,7 +32,7 @@ func run[T pixel.Color](display board.Displayer[T]) {
 	header := theme.NewText("Hello world!")
 	header.SetBackground(pixel.NewColor[T](255, 0, 0))
 	header.SetColor(pixel.NewColor[T](255, 255, 255))
-	listbox := theme.NewListBox([]string{"Noise", "Mandelbrot", "Settings"})
+	listbox := theme.NewListBox([]string{"Noise", "Mandelbrot", "Display test colors", "Settings"})
 	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
 	listbox.Select(0)         // focus the first element
 	home := theme.NewVBox(header, listbox)
@@ -76,6 +76,9 @@ func run[T pixel.Color](display board.Displayer[T]) {
 				case 1:
 					println("starting Mandelbrot")
 					mandelbrot(display, buf)
+				case 2:
+					println("starting display test colors")
+					testColors(display, buf)
 				}
 			}
 		}
