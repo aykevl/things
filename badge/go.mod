@@ -3,9 +3,9 @@ module ayke/things/badge
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20230409145153-e0928e9148a8
+	github.com/aykevl/board v0.0.0-20230409234137-2811e39e24e9
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
-	github.com/aykevl/tinygl v0.0.0-20230410210054-23b2083a2950
+	github.com/aykevl/tinygl v0.0.0-20230411141237-f3cb65d82646
 )
 
 require (
