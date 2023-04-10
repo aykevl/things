@@ -52,11 +52,11 @@ func testColors[T pixel.Color](display board.Displayer[T], buf []T) {
 					return
 				}
 			}
-
-			// Make sure the display stays alive (in the simulator).
-			display.Display()
-			time.Sleep(time.Second / 30)
 		}
+
+		// Make sure the display stays alive (in the simulator).
+		display.Display()
+		time.Sleep(time.Second / 30)
 	}
 }
 
