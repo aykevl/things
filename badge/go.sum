@@ -1,11 +1,11 @@
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da h1:u4fP3+V+W/547R/P7ezR5gH2zucphUZfQLc1ypNaXOg=
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da/go.mod h1:Bn4qAbkSY0k0/wrXdqQ8bWPTv/Uww3uIJuQv/knzDdQ=
-github.com/aykevl/board v0.0.0-20230408200057-ead46e39a659 h1:F1emAtbBOo8lsn4pcCsAxh822ygMqNMkdwUEMUsckvU=
-github.com/aykevl/board v0.0.0-20230408200057-ead46e39a659/go.mod h1:f3Da7OWaW5vCjeHnNmPdUEGhOYENc7oHg04eJ0Titkk=
+github.com/aykevl/board v0.0.0-20230409145153-e0928e9148a8 h1:e9fdo3Y4YATlVzd5wdz6eH2V6eB1hqeuiuLx65ijVjA=
+github.com/aykevl/board v0.0.0-20230409145153-e0928e9148a8/go.mod h1:A94YQxV1lEcLPd2ipgZ5J4wv3pi7sJSNMBREwQz5x5c=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2 h1:NcmN0bjs7hmLKSARz88oxXF6OU50/d4Xeo5QWEE5y7w=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
-github.com/aykevl/tinygl v0.0.0-20230408194035-b80322370d0d h1:wQhdZWWoQCvRXsDA5knumhB8WrecIUp8Y2MCmjjKkB8=
-github.com/aykevl/tinygl v0.0.0-20230408194035-b80322370d0d/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
+github.com/aykevl/tinygl v0.0.0-20230410210054-23b2083a2950 h1:KsipaiCZelkn/OUbljL7+gj7LjXUqCwL0PRMFYenY/E=
+github.com/aykevl/tinygl v0.0.0-20230410210054-23b2083a2950/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
 github.com/eclipse/paho.mqtt.golang v1.2.0/go.mod h1:H9keYFcgq3Qr5OUJm/JZI/i6U7joQ8SYLhZwfeOo6Ts=
 github.com/frankban/quicktest v1.10.2/go.mod h1:K+q6oSqb0W0Ininfk863uOk1lMy69l/P6txr3mVT54s=

@@ -13,10 +13,10 @@ import (
 func main() {
 	println("start")
 	board.Buttons.Configure()
-	run(board.Display.Configure())
+	run(board.Display.Configure(), board.Display.ConfigureTouch())
 }
 
-func run[T pixel.Color](display board.Displayer[T]) {
+func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput) {
 	// Determine size and scale of the screen.
 	width, height := display.Size()
 	physicalWidth, _ := board.Display.PhysicalSize()
@@ -32,7 +32,7 @@ func run[T pixel.Color](display board.Displayer[T]) {
 	header := theme.NewText("Hello world!")
 	header.SetBackground(pixel.NewColor[T](255, 0, 0))
 	header.SetColor(pixel.NewColor[T](255, 255, 255))
-	listbox := theme.NewListBox([]string{"Noise", "Mandelbrot", "Display test colors", "Settings"})
+	listbox := theme.NewListBox([]string{"Noise", "Mandelbrot", "Display test colors", "Touch test"})
 	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
 	listbox.Select(0)         // focus the first element
 	home := theme.NewVBox(header, listbox)
@@ -79,7 +79,18 @@ func run[T pixel.Color](display board.Displayer[T]) {
 				case 2:
 					println("starting display test colors")
 					testColors(display, buf)
+				case 3:
+					println("starting touch test")
+					testTouch(screen, touchInput)
 				}
+
+				// Some apps use the same screen and set a different root
+				// element. Restore the previous root.
+				screen.SetChild(home)
+
+				// Some apps draw directly on the screen. In that case, we need
+				// to repaint the entire screen.
+				home.RequestUpdate()
 			}
 		}
 		screen.Update()
