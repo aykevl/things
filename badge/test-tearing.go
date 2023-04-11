@@ -24,7 +24,7 @@ func testTearing[T pixel.Color](display tinygl.Displayer, screen *tinygl.Screen[
 	)
 	width, height := screen.Size()
 	canvas := gfx.NewCanvas(black, 32, 32)
-	rect := canvas.CreateRect(0, 0, size, height, white)
+	rect := canvas.CreateRect(0, 0, width, size, white)
 	teIndicator := canvas.CreateRect(0, 0, 8, 8, red)
 	screen.SetChild(canvas)
 
@@ -36,7 +36,7 @@ func testTearing[T pixel.Color](display tinygl.Displayer, screen *tinygl.Screen[
 	te := machine.GPIO9
 	te.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
 
-	horizontalDirection := speed
+	verticalDirection := speed
 	start := time.Now()
 	for cycle := 0; ; cycle++ {
 		// Read keyboard inputs.
@@ -62,13 +62,13 @@ func testTearing[T pixel.Color](display tinygl.Displayer, screen *tinygl.Screen[
 			}
 		}
 
-		x, y, w, _ := rect.Bounds()
-		if x <= 0 {
-			horizontalDirection = speed
-		} else if x+w >= width {
-			horizontalDirection = -speed
+		x, y, _, h := rect.Bounds()
+		if y <= 0 {
+			verticalDirection = speed
+		} else if y+h >= height {
+			verticalDirection = -speed
 		}
-		rect.Move(x+horizontalDirection, y)
+		rect.Move(x, y+verticalDirection)
 		screen.Update()
 
 		now := time.Now()
