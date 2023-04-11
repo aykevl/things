@@ -237,7 +237,7 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 		} else {
 			println("fps:", time.Second/duration)
 		}
-		time.Sleep(time.Second/60 - duration) // try to hit 60fps
+		board.Display.WaitForVBlank(time.Second / 60)
 	}
 }
 
