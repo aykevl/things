@@ -34,7 +34,13 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	header.SetBackground(pixel.NewColor[T](255, 0, 0))
 	header.SetColor(pixel.NewColor[T](255, 255, 255))
 	var home *tinygl.VBox[T]
-	listbox := theme.NewListBox([]string{"Noise", "Mandelbrot", "Display test colors", "Touch test"}, func(event tinygl.Event, index int) {
+	listbox := theme.NewListBox([]string{
+		"Noise",
+		"Mandelbrot",
+		"Display test colors",
+		"Touch test",
+		"Tearing test",
+	}, func(event tinygl.Event, index int) {
 		if event == tinygl.TouchTap {
 			runApp(index, display, screen, home, touchInput)
 		}
@@ -105,6 +111,9 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 	case 3:
 		println("starting touch test")
 		testTouch(screen, touchInput)
+	case 4:
+		println("starting tearing test")
+		testTearing(display, screen)
 	}
 
 	// Some apps use the same screen and set a different root
