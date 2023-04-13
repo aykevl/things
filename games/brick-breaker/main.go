@@ -3,7 +3,6 @@ package main
 // Small brick breaker game for the Adafruit PyBadge.
 
 import (
-	"image/color"
 	"strconv"
 	"time"
 
@@ -12,7 +11,7 @@ import (
 	"github.com/aykevl/tinygl/gfx"
 	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
-	"tinygo.org/x/tinyfont/freesans"
+	"github.com/aykevl/tinygl/style/basic"
 )
 
 func main() {
@@ -22,21 +21,27 @@ func main() {
 }
 
 func runUI[T pixel.Color](display board.Displayer[T]) {
+	// Determine size/scale.
 	width, height := display.Size()
+	physicalWidth, _ := board.Display.PhysicalSize()
+	scalePercent := int(width) * 21 / physicalWidth
+	ppcm := int(width) * 10 / physicalWidth
 
-	// Base style (100% scale, blue background, white foreground).
-	font := &freesans.Regular9pt7b
-	foreground := pixel.NewColor[T](0xff, 0xff, 0xff)
-	background := pixel.NewColor[T](64, 64, 64)
-	base := style.New(100, foreground, background, font)
-
+	var (
+		white = pixel.NewColor[T](0xff, 0xff, 0xff)
+		red   = pixel.NewColor[T](0xff, 0x00, 0x00)
+		black = pixel.NewColor[T](0x00, 0x00, 0x00)
+	)
 	buf := make([]T, int(width)*int(height)/10)
-	screen := tinygl.NewScreen(display, base, buf)
+	screen := tinygl.NewScreen(display, buf, ppcm)
+	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 
-	title := tinygl.NewText(base.WithBackground(color.RGBA{R: 255, A: 255}), "")
-	canvas := gfx.NewCanvas(base.WithBackground(color.RGBA{A: 255}), 96, 96)
+	title := theme.NewText("")
+	title.SetColor(white)
+	title.SetBackground(red)
+	canvas := gfx.NewCanvas(black, 96, 96)
 	canvas.SetGrowable(0, 1)
-	all := tinygl.NewVBox[T](base, title, canvas)
+	all := tinygl.NewVBox[T](black, title, canvas)
 	screen.SetChild(all)
 
 	// run brick breaker game
@@ -58,6 +63,11 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 		statePlay
 		stateFinished
 	)
+	var (
+		brickColor = pixel.NewColor[T](200, 200, 255)
+		red        = pixel.NewColor[T](0xff, 0x00, 0x00)
+		yellow     = pixel.NewColor[T](0xff, 0xff, 0x00)
+	)
 
 	// Initialize the game.
 	ballX := -10 * 256 // off-screen, will be moved in first frame
@@ -76,15 +86,15 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	for i := 0; i < 10; i++ {
 		x := cw/2 + (i-5)*brickSize + brickPadding
 		y := brickYStart
-		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, color.RGBA{R: 200, G: 200, B: 255}))
+		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, brickColor))
 	}
 	for i := 0; i < 11; i++ {
 		x := cw/2 + (i-5)*brickSize - brickSize/2 + brickPadding
 		y := brickYStart + brickSize
-		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, color.RGBA{R: 200, G: 200, B: 255}))
+		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, brickColor))
 	}
-	paddle := canvas.CreateRect(cw/2-paddleWidth/2, ch-paddleHeight, paddleWidth, paddleHeight, color.RGBA{R: 255})
-	ball := canvas.CreateRect(ballX/256, ballY/256, ballSize/256, ballSize/256, color.RGBA{R: 255, G: 255})
+	paddle := canvas.CreateRect(cw/2-paddleWidth/2, ch-paddleHeight, paddleWidth, paddleHeight, red)
+	ball := canvas.CreateRect(ballX/256, ballY/256, ballSize/256, ballSize/256, yellow)
 
 	var leftDown, rightDown bool
 	for {
