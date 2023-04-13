@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/aykevl/board v0.0.0-20230413143137-ea3355458e0e
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
-	github.com/aykevl/tinygl v0.0.0-20230413143548-f3a756a940e4
+	github.com/aykevl/tinygl v0.0.0-20230413150643-b7181a06876c
 )
 
 require (

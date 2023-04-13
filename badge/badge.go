@@ -33,21 +33,23 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	header := theme.NewText("Hello world!")
 	header.SetBackground(pixel.NewColor[T](255, 0, 0))
 	header.SetColor(pixel.NewColor[T](255, 255, 255))
-	var home *tinygl.VBox[T]
 	listbox := theme.NewListBox([]string{
 		"Noise",
 		"Mandelbrot",
 		"Display test colors",
 		"Touch test",
 		"Tearing test",
-	}, func(event tinygl.Event, index int) {
+	})
+	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
+	listbox.Select(0)         // focus the first element
+	home := theme.NewVBox(header, listbox)
+
+	// Handle touch events in the listbox.
+	listbox.SetEventHandler(func(event tinygl.Event, index int) {
 		if event == tinygl.TouchTap {
 			runApp(index, display, screen, home, touchInput)
 		}
 	})
-	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
-	listbox.Select(0)         // focus the first element
-	home = theme.NewVBox(header, listbox)
 
 	// Show screen.
 	screen.SetChild(home)
