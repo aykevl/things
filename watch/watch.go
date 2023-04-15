@@ -104,7 +104,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 				// Regular tap on the clock.
 				// TODO: detect gesture (for example, swipe upwards) to make it
 				// harder to accidentally get in the settings menu.
-				views.Push(createSettingsView[T](views))
+				views.Push(createAppsView(views))
 			}
 		}
 	})
@@ -180,8 +180,7 @@ func setBacklight(level int) {
 	}
 }
 
-// Settings view.
-func createSettingsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
+func createAppsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 	// Constants used in this function.
 	var (
 		lightblue = pixel.NewColor[T](64, 64, 255)
@@ -198,18 +197,21 @@ func createSettingsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 	list := style.NewListBox([]string{
 		"Back",
 		"Set time",
+		"Touch test",
 	})
 	list.SetGrowable(1, 1)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
 		if event != tinygl.TouchTap {
 			return
 		}
+		views.Pop() // go back to the homescreen after closing the view
 		switch index {
 		case 0:
-			views.Pop()
+			// Nothing to do, just go back to the homescreen.
 		case 1:
-			views.Pop() // go back to the homescreen after setting the time
 			views.Push(createClockAdjustView(views))
+		case 2:
+			views.Push(createTouchTestView(views))
 		}
 	})
 	return style.NewVBox(header, list)
@@ -243,6 +245,9 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T
 
 	// Add event handlers.
 	add.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event != tinygl.TouchTap {
+			return
+		}
 		if x < width/2 {
 			hour = (hour + 1) % 24
 		} else {
@@ -251,6 +256,9 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T
 		text.SetText(formatTime(hour, minute))
 	})
 	sub.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event != tinygl.TouchTap {
+			return
+		}
 		if x < width/2 {
 			hour--
 			if hour < 0 {
