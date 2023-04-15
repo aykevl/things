@@ -9,6 +9,8 @@ import (
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/pixel"
+	"github.com/aykevl/tinygl/style"
+	"github.com/aykevl/tinygl/style/basic"
 	"tinygo.org/x/tinyfont/freesans"
 )
 
@@ -41,20 +43,13 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Configure the screen.
 	width, _ := display.Size()
 	buf := make([]T, width*32)
+	scale := style.NewScale(board.Display.PPI())
 	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
+	views := &ViewManager[T]{
+		screen: screen,
+		scale:  scale,
+	}
 	lastEvent = time.Now()
-
-	// This is a stack of views that can be added on top and popped from when
-	// going back to the previous view.
-	var views []tinygl.Object[T]
-	pushView := func(view tinygl.Object[T]) {
-		views = append(views, view)
-		screen.SetChild(view)
-	}
-	popView := func() {
-		views = views[:len(views)-1]
-		screen.SetChild(views[len(views)-1])
-	}
 
 	// Helper to get out of sleep mode (turn on the display etc).
 	exitSleep := func() {
@@ -91,7 +86,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Set up a UI.
 	hello := tinygl.NewText(&freesans.Regular24pt7b, white, black, "00:00")
 	eventWrapper := tinygl.NewEventBox[T](hello)
-	pushView(eventWrapper)
+	views.Push(eventWrapper)
 	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
 		if event == tinygl.TouchTap {
 			if backlight == 0 {
@@ -100,7 +95,9 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 				exitSleep()
 			} else {
 				// Regular tap on the clock.
-				pushView(runSettings[T](popView))
+				// TODO: detect gesture (for example, swipe upwards) to make it
+				// harder to accidentally get in the settings menu.
+				views.Push(createSettingsView[T](views))
 			}
 		}
 	})
@@ -115,15 +112,15 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			// Going to enter sleep state.
 			// First, clear all the views that might be running. Go back to the
 			// homescreen (because that is what we'll show when awaking).
-			for len(views) > 1 {
-				popView()
+			for views.Len() > 1 {
+				views.Pop()
 			}
 			// Shut down the backlight, which is of course a huge battery drain.
 			setBacklight(0)
 		}
 
 		// Update the watchface.
-		if len(views) == 1 {
+		if views.Len() == 1 {
 			// Watch face is visible.
 			newMinute := now.Minute()
 			if minute != newMinute {
@@ -182,8 +179,43 @@ func setBacklight(level int) {
 	}
 }
 
-// Settings view. Actually, this only allows setting the time.
-func runSettings[T pixel.Color](closeView func()) tinygl.Object[T] {
+// Settings view.
+func createSettingsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
+	// Constants used in this function.
+	var (
+		lightblue = pixel.NewColor[T](64, 64, 255)
+		black     = pixel.NewColor[T](0, 0, 0)
+		white     = pixel.NewColor[T](255, 255, 255)
+	)
+
+	// Create the settings UI.
+	style := basic.NewTheme(views.scale, views.screen)
+	style.Background = black
+	style.Foreground = white
+	header := style.NewText("Settings")
+	header.SetBackground(lightblue)
+	list := style.NewListBox([]string{
+		"Back",
+		"Set time",
+	})
+	list.SetGrowable(1, 1)
+	list.SetEventHandler(func(event tinygl.Event, index int) {
+		if event != tinygl.TouchTap {
+			return
+		}
+		switch index {
+		case 0:
+			views.Pop()
+		case 1:
+			views.Pop() // go back to the homescreen after setting the time
+			views.Push(createClockAdjustView(views))
+		}
+	})
+	return style.NewVBox(header, list)
+}
+
+// Create view to adjust the time on the watch.
+func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 	// Constants used in this function.
 	var (
 		green = pixel.NewColor[T](32, 255, 0)
@@ -238,7 +270,7 @@ func runSettings[T pixel.Color](closeView func()) tinygl.Object[T] {
 		diff += time.Duration(minute-oldTime.Minute()) * time.Minute
 		diff -= time.Duration(oldTime.Nanosecond())
 		adjustTime(diff)
-		closeView()
+		views.Pop()
 	})
 
 	return box
