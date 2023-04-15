@@ -51,7 +51,11 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	}
 	lastEvent = time.Now()
 
-	// Helper to get out of sleep mode (turn on the display etc).
+	// Helpers for sleep modes.
+	enterSleep := func() {
+		// Shut down the backlight, which is of course a huge battery drain.
+		setBacklight(0)
+	}
 	exitSleep := func() {
 		backlight = -1
 		lastEvent = time.Now()
@@ -81,9 +85,14 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 					// Sleeping, so wake up the screen.
 					exitSleep()
 				} else {
-					// Not sleeping, so go back to the home screen.
-					for views.Len() > 1 {
-						views.Pop()
+					if views.Len() > 1 {
+						// Not sleeping, so go back to the home screen.
+						for views.Len() > 1 {
+							views.Pop()
+						}
+					} else {
+						// Already on the home screen, so turn off the screen.
+						enterSleep()
 					}
 				}
 			}
@@ -122,8 +131,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			for views.Len() > 1 {
 				views.Pop()
 			}
-			// Shut down the backlight, which is of course a huge battery drain.
-			setBacklight(0)
+			enterSleep()
 		}
 
 		// Update the watchface.
