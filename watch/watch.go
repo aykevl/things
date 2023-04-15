@@ -73,11 +73,18 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			if event == board.NoKeyEvent {
 				break
 			}
+			// There is only one button on the watch, so just check whether it's
+			// pressed.
 			if event.Pressed() {
-				// There is only one button on the watch.
 				lastEvent = time.Now()
 				if backlight == 0 {
+					// Sleeping, so wake up the screen.
 					exitSleep()
+				} else {
+					// Not sleeping, so go back to the home screen.
+					for views.Len() > 1 {
+						views.Pop()
+					}
 				}
 			}
 		}
