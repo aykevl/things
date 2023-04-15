@@ -57,7 +57,6 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	exitSleep := func() {
 		backlight = -1
 		lastEvent = time.Now()
-		popView()
 	}
 
 	// Configure input events.
@@ -91,13 +90,16 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	eventWrapper := tinygl.NewEventBox[T](hello)
 	pushView(eventWrapper)
 	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
-		pushView(runSettings[T](popView))
-	})
-
-	// Create sleep UI. This is never actually shown on screen.
-	sleepView := tinygl.NewEventBox[T](tinygl.NewRect(black, 0, 0))
-	sleepView.SetEventHandler(func(event tinygl.Event, x, y int) {
-		exitSleep()
+		if event == tinygl.TouchTap {
+			if backlight == 0 {
+				// Tapped on a sleeping watch.
+				// Awake the screen.
+				exitSleep()
+			} else {
+				// Regular tap on the clock.
+				pushView(runSettings[T](popView))
+			}
+		}
 	})
 
 	// Run the default watch face.
@@ -107,8 +109,14 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 
 		// Check whether we need to disable the screen.
 		if backlight > 0 && time.Now().Sub(lastEvent) > screenTimeout {
+			// Going to enter sleep state.
+			// First, clear all the views that might be running. Go back to the
+			// homescreen (because that is what we'll show when awaking).
+			for len(views) > 1 {
+				popView()
+			}
+			// Shut down the backlight, which is of course a huge battery drain.
 			setBacklight(0)
-			pushView(sleepView)
 		}
 
 		// Update the watchface.
@@ -124,14 +132,19 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			minute = -1
 		}
 
+		bl := backlight // backlight value _before_ calling Update()
 		screen.Update()
-		if backlight < 0 {
+		if bl < 0 {
 			// Either we just started up, or we came out of sleep.
 			setBacklight(board.Display.MaxBrightness())
 		}
 		if backlight == 0 {
+			// Sleeping, so don't refresh so often.
+			// TODO: use interrupts instead (both the button and the touchscreen
+			// can be triggered via interrupts).
 			time.Sleep(time.Second / 10)
 		} else {
+			// Not sleeping, so be faster.
 			board.Display.WaitForVBlank(time.Second / 60)
 		}
 	}
