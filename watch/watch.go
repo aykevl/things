@@ -18,11 +18,14 @@ var lastEvent time.Time
 const screenTimeout = 5 * time.Second
 
 func main() {
-	// Watch dimensions:
-	// diagonal: 33mm, side: 23.3mm or 0.91 inch
-	board.Simulator.WindowWidth = 240
-	board.Simulator.WindowHeight = 240
-	board.Simulator.WindowPPI = 261
+	if board.Name == "simuator" {
+		// Watch dimensions:
+		// diagonal: 33mm, side: 23.3mm or 0.91 inch
+		board.Simulator.WindowWidth = 240
+		board.Simulator.WindowHeight = 240
+		board.Simulator.WindowPPI = 261
+		board.Simulator.WindowDrawSpeed = time.Second * 16 / 4e6 // 8MHz, 16bpp
+	}
 
 	println("start")
 	board.Buttons.Configure()
