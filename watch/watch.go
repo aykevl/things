@@ -168,12 +168,6 @@ func formatTime(hour, minute int) string {
 func setBacklight(level int) {
 	if backlight != level {
 		println("change backlight level:", level)
-		if backlight <= 0 {
-			// Allow the LCD to refresh the display completely before showing
-			// it. This is especially important when coming out of reset to
-			// avoid a white flash of the default memory contents.
-			time.Sleep(20 * time.Millisecond)
-		}
 		backlight = level
 		board.Display.SetBrightness(level)
 	}
