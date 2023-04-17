@@ -1,5 +1,5 @@
-github.com/aykevl/board v0.0.0-20230415210859-923bc28915c9 h1:WB3cCMJ4SUkRer9RFMu3MGF4khcrdBEF6pPw1elUV3Y=
-github.com/aykevl/board v0.0.0-20230415210859-923bc28915c9/go.mod h1:OC8BNgscLv/FcOckW3t4whMFuFRmUUFCDBz22yT8ze4=
+github.com/aykevl/board v0.0.0-20230417143758-4dab60a9f518 h1:eNKCfF3ygSJ44xvVFG2wxxFHV0zAbDFekvgv82c/vfY=
+github.com/aykevl/board v0.0.0-20230417143758-4dab60a9f518/go.mod h1:t9OZaDpb52lxMz2sGStp04quHpI8ZY0U+rfss3rkXOc=
 github.com/aykevl/tinygl v0.0.0-20230415225013-31cd31c98d94 h1:TfV33z21fgu/GLpf9qd1d4cmPn7D5hUNYjklUyUxAWM=
 github.com/aykevl/tinygl v0.0.0-20230415225013-31cd31c98d94/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
@@ -26,8 +26,8 @@ tinygo.org/x/drivers v0.14.0/go.mod h1:uT2svMq3EpBZpKkGO+NQHjxjGf1f42ra4OnMMwQL2
 tinygo.org/x/drivers v0.15.1/go.mod h1:uT2svMq3EpBZpKkGO+NQHjxjGf1f42ra4OnMMwQL2aI=
 tinygo.org/x/drivers v0.16.0/go.mod h1:uT2svMq3EpBZpKkGO+NQHjxjGf1f42ra4OnMMwQL2aI=
 tinygo.org/x/drivers v0.19.0/go.mod h1:uJD/l1qWzxzLx+vcxaW0eY464N5RAgFi1zTVzASFdqI=
-tinygo.org/x/drivers v0.24.1-0.20230412184607-ce4393f12515 h1:TOM4qS+EsA+Ba799g5Ao0dCzQ+JgqEvLDOYodf2GOFI=
-tinygo.org/x/drivers v0.24.1-0.20230412184607-ce4393f12515/go.mod h1:J4+51Li1kcfL5F93kmnDWEEzQF3bLGz0Am3Q7E2a8/E=
+tinygo.org/x/drivers v0.24.1-0.20230417062354-d3022e7d6e22 h1:K7BYGSLtfX60IqP2TQ8s7UkNO8ucfMUvvoQELaLx+6A=
+tinygo.org/x/drivers v0.24.1-0.20230417062354-d3022e7d6e22/go.mod h1:J4+51Li1kcfL5F93kmnDWEEzQF3bLGz0Am3Q7E2a8/E=
 tinygo.org/x/tinyfont v0.2.1/go.mod h1:eLqnYSrFRjt5STxWaMeOWJTzrKhXqpWw7nU3bPfKOAM=
 tinygo.org/x/tinyfont v0.3.0 h1:HIRLQoI3oc+2CMhPcfv+Ig88EcTImE/5npjqOnMD4lM=
 tinygo.org/x/tinyfont v0.3.0/go.mod h1:+TV5q0KpwSGRWnN+ITijsIhrWYJkoUCp9MYELjKpAXk=

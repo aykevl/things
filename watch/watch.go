@@ -55,10 +55,12 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	enterSleep := func() {
 		// Shut down the backlight, which is of course a huge battery drain.
 		setBacklight(0)
+		display.Sleep(true)
 	}
 	exitSleep := func() {
 		backlight = -1
 		lastEvent = time.Now()
+		display.Sleep(false)
 	}
 
 	// Configure input events.
