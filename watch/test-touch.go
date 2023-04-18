@@ -7,7 +7,7 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 )
 
-func createTouchTestView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
+func createTouchTestView[T pixel.Color](views *ViewManager[T]) View[T] {
 	// Determine size and scale of the screen.
 	scalePercent := board.Display.PPI() * 100 / 120
 
@@ -38,5 +38,5 @@ func createTouchTestView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] 
 		}
 	})
 
-	return wrapper
+	return NewView[T](wrapper, nil)
 }

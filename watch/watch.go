@@ -108,7 +108,18 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Set up a UI.
 	hello := tinygl.NewText(&freesans.Regular24pt7b, white, black, "00:00")
 	eventWrapper := tinygl.NewEventBox[T](hello)
-	views.Push(eventWrapper)
+	var minute int = -1
+	views.Push(NewView[T](eventWrapper, func(now time.Time) {
+		// Update the watchface.
+		if backlight > 0 {
+			// Watch face is visible.
+			newMinute := now.Minute()
+			if minute != newMinute {
+				minute = newMinute
+				hello.SetText(formatTime(now.Hour(), minute))
+			}
+		}
+	}))
 	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
 		if event == tinygl.TouchTap {
 			if backlight == 0 {
@@ -125,7 +136,6 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	})
 
 	// Run the default watch face.
-	var minute int = -1
 	for {
 		now := watchTime()
 
@@ -140,20 +150,8 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			enterSleep()
 		}
 
-		// Update the watchface.
-		if views.Len() == 1 {
-			// Watch face is visible.
-			newMinute := now.Minute()
-			if minute != newMinute {
-				minute = newMinute
-				hello.SetText(formatTime(now.Hour(), minute))
-			}
-		} else {
-			// Some other view is laid over the watch face.
-			minute = -1
-		}
-
 		bl := backlight // backlight value _before_ calling Update()
+		views.Update(now)
 		screen.Update()
 		if bl < 0 {
 			// Either we just started up, or we came out of sleep.
@@ -194,7 +192,7 @@ func setBacklight(level int) {
 	}
 }
 
-func createAppsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
+func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
 	// Constants used in this function.
 	var (
 		lightblue = pixel.NewColor[T](64, 64, 255)
@@ -223,11 +221,11 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 			views.Push(createTouchTestView(views))
 		}
 	})
-	return views.NewVBox(header, list)
+	return NewView[T](views.NewVBox(header, list), nil)
 }
 
 // Create view to adjust the time on the watch.
-func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
+func createClockAdjustView[T pixel.Color](views *ViewManager[T]) View[T] {
 	// Constants used in this function.
 	var (
 		green = pixel.NewColor[T](32, 255, 0)
@@ -294,5 +292,5 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T
 		views.Pop()
 	})
 
-	return box
+	return NewView[T](box, nil)
 }
