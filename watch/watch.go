@@ -285,6 +285,9 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T
 		text.SetText(formatTime(hour, minute))
 	})
 	textWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event != tinygl.TouchTap {
+			return
+		}
 		// Update time and close this view.
 		oldTime := watchTime()
 		diff := time.Duration(hour-oldTime.Hour()) * time.Hour
