@@ -43,7 +43,9 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Configure the screen.
 	width, _ := display.Size()
 	buf := make([]T, width*32)
-	scale := style.NewScale(board.Display.PPI())
+	scalePercent := board.Display.PPI() * 100 / 120
+	scale := style.NewScale(scalePercent)
+	println("scale:", board.Display.PPI(), "->", scale.Percent())
 	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	views := &ViewManager[T]{
 		screen: screen,
