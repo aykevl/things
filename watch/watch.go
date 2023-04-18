@@ -30,6 +30,7 @@ func main() {
 	}
 
 	println("start")
+	board.Power.Configure()
 	board.Buttons.Configure()
 	run(board.Display.Configure(), board.Display.ConfigureTouch())
 }
@@ -205,6 +206,7 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
 		"Back",
 		"Set time",
 		"Touch test",
+		"Sensors",
 	})
 	list.SetGrowable(1, 1)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
@@ -219,6 +221,8 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
 			views.Push(createClockAdjustView(views))
 		case 2:
 			views.Push(createTouchTestView(views))
+		case 3:
+			views.Push(createSensorsView(views))
 		}
 	})
 	return NewView[T](views.NewVBox(header, list), nil)
@@ -293,4 +297,45 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) View[T] {
 	})
 
 	return NewView[T](box, nil)
+}
+
+// view the values of a few sensors.
+func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
+	// Create the UI.
+	header := views.NewText("Sensors")
+	header.SetBackground(pixel.NewColor[T](0, 0, 255))
+	header.SetColor(pixel.NewColor[T](255, 255, 255))
+	battery := views.NewText("battery: ...")
+	battery.SetAlign(tinygl.AlignLeft)
+	voltage := views.NewText("voltage: ...")
+	voltage.SetAlign(tinygl.AlignLeft)
+	vbox := views.NewVBox(header, battery, voltage)
+	wrapper := tinygl.NewEventBox[T](vbox)
+	wrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event != tinygl.TouchTap {
+			return
+		}
+		views.Pop()
+	})
+
+	// Create the view with the update callback.
+	var lastTime time.Time
+	return NewView[T](wrapper, func(now time.Time) {
+		if now.Sub(lastTime) > time.Second/5 {
+			lastTime = now
+			// Update the UI with values.
+			state, microvolts := board.Power.Status()
+			battery.SetText("battery: " + state.String())
+			voltage.SetText("voltage: " + formatVoltage(microvolts))
+		}
+	})
+}
+
+func formatVoltage(microvolts uint32) string {
+	volts := strconv.Itoa(int(microvolts / 1000_000))
+	decimals := strconv.Itoa(int(microvolts % 1000_000 / 10_000))
+	for len(decimals) < 2 {
+		decimals = "0" + decimals
+	}
+	return volts + "." + decimals + "V"
 }
