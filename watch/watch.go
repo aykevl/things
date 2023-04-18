@@ -49,8 +49,10 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	views := &ViewManager[T]{
 		screen: screen,
-		scale:  scale,
+		Basic:  basic.NewTheme(scale, screen),
 	}
+	views.Background = black
+	views.Foreground = white
 	lastEvent = time.Now()
 
 	// Helpers for sleep modes.
@@ -196,17 +198,12 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 	// Constants used in this function.
 	var (
 		lightblue = pixel.NewColor[T](64, 64, 255)
-		black     = pixel.NewColor[T](0, 0, 0)
-		white     = pixel.NewColor[T](255, 255, 255)
 	)
 
 	// Create the settings UI.
-	style := basic.NewTheme(views.scale, views.screen)
-	style.Background = black
-	style.Foreground = white
-	header := style.NewText("Settings")
+	header := views.NewText("Settings")
 	header.SetBackground(lightblue)
-	list := style.NewListBox([]string{
+	list := views.NewListBox([]string{
 		"Back",
 		"Set time",
 		"Touch test",
@@ -226,7 +223,7 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) tinygl.Object[T] {
 			views.Push(createTouchTestView(views))
 		}
 	})
-	return style.NewVBox(header, list)
+	return views.NewVBox(header, list)
 }
 
 // Create view to adjust the time on the watch.

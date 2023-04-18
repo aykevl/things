@@ -3,13 +3,13 @@ package main
 import (
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/pixel"
-	"github.com/aykevl/tinygl/style"
+	"github.com/aykevl/tinygl/style/basic"
 )
 
 // ViewManager is a kind of window manager for the watch.
 type ViewManager[T pixel.Color] struct {
 	screen *tinygl.Screen[T]
-	scale  style.Scale
+	*basic.Basic[T]
 
 	// This is a stack of views that can be added on top and popped from when
 	// going back to the previous view.
