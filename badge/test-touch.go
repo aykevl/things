@@ -11,9 +11,7 @@ import (
 
 func testTouch[T pixel.Color](screen *tinygl.Screen[T], touchInput board.TouchInput) {
 	// Determine size and scale of the screen.
-	width, _ := board.Display.Size()
-	physicalWidth, _ := board.Display.PhysicalSize()
-	scalePercent := int(width) * 21 / physicalWidth
+	scalePercent := board.Display.PPI() * 100 / 120
 
 	// Create canvas.
 	black := pixel.NewColor[T](0, 0, 0)

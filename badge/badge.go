@@ -19,13 +19,11 @@ func main() {
 func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput) {
 	// Determine size and scale of the screen.
 	width, height := display.Size()
-	physicalWidth, _ := board.Display.PhysicalSize()
-	scalePercent := int(width) * 21 / physicalWidth
+	scalePercent := board.Display.PPI() * 100 / 120
 
 	// Initialize the screen.
 	buf := make([]T, int(width)*int(height)/4)
-	ppcm := int(width) * 10 / physicalWidth
-	screen := tinygl.NewScreen(display, buf, ppcm)
+	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 	println("scale:", scalePercent, "=>", theme.Scale.Percent())
 
@@ -54,6 +52,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Show screen.
 	screen.SetChild(home)
 	screen.Update()
+	board.Display.SetBrightness(board.Display.MaxBrightness())
 
 	for {
 		// TODO: wait for input instead of polling
