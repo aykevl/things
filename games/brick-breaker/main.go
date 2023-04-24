@@ -1,6 +1,18 @@
+// Small brick breaker game for various boards (tested on the Adafruit PyBadge,
+// a GameBoy Advance emulator, and in simulation).
+//
+// To run in simulation, use:
+//
+//	go run .
+//
+// To run on a simulated GameBoy Advance:
+//
+//	tinygo run -target=gameboy-advance  .
+//
+// To run on an Adafruit PyBadge:
+//
+//	tinygo flash -target=pybadge
 package main
-
-// Small brick breaker game for the Adafruit PyBadge.
 
 import (
 	"strconv"
@@ -17,15 +29,14 @@ import (
 func main() {
 	board.Buttons.Configure()
 	display := board.Display.Configure()
+	board.Display.SetBrightness(board.Display.MaxBrightness())
 	runUI(display)
 }
 
 func runUI[T pixel.Color](display board.Displayer[T]) {
 	// Determine size/scale.
 	width, height := display.Size()
-	physicalWidth, _ := board.Display.PhysicalSize()
-	scalePercent := int(width) * 21 / physicalWidth
-	ppcm := int(width) * 10 / physicalWidth
+	scalePercent := board.Display.PPI() * 100 / 120
 
 	var (
 		white = pixel.NewColor[T](0xff, 0xff, 0xff)
@@ -33,7 +44,7 @@ func runUI[T pixel.Color](display board.Displayer[T]) {
 		black = pixel.NewColor[T](0x00, 0x00, 0x00)
 	)
 	buf := make([]T, int(width)*int(height)/10)
-	screen := tinygl.NewScreen(display, buf, ppcm)
+	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 
 	title := theme.NewText("")
