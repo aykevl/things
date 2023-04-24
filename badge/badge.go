@@ -37,6 +37,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 		"Display test colors",
 		"Touch test",
 		"Tearing test",
+		"Sensors",
 	})
 	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
 	listbox.Select(0)         // focus the first element
@@ -115,6 +116,9 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 	case 4:
 		println("starting tearing test")
 		testTearing(display, screen, touchInput)
+	case 5:
+		println("starting sensors")
+		showSensors(screen)
 	}
 
 	// Some apps use the same screen and set a different root
