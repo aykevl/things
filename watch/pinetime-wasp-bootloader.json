@@ -1,0 +1,4 @@
+{
+    "inherits": ["pinetime-devkit0", "nrf52-s132v6"],
+    "linkerscript": "pinetime-wasp-bootloader.ld"
+}
