@@ -32,6 +32,10 @@ func main() {
 	println("start")
 	board.Power.Configure()
 	board.Buttons.Configure()
+	err := InitBluetooth()
+	if err != nil {
+		println("could not configure Bluetooth:", err)
+	}
 	run(board.Display.Configure(), board.Display.ConfigureTouch())
 }
 
