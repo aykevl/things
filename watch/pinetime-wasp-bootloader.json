@@ -1,4 +1,6 @@
 {
     "inherits": ["pinetime-devkit0", "nrf52-s132v6"],
-    "linkerscript": "pinetime-wasp-bootloader.ld"
+    "linkerscript": "pinetime-wasp-bootloader.ld",
+    "serial": "none",
+    "binary-format": "nrf-dfu"
 }
