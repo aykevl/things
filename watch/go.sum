@@ -1,6 +1,6 @@
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/aykevl/board v0.0.0-20230429222654-58ffd00a37e2 h1:/QrdwAXNF+m0xJuEsXho1NQF7blWNF2u4RPkvWXCytw=
-github.com/aykevl/board v0.0.0-20230429222654-58ffd00a37e2/go.mod h1:JRdaI/A3ApXhM0Bpobwmm4l3DEiQKKhhbBpK0rPn1pY=
+github.com/aykevl/board v0.0.0-20230507225228-a458fae3d4bb h1:dR3WM5rypei535IT4l1D0WMinXbOpbeQgmZMqKMsv7I=
+github.com/aykevl/board v0.0.0-20230507225228-a458fae3d4bb/go.mod h1:JRdaI/A3ApXhM0Bpobwmm4l3DEiQKKhhbBpK0rPn1pY=
 github.com/aykevl/tinygl v0.0.0-20230415225013-31cd31c98d94 h1:TfV33z21fgu/GLpf9qd1d4cmPn7D5hUNYjklUyUxAWM=
 github.com/aykevl/tinygl v0.0.0-20230415225013-31cd31c98d94/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
