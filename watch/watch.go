@@ -336,6 +336,7 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 }
 
 func formatVoltage(microvolts uint32) string {
+	microvolts += 5000 // divided by 10_000, so add 5000 for correct rounding
 	volts := strconv.Itoa(int(microvolts / 1000_000))
 	decimals := strconv.Itoa(int(microvolts % 1000_000 / 10_000))
 	for len(decimals) < 2 {
