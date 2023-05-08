@@ -1,3 +1,5 @@
+//go:build softdevice || !baremetal
+
 package main
 
 // Bluetooth support for the watch.
