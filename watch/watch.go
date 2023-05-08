@@ -111,34 +111,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	})
 
 	// Set up a UI.
-	hello := tinygl.NewText(&freesans.Regular24pt7b, white, black, "00:00")
-	eventWrapper := tinygl.NewEventBox[T](hello)
-	var minute int = -1
-	views.Push(NewView[T](eventWrapper, func(now time.Time) {
-		// Update the watchface.
-		if backlight > 0 {
-			// Watch face is visible.
-			newMinute := now.Minute()
-			if minute != newMinute {
-				minute = newMinute
-				hello.SetText(formatTime(now.Hour(), minute))
-			}
-		}
-	}))
-	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
-		if event == tinygl.TouchTap {
-			if backlight == 0 {
-				// Tapped on a sleeping watch.
-				// Awake the screen.
-				exitSleep()
-			} else {
-				// Regular tap on the clock.
-				// TODO: detect gesture (for example, swipe upwards) to make it
-				// harder to accidentally get in the settings menu.
-				views.Push(createAppsView(views))
-			}
-		}
-	})
+	views.Push(createWatchFace(views, exitSleep))
 
 	// Run the default watch face.
 	for {
@@ -174,6 +147,54 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	}
 }
 
+// Set the backlight to the given level. This is a no-op if it wouldn't change
+// the backlight level.
+func setBacklight(level int) {
+	if backlight != level {
+		println("change backlight level:", level)
+		backlight = level
+		board.Display.SetBrightness(level)
+	}
+}
+
+// Create a simple digital watch face as the homescreen.
+func createWatchFace[T pixel.Color](views *ViewManager[T], exitSleep func()) View[T] {
+	var (
+		black = pixel.NewColor[T](0, 0, 0)
+		white = pixel.NewColor[T](255, 255, 255)
+	)
+
+	timeText := tinygl.NewText(&freesans.Regular24pt7b, white, black, "00:00")
+	eventWrapper := tinygl.NewEventBox[T](timeText)
+	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event == tinygl.TouchTap {
+			if backlight == 0 {
+				// Tapped on a sleeping watch.
+				// Awake the screen.
+				exitSleep()
+			} else {
+				// Regular tap on the clock.
+				// TODO: detect gesture (for example, swipe upwards) to make it
+				// harder to accidentally get in the settings menu.
+				views.Push(createAppsView(views))
+			}
+		}
+	})
+
+	var minute int = -1
+	return NewView[T](eventWrapper, func(now time.Time) {
+		// Update the watchface.
+		if backlight > 0 {
+			// Watch face is visible.
+			newMinute := now.Minute()
+			if minute != newMinute {
+				minute = newMinute
+				timeText.SetText(formatTime(now.Hour(), minute))
+			}
+		}
+	})
+}
+
 // Format a time without using time.Format.
 func formatTime(hour, minute int) string {
 	h := strconv.Itoa(hour)
@@ -185,16 +206,6 @@ func formatTime(hour, minute int) string {
 		m = "0" + m
 	}
 	return h + ":" + m
-}
-
-// Set the backlight to the given level. This is a no-op if it wouldn't change
-// the backlight level.
-func setBacklight(level int) {
-	if backlight != level {
-		println("change backlight level:", level)
-		backlight = level
-		board.Display.SetBrightness(level)
-	}
 }
 
 func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
