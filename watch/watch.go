@@ -189,7 +189,7 @@ func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
 				// Regular tap on the clock.
 				// TODO: detect gesture (for example, swipe upwards) to make it
 				// harder to accidentally get in the settings menu.
-				views.Push(createAppsView(views))
+				views.Push(w.createAppsView(views))
 			}
 		}
 	})
@@ -221,7 +221,7 @@ func formatTime(hour, minute int) string {
 	return h + ":" + m
 }
 
-func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
+func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 	// Constants used in this function.
 	var (
 		lightblue = pixel.NewColor[T](64, 64, 255)
@@ -235,6 +235,7 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
 		"Set time",
 		"Touch test",
 		"Sensors",
+		"Rotate",
 	})
 	list.SetGrowable(1, 1)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
@@ -251,6 +252,9 @@ func createAppsView[T pixel.Color](views *ViewManager[T]) View[T] {
 			views.Push(createTouchTestView(views))
 		case 3:
 			views.Push(createSensorsView(views))
+		case 4:
+			// Rotate the screen by 180°.
+			w.display.SetRotation((w.display.Rotation() + 2) % 4)
 		}
 	})
 	return NewView[T](views.NewVBox(header, list), nil)
