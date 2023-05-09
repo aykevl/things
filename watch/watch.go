@@ -36,22 +36,35 @@ func main() {
 	if err != nil {
 		println("could not configure Bluetooth:", err)
 	}
-	run(board.Display.Configure(), board.Display.ConfigureTouch())
+	watch := MakeWatch(board.Display.Configure(), board.Display.ConfigureTouch())
+	watch.run()
 }
 
-func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput) {
+type Watch[T pixel.Color] struct {
+	display    board.Displayer[T]
+	touchInput board.TouchInput
+}
+
+func MakeWatch[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput) Watch[T] {
+	return Watch[T]{
+		display:    display,
+		touchInput: touchInput,
+	}
+}
+
+func (w *Watch[T]) run() {
 	var (
 		black = pixel.NewColor[T](0, 0, 0)
 		white = pixel.NewColor[T](255, 255, 255)
 	)
 
 	// Configure the screen.
-	width, _ := display.Size()
-	buf := make([]T, width*32)
+	width, _ := w.display.Size()
+	buf := pixel.NewImage[T](int(width), 32)
 	scalePercent := board.Display.PPI() * 100 / 120
 	scale := style.NewScale(scalePercent)
 	println("scale:", board.Display.PPI(), "->", scale.Percent())
-	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
+	screen := tinygl.NewScreen(w.display, buf, board.Display.PPI())
 	views := &ViewManager[T]{
 		screen: screen,
 		Basic:  basic.NewTheme(scale, screen),
@@ -60,21 +73,9 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	views.Foreground = white
 	lastEvent = time.Now()
 
-	// Helpers for sleep modes.
-	enterSleep := func() {
-		// Shut down the backlight, which is of course a huge battery drain.
-		setBacklight(0)
-		display.Sleep(true)
-	}
-	exitSleep := func() {
-		backlight = -1
-		lastEvent = time.Now()
-		display.Sleep(false)
-	}
-
 	// Configure input events.
 	screen.SetUpdateCallback(func(screen *tinygl.Screen[T]) {
-		touchPoints := touchInput.ReadTouch()
+		touchPoints := w.touchInput.ReadTouch()
 		if len(touchPoints) != 0 {
 			lastEvent = time.Now()
 			screen.SetTouchState(touchPoints[0].X, touchPoints[0].Y)
@@ -94,7 +95,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 				lastEvent = time.Now()
 				if backlight == 0 {
 					// Sleeping, so wake up the screen.
-					exitSleep()
+					w.exitSleep()
 				} else {
 					if views.Len() > 1 {
 						// Not sleeping, so go back to the home screen.
@@ -103,7 +104,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 						}
 					} else {
 						// Already on the home screen, so turn off the screen.
-						enterSleep()
+						w.enterSleep()
 					}
 				}
 			}
@@ -111,7 +112,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	})
 
 	// Set up a UI.
-	views.Push(createWatchFace(views, exitSleep))
+	views.Push(w.createWatchFace(views))
 
 	// Run the default watch face.
 	for {
@@ -125,7 +126,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 			for views.Len() > 1 {
 				views.Pop()
 			}
-			enterSleep()
+			w.enterSleep()
 		}
 
 		bl := backlight // backlight value _before_ calling Update()
@@ -147,6 +148,18 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	}
 }
 
+func (w *Watch[T]) enterSleep() {
+	// Shut down the backlight, which is of course a huge battery drain.
+	setBacklight(0)
+	w.display.Sleep(true)
+}
+
+func (w *Watch[T]) exitSleep() {
+	backlight = -1
+	lastEvent = time.Now()
+	w.display.Sleep(false)
+}
+
 // Set the backlight to the given level. This is a no-op if it wouldn't change
 // the backlight level.
 func setBacklight(level int) {
@@ -158,7 +171,7 @@ func setBacklight(level int) {
 }
 
 // Create a simple digital watch face as the homescreen.
-func createWatchFace[T pixel.Color](views *ViewManager[T], exitSleep func()) View[T] {
+func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
 	var (
 		black = pixel.NewColor[T](0, 0, 0)
 		white = pixel.NewColor[T](255, 255, 255)
@@ -171,7 +184,7 @@ func createWatchFace[T pixel.Color](views *ViewManager[T], exitSleep func()) Vie
 			if backlight == 0 {
 				// Tapped on a sleeping watch.
 				// Awake the screen.
-				exitSleep()
+				w.exitSleep()
 			} else {
 				// Regular tap on the clock.
 				// TODO: detect gesture (for example, swipe upwards) to make it
