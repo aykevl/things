@@ -356,8 +356,15 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 		if now.Sub(lastTime) > time.Second/5 {
 			lastTime = now
 			// Update the UI with values.
-			state, microvolts := board.Power.Status()
-			battery.SetText("battery: " + state.String())
+			state, microvolts, percent := board.Power.Status()
+			batteryText := "battery: "
+			if percent >= 0 {
+				batteryText += strconv.Itoa(int(percent)) + "% "
+			}
+			if state != board.Discharging {
+				batteryText += state.String()
+			}
+			battery.SetText(batteryText)
 			voltage.SetText("voltage: " + formatVoltage(microvolts))
 		}
 	})
