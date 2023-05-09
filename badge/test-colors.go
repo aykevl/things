@@ -2,16 +2,16 @@ package main
 
 import (
 	"time"
-	"unsafe"
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl/pixel"
 )
 
-func testColors[T pixel.Color](display board.Displayer[T], buf []T) {
+func testColors[T pixel.Color](display board.Displayer[T], buf pixel.Image[T]) {
 	width, height := display.Size()
 
 	// Draw the test colors.
+	img := buf.Rescale(int(width), 1)
 	for y := 0; y < int(height); y++ {
 		for x := 0; x < int(width); x++ {
 			gray := uint8(x * 255 / int(width))
@@ -30,11 +30,9 @@ func testColors[T pixel.Color](display board.Displayer[T], buf []T) {
 				g := gamma_lut[uint8(gray)]
 				c = pixel.NewColor[T](r, g, 0)
 			}
-			buf[x] = c
+			img.Set(x, 0, c)
 		}
-		var zeroPixel T
-		buf8 := unsafe.Slice((*uint8)(unsafe.Pointer(unsafe.SliceData(buf))), int(width)*int(unsafe.Sizeof(zeroPixel)))
-		display.DrawRGBBitmap8(0, int16(y), buf8, width, 1)
+		display.DrawRGBBitmap8(0, int16(y), img.RawBuffer(), width, 1)
 	}
 
 	// Wait for back button.

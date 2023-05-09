@@ -4,8 +4,8 @@ github.com/aykevl/board v0.0.0-20230420224252-343f2f3941e6 h1:+ZUaUVZiS6avk04P/o
 github.com/aykevl/board v0.0.0-20230420224252-343f2f3941e6/go.mod h1:t9OZaDpb52lxMz2sGStp04quHpI8ZY0U+rfss3rkXOc=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2 h1:NcmN0bjs7hmLKSARz88oxXF6OU50/d4Xeo5QWEE5y7w=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
-github.com/aykevl/tinygl v0.0.0-20230413150643-b7181a06876c h1:hPX2SKmjvCF/A2HTk1LDlcIWYVpwAMTajwngPOJs9FI=
-github.com/aykevl/tinygl v0.0.0-20230413150643-b7181a06876c/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
+github.com/aykevl/tinygl v0.0.0-20230509003145-c99803e1eca6 h1:o4RhD6lMtx2vqa18/ARTun7K4wtRYm6LrLRc+acWov0=
+github.com/aykevl/tinygl v0.0.0-20230509003145-c99803e1eca6/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgould/http v0.0.0-20190627042742-d268792bdee7/go.mod h1:BTqvVegvwifopl4KTEDth6Zezs9eR+lCWhvGKvkxJHE=
 github.com/eclipse/paho.mqtt.golang v1.2.0/go.mod h1:H9keYFcgq3Qr5OUJm/JZI/i6U7joQ8SYLhZwfeOo6Ts=
 github.com/frankban/quicktest v1.10.2/go.mod h1:K+q6oSqb0W0Ininfk863uOk1lMy69l/P6txr3mVT54s=

@@ -2,7 +2,6 @@ package main
 
 import (
 	"time"
-	"unsafe"
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/ledsgo"
@@ -16,11 +15,11 @@ const (
 
 // Render a mandelbrot. Allow the user to move around the screen and zoom in/out
 // the fractal.
-func mandelbrot[T pixel.Color](display board.Displayer[T], buffer []T) {
+func mandelbrot[T pixel.Color](display board.Displayer[T], buffer pixel.Image[T]) {
 	w, h := display.Size()
 	width := int(w)
 	height := int(h)
-	bufferLines := len(buffer) / width
+	bufferLines := buffer.Len() / width
 	stepY := int(2 << (frac * 2) / int64(height))
 	stepX := int((3 << (frac * 2)) / int64(width))
 	centerX := stepX * width / -6
@@ -71,6 +70,7 @@ func mandelbrot[T pixel.Color](display board.Displayer[T], buffer []T) {
 				if startY+chunkHeight >= height {
 					chunkHeight = height - startY
 				}
+				img := buffer.Rescale(width, chunkHeight)
 				for chunkY := 0; chunkY < chunkHeight; chunkY++ {
 					r := centerX - (width/2)*stepX
 					i += stepY
@@ -83,12 +83,10 @@ func mandelbrot[T pixel.Color](display board.Displayer[T], buffer []T) {
 							c := ledsgo.RainbowColors.ColorAt(uint16(iterations * 2048))
 							rawColor = pixel.NewColor[T](c.R, c.G, c.B)
 						}
-						buffer[chunkY*width+x] = rawColor
+						img.Set(x, chunkY, rawColor)
 					}
 				}
-				var zeroPixel T
-				buf8 := unsafe.Slice((*uint8)(unsafe.Pointer(unsafe.SliceData(buffer))), int(width)*chunkHeight*int(unsafe.Sizeof(zeroPixel)))
-				display.DrawRGBBitmap8(0, int16(startY), buf8, int16(width), int16(chunkHeight))
+				display.DrawRGBBitmap8(0, int16(startY), img.RawBuffer(), int16(width), int16(chunkHeight))
 			}
 			duration := time.Since(start)
 			println("rendering took:", duration.String())

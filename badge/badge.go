@@ -22,7 +22,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	scalePercent := board.Display.PPI() * 100 / 120
 
 	// Initialize the screen.
-	buf := make([]T, int(width)*int(height)/4)
+	buf := pixel.NewImage[T](int(width), int(height)/4)
 	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 	println("scale:", scalePercent, "=>", theme.Scale.Percent())
