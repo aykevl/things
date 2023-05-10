@@ -17,7 +17,7 @@ import (
 var backlight = -1
 var lastEvent time.Time
 
-const screenTimeout = 5 * time.Second
+var screenTimeout = 5 * time.Second
 
 func main() {
 	if board.Name == "simulator" {
@@ -236,6 +236,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		"Touch test",
 		"Sensors",
 		"Rotate",
+		"Screen timeout",
 	})
 	list.SetGrowable(1, 1)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
@@ -255,6 +256,8 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		case 4:
 			// Rotate the screen by 180°.
 			w.display.SetRotation((w.display.Rotation() + 2) % 4)
+		case 5:
+			views.Push(createScreenTimeoutView(views))
 		}
 	})
 	return NewView[T](views.NewVBox(header, list), nil)
@@ -368,6 +371,45 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 			voltage.SetText("voltage: " + formatVoltage(microvolts))
 		}
 	})
+}
+
+func createScreenTimeoutView[T pixel.Color](views *ViewManager[T]) View[T] {
+	var (
+		lightblue = pixel.NewColor[T](64, 64, 255)
+	)
+	header := views.NewText("Screen timeout")
+	header.SetBackground(lightblue)
+
+	list := views.NewListBox([]string{
+		"3s",
+		"5s",
+		"10s",
+		"15s",
+		"30s",
+		"60s",
+	})
+	list.SetGrowable(1, 1)
+	list.SetEventHandler(func(event tinygl.Event, index int) {
+		if event != tinygl.TouchTap {
+			return
+		}
+		views.Pop() // go back to the homescreen after closing the view
+		switch index {
+		case 0:
+			screenTimeout = 3 * time.Second
+		case 1:
+			screenTimeout = 5 * time.Second
+		case 2:
+			screenTimeout = 10 * time.Second
+		case 3:
+			screenTimeout = 15 * time.Second
+		case 4:
+			screenTimeout = 30 * time.Second
+		case 5:
+			screenTimeout = 60 * time.Second
+		}
+	})
+	return NewView[T](views.NewVBox(header, list), nil)
 }
 
 func formatVoltage(microvolts uint32) string {
