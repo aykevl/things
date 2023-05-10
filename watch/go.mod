@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/aykevl/board v0.0.0-20230509162037-218e7fb9f424
-	github.com/aykevl/tinygl v0.0.0-20230510110830-bc2f8158a459
+	github.com/aykevl/tinygl v0.0.0-20230510203113-5f45801671fa
 	tinygo.org/x/bluetooth v0.6.0
 	tinygo.org/x/tinyfont v0.3.0
 )

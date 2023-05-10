@@ -401,7 +401,10 @@ func createScreenTimeoutView[T pixel.Color](views *ViewManager[T]) View[T] {
 		"60s",
 	})
 	list.SetGrowable(1, 1)
+	list.SetColumns(2)
+	list.SetPadding(0, 16)
 	list.Select(int(screenTimeoutIndex))
+	list.SetAlign(tinygl.AlignCenter)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
 		if event != tinygl.TouchTap {
 			return
