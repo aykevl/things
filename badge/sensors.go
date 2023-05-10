@@ -51,8 +51,15 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 		}
 
 		// Read sensors.
-		state, microvolts := board.Power.Status()
-		battery.SetText("battery: " + state.String())
+		state, microvolts, percent := board.Power.Status()
+		batteryText := "battery: "
+		if percent >= 0 {
+			batteryText += strconv.Itoa(int(percent)) + "% "
+		}
+		if state != board.Discharging {
+			batteryText += state.String()
+		}
+		battery.SetText(batteryText)
 		voltage.SetText("voltage: " + formatVoltage(microvolts))
 
 		screen.Update()
