@@ -43,6 +43,8 @@ func main() {
 type Watch[T pixel.Color] struct {
 	display    board.Displayer[T]
 	touchInput board.TouchInput
+	screen     *tinygl.Screen[T]
+	views      *ViewManager[T]
 }
 
 func MakeWatch[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput) Watch[T] {
@@ -64,55 +66,17 @@ func (w *Watch[T]) run() {
 	scalePercent := board.Display.PPI() * 100 / 120
 	scale := style.NewScale(scalePercent)
 	println("scale:", board.Display.PPI(), "->", scale.Percent())
-	screen := tinygl.NewScreen(w.display, buf, board.Display.PPI())
-	views := &ViewManager[T]{
-		screen: screen,
-		Basic:  basic.NewTheme(scale, screen),
+	w.screen = tinygl.NewScreen(w.display, buf, board.Display.PPI())
+	w.views = &ViewManager[T]{
+		screen: w.screen,
+		Basic:  basic.NewTheme(scale, w.screen),
 	}
-	views.Background = black
-	views.Foreground = white
+	w.views.Background = black
+	w.views.Foreground = white
 	lastEvent = time.Now()
 
-	// Configure input events.
-	screen.SetUpdateCallback(func(screen *tinygl.Screen[T]) {
-		touchPoints := w.touchInput.ReadTouch()
-		if len(touchPoints) != 0 {
-			lastEvent = time.Now()
-			screen.SetTouchState(touchPoints[0].X, touchPoints[0].Y)
-		} else {
-			screen.SetTouchState(-1, -1)
-		}
-
-		board.Buttons.ReadInput()
-		for {
-			event := board.Buttons.NextEvent()
-			if event == board.NoKeyEvent {
-				break
-			}
-			// There is only one button on the watch, so just check whether it's
-			// pressed.
-			if event.Pressed() {
-				lastEvent = time.Now()
-				if backlight == 0 {
-					// Sleeping, so wake up the screen.
-					w.exitSleep()
-				} else {
-					if views.Len() > 1 {
-						// Not sleeping, so go back to the home screen.
-						for views.Len() > 1 {
-							views.Pop()
-						}
-					} else {
-						// Already on the home screen, so turn off the screen.
-						w.enterSleep()
-					}
-				}
-			}
-		}
-	})
-
 	// Set up a UI.
-	views.Push(w.createWatchFace(views))
+	w.views.Push(w.createWatchFace(w.views))
 
 	// Run the default watch face.
 	for {
@@ -123,15 +87,16 @@ func (w *Watch[T]) run() {
 			// Going to enter sleep state.
 			// First, clear all the views that might be running. Go back to the
 			// homescreen (because that is what we'll show when awaking).
-			for views.Len() > 1 {
-				views.Pop()
+			for w.views.Len() > 1 {
+				w.views.Pop()
 			}
 			w.enterSleep()
 		}
 
 		bl := backlight // backlight value _before_ calling Update()
-		views.Update(now)
-		screen.Update()
+		w.views.Update(now)
+		w.screen.Update()
+		w.readInputs()
 		if bl < 0 {
 			// Either we just started up, or we came out of sleep.
 			setBacklight(board.Display.MaxBrightness())
@@ -144,6 +109,43 @@ func (w *Watch[T]) run() {
 		} else {
 			// Not sleeping, so be faster.
 			board.Display.WaitForVBlank(time.Second / 60)
+		}
+	}
+}
+
+func (w *Watch[T]) readInputs() {
+	touchPoints := w.touchInput.ReadTouch()
+	if len(touchPoints) != 0 {
+		lastEvent = time.Now()
+		w.screen.SetTouchState(touchPoints[0].X, touchPoints[0].Y)
+	} else {
+		w.screen.SetTouchState(-1, -1)
+	}
+
+	board.Buttons.ReadInput()
+	for {
+		event := board.Buttons.NextEvent()
+		if event == board.NoKeyEvent {
+			break
+		}
+		// There is only one button on the watch, so just check whether it's
+		// pressed.
+		if event.Pressed() {
+			lastEvent = time.Now()
+			if backlight == 0 {
+				// Sleeping, so wake up the screen.
+				w.exitSleep()
+			} else {
+				if w.views.Len() > 1 {
+					// Not sleeping, so go back to the home screen.
+					for w.views.Len() > 1 {
+						w.views.Pop()
+					}
+				} else {
+					// Already on the home screen, so turn off the screen.
+					w.enterSleep()
+				}
+			}
 		}
 	}
 }
