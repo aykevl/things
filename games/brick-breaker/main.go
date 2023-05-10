@@ -43,7 +43,7 @@ func runUI[T pixel.Color](display board.Displayer[T]) {
 		red   = pixel.NewColor[T](0xff, 0x00, 0x00)
 		black = pixel.NewColor[T](0x00, 0x00, 0x00)
 	)
-	buf := make([]T, int(width)*int(height)/10)
+	buf := pixel.NewImage[T](int(width), int(height)/10)
 	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 
