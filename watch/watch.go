@@ -17,7 +17,15 @@ import (
 var backlight = -1
 var lastEvent time.Time
 
-var screenTimeout = 5 * time.Second
+var screenTimeoutIndex uint8 = 1
+var screenTimeouts = [...]time.Duration{
+	3 * time.Second,
+	5 * time.Second,
+	10 * time.Second,
+	15 * time.Second,
+	30 * time.Second,
+	60 * time.Second,
+}
 
 func main() {
 	if board.Name == "simulator" {
@@ -67,9 +75,11 @@ func (w *Watch[T]) run() {
 	scale := style.NewScale(scalePercent)
 	println("scale:", board.Display.PPI(), "->", scale.Percent())
 	w.screen = tinygl.NewScreen(w.display, buf, board.Display.PPI())
+	basicTheme := basic.NewTheme(scale, w.screen)
+	basicTheme.Tint = pixel.NewColor[T](144, 144, 144)
 	w.views = &ViewManager[T]{
 		screen: w.screen,
-		Basic:  basic.NewTheme(scale, w.screen),
+		Basic:  basicTheme,
 	}
 	w.views.Background = black
 	w.views.Foreground = white
@@ -83,7 +93,7 @@ func (w *Watch[T]) run() {
 		now := watchTime()
 
 		// Check whether we need to disable the screen.
-		if backlight > 0 && time.Now().Sub(lastEvent) > screenTimeout {
+		if backlight > 0 && time.Now().Sub(lastEvent) > screenTimeouts[screenTimeoutIndex] {
 			// Going to enter sleep state.
 			// First, clear all the views that might be running. Go back to the
 			// homescreen (because that is what we'll show when awaking).
@@ -391,25 +401,13 @@ func createScreenTimeoutView[T pixel.Color](views *ViewManager[T]) View[T] {
 		"60s",
 	})
 	list.SetGrowable(1, 1)
+	list.Select(int(screenTimeoutIndex))
 	list.SetEventHandler(func(event tinygl.Event, index int) {
 		if event != tinygl.TouchTap {
 			return
 		}
 		views.Pop() // go back to the homescreen after closing the view
-		switch index {
-		case 0:
-			screenTimeout = 3 * time.Second
-		case 1:
-			screenTimeout = 5 * time.Second
-		case 2:
-			screenTimeout = 10 * time.Second
-		case 3:
-			screenTimeout = 15 * time.Second
-		case 4:
-			screenTimeout = 30 * time.Second
-		case 5:
-			screenTimeout = 60 * time.Second
-		}
+		screenTimeoutIndex = uint8(index)
 	})
 	return NewView[T](views.NewVBox(header, list), nil)
 }
