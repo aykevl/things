@@ -251,6 +251,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		"Screen timeout",
 	})
 	list.SetGrowable(1, 1)
+	list.SetPadding(0, 8)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
 		if event != tinygl.TouchTap {
 			return
@@ -272,7 +273,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 			views.Push(createScreenTimeoutView(views))
 		}
 	})
-	return NewView[T](views.NewVBox(header, list), nil)
+	return NewView[T](views.NewVBox(header, tinygl.NewScrollBox[T](list)), nil)
 }
 
 // Create view to adjust the time on the watch.
