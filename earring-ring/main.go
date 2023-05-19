@@ -46,17 +46,17 @@ func purpleCircles[T pixel.Color](leds []T, traceIndex uint8) {
 
 		switch colorIndex {
 		case 5:
-			leds[idx] = makeColor[T](31, 0, 16)
+			leds[idx] = makeColor[T](124, 0, 64)
 		case 4:
-			leds[idx] = makeColor[T](16, 0, 12)
+			leds[idx] = makeColor[T](64, 0, 48)
 		case 3:
-			leds[idx] = makeColor[T](8, 0, 8)
+			leds[idx] = makeColor[T](32, 0, 32)
 		case 2:
-			leds[idx] = makeColor[T](4, 0, 4)
+			leds[idx] = makeColor[T](16, 0, 16)
 		case 1:
-			leds[idx] = makeColor[T](2, 0, 2)
+			leds[idx] = makeColor[T](8, 0, 8)
 		case 0:
-			leds[idx] = makeColor[T](1, 0, 1)
+			leds[idx] = makeColor[T](4, 0, 4)
 		}
 	}
 }

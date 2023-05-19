@@ -23,5 +23,5 @@ func updateLEDs() {
 }
 
 func makeColor[T pixel.Color](r, g, b uint8) T {
-	return pixel.NewLinearColor[T](r*4, g*4, b*4)
+	return pixel.NewLinearColor[T](r, g, b)
 }
