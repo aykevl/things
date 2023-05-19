@@ -4,6 +4,8 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 )
 
+var leds [18]pixel.LinearGRB888
+
 func main() {
 	initLEDs()
 
@@ -22,7 +24,7 @@ func main() {
 					traceIndex = 0
 				}
 			}
-			purpleCircles(leds[:], traceIndex)
+			purpleCircles(traceIndex)
 		}
 
 		updateLEDs()
@@ -30,7 +32,7 @@ func main() {
 }
 
 // Three purple tracers running in circles.
-func purpleCircles[T pixel.Color](leds []T, traceIndex uint8) {
+func purpleCircles(traceIndex uint8) {
 	for i := uint8(0); i < 18; i++ {
 		idx := i + traceIndex
 		if idx >= 18 {
@@ -46,17 +48,17 @@ func purpleCircles[T pixel.Color](leds []T, traceIndex uint8) {
 
 		switch colorIndex {
 		case 5:
-			leds[idx] = makeColor[T](124, 0, 64)
+			leds[idx] = pixel.NewLinearGRB888(124, 0, 64)
 		case 4:
-			leds[idx] = makeColor[T](64, 0, 48)
+			leds[idx] = pixel.NewLinearGRB888(64, 0, 48)
 		case 3:
-			leds[idx] = makeColor[T](32, 0, 32)
+			leds[idx] = pixel.NewLinearGRB888(32, 0, 32)
 		case 2:
-			leds[idx] = makeColor[T](16, 0, 16)
+			leds[idx] = pixel.NewLinearGRB888(16, 0, 16)
 		case 1:
-			leds[idx] = makeColor[T](8, 0, 8)
+			leds[idx] = pixel.NewLinearGRB888(8, 0, 8)
 		case 0:
-			leds[idx] = makeColor[T](4, 0, 4)
+			leds[idx] = pixel.NewLinearGRB888(4, 0, 4)
 		}
 	}
 }

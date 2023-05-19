@@ -5,18 +5,10 @@ package main
 import (
 	"device/avr"
 	"unsafe"
-
-	"github.com/aykevl/tinygl/pixel"
 )
 
 // #include "bitbang.h"
 import "C"
-
-func makeColor[T pixel.Color](r, g, b uint8) T {
-	return pixel.NewLinearColor[T](r, g, b)
-}
-
-var leds [18]pixel.LinearGRB888
 
 func initLEDs() {
 	avr.PORTA.DIR.Set(0b0111_1110) // Configure PA1-PA6 as output.
