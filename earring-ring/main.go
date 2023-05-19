@@ -12,53 +12,54 @@ func main() {
 	var traceIndex uint8
 	var cycle uint8
 	animation := uint8(0)
+	ledIndex := uint8(0)
 	for {
-		cycle++
+		updateLEDs()
 
-		switch animation {
-		case 0:
-			// Trace animation.
-			if cycle%16 == 0 {
-				traceIndex++
-				if traceIndex >= 18 {
-					traceIndex = 0
+		// Update 3 LEDs.
+		for i := uint8(0); i < 3; i++ {
+			ledIndex++
+			if ledIndex >= 18 {
+				ledIndex = 0
+				cycle++
+				// Trace animation.
+				if cycle%4 == 1 {
+					traceIndex++
+					if traceIndex >= 18 {
+						traceIndex = 0
+					}
 				}
 			}
-			purpleCircles(traceIndex)
-		}
 
-		updateLEDs()
+			switch animation {
+			case 0:
+				purpleCircles(ledIndex, traceIndex)
+			}
+		}
 	}
 }
 
 // Three purple tracers running in circles.
-func purpleCircles(traceIndex uint8) {
-	for i := uint8(0); i < 18; i++ {
-		idx := i + traceIndex
-		if idx >= 18 {
-			idx -= 18
-		}
-		colorIndex := i
-		if i >= 6 {
-			colorIndex -= 6
-		}
-		if i >= 12 {
-			colorIndex -= 6
-		}
+func purpleCircles(index, traceIndex uint8) {
+	// This animation has three tracers.
+	traceIndex2 := traceIndex + uint8(len(leds))/3
+	if traceIndex2 >= uint8(len(leds)) {
+		traceIndex2 -= uint8(len(leds))
+	}
+	traceIndex3 := traceIndex + uint8(len(leds))*2/3
+	if traceIndex3 >= uint8(len(leds)) {
+		traceIndex3 -= uint8(len(leds))
+	}
 
-		switch colorIndex {
-		case 5:
-			leds[idx] = pixel.NewLinearGRB888(124, 0, 64)
-		case 4:
-			leds[idx] = pixel.NewLinearGRB888(64, 0, 48)
-		case 3:
-			leds[idx] = pixel.NewLinearGRB888(32, 0, 32)
-		case 2:
-			leds[idx] = pixel.NewLinearGRB888(16, 0, 16)
-		case 1:
-			leds[idx] = pixel.NewLinearGRB888(8, 0, 8)
-		case 0:
-			leds[idx] = pixel.NewLinearGRB888(4, 0, 4)
-		}
+	if index == traceIndex || index == traceIndex2 || index == traceIndex3 {
+		// First tracer.
+		leds[index] = pixel.NewLinearGRB888(124, 0, 64)
+	} else {
+		// dim LED
+		c := any(leds[index]).(pixel.LinearGRB888)
+		r := uint8(uint16(c.R) * 224 / 256)
+		g := uint8(uint16(c.G) * 224 / 256)
+		b := uint8(uint16(c.B) * 224 / 256)
+		leds[index] = pixel.NewLinearGRB888(r, g, b)
 	}
 }
