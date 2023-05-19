@@ -17,7 +17,7 @@ func initLEDs() {
 func updateLEDs() {
 	updateBoardLEDs(board.AddressableLEDs.Data)
 	board.AddressableLEDs.Update()
-	time.Sleep(time.Second / 2400)
+	time.Sleep(time.Second / 400)
 }
 
 func updateBoardLEDs[T pixel.Color](data []T) {

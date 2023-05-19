@@ -18,7 +18,7 @@ func main() {
 		switch animation {
 		case 0:
 			// Trace animation.
-			if cycle%64 == 0 {
+			if cycle%16 == 0 {
 				traceIndex++
 				if traceIndex >= 18 {
 					traceIndex = 0

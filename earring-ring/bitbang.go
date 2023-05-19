@@ -10,6 +10,15 @@ import (
 // #include "bitbang.h"
 import "C"
 
+func init() {
+	// Use 20MHz/32 = 625kHz
+	// This results in a current consumption of around 0.41mA with all LEDs off.
+	// It *should* result in a current consumption of 187.5µA, but I think the
+	// 20MHz oscillator uses a fair bit of current too.
+	avr.CPU.CCP.Set(0xD8)                 // unlock protected registers
+	avr.CLKCTRL.MCLKCTRLB.Set(0x4<<1 | 1) // prescaler of 32
+}
+
 func initLEDs() {
 	avr.PORTA.DIR.Set(0b0111_1110) // Configure PA1-PA6 as output.
 	avr.PORTB.DIR.Set(0b0011_1111) // Configure PB0-PB5 as output (R2, G2, B2, R3, G3, B3)
