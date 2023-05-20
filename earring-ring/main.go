@@ -18,8 +18,8 @@ func main() {
 	for {
 		updateLEDs()
 
-		// Update 3 LEDs.
-		for i := uint8(0); i < 3; i++ {
+		// Update 2 LEDs.
+		for i := uint8(0); i < 2; i++ {
 			ledIndex++
 			if ledIndex >= 18 {
 				ledIndex = 0
