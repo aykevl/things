@@ -57,13 +57,14 @@ func purpleCircles(index, traceIndex uint8) {
 
 	if index == traceIndex || index == traceIndex2 || index == traceIndex3 {
 		// First tracer.
-		leds[index] = pixel.NewLinearGRB888(124, 0, 64)
+		leds[index].R += 16
+		leds[index].B += 8
 	} else {
 		// dim LED
 		c := any(leds[index]).(pixel.LinearGRB888)
-		r := uint8(uint16(c.R) * 224 / 256)
-		g := uint8(uint16(c.G) * 224 / 256)
-		b := uint8(uint16(c.B) * 224 / 256)
+		r := uint8(uint16(c.R) * 230 / 256)
+		g := uint8(uint16(c.G) * 230 / 256)
+		b := uint8(uint16(c.B) * 230 / 256)
 		leds[index] = pixel.NewLinearGRB888(r, g, b)
 	}
 }
@@ -75,20 +76,25 @@ func rainbowTrace(index, traceIndex uint8) {
 		traceIndex2 -= uint8(len(leds))
 	}
 
+	const div = 4
 	if index == traceIndex {
 		// First tracer.
 		c1 := ledsgo.Color{H: cycle * 128, S: 255, V: 255}.Rainbow()
-		leds[index] = pixel.NewLinearGRB888(c1.R, c1.G, c1.B)
+		leds[index].R += c1.R / div
+		leds[index].G += c1.G / div
+		leds[index].B += c1.B / div
 	} else if index == traceIndex2 {
 		// Second tracer, offset 180° on the color wheel and on the actual LED ring.
 		c2 := ledsgo.Color{H: cycle*128 + 0x8000, S: 255, V: 255}.Rainbow()
-		leds[traceIndex2] = pixel.NewLinearGRB888(c2.R, c2.G, c2.B)
+		leds[index].R += c2.R / div
+		leds[index].G += c2.G / div
+		leds[index].B += c2.B / div
 	} else {
 		// dim LED
 		c := any(leds[index]).(pixel.LinearGRB888)
-		r := uint8(uint16(c.R) * 240 / 256)
-		g := uint8(uint16(c.G) * 240 / 256)
-		b := uint8(uint16(c.B) * 240 / 256)
+		r := uint8(uint16(c.R) * 225 / 256)
+		g := uint8(uint16(c.G) * 225 / 256)
+		b := uint8(uint16(c.B) * 225 / 256)
 		leds[index] = pixel.NewLinearGRB888(r, g, b)
 	}
 }
