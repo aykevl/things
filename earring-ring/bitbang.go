@@ -4,6 +4,7 @@ package main
 
 import (
 	"device/avr"
+	"runtime/interrupt"
 	"unsafe"
 )
 
@@ -45,6 +46,8 @@ func updateLEDs() {
 	//   R3: PB3
 	//   G3: PB4
 	//   B3: PB5
+
+	state := interrupt.Disable()
 
 	// R1
 	avr.PORTC.OUTTGL.Set(1 << 0)
@@ -153,6 +156,8 @@ func updateLEDs() {
 		leds[12+1].B,
 	)
 	avr.PORTB.OUTTGL.Set(1 << 5)
+
+	interrupt.Restore(state)
 }
 
 // The bitbang function is very large, but without the //go:noinline it would be
