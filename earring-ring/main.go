@@ -1,6 +1,8 @@
 package main
 
 import (
+	"time"
+
 	"github.com/aykevl/ledsgo"
 	"github.com/aykevl/tinygl/pixel"
 )
@@ -9,13 +11,34 @@ var leds [18]pixel.LinearGRB888
 
 var cycle uint16
 
+var buttonPressed bool
+
 func main() {
-	initLEDs()
+	initHardware()
 
 	var traceIndex uint8
-	animation := uint8(0)
+	animation := uint8(1)
 	ledIndex := uint8(0)
 	for {
+		// Special handling for sleep mode.
+		// We don't want to write to LEDs or anything like that, just let the
+		// chip stay asleep.
+		if animation == 0 {
+			pressed := isButtonPressed()
+			if pressed != buttonPressed {
+				buttonPressed = pressed
+				if pressed {
+					// wake up, go to first animation
+					animation = 1
+					continue
+				}
+			}
+			// This uses ~2µA sleep current.
+			// This can be optimized further if needed using pin interrupts.
+			time.Sleep(time.Second / 4)
+			continue
+		}
+
 		updateLEDs()
 
 		// Update 2 LEDs.
@@ -31,13 +54,30 @@ func main() {
 						traceIndex = 0
 					}
 				}
+				// Respond to button presses.
+				pressed := isButtonPressed()
+				if pressed != buttonPressed {
+					buttonPressed = pressed
+					if pressed {
+						animation++
+						if animation >= 3 {
+							// Wrap around, and enter sleep mode.
+							animation = 0
+							for i := range leds {
+								leds[i] = pixel.LinearGRB888{}
+							}
+							initHardware()
+							continue
+						}
+					}
+				}
 			}
 
 			switch animation {
-			case 0:
-				purpleCircles(ledIndex, traceIndex)
 			case 1:
 				rainbowTrace(ledIndex, traceIndex)
+			case 2:
+				purpleCircles(ledIndex, traceIndex)
 			}
 		}
 	}

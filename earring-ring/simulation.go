@@ -9,9 +9,26 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 )
 
-func initLEDs() {
+func initHardware() {
 	board.Simulator.AddressableLEDs = 18
 	board.AddressableLEDs.Configure()
+
+	board.Buttons.Configure()
+}
+
+var simulatorButtonPressed bool
+
+func isButtonPressed() bool {
+	for {
+		event := board.Buttons.NextEvent()
+		if event == board.NoKeyEvent {
+			break
+		}
+		// We assume only one button is used (otherwise this code wouldn't work
+		// correctly).
+		simulatorButtonPressed = event.Pressed()
+	}
+	return simulatorButtonPressed
 }
 
 func updateLEDs() {

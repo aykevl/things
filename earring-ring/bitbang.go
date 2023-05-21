@@ -4,6 +4,7 @@ package main
 
 import (
 	"device/avr"
+	"machine"
 	"runtime/interrupt"
 	"unsafe"
 )
@@ -20,12 +21,20 @@ func init() {
 	avr.CLKCTRL.MCLKCTRLB.Set(0x4<<1 | 1) // prescaler of 32
 }
 
-func initLEDs() {
+const button = machine.PC3
+
+func initHardware() {
 	avr.PORTA.DIR.Set(0b0111_1110) // Configure PA1-PA6 as output.
 	avr.PORTB.DIR.Set(0b0011_1111) // Configure PB0-PB5 as output (R2, G2, B2, R3, G3, B3)
 	avr.PORTB.OUT.Set(0b0011_1111) // Set PB0-PB5 low
 	avr.PORTC.DIR.Set(0b0000_0111) // Configure PC0-PC2 as output (R1, G1, B1)
 	avr.PORTC.OUT.Set(0b0000_0111) // Set PC0-PC2 low
+
+	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+}
+
+func isButtonPressed() bool {
+	return !button.Get()
 }
 
 func updateLEDs() {
