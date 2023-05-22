@@ -285,8 +285,7 @@ func createClockAdjustView[T pixel.Color](views *ViewManager[T]) View[T] {
 		black = pixel.NewColor[T](0, 0, 0)
 		white = pixel.NewColor[T](255, 255, 255)
 	)
-	w, _ := board.Display.Size()
-	width := int(w)
+	width, _ := views.screen.Size()
 
 	// Configure UI.
 	start := watchTime()
