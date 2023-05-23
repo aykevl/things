@@ -43,6 +43,18 @@ func main() {
 
 		// Update 2 LEDs.
 		for i := uint8(0); i < 2; i++ {
+			const numAnimations = 4
+			switch animation {
+			case 1:
+				rainbowTrace(ledIndex, traceIndex)
+			case 2:
+				purpleCircles(ledIndex, traceIndex)
+			case 3:
+				showPalette(ledIndex, &flagLGBT)
+			case 4:
+				showPalette(ledIndex, &flagTrans)
+			}
+
 			ledIndex++
 			if ledIndex >= 18 {
 				ledIndex = 0
@@ -60,7 +72,7 @@ func main() {
 					buttonPressed = pressed
 					if pressed {
 						animation++
-						if animation >= 3 {
+						if animation > numAnimations {
 							// Wrap around, and enter sleep mode.
 							animation = 0
 							for i := range leds {
@@ -71,13 +83,6 @@ func main() {
 						}
 					}
 				}
-			}
-
-			switch animation {
-			case 1:
-				rainbowTrace(ledIndex, traceIndex)
-			case 2:
-				purpleCircles(ledIndex, traceIndex)
 			}
 		}
 	}
@@ -137,4 +142,52 @@ func rainbowTrace(index, traceIndex uint8) {
 		b := uint8(uint16(c.B) * 225 / 256)
 		leds[index] = pixel.NewLinearGRB888(r, g, b)
 	}
+}
+
+var (
+	flagLGBT = [18]pixel.LinearGRB888{
+		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3}, // red
+		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3},
+		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3},
+		{R: 0xff / 3, G: 0x22 / 3, B: 0x00 / 3}, // orange
+		{R: 0xff / 3, G: 0x22 / 3, B: 0x00 / 3},
+		{R: 0xff / 3, G: 0x22 / 3, B: 0x00 / 3},
+		{R: 0x88 / 3, G: 0xff / 3, B: 0x00 / 3}, // yellow
+		{R: 0x88 / 3, G: 0xff / 3, B: 0x00 / 3},
+		{R: 0x88 / 3, G: 0xff / 3, B: 0x00 / 3},
+		{R: 0x00 / 3, G: 0xff / 3, B: 0x00 / 3}, // green
+		{R: 0x00 / 3, G: 0xff / 3, B: 0x00 / 3},
+		{R: 0x00 / 3, G: 0xff / 3, B: 0x00 / 3},
+		{R: 0x00 / 3, G: 0x00 / 3, B: 0xff / 3}, // blue
+		{R: 0x00 / 3, G: 0x00 / 3, B: 0xff / 3},
+		{R: 0x00 / 3, G: 0x00 / 3, B: 0xff / 3},
+		{R: 0x80 / 3, G: 0x00 / 3, B: 0x80 / 3}, // purple
+		{R: 0x80 / 3, G: 0x00 / 3, B: 0x80 / 3},
+		{R: 0x80 / 3, G: 0x00 / 3, B: 0x80 / 3},
+	}
+
+	flagTrans = [18]pixel.LinearGRB888{
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x33 / 3, G: 0xcc / 3, B: 0xff / 3}, // white
+		{R: 0x33 / 3, G: 0xcc / 3, B: 0xff / 3}, // white
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x33 / 3, G: 0xcc / 3, B: 0xff / 3}, // white
+		{R: 0x33 / 3, G: 0xcc / 3, B: 0xff / 3}, // white
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
+		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
+	}
+)
+
+func showPalette(ledIndex uint8, palette *[18]pixel.LinearGRB888) {
+	leds[ledIndex] = palette[ledIndex]
 }
