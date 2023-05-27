@@ -32,6 +32,7 @@ func main() {
 				if pressed {
 					// wake up, go to first animation
 					animation = 1
+					initHardware()
 					continue
 				}
 			}
@@ -84,7 +85,7 @@ func main() {
 							for i := range leds {
 								leds[i] = pixel.LinearGRB888{}
 							}
-							initHardware()
+							disableLEDs()
 							continue
 						}
 					}

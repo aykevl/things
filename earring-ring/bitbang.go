@@ -33,6 +33,12 @@ func initHardware() {
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
 }
 
+func disableLEDs() {
+	avr.PORTA.OUTCLR.Set(0b0111_1110) // Set PA1-PA6 high
+	avr.PORTB.OUTCLR.Set(0b0011_1111) // Set PB0-PB5 high
+	avr.PORTC.OUTCLR.Set(0b0000_0111) // Set PC0-PC2 high
+}
+
 func isButtonPressed() bool {
 	return !button.Get()
 }

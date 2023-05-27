@@ -16,6 +16,13 @@ func initHardware() {
 	board.Buttons.Configure()
 }
 
+func disableLEDs() {
+	// Assume LEDs have been shut down already.
+	// TODO: the board package should have a way to shut down LEDs when not in
+	// use (this is possible on the MCH2022 badge, for example).
+	updateLEDs()
+}
+
 var simulatorButtonPressed bool
 
 func isButtonPressed() bool {
