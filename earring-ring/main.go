@@ -48,9 +48,9 @@ func main() {
 			case 1:
 				rainbowTrace(ledIndex, traceIndex)
 			case 2:
-				purpleCircles(ledIndex, traceIndex)
-			case 3:
 				fireAndIce(ledIndex, traceIndex)
+			case 3:
+				purpleCircles(ledIndex, traceIndex)
 			case 4:
 				showPalette(ledIndex, &flagLGBT)
 			case 5:
