@@ -7,7 +7,9 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 )
 
-var leds [18]pixel.LinearGRB888
+const numLeds = 18
+
+var leds [numLeds]pixel.LinearGRB888
 
 var cycle uint16
 
@@ -43,7 +45,7 @@ func main() {
 
 		// Update 2 LEDs.
 		for i := uint8(0); i < 2; i++ {
-			const numAnimations = 5
+			const numAnimations = 6
 			switch animation {
 			case 1:
 				rainbowTrace(ledIndex, traceIndex)
@@ -52,8 +54,10 @@ func main() {
 			case 3:
 				purpleCircles(ledIndex, traceIndex)
 			case 4:
-				showPalette(ledIndex, &flagLGBT)
+				sparkle(ledIndex)
 			case 5:
+				showPalette(ledIndex, &flagLGBT)
+			case 6:
 				showPalette(ledIndex, &flagTrans)
 			}
 
@@ -230,4 +234,79 @@ func fireAndIce(index, traceIndex uint8) {
 		}
 		leds[index] = c
 	}
+}
+
+var sparkleIndex uint8
+var sparkleIntensity uint8
+
+// Sparkle! Glitter!
+// Fade in some LEDs relatively quicly, and fade all LEDs out slowly.
+func sparkle(index uint8) {
+	const maxIntensity = 16 // must be a power of two
+	if index == 0 {
+		if sparkleIntensity == 0 {
+			// Current LED is turned on. Move on to the next, at some random
+			// time.
+			r := random()
+			if r%16 == 0 {
+				// Pick the next LED to turn on.
+				idx := uint8(r >> 16)
+				for idx >= 18 {
+					idx -= 18
+				}
+				sparkleIndex = idx
+				if leds[sparkleIndex] == (pixel.LinearGRB888{}) {
+					// Only sparkle dark pixels, to avoid mixing colors.
+					sparkleIntensity = uint8(uint16(r)>>8) % maxIntensity
+				}
+			}
+		}
+	}
+	if index == sparkleIndex && sparkleIntensity != 0 {
+		// Turn on the given LED quickly.
+		sparkleIntensity--
+		sparkleColor := ledsgo.PartyColors.ColorAt(cycle * 64)
+		c := leds[index]
+		c.R += sparkleColor.R / maxIntensity
+		c.G += sparkleColor.G / maxIntensity
+		c.B += sparkleColor.B / maxIntensity
+		leds[index] = c
+	} else {
+		// dim LED
+		if cycle%8 == 0 {
+			c := leds[index]
+			c.R = uint8(uint16(c.R) * 253 / 256)
+			c.G = uint8(uint16(c.G) * 253 / 256)
+			c.B = uint8(uint16(c.B) * 253 / 256)
+			leds[index] = c
+		}
+	}
+}
+
+var xorshift32State uint32 = 1
+
+func random() uint32 {
+	x := xorshift32State
+	x = xorshift32(x)
+	xorshift32State = x
+	return x
+}
+
+// Xorshift32 RNG. The usual algorithm uses the shift amounts [13, 17, 5], but
+// [7, 1, 9] as used below are a much better fit for AVR. It is "only" 37
+// instructions (excluding return) when compiled with Clang 16 while the usual
+// algorithm uses 57 instructions.
+// On the other hand, avr-gcc (tested most versions starting with 5.4.0) is just
+// terrible in both cases, using loops for these shifts.
+//
+// The [7, 1, 9] algorithm is mentioned on page 9 of this paper:
+// http://www.iro.umontreal.ca/~lecuyer/myftp/papers/xorshift.pdf
+//
+// Godbolt reference (both algorithms in avr-gcc and Clang 16):
+// https://godbolt.org/z/KdeKhP54d
+func xorshift32(x uint32) uint32 {
+	x ^= x << 7
+	x ^= x >> 1
+	x ^= x << 9
+	return x
 }
