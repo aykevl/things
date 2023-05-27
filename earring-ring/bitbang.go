@@ -31,6 +31,10 @@ func initHardware() {
 	avr.PORTC.OUT.Set(0b0000_0111) // Set PC0-PC2 low
 
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+
+	// This is the only remaining pin. Configure it as output just in case that
+	// helps with standby current consumption.
+	machine.PA7.Configure(machine.PinConfig{Mode: machine.PinOutput})
 }
 
 func disableLEDs() {
