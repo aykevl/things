@@ -116,7 +116,7 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 		mandelbrot(display, screen.Buffer())
 	case 2:
 		println("starting display test colors")
-		testColors(display, screen.Buffer())
+		testColors(screen)
 	case 3:
 		println("starting touch test")
 		testTouch(screen, touchInput)

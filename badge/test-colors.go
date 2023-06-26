@@ -4,36 +4,43 @@ import (
 	"time"
 
 	"github.com/aykevl/board"
+	"github.com/aykevl/tinygl"
+	"github.com/aykevl/tinygl/gfx"
 	"github.com/aykevl/tinygl/pixel"
 )
 
-func testColors[T pixel.Color](display board.Displayer[T], buf pixel.Image[T]) {
-	width, height := display.Size()
-
-	// Draw the test colors.
-	img := buf.Rescale(int(width), 1)
-	for y := 0; y < int(height); y++ {
-		for x := 0; x < int(width); x++ {
-			gray := uint8(x * 255 / int(width))
-			var c T
-			switch y * 14 / int(height) {
-			case 0, 1:
-				c = pixel.NewColor[T](gray, 0, 0) // red
-			case 3, 4:
-				c = pixel.NewColor[T](0, gray, 0) // green
-			case 6, 7:
-				c = pixel.NewColor[T](0, 0, gray) // blue
-			case 9, 10:
-				c = pixel.NewColor[T](gray, gray, gray)
-			case 12, 13:
-				r := gamma_lut[uint8(255-gray)]
-				g := gamma_lut[uint8(gray)]
-				c = pixel.NewColor[T](r, g, 0)
+func testColors[T pixel.Color](screen *tinygl.Screen[T]) {
+	black := pixel.NewColor[T](0, 0, 0)
+	canvas := gfx.NewCustomCanvas(black, 0, 0, func(screen *tinygl.Screen[T], displayX, displayY, displayWidth, displayHeight, x, y int) {
+		// Draw the test colors.
+		img := screen.Buffer().Rescale(int(displayWidth), 1)
+		for y := 0; y < int(displayHeight); y++ {
+			for x := 0; x < int(displayWidth); x++ {
+				gray := uint8(x * 255 / int(displayWidth))
+				var c T
+				switch y * 14 / int(displayHeight) {
+				case 0, 1:
+					c = pixel.NewColor[T](gray, 0, 0) // red
+				case 3, 4:
+					c = pixel.NewColor[T](0, gray, 0) // green
+				case 6, 7:
+					c = pixel.NewColor[T](0, 0, gray) // blue
+				case 9, 10:
+					c = pixel.NewColor[T](gray, gray, gray)
+				case 12, 13:
+					r := gamma_lut[uint8(255-gray)]
+					g := gamma_lut[uint8(gray)]
+					c = pixel.NewColor[T](r, g, 0)
+				}
+				img.Set(x, 0, c)
 			}
-			img.Set(x, 0, c)
+			screen.Send(x, y, img)
 		}
-		display.DrawRGBBitmap8(0, int16(y), img.RawBuffer(), width, 1)
-	}
+	})
+
+	// Update the screen with the color test bands.
+	screen.SetChild(canvas)
+	screen.Update()
 
 	// Wait for back button.
 	for {
@@ -52,8 +59,8 @@ func testColors[T pixel.Color](display board.Displayer[T], buf pixel.Image[T]) {
 			}
 		}
 
-		// Make sure the display stays alive (in the simulator).
-		display.Display()
+		// Delay a bit, to not burn CPU power.
+		// TODO: somehow respond to button presses etc immediately.
 		time.Sleep(time.Second / 30)
 	}
 }
