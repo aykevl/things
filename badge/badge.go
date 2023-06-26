@@ -12,6 +12,13 @@ import (
 
 func main() {
 	println("start")
+	if board.Name == "simulator" {
+		// Use the configuration for the Gopher Badge.
+		board.Simulator.WindowWidth = 320
+		board.Simulator.WindowHeight = 240
+		board.Simulator.WindowPPI = 166
+	}
+
 	board.Buttons.Configure()
 	run(board.Display.Configure(), board.Display.ConfigureTouch())
 }
