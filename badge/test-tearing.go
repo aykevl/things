@@ -32,7 +32,9 @@ func testTearing[T pixel.Color](display tinygl.Displayer, screen *tinygl.Screen[
 	// Change the mode on each touch on the screen.
 	mode := 0
 	canvas.SetEventHandler(func(event tinygl.Event, x, y int) {
-		mode = (mode + 1) % 4
+		if event == tinygl.TouchStart {
+			mode = (mode + 1) % 4
+		}
 	})
 
 	lastRenderStart := time.Now()
