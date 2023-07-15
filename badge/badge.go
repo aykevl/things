@@ -113,7 +113,7 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 		//noise(display, buf)
 	case 1:
 		println("starting Mandelbrot")
-		mandelbrot(display, screen.Buffer())
+		mandelbrot(screen)
 	case 2:
 		println("starting display test colors")
 		testColors(screen)

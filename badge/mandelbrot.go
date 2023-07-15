@@ -5,6 +5,8 @@ import (
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/ledsgo"
+	"github.com/aykevl/tinygl"
+	"github.com/aykevl/tinygl/gfx"
 	"github.com/aykevl/tinygl/pixel"
 )
 
@@ -15,16 +17,47 @@ const (
 
 // Render a mandelbrot. Allow the user to move around the screen and zoom in/out
 // the fractal.
-func mandelbrot[T pixel.Color](display board.Displayer[T], buffer pixel.Image[T]) {
-	w, h := display.Size()
-	width := int(w)
-	height := int(h)
-	bufferLines := buffer.Len() / width
+func mandelbrot[T pixel.Color](screen *tinygl.Screen[T]) {
+	width, height := screen.Size()
 	stepY := int(2 << (frac * 2) / int64(height))
 	stepX := int((3 << (frac * 2)) / int64(width))
 	centerX := stepX * width / -6
 	centerY := 0
-	needsRender := true
+
+	black := pixel.NewColor[T](0, 0, 0)
+	canvas := gfx.NewCustomCanvas(black, 0, 0, func(screen *tinygl.Screen[T], displayX, displayY, displayWidth, displayHeight, x, y int) {
+		buffer := screen.Buffer()
+		bufferLines := buffer.Len() / displayWidth
+		start := time.Now()
+		i := centerY - (displayHeight/2)*stepY
+		for startY := 0; startY < displayHeight; startY += bufferLines {
+			chunkHeight := bufferLines
+			if startY+chunkHeight >= displayHeight {
+				chunkHeight = displayHeight - startY
+			}
+			img := buffer.Rescale(displayWidth, chunkHeight)
+			for chunkY := 0; chunkY < chunkHeight; chunkY++ {
+				r := centerX - (displayWidth/2)*stepX
+				i += stepY
+				for x := 0; x < displayWidth; x++ {
+					r += stepX
+					iterations := mandelbrotAt(r>>frac, i>>frac)
+					//iterations := mandelbrotPreciseAt(r, i)
+					rawColor := pixel.NewColor[T](0, 0, 0)
+					if iterations != 255 {
+						c := ledsgo.RainbowColors.ColorAt(uint16(iterations * 2048))
+						rawColor = pixel.NewColor[T](c.R, c.G, c.B)
+					}
+					img.Set(x, chunkY, rawColor)
+				}
+			}
+			screen.Send(displayX, displayY+startY, img)
+		}
+		duration := time.Since(start)
+		println("rendering took:", duration.String())
+	})
+	screen.SetChild(canvas)
+
 	for {
 		board.Buttons.ReadInput()
 		for {
@@ -39,60 +72,30 @@ func mandelbrot[T pixel.Color](display board.Displayer[T], buffer pixel.Image[T]
 			case board.KeyA:
 				stepX = stepX * 2 / 3
 				stepY = stepY * 2 / 3
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyB:
 				stepX = stepX * 3 / 2
 				stepY = stepY * 3 / 2
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyLeft:
 				centerX -= (width * stepX) / 8
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyRight:
 				centerX += (width * stepX) / 8
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyUp:
 				centerY -= (height * stepY) / 8
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyDown:
 				centerY += (height * stepY) / 8
-				needsRender = true
+				canvas.RequestUpdate()
 			case board.KeyEscape:
 				return
 			}
 		}
 
-		if needsRender {
-			needsRender = false
-			start := time.Now()
-			i := centerY - (height/2)*stepY
-			for startY := 0; startY < height; startY += bufferLines {
-				chunkHeight := bufferLines
-				if startY+chunkHeight >= height {
-					chunkHeight = height - startY
-				}
-				img := buffer.Rescale(width, chunkHeight)
-				for chunkY := 0; chunkY < chunkHeight; chunkY++ {
-					r := centerX - (width/2)*stepX
-					i += stepY
-					for x := 0; x < width; x++ {
-						r += stepX
-						iterations := mandelbrotAt(r>>frac, i>>frac)
-						//iterations := mandelbrotPreciseAt(r, i)
-						rawColor := pixel.NewColor[T](0, 0, 0)
-						if iterations != 255 {
-							c := ledsgo.RainbowColors.ColorAt(uint16(iterations * 2048))
-							rawColor = pixel.NewColor[T](c.R, c.G, c.B)
-						}
-						img.Set(x, chunkY, rawColor)
-					}
-				}
-				display.DrawRGBBitmap8(0, int16(startY), img.RawBuffer(), int16(width), int16(chunkHeight))
-			}
-			duration := time.Since(start)
-			println("rendering took:", duration.String())
-		}
-		display.Display()
-		time.Sleep(time.Second / 30)
+		screen.Update()
+		board.Display.WaitForVBlank(time.Second / 30)
 	}
 }
 
