@@ -9,7 +9,7 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 )
 
-func testTearing[T pixel.Color](display tinygl.Displayer, screen *tinygl.Screen[T], touchInput board.TouchInput) {
+func testTearing[T pixel.Color](screen *tinygl.Screen[T], touchInput board.TouchInput) {
 	var (
 		white = pixel.NewColor[T](255, 255, 255)
 		black = pixel.NewColor[T](0, 0, 0)

@@ -122,17 +122,12 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 		testTouch(screen, touchInput)
 	case 4:
 		println("starting tearing test")
-		testTearing(display, screen, touchInput)
+		testTearing(screen, touchInput)
 	case 5:
 		println("starting sensors")
 		showSensors(screen)
 	}
 
-	// Some apps use the same screen and set a different root
-	// element. Restore the previous root.
+	// The app used a different root element. Restore the homescreen.
 	screen.SetChild(home)
-
-	// Some apps draw directly on the screen. In that case, we need
-	// to repaint the entire screen.
-	home.RequestUpdate()
 }
