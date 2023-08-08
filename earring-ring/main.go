@@ -1,6 +1,7 @@
 package main
 
 import (
+	"image/color"
 	"time"
 
 	"github.com/aykevl/ledsgo"
@@ -46,7 +47,7 @@ func main() {
 
 		// Update 2 LEDs.
 		for i := uint8(0); i < 2; i++ {
-			const numAnimations = 6
+			const numAnimations = 9
 			switch animation {
 			case 1:
 				rainbowTrace(ledIndex, traceIndex)
@@ -57,8 +58,14 @@ func main() {
 			case 4:
 				rainbowNoise(ledIndex)
 			case 5:
-				showPalette(ledIndex, &flagLGBT)
+				fire(ledIndex, color.RGBA{R: 255})
 			case 6:
+				fire(ledIndex, color.RGBA{G: 255})
+			case 7:
+				fire(ledIndex, color.RGBA{B: 255})
+			case 8:
+				showPalette(ledIndex, &flagLGBT)
+			case 9:
 				showPalette(ledIndex, &flagTrans)
 			}
 
@@ -237,16 +244,20 @@ func fireAndIce(index, traceIndex uint8) {
 	}
 }
 
-// Rainbow noise moving downwards along the sides of the earring circle.
-func rainbowNoise(index uint8) {
+func indexFromBottom(index uint8) uint8 {
 	// Start at the top with 9, move along the right size down to 0 at the
 	// bottom, and then resume counting upwards again:
 	// 9, 8, ..., 1, 0, 1, 2, ..., 7, 8
-	intensityIndex := 9 - index
+	newIndex := 9 - index
 	if index >= 9 {
-		intensityIndex = index - 9
+		newIndex = index - 9
 	}
+	return newIndex
+}
 
+// Rainbow noise moving downwards along the sides of the earring circle.
+func rainbowNoise(index uint8) {
+	intensityIndex := indexFromBottom(index)
 	intensity := ledsgo.Noise1AVR(cycle*2+uint16(intensityIndex)*8) * 2
 	c := ledsgo.Color{H: intensity, S: 255, V: 255}.Rainbow()
 	leds[index] = pixel.LinearGRB888{
@@ -254,6 +265,63 @@ func rainbowNoise(index uint8) {
 		G: c.G / 2,
 		B: c.B / 2,
 	}
+}
+
+// Fire animation in various colors.
+// It is essential that this function is inlined, otherwise the fireColor isn't
+// const-propagated and the whole animation is just way too slow to be usable.
+//
+//go:inline
+func fire(index uint8, fireColor color.RGBA) {
+	intensityIndex := indexFromBottom(index)
+	noiseIndex := cycle*32 - uint16(intensityIndex)*64
+	if index > numLeds/2 {
+		// Use a different flame on the otherside of the earring.
+		// Without this, it would simply mirror the flame on both sides.
+		// The constant is just an arbitrary number to give it enough distance
+		// from the left side.
+		noiseIndex += 0x1234
+	}
+
+	// Calculate the amount of heat on this particular pixel.
+	heat := uint8(ledsgo.Noise1AVR(noiseIndex) >> 8)
+	cooling := intensityIndex * 22
+	if heat < cooling {
+		heat = 0
+	} else {
+		heat -= cooling
+	}
+
+	// Turn it into a flame, based on the given palette.
+	// Perhaps we could use an actual 0-255 (or 0-64) palette instead? That
+	// might be faster.
+	c := coloredFlame(heat, fireColor)
+	leds[index] = pixel.LinearGRB888{
+		R: c.R,
+		G: c.G,
+		B: c.B,
+	}
+}
+
+// Colored flame. Like a heat map, but the lowest temperatures are not fixed red
+// but instead use the configured color.
+//
+//go:inline
+func coloredFlame(index uint8, fireColor color.RGBA) color.RGBA {
+	if index < 128 {
+		// <color>
+		c := ledsgo.ApplyAlpha(fireColor, index*2)
+		c.A = 255
+		return c
+	}
+	if index < 224 {
+		// <color>-yellow
+		c1 := ledsgo.ApplyAlpha(fireColor, 255-uint8(uint32(index-128)*8/3))
+		c2 := ledsgo.ApplyAlpha(color.RGBA{255, 255, 0, 255}, uint8(uint32(index-128)*8/3))
+		return color.RGBA{c1.R + c2.R, c1.G + c2.G, c1.B + c2.B, 255}
+	}
+	// yellow-white
+	return color.RGBA{255, 255, (index - 224) * 8, 255}
 }
 
 var sparkleIndex uint8
