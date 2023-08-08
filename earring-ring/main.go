@@ -55,7 +55,7 @@ func main() {
 			case 3:
 				purpleCircles(ledIndex, traceIndex)
 			case 4:
-				sparkle(ledIndex)
+				rainbowNoise(ledIndex)
 			case 5:
 				showPalette(ledIndex, &flagLGBT)
 			case 6:
@@ -234,6 +234,25 @@ func fireAndIce(index, traceIndex uint8) {
 			c.B = uint8(uint16(c.B) * 225 / 256)
 		}
 		leds[index] = c
+	}
+}
+
+// Rainbow noise moving downwards along the sides of the earring circle.
+func rainbowNoise(index uint8) {
+	// Start at the top with 9, move along the right size down to 0 at the
+	// bottom, and then resume counting upwards again:
+	// 9, 8, ..., 1, 0, 1, 2, ..., 7, 8
+	intensityIndex := 9 - index
+	if index >= 9 {
+		intensityIndex = index - 9
+	}
+
+	intensity := ledsgo.Noise1AVR(cycle*2+uint16(intensityIndex)*8) * 2
+	c := ledsgo.Color{H: intensity, S: 255, V: 255}.Rainbow()
+	leds[index] = pixel.LinearGRB888{
+		R: c.R / 2,
+		G: c.G / 2,
+		B: c.B / 2,
 	}
 }
 

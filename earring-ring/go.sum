@@ -53,8 +53,8 @@ github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da h1:u4fP3+V
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da/go.mod h1:Bn4qAbkSY0k0/wrXdqQ8bWPTv/Uww3uIJuQv/knzDdQ=
 github.com/aykevl/board v0.0.0-20230516123739-237766cdd16a h1:ZSzaMaC5C06qrwHimRetdVSBj3EMD5uBo59stKfyFok=
 github.com/aykevl/board v0.0.0-20230516123739-237766cdd16a/go.mod h1:X9h8AFDboBpdOcIzzyrKoIt885hZksLuYqfUO7WwOlw=
-github.com/aykevl/ledsgo v0.0.0-20230527135919-56cca0835b4f h1:BH7JZi2jT0qGtt4WGM9F2q3FkoYmXwc0awtmiAfiaNU=
-github.com/aykevl/ledsgo v0.0.0-20230527135919-56cca0835b4f/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
+github.com/aykevl/ledsgo v0.0.0-20230808203851-4c9b90563294 h1:vQgq4d9Epm9FGk1DT9GBwRpRQ2QXgPcY3hGqN+psGRk=
+github.com/aykevl/ledsgo v0.0.0-20230808203851-4c9b90563294/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
 github.com/aykevl/tinygl v0.0.0-20230516123611-e2014057c724 h1:F/IaA2P74VYPq8cEnZhzk4AuME5u6ES4wDbiLIrVWp0=
 github.com/aykevl/tinygl v0.0.0-20230516123611-e2014057c724/go.mod h1:LUcIGll0cn5VSybiZ2nIXRNpl7IJ0lcnxOnCbzGxVcU=
 github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kBD4zp0CCIs=
