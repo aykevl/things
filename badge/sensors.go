@@ -9,6 +9,7 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
+	"tinygo.org/x/drivers"
 )
 
 func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
@@ -24,7 +25,13 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 	battery.SetAlign(tinygl.AlignLeft)
 	voltage := theme.NewText("voltage: ...")
 	voltage.SetAlign(tinygl.AlignLeft)
-	vbox := theme.NewVBox(header, battery, voltage)
+	temperature := theme.NewText("temp: ...")
+	temperature.SetAlign(tinygl.AlignLeft)
+	acceleration := theme.NewText("accel: ...")
+	acceleration.SetAlign(tinygl.AlignLeft)
+	steps := theme.NewText("steps: ...")
+	steps.SetAlign(tinygl.AlignLeft)
+	vbox := theme.NewVBox(header, battery, voltage, temperature, acceleration, steps)
 	screen.SetChild(vbox)
 
 	// Show screen.
@@ -32,6 +39,7 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 
 	// Initialize sensors.
 	board.Power.Configure()
+	board.Sensors.Configure(drivers.Acceleration | drivers.Temperature)
 
 	for {
 		// Read keyboard inputs.
@@ -50,7 +58,7 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 			}
 		}
 
-		// Read sensors.
+		// Read battery status.
 		state, microvolts, percent := board.Power.Status()
 		batteryText := "battery: "
 		if percent >= 0 {
@@ -61,6 +69,14 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 		}
 		battery.SetText(batteryText)
 		voltage.SetText("voltage: " + formatVoltage(microvolts))
+
+		// Read sensors.
+		board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
+		celsius := (board.Sensors.Temperature() + 500) / 1000
+		temperature.SetText("temp: " + strconv.Itoa(int(celsius)) + "C")
+		ax, ay, az := board.Sensors.Acceleration()
+		acceleration.SetText("accel: " + strconv.FormatInt(int64(ax/10000), 10) + " " + strconv.FormatInt(int64(ay/10000), 10) + " " + strconv.FormatInt(int64(az/10000), 10))
+		steps.SetText("steps: " + strconv.Itoa(int(board.Sensors.Steps())))
 
 		screen.Update()
 		time.Sleep(time.Second / 5)
