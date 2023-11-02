@@ -7,7 +7,6 @@ import (
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/ledsgo"
-	"github.com/aykevl/tinygl/pixel"
 )
 
 var ledsStop chan struct{}
@@ -26,19 +25,20 @@ func toggleLEDs() {
 
 	// Start LEDs.
 	ledsStop = make(chan struct{})
-	go showLEDs(board.AddressableLEDs.Data, ledsStop)
+	go showLEDs(ledsStop)
 }
 
-func showLEDs[T pixel.Color](data []T, stop chan struct{}) {
+func showLEDs(stop chan struct{}) {
+	array := board.AddressableLEDs
 	for {
 		select {
 		case <-stop:
 			// An exit was requested.
 			// Set all LEDs back to black (off).
-			for i := range data {
-				data[i] = pixel.NewLinearColor[T](0, 0, 0)
+			for i := 0; i < array.Len(); i++ {
+				array.SetRGB(i, 0, 0, 0)
 			}
-			board.AddressableLEDs.Update()
+			array.Update()
 			return
 		default:
 			// Continue showing LEDs.
@@ -46,19 +46,13 @@ func showLEDs[T pixel.Color](data []T, stop chan struct{}) {
 
 		// Update LEDs.
 		now := time.Now()
-		for i := range data {
+		for i := 0; i < array.Len(); i++ {
 			index := i*4096 + int(now.UnixNano()>>8)
-			data[i] = rainbowColor[T](uint16(index))
+			c := ledsgo.Color{H: uint16(index), S: 255, V: 255}.Rainbow()
+			array.SetRGB(i, c.R, c.G, c.B)
 		}
-		board.AddressableLEDs.Update()
+		array.Update()
 
 		time.Sleep(time.Second / 60)
 	}
-}
-
-func rainbowColor[T pixel.Color](index uint16) T {
-	// Rainbow() returns color.RGBA, but is actually in linear sRGB space.
-	// This needs to be fixed eventually.
-	c := ledsgo.Color{H: uint16(index), S: 255, V: 255}.Rainbow()
-	return pixel.NewLinearColor[T](c.R, c.G, c.B)
 }

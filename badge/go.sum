@@ -49,8 +49,8 @@ github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmV
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da h1:u4fP3+V+W/547R/P7ezR5gH2zucphUZfQLc1ypNaXOg=
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da/go.mod h1:Bn4qAbkSY0k0/wrXdqQ8bWPTv/Uww3uIJuQv/knzDdQ=
-github.com/aykevl/board v0.0.0-20231101135217-6d6a0f7ecd88 h1:eNFNTF1BuvmyQAzLqcDvQIWLez0RqSyMCrdXLiADSi0=
-github.com/aykevl/board v0.0.0-20231101135217-6d6a0f7ecd88/go.mod h1:OloUqqM8zZQnBNdpBToGNgnPuczPmpykda9WkmHNncI=
+github.com/aykevl/board v0.0.0-20231102182931-513addda9054 h1:Rkoi20R22v9ZdZP5j+U+n6BNOhWAx2B0XlRvlkKfEFE=
+github.com/aykevl/board v0.0.0-20231102182931-513addda9054/go.mod h1:OloUqqM8zZQnBNdpBToGNgnPuczPmpykda9WkmHNncI=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2 h1:NcmN0bjs7hmLKSARz88oxXF6OU50/d4Xeo5QWEE5y7w=
 github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
 github.com/aykevl/tinygl v0.0.0-20230626151954-32c6378171db h1:y9zbcB5tKLAOYhTPz3TsPcUXdvYe4kjM2Cs6RHM8YLc=
@@ -99,8 +99,8 @@ github.com/go-gl/glfw v0.0.0-20190409004039-e6da0acd62b1/go.mod h1:vR7hzQXu2zJy9
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20191125211704-12ad95a8df72/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20200222043503-6f7a984d4dc4/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-gl/glfw/v3.3/glfw v0.0.0-20211213063430-748e38ca8aec/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231031225837-d1c54e5847d0 h1:AVjIOqWCI1OpnJleOy4s3F4ULnrizAqhadD+NI3PZyc=
-github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231031225837-d1c54e5847d0/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231102141658-eca20e8abded h1:W0pE6Cn9okp21yrBqVzPDf2NLK6J+i/f6XlqxQJ9iOw=
+github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231102141658-eca20e8abded/go.mod h1:tQ2UAYgL5IevRw8kRxooKSPJfGvJ9fJQFa0TUsXzTg8=
 github.com/go-text/render v0.0.0-20230619120952-35bccb6164b8 h1:VkKnvzbvHqgEfm351rfr8Uclu5fnwq8HP2ximUzJsBM=
 github.com/go-text/render v0.0.0-20230619120952-35bccb6164b8/go.mod h1:h29xCucjNsDcYb7+0rJokxVwYAq+9kQ19WiFuBKkYtc=
 github.com/go-text/typesetting v0.0.0-20231101082850-a36c1d9288f6 h1:1DDZ2Nr1mno0SUjRbGNPFswIbW9ckC7taRL8KN6gTHQ=

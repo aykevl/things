@@ -3,7 +3,7 @@ module ayke/things/badge
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20231101135217-6d6a0f7ecd88
+	github.com/aykevl/board v0.0.0-20231102182931-513addda9054
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
 	github.com/aykevl/tinygl v0.0.0-20230626151954-32c6378171db
 	tinygo.org/x/drivers v0.26.0
@@ -19,7 +19,7 @@ require (
 	github.com/fyne-io/glfw-js v0.0.0-20220517201726-bebc2019cd33 // indirect
 	github.com/fyne-io/image v0.0.0-20230811065323-ed435dc8bca6 // indirect
 	github.com/go-gl/gl v0.0.0-20231021071112-07e5d0ea2e71 // indirect
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231031225837-d1c54e5847d0 // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231102141658-eca20e8abded // indirect
 	github.com/go-text/render v0.0.0-20230619120952-35bccb6164b8 // indirect
 	github.com/go-text/typesetting v0.0.0-20231101082850-a36c1d9288f6 // indirect
 	github.com/godbus/dbus/v5 v5.1.0 // indirect
