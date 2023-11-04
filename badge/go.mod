@@ -3,7 +3,7 @@ module ayke/things/badge
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20231102182931-513addda9054
+	github.com/aykevl/board v0.0.0-20231102192817-6aa890516a08
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
 	github.com/aykevl/tinygl v0.0.0-20230626151954-32c6378171db
 	tinygo.org/x/drivers v0.26.0
@@ -35,8 +35,8 @@ require (
 	golang.org/x/image v0.13.0 // indirect
 	golang.org/x/mobile v0.0.0-20231006135142-2b44d11868fe // indirect
 	golang.org/x/net v0.17.0 // indirect
-	golang.org/x/sys v0.13.0 // indirect
-	golang.org/x/text v0.13.0 // indirect
+	golang.org/x/sys v0.14.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
 	tinygo.org/x/tinyfont v0.4.0 // indirect
