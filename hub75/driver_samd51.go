@@ -1,11 +1,11 @@
-// +build atsamd51
+//go:build atsamd51
 
 package hub75
 
 import (
-	"device/arm"
 	"device/sam"
 	"machine"
+	"runtime/interrupt"
 	"runtime/volatile"
 	"unsafe"
 )
@@ -79,7 +79,8 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	// has been shifted out completely (but presumably after the DMAC has sent
 	// the last byte to the SPI peripheral).
 	d.bus.Bus.INTENSET.Set(sam.SERCOM_SPIM_INTENSET_TXC)
-	arm.EnableIRQ(sam.IRQ_SERCOM1_1)
+	intr := interrupt.New(sam.IRQ_SERCOM1_1, spiHandler)
+	intr.Enable()
 
 	// Next up, configure the timer/counter used for precisely timing the Output
 	// Enable pin.
@@ -93,7 +94,8 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 
 	// Enable an interrupt on CC2 match.
 	d.timer.INTENSET.Set(sam.TCC_INTENSET_MC2)
-	arm.EnableIRQ(sam.IRQ_TCC1_MC2)
+	intr2 := interrupt.New(sam.IRQ_TCC1_MC2, tcc1Handler)
+	intr2.Enable()
 
 	// Set to one-shot and count down.
 	d.timer.CTRLBSET.SetBits(sam.TCC_CTRLBSET_ONESHOT | sam.TCC_CTRLBSET_DIR)
@@ -133,16 +135,14 @@ func (d *Device) startOutputEnableTimer() {
 }
 
 // SPI TXC interrupt is on interrupt line 1.
-//export SERCOM1_1_IRQHandler
-func spiHandler() {
+func spiHandler(intr interrupt.Interrupt) {
 	// Clear the interrupt flag.
 	display.bus.Bus.INTFLAG.Set(sam.SERCOM_SPIM_INTFLAG_TXC)
 
 	display.handleSPIEvent()
 }
 
-//export TCC1_MC2_IRQHandler
-func tcc1Handler() {
+func tcc1Handler(intr interrupt.Interrupt) {
 	// Clear the interrupt flag.
 	sam.TCC1.INTFLAG.Set(sam.TCC_INTFLAG_MC2)
 
