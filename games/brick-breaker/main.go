@@ -64,7 +64,7 @@ func runUI[T pixel.Color](display board.Displayer[T]) {
 
 func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas[T], title *tinygl.Text[T]) {
 	// Collect some game constants.
-	_, _, cw, ch := canvas.Bounds()
+	cw, ch := canvas.Size()
 	const paddleWidth = 24
 	const paddleHeight = 6
 	const ballSize = 3 * 256
