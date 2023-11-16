@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/aykevl/ledsgo"
+	"tinygo.org/x/drivers/scd4x"
 	"tinygo.org/x/drivers/ws2812"
 )
 
@@ -16,6 +17,12 @@ var leds = make([]color.RGBA, NUM_LEDS)
 const animationSpeed = 2 // higher means faster
 var brightness uint8 = 127
 var palette = ledsgo.PartyColors
+
+const measurementInterval = time.Second * 5
+
+var (
+	co2Sensor *scd4x.Device
+)
 
 type ledPosition struct {
 	X uint8
@@ -41,6 +48,10 @@ func main() {
 
 	LED_PIN.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	strip := ws2812.New(LED_PIN)
+
+	time.Sleep(time.Second * 1)
+	println("start")
+	go runSensors()
 
 	var command byte
 	animation := noise
@@ -140,4 +151,70 @@ func xorshift64(x uint64) uint64 {
 	x ^= x >> 7
 	x ^= x << 17
 	return x
+}
+
+func runSensors() {
+	configureSensors()
+
+	for {
+		if co2Sensor != nil {
+			sampleCO2Sensor(co2Sensor)
+		}
+		time.Sleep(measurementInterval)
+	}
+}
+
+func configureSensors() {
+	bus := machine.I2C1
+	err := bus.Configure(machine.I2CConfig{
+		SDA:       machine.GP26,
+		SCL:       machine.GP27,
+		Frequency: 400 * machine.KHz,
+	})
+	if err != nil {
+		println("could not configure I2C:", bus)
+		return
+	}
+	{
+		// Configure SCD40 CO₂ sensor.
+		sensor := scd4x.New(bus)
+		if !sensor.Connected() {
+			println("CO2 sensor is not connected!")
+			return
+		}
+		if err := sensor.Configure(); err != nil {
+			println("could not configure CO2 sensor:", err.Error())
+			return
+		}
+		println("configured!")
+
+		if err := sensor.StartPeriodicMeasurement(); err != nil {
+			println("could not start peridic measurement:", err)
+			return
+		}
+		co2Sensor = sensor
+	}
+}
+
+func sampleCO2Sensor(sensor *scd4x.Device) {
+	co2, err := sensor.ReadCO2()
+	if err != nil {
+		println("failed to read CO2:", err.Error())
+		return
+	}
+
+	temperature, err := sensor.ReadTemperature()
+	if err != nil {
+		println("failed to read temperature:", err.Error())
+		return
+	}
+
+	humidity, err := sensor.ReadHumidity()
+	if err != nil {
+		println("failed to read humidity:", err.Error())
+		return
+	}
+	println("co2:        ", co2)
+	println("temperature:", temperature)
+	println("humidity:   ", humidity)
 }
