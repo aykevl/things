@@ -7,6 +7,7 @@ import (
 
 	"github.com/aykevl/ledsgo"
 	"tinygo.org/x/drivers/scd4x"
+	"tinygo.org/x/drivers/sgp30"
 	"tinygo.org/x/drivers/ws2812"
 )
 
@@ -22,6 +23,7 @@ const measurementInterval = time.Second * 5
 
 var (
 	co2Sensor *scd4x.Device
+	vocSensor *sgp30.Device
 )
 
 type ledPosition struct {
@@ -156,11 +158,16 @@ func xorshift64(x uint64) uint64 {
 func runSensors() {
 	configureSensors()
 
-	for {
-		if co2Sensor != nil {
+	for n := uint64(0); ; n++ {
+		// Sample CO₂ every 10 seconds.
+		if n%10 == 0 && co2Sensor != nil {
 			sampleCO2Sensor(co2Sensor)
 		}
-		time.Sleep(measurementInterval)
+		// Sample VOC every second.
+		if vocSensor != nil {
+			sampleVOCSensor(vocSensor)
+		}
+		time.Sleep(time.Second)
 	}
 }
 
@@ -194,6 +201,19 @@ func configureSensors() {
 		}
 		co2Sensor = sensor
 	}
+	{
+		sensor := sgp30.New(bus)
+		if !sensor.Connected() {
+			println("VOC sensor not connected")
+			return
+		}
+		err := sensor.Configure(sgp30.Config{})
+		if err != nil {
+			println("VOC sensor could not be configured:", err.Error())
+			return
+		}
+		vocSensor = sensor
+	}
 }
 
 func sampleCO2Sensor(sensor *scd4x.Device) {
@@ -214,7 +234,17 @@ func sampleCO2Sensor(sensor *scd4x.Device) {
 		println("failed to read humidity:", err.Error())
 		return
 	}
-	println("co2:        ", co2)
+	println("CO2:        ", co2)
 	println("temperature:", temperature)
 	println("humidity:   ", humidity)
+}
+
+func sampleVOCSensor(sensor *sgp30.Device) {
+	err := sensor.Update(0)
+	if err != nil {
+		println("could not read VOC sensor:", err.Error())
+		return
+	}
+	println("CO2eq:      ", sensor.CO2())
+	println("TVOC        ", sensor.TVOC())
 }
