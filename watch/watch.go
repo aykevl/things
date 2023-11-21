@@ -11,6 +11,7 @@ import (
 	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
+	"tinygo.org/x/drivers"
 	"tinygo.org/x/tinyfont/freesans"
 )
 
@@ -84,6 +85,9 @@ func (w *Watch[T]) run() {
 	w.views.Background = black
 	w.views.Foreground = white
 	lastEvent = time.Now()
+
+	// Configure the accelerometer.
+	board.Sensors.Configure(drivers.Acceleration | drivers.Temperature)
 
 	// Set up a UI.
 	w.views.Push(w.createWatchFace(w.views))
@@ -318,7 +322,13 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 	battery.SetAlign(tinygl.AlignLeft)
 	voltage := views.NewText("voltage: ...")
 	voltage.SetAlign(tinygl.AlignLeft)
-	vbox := views.NewVBox(header, battery, voltage)
+	temperature := views.NewText("temp: ...")
+	temperature.SetAlign(tinygl.AlignLeft)
+	acceleration := views.NewText("accel: ...")
+	acceleration.SetAlign(tinygl.AlignLeft)
+	steps := views.NewText("steps: ...")
+	steps.SetAlign(tinygl.AlignLeft)
+	vbox := views.NewVBox(header, battery, voltage, temperature, acceleration, steps)
 	wrapper := tinygl.NewEventBox[T](vbox)
 	wrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
 		if event != tinygl.TouchTap {
@@ -332,7 +342,8 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 	return NewView[T](wrapper, func(now time.Time) {
 		if now.Sub(lastTime) > time.Second/5 {
 			lastTime = now
-			// Update the UI with values.
+
+			// Update the UI with the battery status.
 			state, microvolts, percent := board.Power.Status()
 			batteryText := "battery: "
 			if percent >= 0 {
@@ -343,6 +354,13 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 			}
 			battery.SetText(batteryText)
 			voltage.SetText("voltage: " + formatVoltage(microvolts))
+
+			// Update the various sensors.
+			board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
+			temperature.SetText("temp: " + strconv.Itoa(int(board.Sensors.Temperature()/1000)) + "C")
+			ax, ay, az := board.Sensors.Acceleration()
+			acceleration.SetText("accel: " + strconv.FormatInt(int64(ax/10000), 10) + " " + strconv.FormatInt(int64(ay/10000), 10) + " " + strconv.FormatInt(int64(az/10000), 10))
+			steps.SetText("steps: " + strconv.Itoa(int(board.Sensors.Steps())))
 		}
 	})
 }
