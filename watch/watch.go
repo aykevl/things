@@ -235,7 +235,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 			views.Push(createScreenTimeoutView(views))
 		}
 	})
-	return NewView[T](views.NewVBox(header, tinygl.NewScrollBox[T](list)), nil)
+	return NewView[T](tinygl.NewVerticalScrollBox[T](header, list, nil), nil)
 }
 
 // Create view to adjust the time on the watch.
