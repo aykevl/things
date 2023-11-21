@@ -87,7 +87,13 @@ func (w *Watch[T]) run() {
 	lastEvent = time.Now()
 
 	// Configure the accelerometer.
+	var lastSensorUpdate time.Time
 	board.Sensors.Configure(drivers.Acceleration | drivers.Temperature)
+	updateSensors := func(now time.Time) {
+		board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
+		lastSensorUpdate = now
+	}
+	updateSensors(watchTime())
 
 	// Set up a UI.
 	w.views.Push(w.createWatchFace(w.views))
@@ -120,9 +126,19 @@ func (w *Watch[T]) run() {
 			// TODO: use interrupts instead (both the button and the touchscreen
 			// can be triggered via interrupts).
 			time.Sleep(time.Second / 10)
+
+			// Update infrequently when the screen is off.
+			if now.Sub(lastSensorUpdate) > 5*time.Second {
+				updateSensors(now)
+			}
 		} else {
-			// Not sleeping, so be faster.
+			// Screen is on, so be faster.
 			board.Display.WaitForVBlank(time.Second / 60)
+
+			// Update frequently when the screen is on.
+			if now.Sub(lastSensorUpdate) > time.Second/4 {
+				updateSensors(now)
+			}
 		}
 	}
 }
@@ -326,9 +342,9 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 	temperature.SetAlign(tinygl.AlignLeft)
 	acceleration := views.NewText("accel: ...")
 	acceleration.SetAlign(tinygl.AlignLeft)
-	steps := views.NewText("steps: ...")
-	steps.SetAlign(tinygl.AlignLeft)
-	vbox := views.NewVBox(header, battery, voltage, temperature, acceleration, steps)
+	stepsText := views.NewText("steps: ...")
+	stepsText.SetAlign(tinygl.AlignLeft)
+	vbox := views.NewVBox(header, battery, voltage, temperature, acceleration, stepsText)
 	wrapper := tinygl.NewEventBox[T](vbox)
 	wrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
 		if event != tinygl.TouchTap {
@@ -336,6 +352,10 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 		}
 		views.Pop()
 	})
+
+	var steps uint32 = 0xffff_ffff
+	var ax, ay, az int32
+	var temp int32 = 0x7fff_ffff
 
 	// Create the view with the update callback.
 	var lastTime time.Time
@@ -354,13 +374,26 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 			}
 			battery.SetText(batteryText)
 			voltage.SetText("voltage: " + formatVoltage(microvolts))
+		}
 
-			// Update the various sensors.
-			board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
-			temperature.SetText("temp: " + strconv.Itoa(int(board.Sensors.Temperature()/1000)) + "C")
-			ax, ay, az := board.Sensors.Acceleration()
+		temp2 := board.Sensors.Temperature()
+		if temp != temp2 {
+			temp = temp2
+			temperature.SetText("temp: " + strconv.Itoa(int(temp/1000)) + "C")
+		}
+
+		ax2, ay2, az2 := board.Sensors.Acceleration()
+		if ax != ax2 || ay != ay2 || az != az2 {
+			ax = ax2
+			ay = ay2
+			az = az2
 			acceleration.SetText("accel: " + strconv.FormatInt(int64(ax/10000), 10) + " " + strconv.FormatInt(int64(ay/10000), 10) + " " + strconv.FormatInt(int64(az/10000), 10))
-			steps.SetText("steps: " + strconv.Itoa(int(board.Sensors.Steps())))
+		}
+
+		steps2 := board.Sensors.Steps()
+		if steps != steps2 {
+			steps = steps2
+			stepsText.SetText("steps: " + strconv.Itoa(int(steps)))
 		}
 	})
 }
