@@ -7,7 +7,7 @@ import (
 	"github.com/aykevl/ledsgo"
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/gfx"
-	"github.com/aykevl/tinygl/pixel"
+	"tinygo.org/x/drivers/pixel"
 )
 
 const (

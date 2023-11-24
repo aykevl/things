@@ -6,10 +6,10 @@ import (
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
-	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
 	"tinygo.org/x/drivers"
+	"tinygo.org/x/drivers/pixel"
 )
 
 func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {

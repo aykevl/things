@@ -5,9 +5,9 @@ import (
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
-	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
+	"tinygo.org/x/drivers/pixel"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 
 	// Initialize the screen.
 	buf := pixel.NewImage[T](int(width), int(height)/4)
-	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
+	screen := tinygl.NewScreen[T](display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 	println("scale:", scalePercent, "=>", theme.Scale.Percent())
 
