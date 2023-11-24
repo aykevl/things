@@ -21,9 +21,9 @@ import (
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/gfx"
-	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
+	"tinygo.org/x/drivers/pixel"
 )
 
 func main() {
@@ -44,7 +44,7 @@ func runUI[T pixel.Color](display board.Displayer[T]) {
 		black = pixel.NewColor[T](0x00, 0x00, 0x00)
 	)
 	buf := pixel.NewImage[T](int(width), int(height)/10)
-	screen := tinygl.NewScreen(display, buf, board.Display.PPI())
+	screen := tinygl.NewScreen[T](display, buf, board.Display.PPI())
 	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
 
 	title := theme.NewText("")
