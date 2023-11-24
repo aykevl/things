@@ -8,10 +8,10 @@ import (
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
-	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style"
 	"github.com/aykevl/tinygl/style/basic"
 	"tinygo.org/x/drivers"
+	"tinygo.org/x/drivers/pixel"
 	"tinygo.org/x/tinyfont/freesans"
 )
 
@@ -75,7 +75,7 @@ func (w *Watch[T]) run() {
 	scalePercent := board.Display.PPI() * 100 / 120
 	scale := style.NewScale(scalePercent)
 	println("scale:", board.Display.PPI(), "->", scale.Percent())
-	w.screen = tinygl.NewScreen(w.display, buf, board.Display.PPI())
+	w.screen = tinygl.NewScreen[T](w.display, buf, board.Display.PPI())
 	basicTheme := basic.NewTheme(scale, w.screen)
 	basicTheme.Tint = pixel.NewColor[T](144, 144, 144)
 	w.views = &ViewManager[T]{

@@ -4,7 +4,7 @@ import (
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
 	"github.com/aykevl/tinygl/gfx"
-	"github.com/aykevl/tinygl/pixel"
+	"tinygo.org/x/drivers/pixel"
 )
 
 func createTouchTestView[T pixel.Color](views *ViewManager[T]) View[T] {

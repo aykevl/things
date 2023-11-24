@@ -4,8 +4,8 @@ import (
 	"time"
 
 	"github.com/aykevl/tinygl"
-	"github.com/aykevl/tinygl/pixel"
 	"github.com/aykevl/tinygl/style/basic"
+	"tinygo.org/x/drivers/pixel"
 )
 
 // ViewManager is a kind of window manager for the watch.

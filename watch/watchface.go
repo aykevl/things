@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/aykevl/tinygl"
-	"github.com/aykevl/tinygl/pixel"
+	"tinygo.org/x/drivers/pixel"
 	"tinygo.org/x/tinyfont/freesans"
 )
 

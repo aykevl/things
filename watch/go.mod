@@ -3,15 +3,16 @@ module github.com/aykevl/things/watch
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20231102192817-6aa890516a08
-	github.com/aykevl/tinygl v0.0.0-20231121134607-2d0b495c5530
+	github.com/aykevl/board v0.0.0-20231124144211-feeba0ede83c
+	github.com/aykevl/tinygl v0.0.0-20231124133440-950a2fbe9f5e
 	tinygo.org/x/bluetooth v0.6.0
+	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 	tinygo.org/x/tinyfont v0.4.0
 )
 
 require (
 	fyne.io/fyne/v2 v2.4.1 // indirect
-	fyne.io/systray v1.10.1-0.20230722100817-88df1e0ffa9a // indirect
+	fyne.io/systray v1.10.1-0.20231115130155-104f5ef7839e // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fredbi/uri v1.1.0 // indirect
@@ -20,7 +21,7 @@ require (
 	github.com/fyne-io/glfw-js v0.0.0-20231117203605-bc7c6f97d52f // indirect
 	github.com/fyne-io/image v0.0.0-20230811065323-ed435dc8bca6 // indirect
 	github.com/go-gl/gl v0.0.0-20231021071112-07e5d0ea2e71 // indirect
-	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231117230948-b8b00452e321 // indirect
+	github.com/go-gl/glfw/v3.3/glfw v0.0.0-20231124074035-2de0cf0c80af // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/go-text/render v0.0.0-20230619120952-35bccb6164b8 // indirect
 	github.com/go-text/typesetting v0.0.0-20231120180320-af78120ccb13 // indirect
@@ -45,5 +46,4 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
-	tinygo.org/x/drivers v0.26.0 // indirect
 )
