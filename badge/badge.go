@@ -46,6 +46,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 		"Tearing test",
 		"Sensors",
 		"LEDs",
+		"Images",
 	})
 	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
 	listbox.Select(0)         // focus the first element
@@ -130,6 +131,9 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 	case 6:
 		println("toggle LEDs")
 		toggleLEDs()
+	case 7:
+		println("starting images")
+		showImages(screen)
 	}
 
 	// The app used a different root element. Restore the homescreen.

@@ -24,9 +24,12 @@ func testTearing[T pixel.Color](screen *tinygl.Screen[T], touchInput board.Touch
 	// Create the canvas.
 	width, height := screen.Size()
 	canvas := gfx.NewCanvas(black, 32, 32)
-	verticalRect := canvas.CreateRect(0, 0, size, height, white)
-	horizontalRect := canvas.CreateRect(0, 0, width, size, white)
-	teIndicator := canvas.CreateRect(0, 0, 8, 8, red)
+	verticalRect := gfx.NewRect(white, 0, 0, size, height)
+	horizontalRect := gfx.NewRect(white, 0, 0, width, size)
+	teIndicator := gfx.NewRect(red, 0, 0, 8, 8)
+	canvas.Add(verticalRect)
+	canvas.Add(horizontalRect)
+	canvas.Add(teIndicator)
 	screen.SetChild(canvas)
 
 	// Change the mode on each touch on the screen.

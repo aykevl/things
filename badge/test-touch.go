@@ -19,7 +19,8 @@ func testTouch[T pixel.Color](screen *tinygl.Screen[T], touchInput board.TouchIn
 	screen.SetChild(canvas)
 
 	// Create touch point.
-	touch := canvas.CreateRect(0, 0, scalePercent/4, scalePercent/4, pixel.NewColor[T](255, 255, 255))
+	touch := gfx.NewRect(pixel.NewColor[T](255, 255, 255), 0, 0, scalePercent/4, scalePercent/4)
+	canvas.Add(touch)
 	touch.SetHidden(true)
 
 	// Show screen.

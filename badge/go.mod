@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/aykevl/board v0.0.0-20231124144211-feeba0ede83c
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
-	github.com/aykevl/tinygl v0.0.0-20231124133440-950a2fbe9f5e
+	github.com/aykevl/tinygl v0.0.0-20231204125005-72ed71fe92f9
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 )
 
