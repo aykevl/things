@@ -110,9 +110,7 @@ func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl
 	switch index {
 	case 0:
 		println("starting noise")
-		// TODO: I have a local implementation but it relies on DMA
-		// support in the display for good performance.
-		//noise(display, buf)
+		noise(display, screen)
 	case 1:
 		println("starting Mandelbrot")
 		mandelbrot(screen)
