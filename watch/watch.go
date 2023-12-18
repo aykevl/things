@@ -32,10 +32,11 @@ func main() {
 	if board.Name == "simulator" {
 		// Watch dimensions:
 		// diagonal: 33mm, side: 23.3mm or 0.91 inch
+		board.Simulator.WindowTitle = "GopherWatch"
 		board.Simulator.WindowWidth = 240
 		board.Simulator.WindowHeight = 240
 		board.Simulator.WindowPPI = 261
-		board.Simulator.WindowDrawSpeed = time.Second * 16 / 8e6 // 8MHz, 16bpp
+		board.Simulator.WindowDrawSpeed = time.Second * 12 / 8e6 // 8MHz, 12bpp
 	}
 
 	println("start")
