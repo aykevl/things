@@ -17,6 +17,7 @@ func createTouchTestView[T pixel.Color](views *ViewManager[T]) View[T] {
 
 	// Create touch point.
 	touch := gfx.NewRect(pixel.NewColor[T](255, 255, 255), 0, 0, scalePercent/4, scalePercent/4)
+	canvas.Add(touch)
 	touch.SetHidden(true)
 
 	// Listen for touch events.
