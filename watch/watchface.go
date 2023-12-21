@@ -54,6 +54,8 @@ func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
 		return w.createTextWatchface(views)
 	case 1:
 		return w.createDigitalWatchface(views)
+	case 2:
+		return w.createAnalogWatchface(views)
 	default:
 		// should be unreachable
 		return w.createTextWatchface(views)
@@ -180,4 +182,106 @@ func (w *Watch[T]) createDigitalWatchface(views *ViewManager[T]) View[T] {
 			}
 		}
 	})
+}
+
+func (w *Watch[T]) createAnalogWatchface(views *ViewManager[T]) View[T] {
+	var (
+		black             = pixel.NewColor[T](0, 0, 0)
+		hourMark          = pixel.NewColor[T](100, 100, 100)
+		hourHandleColor   = pixel.NewColor[T](255, 255, 255)
+		minuteHandleColor = pixel.NewColor[T](255, 255, 255)
+		centerDotColor    = pixel.NewColor[T](255, 255, 255)
+	)
+
+	canvas := gfx.NewCanvas(black, 96, 96)
+	displayWidth, displayHeight := w.display.Size()
+	centerX, centerY := int(displayWidth)/2, int(displayHeight)/2
+	r := int(displayHeight) / 2
+
+	// Hour markers.
+	for i := 0; i < 360; i += 360 / 12 {
+		markX, markY := getAnalogWatchCoord(i)
+		canvas.Add(gfx.NewLine(hourMark,
+			centerX+markX*r/255,
+			centerY+markY*r/255,
+			centerX+markX*r/290,
+			centerY+markY*r/290,
+			r/16))
+	}
+
+	// Dot in the center.
+	canvas.Add(gfx.NewCircle(centerDotColor, centerX, centerY, 6))
+
+	// Handles, at an arbitrary position.
+	hourHandle := gfx.NewLine(hourHandleColor, centerX, centerY, centerX, centerY, 10)
+	canvas.Add(hourHandle)
+	minuteHandle := gfx.NewLine(minuteHandleColor, centerX, centerY, centerX, centerY, 6)
+	canvas.Add(minuteHandle)
+
+	updateTime := func(hour, minute, second int) {
+		hour = hour % 12
+		hourX, hourY := getAnalogWatchCoord(hour*30 + minute/2)
+		hourHandle.SetPosition(centerX+hourX*10/255, centerY+hourY*10/255, centerX+hourX*r/500, centerY+hourY*r/500)
+		minuteX, minuteY := getAnalogWatchCoord(minute*6 + second/10)
+		minuteHandle.SetPosition(centerX+minuteX*10/255, centerY+minuteY*10/255, centerX+minuteX*r/300, centerY+minuteY*r/300)
+	}
+	now := watchTime()
+	hour := now.Hour()
+	minute := now.Minute()
+	second := now.Second()
+	updateTime(hour, minute, second)
+
+	eventWrapper := tinygl.NewEventBox[T](canvas)
+	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
+		if event == tinygl.TouchTap {
+			if backlight == 0 {
+				// Tapped on a sleeping watch.
+				// Awake the screen.
+				w.exitSleep()
+			} else {
+				// Regular tap on the clock.
+				// TODO: detect gesture (for example, swipe upwards) to make it
+				// harder to accidentally get in the settings menu.
+				views.Push(w.createAppsView(views))
+			}
+		}
+	})
+	return NewView[T](eventWrapper, func(now time.Time) {
+		// Update the watchface.
+		if backlight > 0 {
+			// Watch face is visible.
+			newHour := now.Hour()
+			newMinute := now.Minute()
+			newSecond := now.Second()
+			if hour != newHour || minute != newMinute || second != newSecond {
+				hour = newHour
+				minute = newMinute
+				second = newSecond
+				updateTime(hour, minute, second)
+			}
+		}
+	})
+}
+
+// Return the -255..255 X and Y coordinates on a circle, starting at 12 o'clock
+// going right around. The index is the number of degrees (0..359).
+func getAnalogWatchCoord(index int) (x, y int) {
+	switch {
+	case index < 90:
+		return int(watchCoord[index]), -int(watchCoord[89-index])
+	case index < 180:
+		return int(watchCoord[179-index]), int(watchCoord[index-90])
+	case index < 270:
+		return -int(watchCoord[index-180]), int(watchCoord[269-index])
+	default: // index < 360
+		return -int(watchCoord[359-index]), -int(watchCoord[index-270])
+	}
+}
+
+// Table with precalculated sin/cos values.
+// Python oneliner:
+//
+//	r=255; [round(math.sin(i/180*math.pi)*r) for i in range(90)]
+var watchCoord = [...]uint8{
+	0, 4, 9, 13, 18, 22, 27, 31, 35, 40, 44, 49, 53, 57, 62, 66, 70, 75, 79, 83, 87, 91, 96, 100, 104, 108, 112, 116, 120, 124, 127, 131, 135, 139, 143, 146, 150, 153, 157, 160, 164, 167, 171, 174, 177, 180, 183, 186, 190, 192, 195, 198, 201, 204, 206, 209, 211, 214, 216, 219, 221, 223, 225, 227, 229, 231, 233, 235, 236, 238, 240, 241, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 253, 254, 254, 254, 255, 255, 255,
 }

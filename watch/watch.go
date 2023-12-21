@@ -442,6 +442,7 @@ func (w *Watch[T]) createWatchFaceSelectView() View[T] {
 	list := w.views.NewListBox([]string{
 		"Text",
 		"Digital",
+		"Analog",
 	})
 	list.SetGrowable(1, 1)
 	list.SetPadding(0, 8)
