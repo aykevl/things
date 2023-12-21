@@ -44,11 +44,20 @@ var char9 string
 //go:embed assets/watchface-colon.raw
 var charColon string
 
+// Current watchface.
+var watchFaceIndex uint8
+
 // Create a simple digital watch face as the homescreen.
 func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
-	// TODO: make this configurable somehow.
-	//return w.createTextWatchface(views)
-	return w.createDigitalWatchface(views)
+	switch watchFaceIndex {
+	case 0:
+		return w.createTextWatchface(views)
+	case 1:
+		return w.createDigitalWatchface(views)
+	default:
+		// should be unreachable
+		return w.createTextWatchface(views)
+	}
 }
 
 func (w *Watch[T]) createTextWatchface(views *ViewManager[T]) View[T] {

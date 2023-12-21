@@ -232,6 +232,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		"Sensors",
 		"Rotate",
 		"Screen timeout",
+		"Watchface",
 	})
 	list.SetGrowable(1, 1)
 	list.SetPadding(0, 8)
@@ -254,6 +255,8 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 			w.display.SetRotation((w.display.Rotation() + 2) % 4)
 		case 5:
 			views.Push(createScreenTimeoutView(views))
+		case 6:
+			views.Push(w.createWatchFaceSelectView())
 		}
 	})
 	return NewView[T](tinygl.NewVerticalScrollBox[T](header, list, nil), nil)
@@ -427,6 +430,35 @@ func createScreenTimeoutView[T pixel.Color](views *ViewManager[T]) View[T] {
 		screenTimeoutIndex = uint8(index)
 	})
 	return NewView[T](views.NewVBox(header, list), nil)
+}
+
+func (w *Watch[T]) createWatchFaceSelectView() View[T] {
+	var (
+		lightblue = pixel.NewColor[T](64, 64, 255)
+	)
+	header := w.views.NewText("Watchface")
+	header.SetBackground(lightblue)
+
+	list := w.views.NewListBox([]string{
+		"Text",
+		"Digital",
+	})
+	list.SetGrowable(1, 1)
+	list.SetPadding(0, 8)
+	list.Select(int(watchFaceIndex))
+	previousWatchFaceIndex := watchFaceIndex
+	list.SetEventHandler(func(event tinygl.Event, index int) {
+		if event != tinygl.TouchTap {
+			return
+		}
+		w.views.Pop() // go back to the homescreen after closing the view
+		watchFaceIndex = uint8(index)
+		if watchFaceIndex != previousWatchFaceIndex {
+			// Replace watch face.
+			w.views.ReplaceAll(w.createWatchFace(w.views))
+		}
+	})
+	return NewView[T](w.views.NewVBox(header, list), nil)
 }
 
 func formatVoltage(microvolts uint32) string {

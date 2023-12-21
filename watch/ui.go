@@ -36,6 +36,14 @@ func (v *ViewManager[T]) Pop() {
 	v.screen.SetChild(v.views[len(v.views)-1].Object)
 }
 
+// Replace all views in the stack, and replace it with the given view.
+// This is used to set a new homescreen for example.
+func (v *ViewManager[T]) ReplaceAll(view View[T]) {
+	v.views = v.views[:0]
+	v.views = append(v.views, view)
+	v.screen.SetChild(view.Object)
+}
+
 // Update runs the Update callback attached to this view.
 func (v *ViewManager[T]) Update(now time.Time) {
 	callback := v.views[len(v.views)-1].Update
