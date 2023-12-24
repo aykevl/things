@@ -681,8 +681,8 @@ honnef.co/go/tools v0.0.1-2020.1.4/go.mod h1:X/FiERA/W4tHapMX5mGpAtMSVEeEUOyHaw9
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
 rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
-tinygo.org/x/bluetooth v0.8.1-0.20231005171146-01243181c313 h1:R18yqdoSazn2IUgqdqOnq/OlqU7l4jBwfb6ZabKCPZ8=
-tinygo.org/x/bluetooth v0.8.1-0.20231005171146-01243181c313/go.mod h1:iJSidlApgZP77ICJyx8SlYZS+E2Eze7aAihk53BFqiU=
+tinygo.org/x/bluetooth v0.8.1-0.20231224120756-e6462b20a202 h1:qEVPvaGB5KgmhMsWWzcu/b3YOawnfi3Emtbk5x2PO4o=
+tinygo.org/x/bluetooth v0.8.1-0.20231224120756-e6462b20a202/go.mod h1:iJSidlApgZP77ICJyx8SlYZS+E2Eze7aAihk53BFqiU=
 tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9 h1:7J3vj9E/gGhMCKLZVGiw/7SUnAjHjIOsyMbD0TibpRc=
 tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9/go.mod h1:X7utcg3yfFUFuKLOMTZD56eztXMjpkcf8OHldfTBsjw=
 tinygo.org/x/tinyfont v0.4.0 h1:XexPKEKiHInf6p4CMCJwsIheVPY0T46HUs6ictYyZfE=

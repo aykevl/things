@@ -9,3 +9,6 @@ func InitBluetooth() error {
 	// nothing to do
 	return nil
 }
+
+func updateBatteryLevel(level uint8) {
+}

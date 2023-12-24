@@ -14,6 +14,8 @@ import (
 
 var adapter = bluetooth.DefaultAdapter
 
+var batteryLevel bluetooth.Characteristic
+
 func InitBluetooth() error {
 	err := adapter.Enable()
 	if err != nil {
@@ -38,5 +40,33 @@ func InitBluetooth() error {
 		return err
 	}
 
+	// Add battery service.
+	adapter.AddService(&bluetooth.Service{
+		UUID: bluetooth.ServiceUUIDBattery,
+		Characteristics: []bluetooth.CharacteristicConfig{
+			{
+				Handle: &batteryLevel,
+				UUID:   bluetooth.CharacteristicUUIDBatteryLevel,
+				Value:  []byte{0},
+				Flags:  bluetooth.CharacteristicReadPermission | bluetooth.CharacteristicNotifyPermission,
+			},
+		},
+	})
+
 	return nil
+}
+
+var updateBatteryLevelBuf [1]byte
+var batteryLevelValue uint8
+
+func updateBatteryLevel(level uint8) {
+	if level == batteryLevelValue {
+		return
+	}
+	updateBatteryLevelBuf[0] = level
+	_, err := batteryLevel.Write(updateBatteryLevelBuf[:])
+	if err != nil {
+		return
+	}
+	batteryLevelValue = level
 }

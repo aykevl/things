@@ -91,8 +91,18 @@ func (w *Watch[T]) run() {
 	var lastSensorUpdate time.Time
 	board.Sensors.Configure(drivers.Acceleration | drivers.Temperature)
 	updateSensors := func(now time.Time) {
+		// Update most sensors.
 		board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
 		lastSensorUpdate = now
+
+		// Update battery state.
+		state, _, percent := board.Power.Status()
+		batteryLevelValue := uint8(0)
+		switch state {
+		case board.Charging, board.Discharging, board.NotCharging:
+			batteryLevelValue = uint8(percent)
+		}
+		updateBatteryLevel(batteryLevelValue)
 	}
 	updateSensors(watchTime())
 
