@@ -40,6 +40,25 @@ func InitBluetooth() error {
 		return err
 	}
 
+	// Add Device Information Service. This is necessary for Gadgetbridge,
+	// otherwise it keeps showing an error ("the bind value at index 2 is
+	// null").
+	adapter.AddService(&bluetooth.Service{
+		UUID: bluetooth.ServiceUUIDDeviceInformation,
+		Characteristics: []bluetooth.CharacteristicConfig{
+			{
+				UUID:  bluetooth.CharacteristicUUIDManufacturerNameString,
+				Value: []byte("Pine64"),
+				Flags: bluetooth.CharacteristicReadPermission,
+			},
+			{
+				UUID:  bluetooth.CharacteristicUUIDFirmwareRevisionString,
+				Value: []byte("GopherWatch-dev"), // unspecified version
+				Flags: bluetooth.CharacteristicReadPermission,
+			},
+		},
+	})
+
 	// Add battery service.
 	adapter.AddService(&bluetooth.Service{
 		UUID: bluetooth.ServiceUUIDBattery,
