@@ -72,6 +72,33 @@ func InitBluetooth() error {
 		},
 	})
 
+	// Current Time Service. This enables Gadgetbridge to sync the time.
+	adapter.AddService(&bluetooth.Service{
+		UUID: bluetooth.ServiceUUIDCurrentTime,
+		Characteristics: []bluetooth.CharacteristicConfig{
+			{
+				UUID:  bluetooth.CharacteristicUUIDCurrentTime,
+				Flags: bluetooth.CharacteristicWriteWithoutResponsePermission | bluetooth.CharacteristicWritePermission,
+				WriteEvent: func(client bluetooth.Connection, offset int, value []byte) {
+					if offset != 0 || len(value) != 10 {
+						return // unexpected value
+					}
+					year := int(value[0]) | int(value[1])<<8
+					month := time.Month(value[2])
+					day := int(value[3])
+					hour := int(value[4])
+					minute := int(value[5])
+					second := int(value[6])
+					nanosecond := int(value[7]) * (1e9 / 256)
+					newTime := time.Date(year, month, day, hour, minute, second, nanosecond, time.UTC)
+					oldTime := time.Now()
+					diff := newTime.Sub(oldTime)
+					adjustTime(diff)
+				},
+			},
+		},
+	})
+
 	return nil
 }
 
