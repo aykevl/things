@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/aykevl/board v0.0.0-20231124144211-feeba0ede83c
 	github.com/aykevl/tinygl v0.0.0-20231221185502-fcc6944f7038
-	tinygo.org/x/bluetooth v0.8.1-0.20231224120756-e6462b20a202
+	tinygo.org/x/bluetooth v0.8.1-0.20240105150735-31d0fec4693f
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 	tinygo.org/x/tinyfont v0.4.0
 )
@@ -14,7 +14,6 @@ require (
 	fyne.io/fyne/v2 v2.4.1 // indirect
 	fyne.io/systray v1.10.1-0.20231115130155-104f5ef7839e // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/fatih/structs v1.1.0 // indirect
 	github.com/fredbi/uri v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/fyne-io/gl-js v0.0.0-20230506162202-1fdaa286a934 // indirect
@@ -29,7 +28,7 @@ require (
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/gopherjs/gopherjs v1.17.2 // indirect
 	github.com/jsummers/gobmp v0.0.0-20230614200233-a9de23ed2e25 // indirect
-	github.com/muka/go-bluetooth v0.0.0-20221213043340-85dc80edc4e1 // indirect
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/saltosystems/winrt-go v0.0.0-20231011131235-9071442c0c84 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect
@@ -42,8 +41,9 @@ require (
 	golang.org/x/image v0.14.0 // indirect
 	golang.org/x/mobile v0.0.0-20231108233038-35478a0c49da // indirect
 	golang.org/x/net v0.18.0 // indirect
-	golang.org/x/sys v0.15.0 // indirect
+	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
 )

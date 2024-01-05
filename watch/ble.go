@@ -16,15 +16,22 @@ var adapter = bluetooth.DefaultAdapter
 
 var batteryLevel bluetooth.Characteristic
 
+var connectedDevice chan bluetooth.Device
+
 func InitBluetooth() error {
 	err := adapter.Enable()
 	if err != nil {
 		return err
 	}
 
+	adapter.SetConnectHandler(handleBLEConnection)
+	connectedDevice = make(chan bluetooth.Device, 1)
+	go connectionHandler()
+
 	// TODO: use a shorter advertisement interval after start and after losing
 	// connection. For example, a 20ms interval for 30 seconds as stated in the
-	// Apple guidelines.
+	// Apple guidelines:
+	// https://developer.apple.com/accessories/Accessory-Design-Guidelines.pdf
 	// An interval of 1285 uses around 11µA according to the online power profiler:
 	// https://devzone.nordicsemi.com/power/w/opp/2/online-power-profiler-for-bluetooth-le
 	adv := adapter.DefaultAdvertisement()
@@ -109,6 +116,36 @@ func InitBluetooth() error {
 	}
 
 	return nil
+}
+
+func handleBLEConnection(device bluetooth.Device, connected bool) {
+	if connected {
+		select {
+		case connectedDevice <- device:
+		default:
+		}
+	}
+}
+
+// Background goroutine that updates connection parameters as needed.
+func connectionHandler() {
+	for device := range connectedDevice {
+		// Wait a bit after connecting so that initial negotiating can be
+		// faster.
+		time.Sleep(time.Second * 5)
+
+		// Following the Apple accessory design guidelines, picking a connection
+		// latency of around 500ms that is a multiple of 15ms (and giving the
+		// device 15ms of space). My Android 13 phone picks 510ms as the
+		// connection interval with these parameters.
+		// For comparison, the Mi Band 3 negotiates 517.5ms as the connection
+		// interval after a sync.
+		device.RequestConnectionParams(bluetooth.ConnectionParams{
+			MinInterval: bluetooth.NewDuration(495 * time.Millisecond),
+			MaxInterval: bluetooth.NewDuration(510 * time.Millisecond),
+			Timeout:     bluetooth.NewDuration(5 * time.Second),
+		})
+	}
 }
 
 var updateBatteryLevelBuf [1]byte
