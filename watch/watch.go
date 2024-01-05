@@ -12,7 +12,6 @@ import (
 	"github.com/aykevl/tinygl/style/basic"
 	"tinygo.org/x/drivers"
 	"tinygo.org/x/drivers/pixel"
-	"tinygo.org/x/tinyfont/freesans"
 )
 
 var backlight = -1
@@ -237,7 +236,6 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 	header.SetBackground(lightblue)
 	list := views.NewListBox([]string{
 		"Back",
-		"Set time",
 		"Touch test",
 		"Sensors",
 		"Rotate",
@@ -255,91 +253,19 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		case 0:
 			// Nothing to do, just go back to the homescreen.
 		case 1:
-			views.Push(createClockAdjustView(views))
-		case 2:
 			views.Push(createTouchTestView(views))
-		case 3:
+		case 2:
 			views.Push(createSensorsView(views))
-		case 4:
+		case 3:
 			// Rotate the screen by 180°.
 			w.display.SetRotation((w.display.Rotation() + 2) % 4)
-		case 5:
+		case 4:
 			views.Push(createScreenTimeoutView(views))
-		case 6:
+		case 5:
 			views.Push(w.createWatchFaceSelectView())
 		}
 	})
 	return NewView[T](tinygl.NewVerticalScrollBox[T](header, list, nil), nil)
-}
-
-// Create view to adjust the time on the watch.
-func createClockAdjustView[T pixel.Color](views *ViewManager[T]) View[T] {
-	// Constants used in this function.
-	var (
-		green = pixel.NewColor[T](32, 255, 0)
-		red   = pixel.NewColor[T](255, 0, 0)
-		black = pixel.NewColor[T](0, 0, 0)
-		white = pixel.NewColor[T](255, 255, 255)
-	)
-	width, _ := views.screen.Size()
-
-	// Configure UI.
-	start := watchTime()
-	hour := start.Hour()
-	minute := start.Minute()
-	addText := tinygl.NewText(&freesans.Regular24pt7b, green, black, "+   +")
-	subText := tinygl.NewText(&freesans.Regular24pt7b, red, black, "-   -")
-	add := tinygl.NewEventBox[T](addText)
-	sub := tinygl.NewEventBox[T](subText)
-	text := tinygl.NewText(&freesans.Regular24pt7b, white, black, formatTime(hour, minute))
-	textWrapper := tinygl.NewEventBox[T](text)
-	add.SetGrowable(1, 1)
-	sub.SetGrowable(1, 1)
-	box := tinygl.NewVBox[T](black, add, textWrapper, sub)
-
-	// Add event handlers.
-	add.SetEventHandler(func(event tinygl.Event, x, y int) {
-		if event != tinygl.TouchTap {
-			return
-		}
-		if x < width/2 {
-			hour = (hour + 1) % 24
-		} else {
-			minute = (minute + 1) % 60
-		}
-		text.SetText(formatTime(hour, minute))
-	})
-	sub.SetEventHandler(func(event tinygl.Event, x, y int) {
-		if event != tinygl.TouchTap {
-			return
-		}
-		if x < width/2 {
-			hour--
-			if hour < 0 {
-				hour = 23
-			}
-		} else {
-			minute--
-			if minute < 0 {
-				minute = 59
-			}
-		}
-		text.SetText(formatTime(hour, minute))
-	})
-	textWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
-		if event != tinygl.TouchTap {
-			return
-		}
-		// Update time and close this view.
-		oldTime := watchTime()
-		diff := time.Duration(hour-oldTime.Hour()) * time.Hour
-		diff += time.Duration(minute-oldTime.Minute()) * time.Minute
-		diff -= time.Duration(oldTime.Nanosecond())
-		adjustTime(diff)
-		views.Pop()
-	})
-
-	return NewView[T](box, nil)
 }
 
 // view the values of a few sensors.
