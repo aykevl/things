@@ -44,7 +44,7 @@ func main() {
 	board.Buttons.Configure()
 	err := InitBluetooth()
 	if err != nil {
-		println("could not configure Bluetooth:", err)
+		println("could not configure Bluetooth:", err.Error())
 	}
 	watch := MakeWatch(board.Display.Configure(), board.Display.ConfigureTouch())
 	watch.run()

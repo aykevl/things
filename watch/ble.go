@@ -43,7 +43,7 @@ func InitBluetooth() error {
 	// Add Device Information Service. This is necessary for Gadgetbridge,
 	// otherwise it keeps showing an error ("the bind value at index 2 is
 	// null").
-	adapter.AddService(&bluetooth.Service{
+	err = adapter.AddService(&bluetooth.Service{
 		UUID: bluetooth.ServiceUUIDDeviceInformation,
 		Characteristics: []bluetooth.CharacteristicConfig{
 			{
@@ -58,9 +58,12 @@ func InitBluetooth() error {
 			},
 		},
 	})
+	if err != nil {
+		return err
+	}
 
 	// Add battery service.
-	adapter.AddService(&bluetooth.Service{
+	err = adapter.AddService(&bluetooth.Service{
 		UUID: bluetooth.ServiceUUIDBattery,
 		Characteristics: []bluetooth.CharacteristicConfig{
 			{
@@ -71,9 +74,12 @@ func InitBluetooth() error {
 			},
 		},
 	})
+	if err != nil {
+		return err
+	}
 
 	// Current Time Service. This enables Gadgetbridge to sync the time.
-	adapter.AddService(&bluetooth.Service{
+	err = adapter.AddService(&bluetooth.Service{
 		UUID: bluetooth.ServiceUUIDCurrentTime,
 		Characteristics: []bluetooth.CharacteristicConfig{
 			{
@@ -98,6 +104,9 @@ func InitBluetooth() error {
 			},
 		},
 	})
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
