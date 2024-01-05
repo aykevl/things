@@ -29,7 +29,7 @@ func InitBluetooth() error {
 	// https://devzone.nordicsemi.com/power/w/opp/2/online-power-profiler-for-bluetooth-le
 	adv := adapter.DefaultAdvertisement()
 	err = adv.Configure(bluetooth.AdvertisementOptions{
-		LocalName: "GopherWatch",
+		LocalName: "InfiniTime",
 		Interval:  bluetooth.NewDuration(1285 * time.Millisecond),
 	})
 	if err != nil {
