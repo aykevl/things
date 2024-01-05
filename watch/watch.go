@@ -375,11 +375,7 @@ func (w *Watch[T]) createWatchFaceSelectView() View[T] {
 	header := w.views.NewText("Watchface")
 	header.SetBackground(lightblue)
 
-	list := w.views.NewListBox([]string{
-		"Text",
-		"Digital",
-		"Analog",
-	})
+	list := w.views.NewListBox(watchFaces)
 	list.SetGrowable(1, 1)
 	list.SetPadding(0, 8)
 	list.Select(int(watchFaceIndex))

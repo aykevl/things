@@ -47,6 +47,13 @@ var charColon string
 // Current watchface.
 var watchFaceIndex uint8
 
+// List of all available watch faces.
+var watchFaces = []string{
+	"Text",
+	"Digital",
+	"Analog",
+}
+
 // Create a simple digital watch face as the homescreen.
 func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
 	switch watchFaceIndex {
