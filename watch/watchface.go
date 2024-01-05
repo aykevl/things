@@ -8,7 +8,6 @@ import (
 	"github.com/aykevl/tinygl/gfx"
 	"github.com/aykevl/tinygl/image"
 	"tinygo.org/x/drivers/pixel"
-	"tinygo.org/x/tinyfont/freesans"
 )
 
 //go:embed assets/watchface-0.raw
@@ -49,7 +48,6 @@ var watchFaceIndex uint8
 
 // List of all available watch faces.
 var watchFaces = []string{
-	"Text",
 	"Digital",
 	"Analog",
 }
@@ -58,56 +56,13 @@ var watchFaces = []string{
 func (w *Watch[T]) createWatchFace(views *ViewManager[T]) View[T] {
 	switch watchFaceIndex {
 	case 0:
-		return w.createTextWatchface(views)
-	case 1:
 		return w.createDigitalWatchface(views)
-	case 2:
+	case 1:
 		return w.createAnalogWatchface(views)
 	default:
 		// should be unreachable
-		return w.createTextWatchface(views)
+		return w.createDigitalWatchface(views)
 	}
-}
-
-func (w *Watch[T]) createTextWatchface(views *ViewManager[T]) View[T] {
-	var (
-		black = pixel.NewColor[T](0, 0, 0)
-		white = pixel.NewColor[T](255, 255, 255)
-	)
-
-	now := watchTime()
-	hour := now.Hour()
-	minute := now.Minute()
-	timeText := tinygl.NewText(&freesans.Regular24pt7b, white, black, formatTime(hour, minute))
-	eventWrapper := tinygl.NewEventBox[T](timeText)
-	eventWrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
-		if event == tinygl.TouchTap {
-			if backlight == 0 {
-				// Tapped on a sleeping watch.
-				// Awake the screen.
-				w.exitSleep()
-			} else {
-				// Regular tap on the clock.
-				// TODO: detect gesture (for example, swipe upwards) to make it
-				// harder to accidentally get in the settings menu.
-				views.Push(w.createAppsView(views))
-			}
-		}
-	})
-
-	return NewView[T](eventWrapper, func(now time.Time) {
-		// Update the watchface.
-		if backlight > 0 {
-			// Watch face is visible.
-			newHour := now.Hour()
-			newMinute := now.Minute()
-			if hour != newHour || minute != newMinute {
-				hour = newHour
-				minute = newMinute
-				timeText.SetText(formatTime(hour, minute))
-			}
-		}
-	})
 }
 
 func (w *Watch[T]) createDigitalWatchface(views *ViewManager[T]) View[T] {
