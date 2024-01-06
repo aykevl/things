@@ -224,11 +224,10 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 	header.SetBackground(lightblue)
 	list := views.NewListBox([]string{
 		"Back",
-		"Touch test",
 		"Sensors",
-		"Rotate",
 		"Screen timeout",
 		"Watchface",
+		"Rotate",
 	})
 	list.SetGrowable(1, 1)
 	list.SetPadding(0, 8)
@@ -241,16 +240,14 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		case 0:
 			// Nothing to do, just go back to the homescreen.
 		case 1:
-			views.Push(createTouchTestView(views))
-		case 2:
 			views.Push(createSensorsView(views))
+		case 2:
+			views.Push(createScreenTimeoutView(views))
 		case 3:
+			views.Push(w.createWatchFaceSelectView())
+		case 4:
 			// Rotate the screen by 180°.
 			w.display.SetRotation((w.display.Rotation() + 2) % 4)
-		case 4:
-			views.Push(createScreenTimeoutView(views))
-		case 5:
-			views.Push(w.createWatchFaceSelectView())
 		}
 	})
 	return NewView[T](tinygl.NewVerticalScrollBox[T](header, list, nil), nil)
