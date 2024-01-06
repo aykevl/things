@@ -114,7 +114,7 @@ func (w *Watch[T]) run() {
 		now := watchTime()
 
 		// Check whether we need to disable the screen.
-		if backlight > 0 && time.Now().Sub(lastEvent) > screenTimeouts[screenTimeoutIndex] {
+		if backlight > 0 && time.Since(lastEvent) > screenTimeouts[screenTimeoutIndex] {
 			// Going to enter sleep state.
 			// First, clear all the views that might be running. Go back to the
 			// homescreen (because that is what we'll show when awaking).
