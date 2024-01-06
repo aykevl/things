@@ -14,7 +14,10 @@ import (
 
 var adapter = bluetooth.DefaultAdapter
 
-var batteryLevel bluetooth.Characteristic
+var (
+	batteryLevel  bluetooth.Characteristic
+	stepCountChar bluetooth.Characteristic
+)
 
 var connectedDevice chan bluetooth.Device
 
@@ -115,7 +118,34 @@ func InitBluetooth() error {
 		return err
 	}
 
+	// InfiniTime Motion Service.
+	err = adapter.AddService(&bluetooth.Service{
+		UUID: makeInfiniTimeUUID(0x0003_0000),
+		Characteristics: []bluetooth.CharacteristicConfig{
+			// Step count characteristic.
+			{
+				Handle: &stepCountChar,
+				UUID:   makeInfiniTimeUUID(0x0003_0001),
+				Flags:  bluetooth.CharacteristicReadPermission | bluetooth.CharacteristicNotifyPermission,
+				Value:  make([]byte, 4),
+			},
+		},
+	})
+	if err != nil {
+		return err
+	}
+
 	return nil
+}
+
+func makeInfiniTimeUUID(firstPart uint32) bluetooth.UUID {
+	// SSSSCCCC-78fc-48fe-8e23-433b3a1942d0
+	return bluetooth.NewUUID([16]byte{
+		uint8(firstPart >> 24), uint8(firstPart >> 16), uint8(firstPart >> 8), uint8(firstPart >> 0),
+		0x78, 0xfc,
+		0x48, 0xfe,
+		0x8e, 0x23,
+		0x43, 0x3b, 0x3a, 0x19, 0x42, 0xd0})
 }
 
 func handleBLEConnection(device bluetooth.Device, connected bool) {
@@ -148,17 +178,34 @@ func connectionHandler() {
 	}
 }
 
-var updateBatteryLevelBuf [1]byte
+var updateCharacteristicBuf [4]byte
 var batteryLevelValue uint8
 
 func updateBatteryLevel(level uint8) {
 	if level == batteryLevelValue {
 		return
 	}
-	updateBatteryLevelBuf[0] = level
-	_, err := batteryLevel.Write(updateBatteryLevelBuf[:])
+	updateCharacteristicBuf[0] = level
+	_, err := batteryLevel.Write(updateCharacteristicBuf[:1])
 	if err != nil {
 		return
 	}
 	batteryLevelValue = level
+}
+
+var stepCountValue uint32
+
+func updateStepCountValue(stepCount uint32) {
+	if stepCount == stepCountValue {
+		return
+	}
+	updateCharacteristicBuf[0] = byte(stepCount >> 0)
+	updateCharacteristicBuf[1] = byte(stepCount >> 8)
+	updateCharacteristicBuf[2] = byte(stepCount >> 16)
+	updateCharacteristicBuf[3] = byte(stepCount >> 24)
+	_, err := stepCountChar.Write(updateCharacteristicBuf[:4])
+	if err != nil {
+		return
+	}
+	stepCountValue = stepCount
 }

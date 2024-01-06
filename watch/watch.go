@@ -92,6 +92,7 @@ func (w *Watch[T]) run() {
 	updateSensors := func(now time.Time) {
 		// Update most sensors.
 		board.Sensors.Update(drivers.Temperature | drivers.Acceleration)
+		updateStepCountValue(board.Sensors.Steps())
 		lastSensorUpdate = now
 
 		// Update battery state.

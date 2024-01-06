@@ -12,3 +12,6 @@ func InitBluetooth() error {
 
 func updateBatteryLevel(level uint8) {
 }
+
+func updateStepCountValue(stepCount uint32) {
+}
