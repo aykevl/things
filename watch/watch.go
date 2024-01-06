@@ -213,19 +213,6 @@ func setBacklight(level int) {
 	}
 }
 
-// Format a time without using time.Format.
-func formatTime(hour, minute int) string {
-	h := strconv.Itoa(hour)
-	if len(h) == 1 {
-		h = "0" + h
-	}
-	m := strconv.Itoa(minute)
-	if len(m) == 1 {
-		m = "0" + m
-	}
-	return h + ":" + m
-}
-
 func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 	// Constants used in this function.
 	var (
