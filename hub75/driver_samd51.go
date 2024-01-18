@@ -35,12 +35,24 @@ type dmaDescriptor struct {
 
 func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	d.dmaChannel = 0
-	d.bus = &machine.SPI0      // must be SERCOM1
+	// must be SERCOM1
+	d.bus = &machine.SPI0
+	if d.spi.Bus != nil {
+		d.bus = &d.spi
+		d.bus.Configure(machine.SPIConfig{
+			Frequency: 16000000,
+			Mode:      0,
+			SCK:       machine.SPI1_SCK_PIN,
+			SDO:       machine.SPI1_SDO_PIN,
+			SDI:       machine.SPI1_SDI_PIN,
+		})
+	} else {
+		d.bus.Configure(machine.SPIConfig{
+			Frequency: 16000000,
+			Mode:      0,
+		})
+	}
 	const triggerSource = 0x07 // SERCOM1_DMAC_ID_TX
-	d.bus.Configure(machine.SPIConfig{
-		Frequency: 16000000,
-		Mode:      0,
-	})
 
 	// Init DMAC.
 	// First configure the clocks, then configure the DMA descriptors. Those
@@ -86,16 +98,29 @@ func (d *Device) configureChip(dataPin, clockPin machine.Pin) {
 	// Enable pin.
 	// d.oe == D7 == PA18
 	// PA18 is on TCC1 WO[2]
-	pwm := machine.TCC1
-	pwm.Configure(machine.PWMConfig{})
-	pwm.Channel(d.oe)
-	d.timer = sam.TCC1
-	d.timerChannel = &d.timer.CC[2]
+	switch d.oe {
+	case machine.D7:
+		pwm := machine.TCC1
+		pwm.Configure(machine.PWMConfig{})
+		pwm.Channel(d.oe)
+		d.timer = sam.TCC1
+		d.timerChannel = &d.timer.CC[2]
+		// Enable an interrupt on CC2 match.
+		d.timer.INTENSET.Set(sam.TCC_INTENSET_MC2)
+		intr2 := interrupt.New(sam.IRQ_TCC1_MC2, tcc1Handler2)
+		intr2.Enable()
 
-	// Enable an interrupt on CC2 match.
-	d.timer.INTENSET.Set(sam.TCC_INTENSET_MC2)
-	intr2 := interrupt.New(sam.IRQ_TCC1_MC2, tcc1Handler)
-	intr2.Enable()
+	case machine.D9:
+		pwm := machine.TCC0
+		pwm.Configure(machine.PWMConfig{})
+		pwm.Channel(d.oe)
+		d.timer = sam.TCC0
+		d.timerChannel = &d.timer.CC[0]
+		// Enable an interrupt on CC0 match.
+		d.timer.INTENSET.Set(sam.TCC_INTENSET_MC0)
+		intr2 := interrupt.New(sam.IRQ_TCC0_MC0, tcc0Handler0)
+		intr2.Enable()
+	}
 
 	// Set to one-shot and count down.
 	d.timer.CTRLBSET.SetBits(sam.TCC_CTRLBSET_ONESHOT | sam.TCC_CTRLBSET_DIR)
@@ -142,9 +167,16 @@ func spiHandler(intr interrupt.Interrupt) {
 	display.handleSPIEvent()
 }
 
-func tcc1Handler(intr interrupt.Interrupt) {
+func tcc1Handler2(intr interrupt.Interrupt) {
 	// Clear the interrupt flag.
 	sam.TCC1.INTFLAG.Set(sam.TCC_INTFLAG_MC2)
+
+	display.handleTimerEvent()
+}
+
+func tcc0Handler0(intr interrupt.Interrupt) {
+	// Clear the interrupt flag.
+	sam.TCC0.INTFLAG.Set(sam.TCC_INTFLAG_MC0)
 
 	display.handleTimerEvent()
 }
