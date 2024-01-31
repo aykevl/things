@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/aykevl/board v0.0.0-20231124144211-feeba0ede83c
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
-	github.com/aykevl/tinygl v0.0.0-20231204125005-72ed71fe92f9
+	github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 )
 
@@ -39,5 +39,4 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
-	tinygo.org/x/tinyfont v0.4.0 // indirect
 )

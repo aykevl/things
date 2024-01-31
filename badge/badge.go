@@ -51,7 +51,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	})
 	listbox.SetGrowable(0, 1) // listbox fills the rest of the screen
 	listbox.Select(0)         // focus the first element
-	home := theme.NewVBox(header, listbox)
+	home := tinygl.NewVerticalScrollBox[T](header, listbox, nil)
 
 	// Handle touch events in the listbox.
 	listbox.SetEventHandler(func(event tinygl.Event, index int) {
@@ -107,7 +107,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	}
 }
 
-func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl.Screen[T], home *tinygl.VBox[T], touchInput board.TouchInput) {
+func runApp[T pixel.Color](index int, display board.Displayer[T], screen *tinygl.Screen[T], home *tinygl.VerticalScrollBox[T], touchInput board.TouchInput) {
 	switch index {
 	case 0:
 		println("starting noise")
