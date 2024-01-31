@@ -230,7 +230,7 @@ func (w *Watch[T]) createAppsView(views *ViewManager[T]) View[T] {
 		"Rotate",
 	})
 	list.SetGrowable(1, 1)
-	list.SetPadding(0, 8)
+	list.SetPadding(0, 2)
 	list.SetEventHandler(func(event tinygl.Event, index int) {
 		if event != tinygl.TouchTap {
 			return
@@ -269,7 +269,7 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 	acceleration.SetAlign(tinygl.AlignLeft)
 	stepsText := views.NewText("steps: ...")
 	stepsText.SetAlign(tinygl.AlignLeft)
-	vbox := views.NewVBox(header, battery, voltage, temperature, acceleration, stepsText)
+	vbox := views.NewVBox(battery, voltage, temperature, acceleration, stepsText)
 	wrapper := tinygl.NewEventBox[T](vbox)
 	wrapper.SetEventHandler(func(event tinygl.Event, x, y int) {
 		if event != tinygl.TouchTap {
@@ -277,6 +277,7 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 		}
 		views.Pop()
 	})
+	scroller := tinygl.NewVerticalScrollBox[T](header, wrapper, nil)
 
 	var steps uint32 = 0xffff_ffff
 	var ax, ay, az int32
@@ -284,7 +285,7 @@ func createSensorsView[T pixel.Color](views *ViewManager[T]) View[T] {
 
 	// Create the view with the update callback.
 	var lastTime time.Time
-	return NewView[T](wrapper, func(now time.Time) {
+	return NewView[T](scroller, func(now time.Time) {
 		if now.Sub(lastTime) > time.Second/5 {
 			lastTime = now
 
