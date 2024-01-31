@@ -3,7 +3,7 @@ module github.com/aykevl/things/watch
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20240105183806-66b2a915d49a
+	github.com/aykevl/board v0.0.0-20240106144210-80ca76f77def
 	github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182
 	tinygo.org/x/bluetooth v0.8.1-0.20240105150735-31d0fec4693f
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9

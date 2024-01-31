@@ -47,8 +47,8 @@ github.com/antihax/optional v1.0.0/go.mod h1:uupD/76wgC+ih3iEmQUL+0Ugr19nfwCT1kd
 github.com/armon/circbuf v0.0.0-20150827004946-bbbad097214e/go.mod h1:3U/XgcO3hCbHZ8TKRvWD2dDTCfh9M9ya+I9JpbB7O8o=
 github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
-github.com/aykevl/board v0.0.0-20240105183806-66b2a915d49a h1:M5GPrg4MGTquGGDoSENSYoXhps0/9Az7BHgB6d1GLAY=
-github.com/aykevl/board v0.0.0-20240105183806-66b2a915d49a/go.mod h1:2OaKBLoD+7BrLyyzJY7j4ySZheoxxWRKfZt6HmnNKrc=
+github.com/aykevl/board v0.0.0-20240106144210-80ca76f77def h1:t/AKI8sHVbNN6tbrY7tkxe1AvCSTGz+UeRqb6icRZGM=
+github.com/aykevl/board v0.0.0-20240106144210-80ca76f77def/go.mod h1:2OaKBLoD+7BrLyyzJY7j4ySZheoxxWRKfZt6HmnNKrc=
 github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182 h1:aJjM/rs56OvexAZKgSxzBthIUPyFwMQGGyNXqy3CQpI=
 github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182/go.mod h1:0ySBIfp4NY0yGfmuvQ9khOFFDcjsfmlxvKwtNvVQfmA=
 github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kBD4zp0CCIs=
