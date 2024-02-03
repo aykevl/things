@@ -20,10 +20,13 @@ To use this bootloader:
 
     Wait until you see a small blue pine icon that slowly turns white, and then the Wasp-OS bootloader screen.
     
- 2. Create a firmware package. TODO: describe how this works ([hint](https://github.com/tinygo-org/tinygo/pull/3712)).
+ 2. Create a firmware package. You can use the following command:
+    ```
+    tinygo build -o watch.zip -target=./pinetime-wasp-bootloader.json -opt=2
+    ```
  3. Flash the firmware package using ota.py (from either InfiniTime or Wasp-OS).
     
-        ./dfu.py -a <macaddress> --legacy -z path/to/watch.zip
+        ./dfu.py -a <macaddress> --legacy -z watch.zip
  4. Enjoy the new firmware!
 
 Once you have done the first OTA using the Wasp-OS bootloader and you have access to the SWD pins, you can flash the firmware using SWD:
@@ -41,7 +44,7 @@ Check out the repository and run the following command to start the simulator:
 You may need to install a few dependencies first:
 
   * [Go](https://go.dev/dl/) (at least version 1.20)
-  * [SDL2 headers](https://github.com/veandco/go-sdl2#requirements)
+  * [Fyne dependencies](https://docs.fyne.io/started/)
 
 This is what it might look like:
 
