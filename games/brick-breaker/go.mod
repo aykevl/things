@@ -3,7 +3,7 @@ module github.com/aykevl/things/games/brick-breaker
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20231124141710-c2cfe87635bf
+	github.com/aykevl/board v0.0.0-20240106144210-80ca76f77def
 	github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 )
