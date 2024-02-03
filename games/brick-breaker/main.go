@@ -121,7 +121,6 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	canvas.Add(ball)
 
 	var leftDown, rightDown bool
-	first := true
 	for {
 		frameStart := time.Now()
 
