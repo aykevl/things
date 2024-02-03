@@ -27,6 +27,13 @@ import (
 )
 
 func main() {
+	if board.Name == "simulator" {
+		// Use the configuration for the Gopher Badge.
+		board.Simulator.WindowWidth = 320
+		board.Simulator.WindowHeight = 240
+		board.Simulator.WindowPPI = 166
+		board.Simulator.WindowDrawSpeed = time.Second * 16 / 62_500e3 // 62.5MHz, 16bpp
+	}
 	board.Buttons.Configure()
 	display := board.Display.Configure()
 	board.Display.SetBrightness(board.Display.MaxBrightness())
@@ -97,17 +104,24 @@ func runBrickBreaker[T pixel.Color](screen *tinygl.Screen[T], canvas *gfx.Canvas
 	for i := 0; i < 10; i++ {
 		x := cw/2 + (i-5)*brickSize + brickPadding
 		y := brickYStart
-		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, brickColor))
+		brick := gfx.NewRect(brickColor, x, y, brickInnerSize, brickInnerSize)
+		canvas.Add(brick)
+		bricks = append(bricks, brick)
 	}
 	for i := 0; i < 11; i++ {
 		x := cw/2 + (i-5)*brickSize - brickSize/2 + brickPadding
 		y := brickYStart + brickSize
-		bricks = append(bricks, canvas.CreateRect(x, y, brickInnerSize, brickInnerSize, brickColor))
+		brick := gfx.NewRect(brickColor, x, y, brickInnerSize, brickInnerSize)
+		canvas.Add(brick)
+		bricks = append(bricks, brick)
 	}
-	paddle := canvas.CreateRect(cw/2-paddleWidth/2, ch-paddleHeight, paddleWidth, paddleHeight, red)
-	ball := canvas.CreateRect(ballX/256, ballY/256, ballSize/256, ballSize/256, yellow)
+	paddle := gfx.NewRect(red, cw/2-paddleWidth/2, ch-paddleHeight, paddleWidth, paddleHeight)
+	canvas.Add(paddle)
+	ball := gfx.NewRect(yellow, ballX/256, ballY/256, ballSize/256, ballSize/256)
+	canvas.Add(ball)
 
 	var leftDown, rightDown bool
+	first := true
 	for {
 		frameStart := time.Now()
 

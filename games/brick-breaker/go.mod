@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/aykevl/board v0.0.0-20231124141710-c2cfe87635bf
-	github.com/aykevl/tinygl v0.0.0-20231124133440-950a2fbe9f5e
+	github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182
 	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
 )
 
@@ -38,5 +38,4 @@ require (
 	golang.org/x/text v0.14.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
-	tinygo.org/x/tinyfont v0.4.0 // indirect
 )

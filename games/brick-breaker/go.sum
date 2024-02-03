@@ -49,8 +49,8 @@ github.com/armon/go-metrics v0.0.0-20180917152333-f0300d1749da/go.mod h1:Q73ZrmV
 github.com/armon/go-radix v0.0.0-20180808171621-7fddfc383310/go.mod h1:ufUuZ+zHj4x4TnLV4JWEpy2hxWSpsRywHrMgIH9cCH8=
 github.com/aykevl/board v0.0.0-20231124141710-c2cfe87635bf h1:XLkdFG5t/PnUgQ+bEgEiU/bV7kbQEKiQ8Ex+5mgSo5s=
 github.com/aykevl/board v0.0.0-20231124141710-c2cfe87635bf/go.mod h1:2OaKBLoD+7BrLyyzJY7j4ySZheoxxWRKfZt6HmnNKrc=
-github.com/aykevl/tinygl v0.0.0-20231124133440-950a2fbe9f5e h1:Ik0ZMc8ysYng6yzuI2mfsyXtt9O0+/glKIjmavyn4xU=
-github.com/aykevl/tinygl v0.0.0-20231124133440-950a2fbe9f5e/go.mod h1:0ySBIfp4NY0yGfmuvQ9khOFFDcjsfmlxvKwtNvVQfmA=
+github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182 h1:aJjM/rs56OvexAZKgSxzBthIUPyFwMQGGyNXqy3CQpI=
+github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182/go.mod h1:0ySBIfp4NY0yGfmuvQ9khOFFDcjsfmlxvKwtNvVQfmA=
 github.com/bgentry/speakeasy v0.1.0/go.mod h1:+zsyZBPWlz7T6j88CTgSN5bM796AkVf0kBD4zp0CCIs=
 github.com/bketelsen/crypt v0.0.4/go.mod h1:aI6NrJ0pMGgvZKL1iVgXLnfIFJtfV+bKCoqOes/6LfM=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
@@ -655,5 +655,3 @@ rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
 rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
 tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9 h1:7J3vj9E/gGhMCKLZVGiw/7SUnAjHjIOsyMbD0TibpRc=
 tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9/go.mod h1:X7utcg3yfFUFuKLOMTZD56eztXMjpkcf8OHldfTBsjw=
-tinygo.org/x/tinyfont v0.4.0 h1:XexPKEKiHInf6p4CMCJwsIheVPY0T46HUs6ictYyZfE=
-tinygo.org/x/tinyfont v0.4.0/go.mod h1:7nVj3j3geqBoPDzpFukAhF1C8AP9YocMsZy0HSAcGCA=
