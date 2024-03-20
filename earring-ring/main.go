@@ -5,12 +5,15 @@ import (
 	"time"
 
 	"github.com/aykevl/ledsgo"
-	"github.com/aykevl/tinygl/pixel"
 )
 
 const numLeds = 18
 
-var leds [numLeds]pixel.LinearGRB888
+type RGB struct {
+	R, G, B uint8
+}
+
+var leds [numLeds]RGB
 
 var cycle uint16
 
@@ -90,7 +93,7 @@ func main() {
 							// Wrap around, and enter sleep mode.
 							animation = 0
 							for i := range leds {
-								leds[i] = pixel.LinearGRB888{}
+								leds[i] = RGB{}
 							}
 							disableLEDs()
 							continue
@@ -120,11 +123,11 @@ func purpleCircles(index, traceIndex uint8) {
 		leds[index].B += 8
 	} else {
 		// dim LED
-		c := any(leds[index]).(pixel.LinearGRB888)
+		c := leds[index]
 		r := uint8(uint16(c.R) * 230 / 256)
 		g := uint8(uint16(c.G) * 230 / 256)
 		b := uint8(uint16(c.B) * 230 / 256)
-		leds[index] = pixel.NewLinearGRB888(r, g, b)
+		leds[index] = RGB{r, g, b}
 	}
 }
 
@@ -150,16 +153,16 @@ func rainbowTrace(index, traceIndex uint8) {
 		leds[index].B += c2.B / div
 	} else {
 		// dim LED
-		c := any(leds[index]).(pixel.LinearGRB888)
+		c := leds[index]
 		r := uint8(uint16(c.R) * 225 / 256)
 		g := uint8(uint16(c.G) * 225 / 256)
 		b := uint8(uint16(c.B) * 225 / 256)
-		leds[index] = pixel.NewLinearGRB888(r, g, b)
+		leds[index] = RGB{r, g, b}
 	}
 }
 
 var (
-	flagLGBT = [18]pixel.LinearGRB888{
+	flagLGBT = [18]RGB{
 		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3}, // red
 		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3},
 		{R: 0xff / 3, G: 0x00 / 3, B: 0x00 / 3},
@@ -180,7 +183,7 @@ var (
 		{R: 0x80 / 3, G: 0x00 / 3, B: 0x80 / 3},
 	}
 
-	flagTrans = [18]pixel.LinearGRB888{
+	flagTrans = [18]RGB{
 		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
 		{R: 0x01, G: 0x11, B: 0x66},             // pastel blue
 		{R: 0x66 / 3, G: 0x22 / 3, B: 0x80 / 3}, // pastel pink
@@ -203,7 +206,7 @@ var (
 )
 
 // Show a simple color palette on the earring.
-func showPalette(ledIndex uint8, palette *[18]pixel.LinearGRB888) {
+func showPalette(ledIndex uint8, palette *[18]RGB) {
 	leds[ledIndex] = palette[ledIndex]
 }
 
@@ -260,7 +263,7 @@ func rainbowNoise(index uint8) {
 	intensityIndex := indexFromBottom(index)
 	intensity := ledsgo.Noise1AVR(cycle*2+uint16(intensityIndex)*8) * 2
 	c := ledsgo.Color{H: intensity, S: 255, V: 255}.Rainbow()
-	leds[index] = pixel.LinearGRB888{
+	leds[index] = RGB{
 		R: c.R / 2,
 		G: c.G / 2,
 		B: c.B / 2,
@@ -296,7 +299,7 @@ func fire(index uint8, fireColor color.RGBA) {
 	// Perhaps we could use an actual 0-255 (or 0-64) palette instead? That
 	// might be faster.
 	c := coloredFlame(heat, fireColor)
-	leds[index] = pixel.LinearGRB888{
+	leds[index] = RGB{
 		R: c.R,
 		G: c.G,
 		B: c.B,
@@ -343,7 +346,7 @@ func sparkle(index uint8) {
 					idx -= 18
 				}
 				sparkleIndex = idx
-				if leds[sparkleIndex] == (pixel.LinearGRB888{}) {
+				if leds[sparkleIndex] == (RGB{}) {
 					// Only sparkle dark pixels, to avoid mixing colors.
 					sparkleIntensity = uint8(uint16(r)>>8) % maxIntensity
 				}

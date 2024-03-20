@@ -3,9 +3,8 @@ module github.com/aykevl/things/earring-ring
 go 1.20
 
 require (
-	github.com/aykevl/board v0.0.0-20230516123739-237766cdd16a
-	github.com/aykevl/ledsgo v0.0.0-20230808203851-4c9b90563294
-	github.com/aykevl/tinygl v0.0.0-20230516123611-e2014057c724
+	github.com/aykevl/board v0.0.0-20240106144210-80ca76f77def
+	github.com/aykevl/ledsgo v0.0.0-20240320160706-1580ae804c3f
 )
 
 require (
@@ -38,5 +37,5 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20221001195520-26252dedbe70 // indirect
-	tinygo.org/x/drivers v0.24.1-0.20230514211640-9955e094661c // indirect
+	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9 // indirect
 )

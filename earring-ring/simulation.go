@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/aykevl/board"
-	"github.com/aykevl/tinygl/pixel"
 )
 
 func initHardware() {
@@ -39,13 +38,9 @@ func isButtonPressed() bool {
 }
 
 func updateLEDs() {
-	updateBoardLEDs(board.AddressableLEDs.Data)
+	for i, c := range leds {
+		board.AddressableLEDs.SetRGB(i, c.R, c.G, c.B)
+	}
 	board.AddressableLEDs.Update()
 	time.Sleep(time.Second / 500)
-}
-
-func updateBoardLEDs[T pixel.Color](data []T) {
-	for i, c := range leds {
-		data[i] = pixel.NewLinearColor[T](c.R, c.G, c.B)
-	}
 }
