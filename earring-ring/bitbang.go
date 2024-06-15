@@ -66,113 +66,134 @@ func updateLEDs() {
 	//   G3: PB4
 	//   B3: PB5
 
+	// order of the LEDs:
+	// index   part #   Rx/Gx/Bx  anode
+	// 0       LED16    1         A6
+	// 1       LED17    2         A6
+	// 2       LED18    3         A6
+	// 3       LED13    1         A5
+	// 4       LED14    2         A5
+	// 5       LED15    3         A5
+	// 6       LED11    2         A4
+	// 7       LED12    3         A4
+	// 8       LED10    1         A4
+	// 9       LED8     2         A3
+	// 10      LED7     1         A3
+	// 11      LED9     3         A3
+	// 12      LED6     3         A2
+	// 13      LED5     2         A2
+	// 14      LED4     1         A2
+	// 15      LED3     3         A1
+	// 16      LED1     1         A1
+	// 17      LED2     2         A1
+
 	state := interrupt.Disable()
 
 	// R1
 	avr.PORTC.OUTTGL.Set(1 << 0)
 	showLEDs(
-		leds[0+2].R,
-		leds[0+3].R,
-		leds[0+4].R,
-		leds[0+5].R,
-		leds[0+0].R,
-		leds[0+1].R,
+		leds[10].R, // PA6, A3
+		leds[ 8].R, // PA5, A4
+		leds[ 3].R, // PA4, A5
+		leds[ 0].R, // PA3, A6
+		leds[16].R, // PA2, A1
+		leds[14].R, // PA1, A2
 	)
 	avr.PORTC.OUTTGL.Set(1 << 0)
 
-	// R2 (LEDs reversed)
+	// R2
 	avr.PORTB.OUTTGL.Set(1 << 0)
 	showLEDs(
-		leds[6+3].R,
-		leds[6+2].R,
-		leds[6+1].R,
-		leds[6+0].R,
-		leds[6+5].R,
-		leds[6+4].R,
+		leds[ 9].R, // PA6, A3
+		leds[ 6].R, // PA5, A4
+		leds[ 4].R, // PA4, A5
+		leds[ 1].R, // PA3, A6
+		leds[17].R, // PA2, A1
+		leds[13].R, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 0)
 
 	// R3
 	avr.PORTB.OUTTGL.Set(1 << 3)
 	showLEDs(
-		leds[12+2].R,
-		leds[12+3].R,
-		leds[12+4].R,
-		leds[12+5].R,
-		leds[12+0].R,
-		leds[12+1].R,
+		leds[11].R, // PA6, A3
+		leds[ 7].R, // PA5, A4
+		leds[ 5].R, // PA4, A5
+		leds[ 2].R, // PA3, A6
+		leds[15].R, // PA2, A1
+		leds[12].R, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 3)
 
 	// G1
 	avr.PORTC.OUTTGL.Set(1 << 1)
 	showLEDs(
-		leds[0+2].G,
-		leds[0+3].G,
-		leds[0+4].G,
-		leds[0+5].G,
-		leds[0+0].G,
-		leds[0+1].G,
+		leds[10].G, // PA6, A3
+		leds[ 8].G, // PA4, A4
+		leds[ 3].G, // PA4, A5
+		leds[ 0].G, // PA3, A6
+		leds[16].G, // PA2, A1
+		leds[14].G, // PA1, A2
 	)
 	avr.PORTC.OUTTGL.Set(1 << 1)
 
-	// G2 (LEDs reversed)
+	// G2
 	avr.PORTB.OUTTGL.Set(1 << 1)
 	showLEDs(
-		leds[6+3].G,
-		leds[6+2].G,
-		leds[6+1].G,
-		leds[6+0].G,
-		leds[6+5].G,
-		leds[6+4].G,
+		leds[ 9].G, // PA6, A3
+		leds[ 6].G, // PA5, A4
+		leds[ 4].G, // PA4, A5
+		leds[ 1].G, // PA3, A6
+		leds[17].G, // PA2, A1
+		leds[13].G, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 1)
 
 	// G3
 	avr.PORTB.OUTTGL.Set(1 << 4)
 	showLEDs(
-		leds[12+2].G,
-		leds[12+3].G,
-		leds[12+4].G,
-		leds[12+5].G,
-		leds[12+0].G,
-		leds[12+1].G,
+		leds[11].G, // PA6, A3
+		leds[ 7].G, // PA5, A4
+		leds[ 5].G, // PA4, A5
+		leds[ 2].G, // PA3, A6
+		leds[15].G, // PA2, A1
+		leds[12].G, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 4)
 
 	// B1
 	avr.PORTC.OUTTGL.Set(1 << 2)
 	showLEDs(
-		leds[0+2].B,
-		leds[0+3].B,
-		leds[0+4].B,
-		leds[0+5].B,
-		leds[0+0].B,
-		leds[0+1].B,
+		leds[10].B, // PA6, A3
+		leds[ 8].B, // PA4, A4
+		leds[ 3].B, // PA4, A5
+		leds[ 0].B, // PA3, A6
+		leds[16].B, // PA2, A1
+		leds[14].B, // PA1, A2
 	)
 	avr.PORTC.OUTTGL.Set(1 << 2)
 
-	// B2 (LEDs reversed)
+	// B2
 	avr.PORTB.OUTTGL.Set(1 << 2)
 	showLEDs(
-		leds[6+3].B,
-		leds[6+2].B,
-		leds[6+1].B,
-		leds[6+0].B,
-		leds[6+5].B,
-		leds[6+4].B,
+		leds[ 9].B, // PA6, A3
+		leds[ 6].B, // PA5, A4
+		leds[ 4].B, // PA4, A5
+		leds[ 1].B, // PA3, A6
+		leds[17].B, // PA2, A1
+		leds[13].B, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 2)
 
 	// B3
 	avr.PORTB.OUTTGL.Set(1 << 5)
 	showLEDs(
-		leds[12+2].B,
-		leds[12+3].B,
-		leds[12+4].B,
-		leds[12+5].B,
-		leds[12+0].B,
-		leds[12+1].B,
+		leds[11].B, // PA6, A3
+		leds[ 7].B, // PA5, A4
+		leds[ 5].B, // PA4, A5
+		leds[ 2].B, // PA3, A6
+		leds[15].B, // PA2, A1
+		leds[12].B, // PA1, A2
 	)
 	avr.PORTB.OUTTGL.Set(1 << 5)
 
