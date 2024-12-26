@@ -13,6 +13,8 @@ In this directory you'll find:
   * The gerber, BOM, and Pick-n-place files in case you want to fabricate this earring yourself.
   * An Altium project file, downloaded from EasyEDA (untested, might not work).
 
+You can also find the design on [oshwlab.com](https://oshwlab.com/aykevanlaethem/led-earring-attiny1616_copy_copy_copy_copy) to easily produce them using JLCPCB. But also see [the project page on my website](https://aykevl.nl/projects/earrings), I might start selling them soon.
+
 ## Programming
 
 The PCB exposes a few pins:
@@ -25,9 +27,9 @@ The PCB exposes a few pins:
 
 You can make a programmer quite easily using a USB to UART converter and a 1kΩ resistor. You can find details on the [pymcuprog](https://pypi.org/project/pymcuprog/) project page (see "Serial port UPDI (pyupdi)").
 
-To program, insert a CR1225 coin cell battery and connect the `-` to the UART ground and `R` to the UPDI programming pin. Then run the following command:
+To program, insert a CR1220/CR1225 coin cell battery and connect the `-` to the UART ground and `R` to the UPDI programming pin. Then run the following command:
 
-    tinygo flash -target=attiny1616
+    tinygo flash -target=attiny1616 -opt=2
 
 That's all! It'll take a few seconds and the new code is running on the chip.
 
@@ -43,6 +45,14 @@ go run .
 ![Screenshot of earring code running under simulation](simulator.png)
 
 In the future, I hope to improve the simulator so that it will draw the LEDs in a circle like on the real earring.
+
+## Revision history
+
+I've made a few revisions of these earrings:
+
+  * **v1** is the initial version I'm still using for myself and is the one I sold on GopherCon. I had to solder the button and battery holder on the back myself.
+  * **v2** was a bit of a failure. It used a smaller LED but sadly most of those were not assembled correctly by JLCPCB (often, one of the LEDs didn't work). Therefore, I haven't published it.
+  * **v3** is the one that actually works, and is easily mass-produced. The button and battery holder can be assembled by JLCPCB, meaning I only have to break them apart, program them, and attach earring hooks and such.
 
 ## Credits
 
