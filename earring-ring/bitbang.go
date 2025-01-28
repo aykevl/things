@@ -80,30 +80,6 @@ func updateLEDs() {
 	)
 	avr.PORTC.OUTTGL.Set(1 << 0)
 
-	// R2 (LEDs reversed)
-	avr.PORTB.OUTTGL.Set(1 << 0)
-	showLEDs(
-		leds[6+3].R,
-		leds[6+2].R,
-		leds[6+1].R,
-		leds[6+0].R,
-		leds[6+5].R,
-		leds[6+4].R,
-	)
-	avr.PORTB.OUTTGL.Set(1 << 0)
-
-	// R3
-	avr.PORTB.OUTTGL.Set(1 << 3)
-	showLEDs(
-		leds[12+2].R,
-		leds[12+3].R,
-		leds[12+4].R,
-		leds[12+5].R,
-		leds[12+0].R,
-		leds[12+1].R,
-	)
-	avr.PORTB.OUTTGL.Set(1 << 3)
-
 	// G1
 	avr.PORTC.OUTTGL.Set(1 << 1)
 	showLEDs(
@@ -115,30 +91,6 @@ func updateLEDs() {
 		leds[0+1].G,
 	)
 	avr.PORTC.OUTTGL.Set(1 << 1)
-
-	// G2 (LEDs reversed)
-	avr.PORTB.OUTTGL.Set(1 << 1)
-	showLEDs(
-		leds[6+3].G,
-		leds[6+2].G,
-		leds[6+1].G,
-		leds[6+0].G,
-		leds[6+5].G,
-		leds[6+4].G,
-	)
-	avr.PORTB.OUTTGL.Set(1 << 1)
-
-	// G3
-	avr.PORTB.OUTTGL.Set(1 << 4)
-	showLEDs(
-		leds[12+2].G,
-		leds[12+3].G,
-		leds[12+4].G,
-		leds[12+5].G,
-		leds[12+0].G,
-		leds[12+1].G,
-	)
-	avr.PORTB.OUTTGL.Set(1 << 4)
 
 	// B1
 	avr.PORTC.OUTTGL.Set(1 << 2)
@@ -152,6 +104,30 @@ func updateLEDs() {
 	)
 	avr.PORTC.OUTTGL.Set(1 << 2)
 
+	// R2 (LEDs reversed)
+	avr.PORTB.OUTTGL.Set(1 << 0)
+	showLEDs(
+		leds[6+3].R,
+		leds[6+2].R,
+		leds[6+1].R,
+		leds[6+0].R,
+		leds[6+5].R,
+		leds[6+4].R,
+	)
+	avr.PORTB.OUTTGL.Set(1 << 0)
+
+	// G2 (LEDs reversed)
+	avr.PORTB.OUTTGL.Set(1 << 1)
+	showLEDs(
+		leds[6+3].G,
+		leds[6+2].G,
+		leds[6+1].G,
+		leds[6+0].G,
+		leds[6+5].G,
+		leds[6+4].G,
+	)
+	avr.PORTB.OUTTGL.Set(1 << 1)
+
 	// B2 (LEDs reversed)
 	avr.PORTB.OUTTGL.Set(1 << 2)
 	showLEDs(
@@ -163,6 +139,30 @@ func updateLEDs() {
 		leds[6+4].B,
 	)
 	avr.PORTB.OUTTGL.Set(1 << 2)
+
+	// R3
+	avr.PORTB.OUTTGL.Set(1 << 3)
+	showLEDs(
+		leds[12+2].R,
+		leds[12+3].R,
+		leds[12+4].R,
+		leds[12+5].R,
+		leds[12+0].R,
+		leds[12+1].R,
+	)
+	avr.PORTB.OUTTGL.Set(1 << 3)
+
+	// G3
+	avr.PORTB.OUTTGL.Set(1 << 4)
+	showLEDs(
+		leds[12+2].G,
+		leds[12+3].G,
+		leds[12+4].G,
+		leds[12+5].G,
+		leds[12+0].G,
+		leds[12+1].G,
+	)
+	avr.PORTB.OUTTGL.Set(1 << 4)
 
 	// B3
 	avr.PORTB.OUTTGL.Set(1 << 5)
