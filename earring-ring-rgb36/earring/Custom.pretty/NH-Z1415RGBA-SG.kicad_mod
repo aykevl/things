@@ -94,6 +94,7 @@
 		(at 0 -1.6 0)
 		(unlocked yes)
 		(layer "F.Fab")
+		(hide yes)
 		(uuid "d98a0803-ec16-4c19-be1f-e72673d68688")
 		(effects
 			(font
@@ -129,5 +130,16 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(thermal_bridge_angle 45)
 		(uuid "0708dba6-fcc9-49e7-bc37-ed9364de9ead")
+	)
+	(model "../NH-Z1415RGBA-SG-Body.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
 	)
 )
