@@ -5,6 +5,108 @@
 	(uuid "5b672b97-2486-4be1-9927-7141d9b63fb2")
 	(paper "A4")
 	(lib_symbols
+		(symbol "Connector:TestPoint_Small"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.762) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint_Small"
+				(at 0 2.032 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_Small_0_1"
+				(circle
+					(center 0 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "TestPoint_Small_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 0)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Connector_Generic:Conn_01x04"
 			(pin_names
 				(offset 1.016) hide)
@@ -2180,22 +2282,10 @@
 		(uuid "9098d5d5-f650-49dc-a579-93d0782a0acf")
 	)
 	(junction
-		(at 64.77 30.48)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a4cf2584-2955-4fc8-ab4f-d152e9397c23")
-	)
-	(junction
 		(at 77.47 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ade15a37-fc2c-498b-90fc-aaa5ceaa96fd")
-	)
-	(junction
-		(at 52.07 22.86)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fcc4e521-5b17-4247-a3bc-ced4feb5309c")
 	)
 	(no_connect
 		(at 27.94 49.53)
@@ -2204,10 +2294,6 @@
 	(no_connect
 		(at 27.94 52.07)
 		(uuid "5bcd4d61-81dd-490c-81c1-5accd939adba")
-	)
-	(no_connect
-		(at 27.94 39.37)
-		(uuid "72b4569b-69d6-4b36-a549-bdd6decf0187")
 	)
 	(no_connect
 		(at 27.94 57.15)
@@ -2285,16 +2371,6 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 22.86) (xy 64.77 22.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8360c35f-291f-4213-aaa0-34446c978c56")
-	)
-	(wire
-		(pts
 			(xy 40.64 22.86) (xy 40.64 31.75)
 		)
 		(stroke
@@ -2315,16 +2391,6 @@
 	)
 	(wire
 		(pts
-			(xy 64.77 30.48) (xy 52.07 30.48)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c43f3613-eb9c-42b6-acb7-2264535be890")
-	)
-	(wire
-		(pts
 			(xy 64.77 30.48) (xy 77.47 30.48)
 		)
 		(stroke
@@ -2335,7 +2401,7 @@
 	)
 	(wire
 		(pts
-			(xy 45.72 22.86) (xy 52.07 22.86)
+			(xy 45.72 22.86) (xy 64.77 22.86)
 		)
 		(stroke
 			(width 0)
@@ -6620,85 +6686,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 52.07 26.67 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "28ca0057-5215-4e94-a598-ac14ad2ed026")
-		(property "Reference" "C1"
-			(at 55.88 25.3999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100nF"
-			(at 55.88 27.9399 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 53.0352 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 52.07 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at 52.07 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C1525"
-			(at 52.07 26.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "b9701d03-a091-4a73-8f58-b9d941c61176")
-		)
-		(pin "2"
-			(uuid "2ef521cd-b437-4870-94ac-e9ff8c15a68b")
-		)
-		(instances
-			(project ""
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "C1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED_ARGB")
 		(at 105.41 73.66 90)
 		(unit 1)
@@ -6844,6 +6831,73 @@
 			(project ""
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Small")
+		(at 27.94 39.37 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4c05589f-5125-44d0-8847-3b9af76d3da0")
+		(property "Reference" "TP1"
+			(at 26.67 38.0999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint_Small"
+			(at 26.67 40.6399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Custom:TestPoint_1.0x1.0mm"
+			(at 22.86 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 22.86 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 27.94 39.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b373988f-863f-4b7d-9774-7e6a39926642")
+		)
+		(instances
+			(project ""
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "TP1")
 					(unit 1)
 				)
 			)
