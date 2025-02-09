@@ -3,7 +3,7 @@
 	(generator "eeschema")
 	(generator_version "8.0")
 	(uuid "5b672b97-2486-4be1-9927-7141d9b63fb2")
-	(paper "A4")
+	(paper "A3")
 	(lib_symbols
 		(symbol "Connector:TestPoint_Small"
 			(pin_numbers hide)
@@ -2288,12 +2288,24 @@
 		(uuid "ade15a37-fc2c-498b-90fc-aaa5ceaa96fd")
 	)
 	(no_connect
+		(at 27.94 64.77)
+		(uuid "0a2ceddc-f8d4-48e6-ade1-d4c2d2ca3f40")
+	)
+	(no_connect
 		(at 27.94 49.53)
 		(uuid "27cf8199-da06-4b32-9727-6e964f41c529")
 	)
 	(no_connect
 		(at 27.94 52.07)
 		(uuid "5bcd4d61-81dd-490c-81c1-5accd939adba")
+	)
+	(no_connect
+		(at 27.94 59.69)
+		(uuid "8df61599-f8c0-4c08-9a0e-b8a8baae218d")
+	)
+	(no_connect
+		(at 27.94 62.23)
+		(uuid "b0295857-7dcc-4f1a-917b-22d28158dc5d")
 	)
 	(no_connect
 		(at 27.94 57.15)
@@ -2419,9 +2431,9 @@
 		)
 		(uuid "f4c8e366-2eb4-4a8e-9864-608469b4e60f")
 	)
-	(global_label "B1"
+	(global_label "A3"
 		(shape input)
-		(at 269.24 104.14 270)
+		(at 205.74 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2431,7 +2443,7 @@
 		)
 		(uuid "00bb929e-7a6a-433a-a4e0-f98e1267fe31")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 109.6047 90)
+			(at 205.74 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2441,9 +2453,9 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
-		(at 232.41 104.14 270)
+		(at 200.66 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2453,7 +2465,7 @@
 		)
 		(uuid "0616a9f6-a914-41e1-8107-13ac62692adc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 109.6047 90)
+			(at 200.66 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2463,9 +2475,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 200.66 104.14 270)
+		(at 168.91 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2475,7 +2487,7 @@
 		)
 		(uuid "07c03beb-5c12-40fd-a045-4173d2d51eab")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 109.6047 90)
+			(at 168.91 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2485,9 +2497,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 104.14 270)
+		(at 195.58 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2497,7 +2509,7 @@
 		)
 		(uuid "0809d03c-f386-4442-ba06-6a236be619c9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 109.6047 90)
+			(at 195.58 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2507,7 +2519,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 154.94 270)
 		(fields_autoplaced yes)
@@ -2529,9 +2541,9 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
-		(at 173.99 27.94 270)
+		(at 142.24 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2541,7 +2553,7 @@
 		)
 		(uuid "0f32503c-78c1-4181-b25e-318e0e33709d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 33.4047 90)
+			(at 142.24 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2553,7 +2565,7 @@
 	)
 	(global_label "A7"
 		(shape input)
-		(at 264.16 17.78 0)
+		(at 200.66 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2563,7 +2575,7 @@
 		)
 		(uuid "10ad69e6-ea48-49ba-9a83-f0c35847b3b5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 17.78 0)
+			(at 205.9433 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2575,7 +2587,7 @@
 	)
 	(global_label "A11"
 		(shape input)
-		(at 137.16 119.38 0)
+		(at 137.16 43.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2585,7 +2597,7 @@
 		)
 		(uuid "11f71298-f2d5-4950-84c4-5ac621cd61e7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.6528 119.38 0)
+			(at 143.6528 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2595,9 +2607,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A10"
 		(shape input)
-		(at 132.08 27.94 270)
+		(at 100.33 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2607,7 +2619,7 @@
 		)
 		(uuid "14c997af-6a41-4019-a91f-dce1eec8dbc3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 33.4047 90)
+			(at 100.33 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2617,9 +2629,9 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
-		(at 168.91 154.94 270)
+		(at 137.16 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2629,7 +2641,7 @@
 		)
 		(uuid "16dab47b-4613-470d-a98e-de6ad34ae4b8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 160.4047 90)
+			(at 137.16 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2639,7 +2651,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A7"
 		(shape input)
 		(at 58.42 44.45 0)
 		(fields_autoplaced yes)
@@ -2661,9 +2673,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 200.66 129.54 270)
+		(at 168.91 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2673,7 +2685,7 @@
 		)
 		(uuid "182ec411-d1f3-42fe-a53a-b967ecedab8a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 135.0047 90)
+			(at 168.91 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2707,7 +2719,7 @@
 	)
 	(global_label "A4"
 		(shape input)
-		(at 232.41 93.98 0)
+		(at 200.66 17.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2717,7 +2729,7 @@
 		)
 		(uuid "1b1bb57d-f188-4dd9-83cb-78fb1d395576")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 93.98 0)
+			(at 205.9433 17.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2727,9 +2739,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A1"
 		(shape input)
-		(at 168.91 17.78 0)
+		(at 137.16 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2739,7 +2751,7 @@
 		)
 		(uuid "1d0dc777-5e9a-4c82-985c-e110f9da9e18")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 175.4028 17.78 0)
+			(at 143.6528 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2749,9 +2761,9 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A5"
 		(shape input)
-		(at 232.41 53.34 270)
+		(at 168.91 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2761,7 +2773,7 @@
 		)
 		(uuid "1ee1ffdb-d77e-47b7-b088-d953efc6f23a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 58.8047 90)
+			(at 168.91 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2771,9 +2783,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A8"
 		(shape input)
-		(at 137.16 104.14 270)
+		(at 137.16 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2783,29 +2795,7 @@
 		)
 		(uuid "1f90e9d2-ca8d-4e57-82be-6b11cae3474f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 109.6047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A6"
-		(shape input)
-		(at 173.99 154.94 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "1fbc17b1-f55f-4533-b1f4-acd03182fd2c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 160.4047 90)
+			(at 137.16 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2817,7 +2807,29 @@
 	)
 	(global_label "A9"
 		(shape input)
-		(at 205.74 27.94 270)
+		(at 142.24 231.14 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "1fbc17b1-f55f-4533-b1f4-acd03182fd2c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 236.6047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A6"
+		(shape input)
+		(at 173.99 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2827,7 +2839,7 @@
 		)
 		(uuid "223198b3-7d28-413e-98bc-613e0ef3690b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 33.4047 90)
+			(at 173.99 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2837,9 +2849,9 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
-		(at 168.91 27.94 270)
+		(at 137.16 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2849,51 +2861,7 @@
 		)
 		(uuid "253ba553-4e0c-40e4-8b91-27bad1baad0d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 33.4047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A4"
-		(shape input)
-		(at 163.83 129.54 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2c276617-65e4-481c-9d4b-277732c1bc4a")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 135.0047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A4"
-		(shape input)
-		(at 163.83 27.94 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2ea497db-efce-4232-9abb-8df483f3bb5c")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 33.4047 90)
+			(at 137.16 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2905,7 +2873,51 @@
 	)
 	(global_label "A7"
 		(shape input)
-		(at 195.58 78.74 270)
+		(at 132.08 205.74 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2c276617-65e4-481c-9d4b-277732c1bc4a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 132.08 211.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A7"
+		(shape input)
+		(at 132.08 104.14 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2ea497db-efce-4232-9abb-8df483f3bb5c")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 132.08 109.6047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A4"
+		(shape input)
+		(at 163.83 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2915,7 +2927,29 @@
 		)
 		(uuid "2f47480e-d99b-45f9-82c0-cb9aa65838d7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 84.2047 90)
+			(at 163.83 84.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A4"
+		(shape input)
+		(at 163.83 231.14 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2fb301ca-ad10-4f4b-92bf-2a0690eb8e00")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 163.83 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2926,28 +2960,6 @@
 		)
 	)
 	(global_label "A10"
-		(shape input)
-		(at 227.33 78.74 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2fb301ca-ad10-4f4b-92bf-2a0690eb8e00")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 84.2047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "R1"
 		(shape input)
 		(at 100.33 104.14 270)
 		(fields_autoplaced yes)
@@ -2971,7 +2983,7 @@
 	)
 	(global_label "A2"
 		(shape input)
-		(at 232.41 43.18 0)
+		(at 168.91 195.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2981,7 +2993,7 @@
 		)
 		(uuid "30377867-9645-4656-97c4-4b280f750a8c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 43.18 0)
+			(at 175.4028 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2991,9 +3003,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A8"
 		(shape input)
-		(at 137.16 129.54 270)
+		(at 137.16 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3003,7 +3015,7 @@
 		)
 		(uuid "3100d3ff-0b81-41dc-84cc-beed218dc2e7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 135.0047 90)
+			(at 137.16 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3013,7 +3025,7 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 53.34 270)
 		(fields_autoplaced yes)
@@ -3035,9 +3047,9 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
-		(at 232.41 154.94 270)
+		(at 200.66 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3047,7 +3059,7 @@
 		)
 		(uuid "347ac948-02fd-45ff-8d26-3bb8c9f37e3c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 160.4047 90)
+			(at 200.66 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3057,9 +3069,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A7"
 		(shape input)
-		(at 132.08 104.14 270)
+		(at 132.08 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3069,7 +3081,7 @@
 		)
 		(uuid "36562e23-01b4-4c77-a649-fb60a785c52d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 109.6047 90)
+			(at 132.08 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3079,9 +3091,9 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A3"
 		(shape input)
-		(at 269.24 154.94 270)
+		(at 205.74 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3091,7 +3103,7 @@
 		)
 		(uuid "369e8f5b-5b2a-41cb-b0fb-49b27776e13d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 160.4047 90)
+			(at 205.74 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3103,7 +3115,7 @@
 	)
 	(global_label "A10"
 		(shape input)
-		(at 264.16 93.98 0)
+		(at 200.66 170.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3113,7 +3125,7 @@
 		)
 		(uuid "37ceee16-6471-493a-bfdf-74edeba36dac")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 93.98 0)
+			(at 205.9433 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3123,9 +3135,9 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A3"
 		(shape input)
-		(at 269.24 53.34 270)
+		(at 205.74 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3135,7 +3147,7 @@
 		)
 		(uuid "3a4f5335-0630-4206-a472-1b1ed1648d42")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 58.8047 90)
+			(at 205.74 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3167,9 +3179,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 200.66 78.74 270)
+		(at 168.91 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3179,7 +3191,7 @@
 		)
 		(uuid "3b8c8fe2-bc62-4814-a1cc-e427df4b0bcf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 84.2047 90)
+			(at 168.91 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3189,9 +3201,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A6"
 		(shape input)
-		(at 237.49 53.34 270)
+		(at 173.99 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3201,7 +3213,7 @@
 		)
 		(uuid "3e2b4768-fc43-4cef-be6d-03313d20743d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 58.8047 90)
+			(at 173.99 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3211,9 +3223,9 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A3"
 		(shape input)
-		(at 269.24 129.54 270)
+		(at 205.74 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3223,7 +3235,7 @@
 		)
 		(uuid "3f36c6e1-7575-4521-86df-326ad079e3ac")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 135.0047 90)
+			(at 205.74 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3235,7 +3247,7 @@
 	)
 	(global_label "A9"
 		(shape input)
-		(at 137.16 68.58 0)
+		(at 105.41 220.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3245,7 +3257,7 @@
 		)
 		(uuid "40bb5af1-430c-4ade-b916-50cfc6757239")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 145.8904 68.58 0)
+			(at 114.1404 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3255,7 +3267,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 78.74 270)
 		(fields_autoplaced yes)
@@ -3277,7 +3289,7 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A10"
 		(shape input)
 		(at 100.33 154.94 270)
 		(fields_autoplaced yes)
@@ -3299,9 +3311,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 78.74 270)
+		(at 195.58 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3311,7 +3323,7 @@
 		)
 		(uuid "42d29201-131c-437c-8625-4bac67486a76")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 84.2047 90)
+			(at 195.58 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3321,9 +3333,9 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A6"
 		(shape input)
-		(at 205.74 154.94 270)
+		(at 173.99 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3333,7 +3345,7 @@
 		)
 		(uuid "43783558-a441-494a-9173-52e9b85d298d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 160.4047 90)
+			(at 173.99 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3365,7 +3377,7 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 129.54 270)
 		(fields_autoplaced yes)
@@ -3387,9 +3399,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A9"
 		(shape input)
-		(at 142.24 154.94 270)
+		(at 142.24 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3399,7 +3411,7 @@
 		)
 		(uuid "4460b6d8-3520-4f70-9c7e-81ef1e557e3f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 160.4047 90)
+			(at 142.24 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3409,9 +3421,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A12"
 		(shape input)
-		(at 142.24 27.94 270)
+		(at 110.49 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3421,29 +3433,7 @@
 		)
 		(uuid "49e58751-e2a7-402c-b6b5-6806507ddcd1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 33.4047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A10"
-		(shape input)
-		(at 227.33 104.14 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "4adf3a60-9f4b-4856-84f9-534eab4f760d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 109.6047 90)
+			(at 110.49 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3455,7 +3445,29 @@
 	)
 	(global_label "A1"
 		(shape input)
-		(at 232.41 17.78 0)
+		(at 195.58 27.94 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4adf3a60-9f4b-4856-84f9-534eab4f760d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 195.58 33.4047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A1"
+		(shape input)
+		(at 168.91 170.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3465,7 +3477,7 @@
 		)
 		(uuid "4da12b2d-9916-45b1-9e3a-369b5e733117")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 17.78 0)
+			(at 175.4028 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3497,9 +3509,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A10"
 		(shape input)
-		(at 200.66 93.98 0)
+		(at 168.91 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3509,7 +3521,7 @@
 		)
 		(uuid "52595418-4b73-46d9-8209-251c4cc442e7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 93.98 0)
+			(at 175.4028 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3519,9 +3531,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A11"
 		(shape input)
-		(at 137.16 27.94 270)
+		(at 105.41 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3531,7 +3543,7 @@
 		)
 		(uuid "540cee05-7a94-48b5-b871-3e9b6dec1084")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 33.4047 90)
+			(at 105.41 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3541,7 +3553,7 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A10"
 		(shape input)
 		(at 100.33 129.54 270)
 		(fields_autoplaced yes)
@@ -3563,9 +3575,9 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A4"
 		(shape input)
-		(at 195.58 53.34 270)
+		(at 163.83 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3575,7 +3587,7 @@
 		)
 		(uuid "55363994-30d8-45ab-bfb1-7073f0a69f24")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 58.8047 90)
+			(at 163.83 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3585,9 +3597,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 200.66 53.34 270)
+		(at 168.91 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3597,7 +3609,7 @@
 		)
 		(uuid "553d143c-219f-4fba-b93e-24deec724984")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 58.8047 90)
+			(at 168.91 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3609,7 +3621,7 @@
 	)
 	(global_label "A10"
 		(shape input)
-		(at 137.16 93.98 0)
+		(at 137.16 17.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3619,7 +3631,7 @@
 		)
 		(uuid "5670564d-01ec-4b11-aeda-68329b282cee")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.6528 93.98 0)
+			(at 143.6528 17.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3629,9 +3641,9 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A2"
 		(shape input)
-		(at 264.16 53.34 270)
+		(at 200.66 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3641,7 +3653,7 @@
 		)
 		(uuid "58054f78-088e-4558-8776-8d01ca238ce9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 58.8047 90)
+			(at 200.66 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3651,9 +3663,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 168.91 119.38 0)
+		(at 137.16 195.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3663,7 +3675,7 @@
 		)
 		(uuid "5d14ec2d-d258-4bce-a06e-8bfe56ccb4b3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 174.1933 119.38 0)
+			(at 142.4433 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3673,9 +3685,9 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A2"
 		(shape input)
-		(at 264.16 129.54 270)
+		(at 200.66 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3685,7 +3697,7 @@
 		)
 		(uuid "5eb1bada-aabe-46c1-b53a-3cc0f1ca2f67")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 135.0047 90)
+			(at 200.66 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3697,7 +3709,7 @@
 	)
 	(global_label "A8"
 		(shape input)
-		(at 264.16 43.18 0)
+		(at 200.66 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3707,7 +3719,7 @@
 		)
 		(uuid "6020f6dd-b284-4189-b143-5fb6f0aecdaa")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 43.18 0)
+			(at 205.9433 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3717,9 +3729,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A6"
 		(shape input)
-		(at 237.49 78.74 270)
+		(at 173.99 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3729,7 +3741,7 @@
 		)
 		(uuid "60c7d4c3-1564-457c-b6b5-fc43479b7888")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 84.2047 90)
+			(at 173.99 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3739,9 +3751,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 53.34 270)
+		(at 195.58 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3751,7 +3763,7 @@
 		)
 		(uuid "6125c639-b652-4627-8a5d-76486d3def61")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 58.8047 90)
+			(at 195.58 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3761,7 +3773,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 53.34 270)
 		(fields_autoplaced yes)
@@ -3785,7 +3797,7 @@
 	)
 	(global_label "A8"
 		(shape input)
-		(at 137.16 43.18 0)
+		(at 105.41 195.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3795,7 +3807,7 @@
 		)
 		(uuid "64148a0e-c370-40a9-afbd-b25a8f138ae8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 145.8904 43.18 0)
+			(at 114.1404 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3805,7 +3817,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 129.54 270)
 		(fields_autoplaced yes)
@@ -3827,7 +3839,7 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A10"
 		(shape input)
 		(at 100.33 78.74 270)
 		(fields_autoplaced yes)
@@ -3851,7 +3863,7 @@
 	)
 	(global_label "A12"
 		(shape input)
-		(at 137.16 144.78 0)
+		(at 137.16 68.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3861,7 +3873,7 @@
 		)
 		(uuid "697f9f0e-22c8-4ec5-8d41-19bd56e7c591")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 143.6528 144.78 0)
+			(at 143.6528 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3893,9 +3905,9 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
-		(at 232.41 129.54 270)
+		(at 200.66 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3905,7 +3917,7 @@
 		)
 		(uuid "6f2bb48f-1f13-41f8-b236-8c65bebd5548")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 135.0047 90)
+			(at 200.66 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3915,7 +3927,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 27.94 270)
 		(fields_autoplaced yes)
@@ -3937,9 +3949,9 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A4"
 		(shape input)
-		(at 195.58 129.54 270)
+		(at 163.83 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3949,7 +3961,7 @@
 		)
 		(uuid "705ef988-484f-4e1a-b2b7-73b3374e7154")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 135.0047 90)
+			(at 163.83 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3959,7 +3971,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A1"
 		(shape input)
 		(at 58.42 59.69 0)
 		(fields_autoplaced yes)
@@ -3971,7 +3983,7 @@
 		)
 		(uuid "70f4bb9c-02d3-4a76-809f-d83b1256e2f5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 64.9128 59.69 0)
+			(at 63.7033 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3981,9 +3993,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
-		(at 237.49 129.54 270)
+		(at 205.74 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3993,7 +4005,7 @@
 		)
 		(uuid "727d5921-43e3-4961-baf9-8850a08b207c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 135.0047 90)
+			(at 205.74 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4003,9 +4015,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 129.54 270)
+		(at 195.58 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4015,7 +4027,7 @@
 		)
 		(uuid "7294af65-4151-4949-ad41-f0dcf1616300")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 135.0047 90)
+			(at 195.58 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4025,7 +4037,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A11"
 		(shape input)
 		(at 58.42 64.77 0)
 		(fields_autoplaced yes)
@@ -4047,9 +4059,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A6"
 		(shape input)
-		(at 237.49 27.94 270)
+		(at 173.99 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4059,7 +4071,7 @@
 		)
 		(uuid "74d8865c-6228-4431-adc6-0506cf2cebe7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 33.4047 90)
+			(at 173.99 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4069,9 +4081,9 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
-		(at 163.83 53.34 270)
+		(at 132.08 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4081,7 +4093,7 @@
 		)
 		(uuid "76afc8f6-c7e2-4303-aa1f-cc2b517e9a85")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 58.8047 90)
+			(at 132.08 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4091,9 +4103,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A11"
 		(shape input)
-		(at 137.16 78.74 270)
+		(at 105.41 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4103,7 +4115,7 @@
 		)
 		(uuid "76d30418-67d9-4c5d-893c-7dcb888558ad")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 84.2047 90)
+			(at 105.41 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4113,7 +4125,7 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 154.94 270)
 		(fields_autoplaced yes)
@@ -4131,28 +4143,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A9"
-		(shape input)
-		(at 58.42 72.39 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "7beb4ae2-7706-4078-8d6a-b83aacadcb59")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 63.7033 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -4179,7 +4169,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A2"
 		(shape input)
 		(at 58.42 57.15 0)
 		(fields_autoplaced yes)
@@ -4201,9 +4191,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A7"
 		(shape input)
-		(at 132.08 129.54 270)
+		(at 132.08 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4213,73 +4203,7 @@
 		)
 		(uuid "7f689470-bad6-497e-93d9-7e60b9066022")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 135.0047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "R1"
-		(shape input)
-		(at 27.94 59.69 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "7fdf8d50-06ef-4e06-b6bc-68e2a49b2987")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 22.4753 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A10"
-		(shape input)
-		(at 227.33 154.94 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "835da169-a189-4261-9ce2-e3d5db26dd7f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 160.4047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A6"
-		(shape input)
-		(at 173.99 129.54 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "84224f68-7dd8-4a99-b8d0-f0924a6ae830")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 135.0047 90)
+			(at 132.08 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4291,7 +4215,7 @@
 	)
 	(global_label "A1"
 		(shape input)
-		(at 132.08 154.94 270)
+		(at 195.58 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4299,9 +4223,9 @@
 			)
 			(justify right)
 		)
-		(uuid "88429be6-ae15-429a-89db-6da60fe22885")
+		(uuid "835da169-a189-4261-9ce2-e3d5db26dd7f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 160.4047 90)
+			(at 195.58 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4311,9 +4235,53 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A9"
 		(shape input)
-		(at 200.66 43.18 0)
+		(at 142.24 205.74 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "84224f68-7dd8-4a99-b8d0-f0924a6ae830")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 211.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A7"
+		(shape input)
+		(at 132.08 78.74 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "88429be6-ae15-429a-89db-6da60fe22885")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 132.08 84.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A8"
+		(shape input)
+		(at 168.91 43.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4323,7 +4291,7 @@
 		)
 		(uuid "884df34a-07cd-4758-bed0-bd93a4434b43")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 43.18 0)
+			(at 174.1933 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4333,7 +4301,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A12"
 		(shape input)
 		(at 58.42 62.23 0)
 		(fields_autoplaced yes)
@@ -4377,9 +4345,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A10"
 		(shape input)
-		(at 132.08 53.34 270)
+		(at 100.33 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4389,144 +4357,12 @@
 		)
 		(uuid "8ec9f101-3f61-4900-82ff-32004b4de161")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 58.8047 90)
+			(at 100.33 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A9"
-		(shape input)
-		(at 205.74 53.34 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "90e0094b-b89c-4973-b110-da859234cce6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 58.8047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A3"
-		(shape input)
-		(at 232.41 68.58 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "93fbbf74-75bf-449d-ba89-923c49e5ec35")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A4"
-		(shape input)
-		(at 200.66 68.58 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "957baf53-c845-49d7-8e59-788d4f4d82b9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A11"
-		(shape input)
-		(at 168.91 43.18 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9699720c-0b70-4cda-a4a9-80af6d3a8770")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 175.4028 43.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A5"
-		(shape input)
-		(at 168.91 129.54 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "971d9da6-0e78-4cb0-b68f-40244ff23351")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 135.0047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A6"
-		(shape input)
-		(at 232.41 144.78 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "972aa8c1-2774-44d0-9974-9d878617d006")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -4541,7 +4377,7 @@
 			)
 			(justify right)
 		)
-		(uuid "9a028608-23c9-454c-b2d0-692375cea1a0")
+		(uuid "90e0094b-b89c-4973-b110-da859234cce6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 173.99 58.8047 90)
 			(effects
@@ -4553,9 +4389,141 @@
 			)
 		)
 	)
+	(global_label "A3"
+		(shape input)
+		(at 168.91 220.98 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "93fbbf74-75bf-449d-ba89-923c49e5ec35")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 175.4028 220.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A9"
+		(shape input)
+		(at 168.91 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "957baf53-c845-49d7-8e59-788d4f4d82b9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 174.1933 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A2"
+		(shape input)
+		(at 137.16 119.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9699720c-0b70-4cda-a4a9-80af6d3a8770")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 143.6528 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A8"
+		(shape input)
+		(at 137.16 205.74 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "971d9da6-0e78-4cb0-b68f-40244ff23351")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 137.16 211.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A6"
 		(shape input)
-		(at 173.99 104.14 270)
+		(at 200.66 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "972aa8c1-2774-44d0-9974-9d878617d006")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 205.9433 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A9"
+		(shape input)
+		(at 142.24 129.54 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9a028608-23c9-454c-b2d0-692375cea1a0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.24 135.0047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A9"
+		(shape input)
+		(at 142.24 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4565,7 +4533,7 @@
 		)
 		(uuid "9cdbfbf2-647d-4058-bcbe-d4f04f9f33d4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 109.6047 90)
+			(at 142.24 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4575,9 +4543,9 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
-		(at 168.91 78.74 270)
+		(at 137.16 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4587,7 +4555,7 @@
 		)
 		(uuid "9f47406b-f96d-4b36-af01-4b5ed8bbbe05")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 84.2047 90)
+			(at 137.16 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4597,9 +4565,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A11"
 		(shape input)
-		(at 200.66 119.38 0)
+		(at 168.91 119.38 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4609,7 +4577,7 @@
 		)
 		(uuid "a327e5b2-82f2-4dc3-a721-3e6e13c1abc8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 119.38 0)
+			(at 174.1933 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4641,9 +4609,9 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
-		(at 163.83 78.74 270)
+		(at 132.08 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4653,7 +4621,7 @@
 		)
 		(uuid "a5e7597a-f5a3-4e5e-bc26-00043ecc2e5a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 84.2047 90)
+			(at 132.08 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4663,9 +4631,9 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A4"
 		(shape input)
-		(at 195.58 154.94 270)
+		(at 163.83 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4675,7 +4643,7 @@
 		)
 		(uuid "a6910113-64bf-48ab-9f23-296df52c1830")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 160.4047 90)
+			(at 163.83 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4685,9 +4653,9 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A6"
 		(shape input)
-		(at 205.74 129.54 270)
+		(at 173.99 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4697,7 +4665,7 @@
 		)
 		(uuid "a80e2644-15d1-46bf-a0d4-3b649c48fada")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 135.0047 90)
+			(at 173.99 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4707,7 +4675,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A8"
 		(shape input)
 		(at 58.42 41.91 0)
 		(fields_autoplaced yes)
@@ -4729,7 +4697,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A9"
 		(shape input)
 		(at 58.42 39.37 0)
 		(fields_autoplaced yes)
@@ -4751,9 +4719,9 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
-		(at 163.83 104.14 270)
+		(at 132.08 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4763,7 +4731,7 @@
 		)
 		(uuid "b117ff2d-d487-4b68-8883-541e7afb6e0d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 109.6047 90)
+			(at 132.08 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4773,9 +4741,9 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A4"
 		(shape input)
-		(at 168.91 93.98 0)
+		(at 137.16 170.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4785,7 +4753,7 @@
 		)
 		(uuid "b5157ae0-a130-4b15-97d6-fc7404216d0b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 174.1933 93.98 0)
+			(at 142.4433 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4795,9 +4763,9 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A2"
 		(shape input)
-		(at 264.16 104.14 270)
+		(at 200.66 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4807,7 +4775,73 @@
 		)
 		(uuid "b76f6387-257f-4345-b34b-a3178120e3b5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 109.6047 90)
+			(at 200.66 185.8047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A12"
+		(shape input)
+		(at 110.49 205.74 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b9045232-6e51-4e05-be71-159375add084")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 110.49 211.2047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A6"
+		(shape input)
+		(at 137.16 220.98 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b9e13919-ddb8-4df3-aeda-01bfb2f11333")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 142.4433 220.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A2"
+		(shape input)
+		(at 200.66 104.14 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ba3af2fa-ee51-4ae9-b268-a93a6a622e39")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 200.66 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4819,73 +4853,7 @@
 	)
 	(global_label "A3"
 		(shape input)
-		(at 142.24 53.34 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "b9045232-6e51-4e05-be71-159375add084")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 58.8047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A7"
-		(shape input)
-		(at 168.91 144.78 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "b9e13919-ddb8-4df3-aeda-01bfb2f11333")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 174.1933 144.78 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "G1"
-		(shape input)
-		(at 264.16 27.94 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "ba3af2fa-ee51-4ae9-b268-a93a6a622e39")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 33.4047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "B1"
-		(shape input)
-		(at 269.24 78.74 270)
+		(at 205.74 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4895,7 +4863,7 @@
 		)
 		(uuid "bc7b06e1-42e4-4438-a3d9-252795e95a80")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 84.2047 90)
+			(at 205.74 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4907,7 +4875,7 @@
 	)
 	(global_label "A11"
 		(shape input)
-		(at 264.16 119.38 0)
+		(at 200.66 195.58 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4917,7 +4885,7 @@
 		)
 		(uuid "be4220b0-641f-474f-a66e-73ec1832a802")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 119.38 0)
+			(at 205.9433 195.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4949,9 +4917,9 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
-		(at 227.33 129.54 270)
+		(at 195.58 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4961,7 +4929,7 @@
 		)
 		(uuid "c18ee9b8-0810-4a9e-8619-3ebfba5b3783")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 135.0047 90)
+			(at 195.58 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4971,9 +4939,9 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A6"
 		(shape input)
-		(at 205.74 104.14 270)
+		(at 173.99 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4983,7 +4951,7 @@
 		)
 		(uuid "c671641e-4a41-4cb5-92db-bac30b2f841e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 109.6047 90)
+			(at 173.99 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4993,9 +4961,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A11"
 		(shape input)
-		(at 137.16 53.34 270)
+		(at 105.41 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5005,7 +4973,7 @@
 		)
 		(uuid "c7d185bc-0872-4079-8dea-eef9c4a81a80")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 58.8047 90)
+			(at 105.41 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5015,7 +4983,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A5"
 		(shape input)
 		(at 58.42 49.53 0)
 		(fields_autoplaced yes)
@@ -5037,9 +5005,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 154.94 270)
+		(at 195.58 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5049,7 +5017,29 @@
 		)
 		(uuid "c897abf2-9f30-4245-b6d9-b2393aa99105")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 160.4047 90)
+			(at 195.58 236.6047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A5"
+		(shape input)
+		(at 168.91 180.34 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c9faa7b7-6b6f-48cd-aeb0-a0b113373c0e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 168.91 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5060,28 +5050,6 @@
 		)
 	)
 	(global_label "A11"
-		(shape input)
-		(at 232.41 27.94 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "c9faa7b7-6b6f-48cd-aeb0-a0b113373c0e")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 33.4047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "G1"
 		(shape input)
 		(at 105.41 78.74 270)
 		(fields_autoplaced yes)
@@ -5103,9 +5071,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A9"
 		(shape input)
-		(at 142.24 129.54 270)
+		(at 142.24 53.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5115,7 +5083,7 @@
 		)
 		(uuid "caa48315-b9d5-4f73-bc7f-0984aaa0a4e4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 135.0047 90)
+			(at 142.24 58.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5125,9 +5093,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A10"
 		(shape input)
-		(at 132.08 78.74 270)
+		(at 100.33 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5137,7 +5105,7 @@
 		)
 		(uuid "cbd6f677-0044-4d66-a173-c9957cfb16ff")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 132.08 84.2047 90)
+			(at 100.33 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5147,7 +5115,7 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 104.14 270)
 		(fields_autoplaced yes)
@@ -5171,7 +5139,7 @@
 	)
 	(global_label "A12"
 		(shape input)
-		(at 264.16 144.78 0)
+		(at 200.66 220.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5181,7 +5149,7 @@
 		)
 		(uuid "cdf4a7d9-0e03-4950-988b-ac2704338cac")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 144.78 0)
+			(at 205.9433 220.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5191,9 +5159,9 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A3"
 		(shape input)
-		(at 269.24 27.94 270)
+		(at 205.74 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5203,7 +5171,7 @@
 		)
 		(uuid "ce57c645-4f4a-47f1-bc25-d61fcd2ade79")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.24 33.4047 90)
+			(at 205.74 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5213,9 +5181,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A12"
 		(shape input)
-		(at 142.24 78.74 270)
+		(at 110.49 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5225,7 +5193,7 @@
 		)
 		(uuid "d112deeb-4916-405b-b979-ee1d336e481c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 84.2047 90)
+			(at 110.49 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5235,7 +5203,7 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 27.94 270)
 		(fields_autoplaced yes)
@@ -5257,9 +5225,9 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
-		(at 173.99 78.74 270)
+		(at 142.24 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5269,7 +5237,7 @@
 		)
 		(uuid "d209ceb5-6118-4acb-b2b1-a852457c8526")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 173.99 84.2047 90)
+			(at 142.24 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5279,9 +5247,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
-		(at 237.49 104.14 270)
+		(at 205.74 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5291,29 +5259,7 @@
 		)
 		(uuid "d23eafb6-cf91-46c6-aa41-3b74b895ea95")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 109.6047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "G1"
-		(shape input)
-		(at 27.94 62.23 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d6dcc32b-cf08-452e-a358-631a19959514")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 22.4753 62.23 0)
+			(at 205.74 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5325,7 +5271,7 @@
 	)
 	(global_label "A5"
 		(shape input)
-		(at 232.41 119.38 0)
+		(at 200.66 43.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5335,7 +5281,7 @@
 		)
 		(uuid "d8af3f25-e002-4175-943d-90f7c01d7861")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.6933 119.38 0)
+			(at 205.9433 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5345,29 +5291,7 @@
 			)
 		)
 	)
-	(global_label "B1"
-		(shape input)
-		(at 27.94 64.77 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "d9391c8e-741c-48f7-a63f-2a46810caa5f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 22.4753 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A3"
+	(global_label "A4"
 		(shape input)
 		(at 58.42 52.07 0)
 		(fields_autoplaced yes)
@@ -5389,9 +5313,9 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A5"
 		(shape input)
-		(at 232.41 78.74 270)
+		(at 168.91 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5401,7 +5325,7 @@
 		)
 		(uuid "da54c51b-76f6-48a3-97a3-b3b6333e9c89")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 232.41 84.2047 90)
+			(at 168.91 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5411,9 +5335,9 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A9"
 		(shape input)
-		(at 142.24 104.14 270)
+		(at 142.24 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5423,29 +5347,7 @@
 		)
 		(uuid "dd6a5d60-f05b-4796-92b0-955511b74384")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.24 109.6047 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A5"
-		(shape input)
-		(at 168.91 53.34 270)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "deb4298c-cc17-43a4-9304-9bfcab152331")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 58.8047 90)
+			(at 142.24 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5457,7 +5359,7 @@
 	)
 	(global_label "A8"
 		(shape input)
-		(at 200.66 27.94 270)
+		(at 137.16 129.54 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5465,9 +5367,9 @@
 			)
 			(justify right)
 		)
-		(uuid "df39c206-d3f5-4683-b90c-682f4966fa82")
+		(uuid "deb4298c-cc17-43a4-9304-9bfcab152331")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 33.4047 90)
+			(at 137.16 135.0047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5478,6 +5380,28 @@
 		)
 	)
 	(global_label "A5"
+		(shape input)
+		(at 168.91 27.94 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "df39c206-d3f5-4683-b90c-682f4966fa82")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 168.91 33.4047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A6"
 		(shape input)
 		(at 58.42 46.99 0)
 		(fields_autoplaced yes)
@@ -5499,7 +5423,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A3"
 		(shape input)
 		(at 58.42 54.61 0)
 		(fields_autoplaced yes)
@@ -5521,9 +5445,9 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A4"
 		(shape input)
-		(at 195.58 104.14 270)
+		(at 163.83 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5533,7 +5457,7 @@
 		)
 		(uuid "e474c1f6-dd07-4a81-b013-d06815b481c1")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 109.6047 90)
+			(at 163.83 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5543,7 +5467,7 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A10"
 		(shape input)
 		(at 100.33 53.34 270)
 		(fields_autoplaced yes)
@@ -5565,9 +5489,9 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A12"
 		(shape input)
-		(at 200.66 144.78 0)
+		(at 168.91 144.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5577,7 +5501,7 @@
 		)
 		(uuid "e62de49a-ae71-4166-9b4d-61bcad0cbcbb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 144.78 0)
+			(at 175.4028 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5587,9 +5511,9 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A5"
 		(shape input)
-		(at 200.66 154.94 270)
+		(at 168.91 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5599,7 +5523,7 @@
 		)
 		(uuid "e666f8ce-39b5-4c9f-8bfe-de364bf0329b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 200.66 160.4047 90)
+			(at 168.91 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5611,7 +5535,7 @@
 	)
 	(global_label "A7"
 		(shape input)
-		(at 137.16 17.78 0)
+		(at 105.41 170.18 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5621,7 +5545,7 @@
 		)
 		(uuid "e96eb4f6-76dd-4221-9e7a-4ac53af68032")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 145.8904 17.78 0)
+			(at 114.1404 170.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5631,9 +5555,31 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A10"
 		(shape input)
-		(at 264.16 78.74 270)
+		(at 58.42 72.39 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "eb8d7816-6bc8-45de-be9e-f45f110b04e9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 64.9128 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A2"
+		(shape input)
+		(at 200.66 154.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5643,7 +5589,7 @@
 		)
 		(uuid "ec4d3331-6bbe-40cb-8725-87ab6f16361f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 84.2047 90)
+			(at 200.66 160.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5653,9 +5599,9 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A4"
 		(shape input)
-		(at 227.33 27.94 270)
+		(at 163.83 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5665,7 +5611,7 @@
 		)
 		(uuid "edbce8ce-2761-4592-a394-b299eb6b18a4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 33.4047 90)
+			(at 163.83 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5675,9 +5621,9 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A6"
 		(shape input)
-		(at 205.74 78.74 270)
+		(at 173.99 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5687,7 +5633,7 @@
 		)
 		(uuid "f0862269-e1c7-4dd9-b77c-e93e68476461")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.74 84.2047 90)
+			(at 173.99 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5697,7 +5643,7 @@
 			)
 		)
 	)
-	(global_label "B1"
+	(global_label "A12"
 		(shape input)
 		(at 110.49 104.14 270)
 		(fields_autoplaced yes)
@@ -5719,9 +5665,9 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
-		(at 168.91 104.14 270)
+		(at 137.16 180.34 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5731,7 +5677,7 @@
 		)
 		(uuid "f59d9105-2845-4ad6-b064-cb9b25f2d31d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 168.91 109.6047 90)
+			(at 137.16 185.8047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5741,7 +5687,7 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A10"
 		(shape input)
 		(at 100.33 27.94 270)
 		(fields_autoplaced yes)
@@ -5763,9 +5709,9 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A8"
 		(shape input)
-		(at 137.16 154.94 270)
+		(at 137.16 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5775,7 +5721,7 @@
 		)
 		(uuid "f6655a0c-bfed-4339-bf98-167d961e89f8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 137.16 160.4047 90)
+			(at 137.16 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5787,7 +5733,7 @@
 	)
 	(global_label "A9"
 		(shape input)
-		(at 264.16 68.58 0)
+		(at 200.66 144.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5797,7 +5743,7 @@
 		)
 		(uuid "f72b48b2-59a4-4960-96a2-4b02d78f6cbc")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 269.4433 68.58 0)
+			(at 205.9433 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5829,9 +5775,9 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
-		(at 163.83 154.94 270)
+		(at 132.08 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5841,7 +5787,7 @@
 		)
 		(uuid "f91c10ab-337f-4b09-9456-c0130bc0030b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 163.83 160.4047 90)
+			(at 132.08 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5851,9 +5797,9 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A4"
 		(shape input)
-		(at 195.58 27.94 270)
+		(at 163.83 27.94 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5863,7 +5809,7 @@
 		)
 		(uuid "f98731d4-a444-4dd2-a522-505058cf3b9e")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 195.58 33.4047 90)
+			(at 163.83 33.4047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5873,9 +5819,9 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A4"
 		(shape input)
-		(at 227.33 53.34 270)
+		(at 163.83 205.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5885,7 +5831,7 @@
 		)
 		(uuid "f9a34180-05d8-494c-8b96-69645d03c5e9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 227.33 58.8047 90)
+			(at 163.83 211.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5895,9 +5841,9 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A3"
 		(shape input)
-		(at 168.91 68.58 0)
+		(at 137.16 144.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5907,7 +5853,7 @@
 		)
 		(uuid "fb68a3c1-778c-4c5d-97ed-4e676d8b3b8c")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 175.4028 68.58 0)
+			(at 143.6528 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5917,9 +5863,9 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A7"
 		(shape input)
-		(at 200.66 17.78 0)
+		(at 168.91 17.78 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5929,7 +5875,7 @@
 		)
 		(uuid "fb72ed20-d16b-4d39-9fca-baf4a5dfdde8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 205.9433 17.78 0)
+			(at 174.1933 17.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5939,9 +5885,9 @@
 			)
 		)
 	)
-	(global_label "G1"
+	(global_label "A2"
 		(shape input)
-		(at 264.16 154.94 270)
+		(at 200.66 231.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5951,7 +5897,7 @@
 		)
 		(uuid "fd353eab-047f-4c06-8bb4-a65233aef7ff")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 264.16 160.4047 90)
+			(at 200.66 236.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5961,9 +5907,9 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
-		(at 237.49 154.94 270)
+		(at 205.74 78.74 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5973,7 +5919,7 @@
 		)
 		(uuid "fe400583-514c-4dfb-8faa-b5924892c466")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 237.49 160.4047 90)
+			(at 205.74 84.2047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5983,9 +5929,9 @@
 			)
 		)
 	)
-	(global_label "R1"
+	(global_label "A1"
 		(shape input)
-		(at 259.08 27.94 270)
+		(at 195.58 104.14 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -5995,7 +5941,7 @@
 		)
 		(uuid "ff4cdc09-f14e-4fb0-97d1-14723bd09fdb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 259.08 33.4047 90)
+			(at 195.58 109.6047 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6007,7 +5953,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 168.91 22.86 90)
+		(at 137.16 99.06 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6016,7 +5962,7 @@
 		(fields_autoplaced yes)
 		(uuid "0163f37f-d14d-4c9f-b820-06151e104f17")
 		(property "Reference" "D13"
-			(at 177.8 21.5899 90)
+			(at 146.05 97.7899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6025,7 +5971,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 177.8 24.1299 90)
+			(at 146.05 100.3299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6034,7 +5980,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 170.18 22.86 0)
+			(at 138.43 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6043,7 +5989,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 170.18 22.86 0)
+			(at 138.43 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6052,7 +5998,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 168.91 22.86 0)
+			(at 137.16 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6061,7 +6007,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 168.91 22.86 90)
+			(at 137.16 99.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6092,7 +6038,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 232.41 149.86 90)
+		(at 200.66 73.66 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6101,7 +6047,7 @@
 		(fields_autoplaced yes)
 		(uuid "027c5009-d3d0-4eca-8397-0d672cd13e09")
 		(property "Reference" "D30"
-			(at 241.3 148.5899 90)
+			(at 209.55 72.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6110,7 +6056,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 241.3 151.1299 90)
+			(at 209.55 74.9299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6119,7 +6065,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 149.86 0)
+			(at 201.93 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6128,7 +6074,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 233.68 149.86 0)
+			(at 201.93 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6137,7 +6083,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 149.86 0)
+			(at 200.66 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6146,7 +6092,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 232.41 149.86 90)
+			(at 200.66 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6177,7 +6123,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 200.66 149.86 90)
+		(at 168.91 149.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6186,176 +6132,6 @@
 		(fields_autoplaced yes)
 		(uuid "04753057-76b6-46fd-91b7-831dded2c97a")
 		(property "Reference" "D24"
-			(at 209.55 148.5899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 209.55 151.1299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 201.93 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 200.66 149.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "f54e29bc-a551-4a05-bdd7-87f98813d3c6")
-		)
-		(pin "2"
-			(uuid "c2444976-dec1-480b-8b5b-90eaeaa8cce6")
-		)
-		(pin "1"
-			(uuid "163d4f5e-d0a6-4e13-be1b-20c8e87d09db")
-		)
-		(pin "4"
-			(uuid "0d551e37-be47-40e8-afc3-72ab2a8e7efc")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D24")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 264.16 22.86 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "057e5639-e072-421d-95a0-2f7ca34a24ff")
-		(property "Reference" "D31"
-			(at 273.05 21.5899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 273.05 24.1299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 265.43 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 264.16 22.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "1642d514-dba7-4ec9-8f8e-e383113d6203")
-		)
-		(pin "2"
-			(uuid "81f23c4d-a6b8-462e-ab57-b51c94594b30")
-		)
-		(pin "1"
-			(uuid "b3ba5789-d281-46d1-aaa1-25a493889207")
-		)
-		(pin "4"
-			(uuid "86675e15-c956-4ace-9ba7-b89411d6a9ee")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D31")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 168.91 149.86 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "05d75fc5-0fc3-437d-91e1-867220cf5147")
-		(property "Reference" "D18"
 			(at 177.8 148.5899 90)
 			(effects
 				(font
@@ -6402,6 +6178,176 @@
 		)
 		(property "LCSC" "C2874117"
 			(at 168.91 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "f54e29bc-a551-4a05-bdd7-87f98813d3c6")
+		)
+		(pin "2"
+			(uuid "c2444976-dec1-480b-8b5b-90eaeaa8cce6")
+		)
+		(pin "1"
+			(uuid "163d4f5e-d0a6-4e13-be1b-20c8e87d09db")
+		)
+		(pin "4"
+			(uuid "0d551e37-be47-40e8-afc3-72ab2a8e7efc")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D24")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 200.66 99.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "057e5639-e072-421d-95a0-2f7ca34a24ff")
+		(property "Reference" "D31"
+			(at 209.55 97.7899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 209.55 100.3299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 201.93 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 201.93 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 200.66 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 200.66 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "1642d514-dba7-4ec9-8f8e-e383113d6203")
+		)
+		(pin "2"
+			(uuid "81f23c4d-a6b8-462e-ab57-b51c94594b30")
+		)
+		(pin "1"
+			(uuid "b3ba5789-d281-46d1-aaa1-25a493889207")
+		)
+		(pin "4"
+			(uuid "86675e15-c956-4ace-9ba7-b89411d6a9ee")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 137.16 226.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "05d75fc5-0fc3-437d-91e1-867220cf5147")
+		(property "Reference" "D18"
+			(at 146.05 224.7899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 146.05 227.3299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 138.43 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 138.43 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 137.16 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 137.16 226.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6517,7 +6463,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 264.16 99.06 90)
+		(at 200.66 175.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6526,7 +6472,7 @@
 		(fields_autoplaced yes)
 		(uuid "087a65bf-7439-4a57-854a-236bc874b52c")
 		(property "Reference" "D34"
-			(at 273.05 97.7899 90)
+			(at 209.55 173.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6535,7 +6481,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 273.05 100.3299 90)
+			(at 209.55 176.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6544,7 +6490,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 99.06 0)
+			(at 201.93 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6553,7 +6499,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 265.43 99.06 0)
+			(at 201.93 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6562,7 +6508,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 99.06 0)
+			(at 200.66 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6571,7 +6517,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 264.16 99.06 90)
+			(at 200.66 175.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6602,7 +6548,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 200.66 22.86 90)
+		(at 168.91 22.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6611,7 +6557,7 @@
 		(fields_autoplaced yes)
 		(uuid "1ae74044-655b-4a05-8efb-f76a4531f686")
 		(property "Reference" "D19"
-			(at 209.55 21.5899 90)
+			(at 177.8 21.5899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6620,7 +6566,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 209.55 24.1299 90)
+			(at 177.8 24.1299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6629,7 +6575,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 22.86 0)
+			(at 170.18 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6638,7 +6584,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 201.93 22.86 0)
+			(at 170.18 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6647,7 +6593,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 22.86 0)
+			(at 168.91 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6656,7 +6602,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 200.66 22.86 90)
+			(at 168.91 22.86 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6842,7 +6788,7 @@
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "4c05589f-5125-44d0-8847-3b9af76d3da0")
@@ -6905,7 +6851,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 200.66 124.46 90)
+		(at 168.91 124.46 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6914,7 +6860,7 @@
 		(fields_autoplaced yes)
 		(uuid "4d333095-40a2-4a69-bd8b-66c68df78831")
 		(property "Reference" "D23"
-			(at 209.55 123.1899 90)
+			(at 177.8 123.1899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6923,7 +6869,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 209.55 125.7299 90)
+			(at 177.8 125.7299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6932,7 +6878,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 124.46 0)
+			(at 170.18 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6941,7 +6887,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 201.93 124.46 0)
+			(at 170.18 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6950,7 +6896,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 124.46 0)
+			(at 168.91 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6959,7 +6905,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 200.66 124.46 90)
+			(at 168.91 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6990,7 +6936,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 168.91 99.06 90)
+		(at 137.16 175.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6999,7 +6945,7 @@
 		(fields_autoplaced yes)
 		(uuid "4d3f283b-c7b7-40af-8d49-f182c476382b")
 		(property "Reference" "D16"
-			(at 177.8 97.7899 90)
+			(at 146.05 173.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7008,7 +6954,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 177.8 100.3299 90)
+			(at 146.05 176.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7017,7 +6963,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 170.18 99.06 0)
+			(at 138.43 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7026,7 +6972,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 170.18 99.06 0)
+			(at 138.43 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7035,7 +6981,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 168.91 99.06 0)
+			(at 137.16 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7044,7 +6990,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 168.91 99.06 90)
+			(at 137.16 175.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7646,7 +7592,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 168.91 73.66 90)
+		(at 137.16 149.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7655,6 +7601,431 @@
 		(fields_autoplaced yes)
 		(uuid "72bfe538-8e03-4c4d-8b29-501dbb6535b0")
 		(property "Reference" "D15"
+			(at 146.05 148.5899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 146.05 151.1299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 138.43 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 138.43 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 137.16 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 137.16 149.86 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "d3818b82-4fc7-43e8-babd-dd7377bd5d5f")
+		)
+		(pin "2"
+			(uuid "f734e98c-8ace-4776-b645-bf4a9d3bd266")
+		)
+		(pin "1"
+			(uuid "dc7d21fc-1407-4114-912e-8796920fbf89")
+		)
+		(pin "4"
+			(uuid "3720dd23-6e58-4cbb-901a-ce7062da3402")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 168.91 99.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7a1ec4bd-5263-418f-a460-0e37e681b37b")
+		(property "Reference" "D22"
+			(at 177.8 97.7899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 177.8 100.3299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 170.18 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 170.18 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 168.91 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 168.91 99.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "4bd2b73b-44e7-490e-8ff2-751356f370e2")
+		)
+		(pin "2"
+			(uuid "31a7e87d-7f8f-47c1-abc0-7e02425b08da")
+		)
+		(pin "1"
+			(uuid "38c026d8-2b0a-4aad-a62f-f87ddd6d694f")
+		)
+		(pin "4"
+			(uuid "76b307e5-b162-4a2b-ba83-b21530a7b63a")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D22")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 168.91 200.66 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "86749d8f-a87f-471a-babf-bcb205bcb539")
+		(property "Reference" "D26"
+			(at 177.8 199.3899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 177.8 201.9299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 170.18 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 170.18 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 168.91 200.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 168.91 200.66 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "16292d09-e3d5-4f58-9a53-9215145be60d")
+		)
+		(pin "2"
+			(uuid "214b55c6-5027-41d6-b5d3-b6c2219e19a8")
+		)
+		(pin "1"
+			(uuid "9f92031a-2096-4793-aa87-13f63786f096")
+		)
+		(pin "4"
+			(uuid "b554a273-3c3e-4e96-a3b0-baf60b3f3db5")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 105.41 175.26 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8770253a-6cc8-4651-8f32-bc60335bea8f")
+		(property "Reference" "D7"
+			(at 114.3 173.9899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 114.3 176.5299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 106.68 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 106.68 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 105.41 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 105.41 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "86973531-905f-41f3-b6b3-dba9beee000f")
+		)
+		(pin "2"
+			(uuid "72971d29-e5e8-4046-865a-50a4ff05be7a")
+		)
+		(pin "1"
+			(uuid "3f8db536-3464-4b4d-ba1e-e724f803c114")
+		)
+		(pin "4"
+			(uuid "a09db4d7-185e-4556-a256-29175e9507c2")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 168.91 226.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "89df9c49-c600-4bc2-8104-63971b819d15")
+		(property "Reference" "D27"
+			(at 177.8 224.7899 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_ARGB"
+			(at 177.8 227.3299 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
+			(at 170.18 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 170.18 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, anode/red/green/blue"
+			(at 168.91 226.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C2874117"
+			(at 168.91 226.06 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "3673210c-34d8-465f-a2ad-1ddcda0bc965")
+		)
+		(pin "2"
+			(uuid "e04310a2-5247-4ccd-bde9-3b4833aea560")
+		)
+		(pin "1"
+			(uuid "b61d1dd6-ba72-48be-9ac4-dfd3136ecaac")
+		)
+		(pin "4"
+			(uuid "42b786e5-1d43-476d-ba07-a981cc76ef39")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "D27")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_ARGB")
+		(at 168.91 73.66 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8ae679bb-c7e0-49c0-ac32-114437e7af01")
+		(property "Reference" "D21"
 			(at 177.8 72.3899 90)
 			(effects
 				(font
@@ -7709,431 +8080,6 @@
 			)
 		)
 		(pin "3"
-			(uuid "d3818b82-4fc7-43e8-babd-dd7377bd5d5f")
-		)
-		(pin "2"
-			(uuid "f734e98c-8ace-4776-b645-bf4a9d3bd266")
-		)
-		(pin "1"
-			(uuid "dc7d21fc-1407-4114-912e-8796920fbf89")
-		)
-		(pin "4"
-			(uuid "3720dd23-6e58-4cbb-901a-ce7062da3402")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 200.66 99.06 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "7a1ec4bd-5263-418f-a460-0e37e681b37b")
-		(property "Reference" "D22"
-			(at 209.55 97.7899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 209.55 100.3299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 201.93 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 200.66 99.06 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "4bd2b73b-44e7-490e-8ff2-751356f370e2")
-		)
-		(pin "2"
-			(uuid "31a7e87d-7f8f-47c1-abc0-7e02425b08da")
-		)
-		(pin "1"
-			(uuid "38c026d8-2b0a-4aad-a62f-f87ddd6d694f")
-		)
-		(pin "4"
-			(uuid "76b307e5-b162-4a2b-ba83-b21530a7b63a")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D22")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 232.41 48.26 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "86749d8f-a87f-471a-babf-bcb205bcb539")
-		(property "Reference" "D26"
-			(at 241.3 46.9899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 241.3 49.5299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 233.68 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 232.41 48.26 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "16292d09-e3d5-4f58-9a53-9215145be60d")
-		)
-		(pin "2"
-			(uuid "214b55c6-5027-41d6-b5d3-b6c2219e19a8")
-		)
-		(pin "1"
-			(uuid "9f92031a-2096-4793-aa87-13f63786f096")
-		)
-		(pin "4"
-			(uuid "b554a273-3c3e-4e96-a3b0-baf60b3f3db5")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D26")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 137.16 22.86 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8770253a-6cc8-4651-8f32-bc60335bea8f")
-		(property "Reference" "D7"
-			(at 146.05 21.5899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 146.05 24.1299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 138.43 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 22.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 137.16 22.86 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "86973531-905f-41f3-b6b3-dba9beee000f")
-		)
-		(pin "2"
-			(uuid "72971d29-e5e8-4046-865a-50a4ff05be7a")
-		)
-		(pin "1"
-			(uuid "3f8db536-3464-4b4d-ba1e-e724f803c114")
-		)
-		(pin "4"
-			(uuid "a09db4d7-185e-4556-a256-29175e9507c2")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 232.41 73.66 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "89df9c49-c600-4bc2-8104-63971b819d15")
-		(property "Reference" "D27"
-			(at 241.3 72.3899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 241.3 74.9299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 233.68 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 232.41 73.66 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "3673210c-34d8-465f-a2ad-1ddcda0bc965")
-		)
-		(pin "2"
-			(uuid "e04310a2-5247-4ccd-bde9-3b4833aea560")
-		)
-		(pin "1"
-			(uuid "b61d1dd6-ba72-48be-9ac4-dfd3136ecaac")
-		)
-		(pin "4"
-			(uuid "42b786e5-1d43-476d-ba07-a981cc76ef39")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "D27")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED_ARGB")
-		(at 200.66 73.66 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8ae679bb-c7e0-49c0-ac32-114437e7af01")
-		(property "Reference" "D21"
-			(at 209.55 72.3899 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_ARGB"
-			(at 209.55 74.9299 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 201.93 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 73.66 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C2874117"
-			(at 200.66 73.66 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
 			(uuid "ac9d4f9c-b691-4c0f-98af-50ae84e9d666")
 		)
 		(pin "2"
@@ -8156,7 +8102,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 137.16 73.66 90)
+		(at 105.41 226.06 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8165,7 +8111,7 @@
 		(fields_autoplaced yes)
 		(uuid "90dcda26-f984-4604-ad4a-82da81526a74")
 		(property "Reference" "D9"
-			(at 146.05 72.3899 90)
+			(at 114.3 224.7899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8174,7 +8120,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 146.05 74.9299 90)
+			(at 114.3 227.3299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8183,7 +8129,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 73.66 0)
+			(at 106.68 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8192,7 +8138,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 138.43 73.66 0)
+			(at 106.68 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8201,7 +8147,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 73.66 0)
+			(at 105.41 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8210,7 +8156,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 137.16 73.66 90)
+			(at 105.41 226.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8243,7 +8189,7 @@
 		(lib_id "Mechanical:MountingHole")
 		(at 26.67 134.62 0)
 		(unit 1)
-		(exclude_from_sim yes)
+		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
@@ -8390,7 +8336,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 137.16 149.86 90)
+		(at 137.16 73.66 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8399,7 +8345,7 @@
 		(fields_autoplaced yes)
 		(uuid "98db52e7-2304-47a4-9fb9-baebbeb100ea")
 		(property "Reference" "D12"
-			(at 146.05 148.5899 90)
+			(at 146.05 72.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8408,7 +8354,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 146.05 151.1299 90)
+			(at 146.05 74.9299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8417,7 +8363,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 149.86 0)
+			(at 138.43 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8426,7 +8372,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 138.43 149.86 0)
+			(at 138.43 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8435,7 +8381,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 149.86 0)
+			(at 137.16 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8444,7 +8390,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 137.16 149.86 90)
+			(at 137.16 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8475,7 +8421,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 232.41 22.86 90)
+		(at 168.91 175.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8484,7 +8430,7 @@
 		(fields_autoplaced yes)
 		(uuid "9905b844-e637-4eef-aead-fab94c112c9f")
 		(property "Reference" "D25"
-			(at 241.3 21.5899 90)
+			(at 177.8 173.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8493,7 +8439,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 241.3 24.1299 90)
+			(at 177.8 176.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8502,7 +8448,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 22.86 0)
+			(at 170.18 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8511,7 +8457,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 233.68 22.86 0)
+			(at 170.18 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8520,7 +8466,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 22.86 0)
+			(at 168.91 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8529,7 +8475,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 232.41 22.86 90)
+			(at 168.91 175.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8639,7 +8585,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 137.16 124.46 90)
+		(at 137.16 48.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8648,7 +8594,7 @@
 		(fields_autoplaced yes)
 		(uuid "9c8468c6-3aa2-4026-86c9-1f0339bc6669")
 		(property "Reference" "D11"
-			(at 146.05 123.1899 90)
+			(at 146.05 46.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8657,7 +8603,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 146.05 125.7299 90)
+			(at 146.05 49.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8666,7 +8612,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 124.46 0)
+			(at 138.43 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8675,7 +8621,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 138.43 124.46 0)
+			(at 138.43 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8684,7 +8630,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 124.46 0)
+			(at 137.16 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8693,7 +8639,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 137.16 124.46 90)
+			(at 137.16 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8724,7 +8670,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 264.16 149.86 90)
+		(at 200.66 226.06 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8733,7 +8679,7 @@
 		(fields_autoplaced yes)
 		(uuid "9e8caa95-f6b9-461a-abf7-56c0e1e14137")
 		(property "Reference" "D36"
-			(at 273.05 148.5899 90)
+			(at 209.55 224.7899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8742,7 +8688,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 273.05 151.1299 90)
+			(at 209.55 227.3299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8751,7 +8697,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 149.86 0)
+			(at 201.93 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8760,7 +8706,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 265.43 149.86 0)
+			(at 201.93 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8769,7 +8715,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 149.86 0)
+			(at 200.66 226.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8778,7 +8724,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 264.16 149.86 90)
+			(at 200.66 226.06 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8809,7 +8755,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 137.16 99.06 90)
+		(at 137.16 22.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8818,7 +8764,7 @@
 		(fields_autoplaced yes)
 		(uuid "9fc3ad05-3656-43f5-af85-b2e1b1c5caa8")
 		(property "Reference" "D10"
-			(at 146.05 97.7899 90)
+			(at 146.05 21.5899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8827,7 +8773,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 146.05 100.3299 90)
+			(at 146.05 24.1299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8836,7 +8782,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 99.06 0)
+			(at 138.43 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8845,7 +8791,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 138.43 99.06 0)
+			(at 138.43 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8854,7 +8800,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 99.06 0)
+			(at 137.16 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8863,7 +8809,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 137.16 99.06 90)
+			(at 137.16 22.86 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8960,7 +8906,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 168.91 124.46 90)
+		(at 137.16 200.66 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8969,7 +8915,7 @@
 		(fields_autoplaced yes)
 		(uuid "a9f3398b-63d5-4dab-906c-ce77b44e695b")
 		(property "Reference" "D17"
-			(at 177.8 123.1899 90)
+			(at 146.05 199.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8978,7 +8924,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 177.8 125.7299 90)
+			(at 146.05 201.9299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8987,7 +8933,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 170.18 124.46 0)
+			(at 138.43 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8996,7 +8942,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 170.18 124.46 0)
+			(at 138.43 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9005,7 +8951,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 168.91 124.46 0)
+			(at 137.16 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9014,7 +8960,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 168.91 124.46 90)
+			(at 137.16 200.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9297,7 +9243,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 200.66 48.26 90)
+		(at 168.91 48.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9306,7 +9252,7 @@
 		(fields_autoplaced yes)
 		(uuid "b8ac41de-5bbf-4137-be0b-eb20eb49b11e")
 		(property "Reference" "D20"
-			(at 209.55 46.9899 90)
+			(at 177.8 46.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9315,7 +9261,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 209.55 49.5299 90)
+			(at 177.8 49.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9324,7 +9270,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 201.93 48.26 0)
+			(at 170.18 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9333,7 +9279,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 201.93 48.26 0)
+			(at 170.18 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9342,7 +9288,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 200.66 48.26 0)
+			(at 168.91 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9351,7 +9297,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 200.66 48.26 90)
+			(at 168.91 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9467,7 +9413,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 137.16 48.26 90)
+		(at 105.41 200.66 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9476,7 +9422,7 @@
 		(fields_autoplaced yes)
 		(uuid "ba571f7b-be91-4086-ab0f-2cda144dfcd9")
 		(property "Reference" "D8"
-			(at 146.05 46.9899 90)
+			(at 114.3 199.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9485,7 +9431,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 146.05 49.5299 90)
+			(at 114.3 201.9299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9494,7 +9440,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 138.43 48.26 0)
+			(at 106.68 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9503,7 +9449,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 138.43 48.26 0)
+			(at 106.68 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9512,7 +9458,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 137.16 48.26 0)
+			(at 105.41 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9521,7 +9467,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 137.16 48.26 90)
+			(at 105.41 200.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9554,7 +9500,7 @@
 		(lib_id "Mechanical:MountingHole")
 		(at 26.67 147.32 0)
 		(unit 1)
-		(exclude_from_sim yes)
+		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
@@ -9616,7 +9562,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 264.16 124.46 90)
+		(at 200.66 200.66 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9625,7 +9571,7 @@
 		(fields_autoplaced yes)
 		(uuid "bd6caf93-fc55-4ffa-88f7-5d663e433ecc")
 		(property "Reference" "D35"
-			(at 273.05 123.1899 90)
+			(at 209.55 199.3899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9634,7 +9580,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 273.05 125.7299 90)
+			(at 209.55 201.9299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9643,7 +9589,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 124.46 0)
+			(at 201.93 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9652,7 +9598,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 265.43 124.46 0)
+			(at 201.93 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9661,7 +9607,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 124.46 0)
+			(at 200.66 200.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9670,7 +9616,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 264.16 124.46 90)
+			(at 200.66 200.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9701,7 +9647,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 264.16 73.66 90)
+		(at 200.66 149.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9710,7 +9656,7 @@
 		(fields_autoplaced yes)
 		(uuid "c2f8273e-0146-4d45-868b-35cca6145f89")
 		(property "Reference" "D33"
-			(at 273.05 72.3899 90)
+			(at 209.55 148.5899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9719,7 +9665,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 273.05 74.9299 90)
+			(at 209.55 151.1299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9728,7 +9674,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 73.66 0)
+			(at 201.93 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9737,7 +9683,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 265.43 73.66 0)
+			(at 201.93 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9746,7 +9692,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 73.66 0)
+			(at 200.66 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9755,7 +9701,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 264.16 73.66 90)
+			(at 200.66 149.86 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9786,7 +9732,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 168.91 48.26 90)
+		(at 137.16 124.46 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9795,7 +9741,7 @@
 		(fields_autoplaced yes)
 		(uuid "c9da267c-56af-4751-a2e1-29eade7fad4c")
 		(property "Reference" "D14"
-			(at 177.8 46.9899 90)
+			(at 146.05 123.1899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9804,7 +9750,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 177.8 49.5299 90)
+			(at 146.05 125.7299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9813,7 +9759,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 170.18 48.26 0)
+			(at 138.43 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9822,7 +9768,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 170.18 48.26 0)
+			(at 138.43 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9831,7 +9777,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 168.91 48.26 0)
+			(at 137.16 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9840,7 +9786,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 168.91 48.26 90)
+			(at 137.16 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9871,7 +9817,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 264.16 48.26 90)
+		(at 200.66 124.46 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9880,7 +9826,7 @@
 		(fields_autoplaced yes)
 		(uuid "ce7b3e44-01cd-44f3-9845-c04e1dae5597")
 		(property "Reference" "D32"
-			(at 273.05 46.9899 90)
+			(at 209.55 123.1899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9889,7 +9835,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 273.05 49.5299 90)
+			(at 209.55 125.7299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9898,7 +9844,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 265.43 48.26 0)
+			(at 201.93 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9907,7 +9853,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 265.43 48.26 0)
+			(at 201.93 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9916,7 +9862,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 264.16 48.26 0)
+			(at 200.66 124.46 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9925,7 +9871,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 264.16 48.26 90)
+			(at 200.66 124.46 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9956,7 +9902,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 232.41 99.06 90)
+		(at 200.66 22.86 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -9965,7 +9911,7 @@
 		(fields_autoplaced yes)
 		(uuid "e4fe79c5-322b-41eb-a096-b83d893ff5d9")
 		(property "Reference" "D28"
-			(at 241.3 97.7899 90)
+			(at 209.55 21.5899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9974,7 +9920,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 241.3 100.3299 90)
+			(at 209.55 24.1299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9983,7 +9929,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 99.06 0)
+			(at 201.93 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9992,7 +9938,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 233.68 99.06 0)
+			(at 201.93 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10001,7 +9947,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 99.06 0)
+			(at 200.66 22.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10010,7 +9956,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 232.41 99.06 90)
+			(at 200.66 22.86 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10118,7 +10064,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED_ARGB")
-		(at 232.41 124.46 90)
+		(at 200.66 48.26 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -10127,7 +10073,7 @@
 		(fields_autoplaced yes)
 		(uuid "f521d225-a5c1-4dcc-8dd3-7aebc3f845ea")
 		(property "Reference" "D29"
-			(at 241.3 123.1899 90)
+			(at 209.55 46.9899 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10136,7 +10082,7 @@
 			)
 		)
 		(property "Value" "LED_ARGB"
-			(at 241.3 125.7299 90)
+			(at 209.55 49.5299 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10145,7 +10091,7 @@
 			)
 		)
 		(property "Footprint" "Custom:NH-Z1415RGBA-SG"
-			(at 233.68 124.46 0)
+			(at 201.93 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10154,7 +10100,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 233.68 124.46 0)
+			(at 201.93 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10163,7 +10109,7 @@
 			)
 		)
 		(property "Description" "RGB LED, anode/red/green/blue"
-			(at 232.41 124.46 0)
+			(at 200.66 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10172,7 +10118,7 @@
 			)
 		)
 		(property "LCSC" "C2874117"
-			(at 232.41 124.46 90)
+			(at 200.66 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
