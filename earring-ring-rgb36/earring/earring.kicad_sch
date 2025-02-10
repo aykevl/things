@@ -2431,7 +2431,7 @@
 		)
 		(uuid "f4c8e366-2eb4-4a8e-9864-608469b4e60f")
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 180.34 270)
 		(fields_autoplaced yes)
@@ -2453,7 +2453,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 27.94 270)
 		(fields_autoplaced yes)
@@ -2475,7 +2475,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 104.14 270)
 		(fields_autoplaced yes)
@@ -2497,7 +2497,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 180.34 270)
 		(fields_autoplaced yes)
@@ -2519,7 +2519,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 154.94 270)
 		(fields_autoplaced yes)
@@ -2541,7 +2541,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 104.14 270)
 		(fields_autoplaced yes)
@@ -2563,7 +2563,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 200.66 93.98 0)
 		(fields_autoplaced yes)
@@ -2585,7 +2585,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 137.16 43.18 0)
 		(fields_autoplaced yes)
@@ -2607,7 +2607,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 180.34 270)
 		(fields_autoplaced yes)
@@ -2629,7 +2629,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 231.14 270)
 		(fields_autoplaced yes)
@@ -2651,7 +2651,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 58.42 44.45 0)
 		(fields_autoplaced yes)
@@ -2673,7 +2673,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 129.54 270)
 		(fields_autoplaced yes)
@@ -2717,7 +2717,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 200.66 17.78 0)
 		(fields_autoplaced yes)
@@ -2739,7 +2739,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 137.16 93.98 0)
 		(fields_autoplaced yes)
@@ -2761,7 +2761,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 205.74 270)
 		(fields_autoplaced yes)
@@ -2783,7 +2783,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 27.94 270)
 		(fields_autoplaced yes)
@@ -2805,7 +2805,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 231.14 270)
 		(fields_autoplaced yes)
@@ -2827,7 +2827,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 27.94 270)
 		(fields_autoplaced yes)
@@ -2849,7 +2849,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 104.14 270)
 		(fields_autoplaced yes)
@@ -2871,7 +2871,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 205.74 270)
 		(fields_autoplaced yes)
@@ -2893,7 +2893,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 104.14 270)
 		(fields_autoplaced yes)
@@ -2915,7 +2915,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 78.74 270)
 		(fields_autoplaced yes)
@@ -2937,7 +2937,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 231.14 270)
 		(fields_autoplaced yes)
@@ -2959,7 +2959,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 104.14 270)
 		(fields_autoplaced yes)
@@ -2981,7 +2981,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 168.91 195.58 0)
 		(fields_autoplaced yes)
@@ -3003,7 +3003,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 53.34 270)
 		(fields_autoplaced yes)
@@ -3025,7 +3025,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 53.34 270)
 		(fields_autoplaced yes)
@@ -3047,7 +3047,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 78.74 270)
 		(fields_autoplaced yes)
@@ -3069,7 +3069,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 27.94 270)
 		(fields_autoplaced yes)
@@ -3091,7 +3091,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 231.14 270)
 		(fields_autoplaced yes)
@@ -3113,7 +3113,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 200.66 170.18 0)
 		(fields_autoplaced yes)
@@ -3135,7 +3135,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 129.54 270)
 		(fields_autoplaced yes)
@@ -3157,7 +3157,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 105.41 144.78 0)
 		(fields_autoplaced yes)
@@ -3179,7 +3179,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 78.74 270)
 		(fields_autoplaced yes)
@@ -3201,7 +3201,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 205.74 270)
 		(fields_autoplaced yes)
@@ -3223,7 +3223,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 205.74 270)
 		(fields_autoplaced yes)
@@ -3245,7 +3245,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 105.41 220.98 0)
 		(fields_autoplaced yes)
@@ -3267,7 +3267,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 78.74 270)
 		(fields_autoplaced yes)
@@ -3289,7 +3289,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 154.94 270)
 		(fields_autoplaced yes)
@@ -3311,7 +3311,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 154.94 270)
 		(fields_autoplaced yes)
@@ -3333,7 +3333,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 154.94 270)
 		(fields_autoplaced yes)
@@ -3355,7 +3355,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 105.41 119.38 0)
 		(fields_autoplaced yes)
@@ -3377,7 +3377,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 129.54 270)
 		(fields_autoplaced yes)
@@ -3399,7 +3399,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 78.74 270)
 		(fields_autoplaced yes)
@@ -3421,7 +3421,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 180.34 270)
 		(fields_autoplaced yes)
@@ -3443,7 +3443,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 27.94 270)
 		(fields_autoplaced yes)
@@ -3465,7 +3465,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 168.91 170.18 0)
 		(fields_autoplaced yes)
@@ -3509,7 +3509,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 168.91 93.98 0)
 		(fields_autoplaced yes)
@@ -3531,7 +3531,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 180.34 270)
 		(fields_autoplaced yes)
@@ -3553,7 +3553,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 129.54 270)
 		(fields_autoplaced yes)
@@ -3575,7 +3575,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 53.34 270)
 		(fields_autoplaced yes)
@@ -3597,7 +3597,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 53.34 270)
 		(fields_autoplaced yes)
@@ -3619,7 +3619,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 137.16 17.78 0)
 		(fields_autoplaced yes)
@@ -3641,7 +3641,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 129.54 270)
 		(fields_autoplaced yes)
@@ -3663,7 +3663,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 137.16 195.58 0)
 		(fields_autoplaced yes)
@@ -3685,7 +3685,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 205.74 270)
 		(fields_autoplaced yes)
@@ -3707,7 +3707,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 200.66 119.38 0)
 		(fields_autoplaced yes)
@@ -3729,7 +3729,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 231.14 270)
 		(fields_autoplaced yes)
@@ -3751,7 +3751,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 129.54 270)
 		(fields_autoplaced yes)
@@ -3773,7 +3773,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 53.34 270)
 		(fields_autoplaced yes)
@@ -3795,7 +3795,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 105.41 195.58 0)
 		(fields_autoplaced yes)
@@ -3817,7 +3817,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 129.54 270)
 		(fields_autoplaced yes)
@@ -3839,7 +3839,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 78.74 270)
 		(fields_autoplaced yes)
@@ -3861,7 +3861,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 137.16 68.58 0)
 		(fields_autoplaced yes)
@@ -3883,7 +3883,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 105.41 93.98 0)
 		(fields_autoplaced yes)
@@ -3905,7 +3905,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 53.34 270)
 		(fields_autoplaced yes)
@@ -3927,7 +3927,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 27.94 270)
 		(fields_autoplaced yes)
@@ -3949,7 +3949,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 129.54 270)
 		(fields_autoplaced yes)
@@ -3971,7 +3971,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 58.42 59.69 0)
 		(fields_autoplaced yes)
@@ -3993,7 +3993,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 53.34 270)
 		(fields_autoplaced yes)
@@ -4015,7 +4015,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 205.74 270)
 		(fields_autoplaced yes)
@@ -4037,7 +4037,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 58.42 64.77 0)
 		(fields_autoplaced yes)
@@ -4059,7 +4059,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 180.34 270)
 		(fields_autoplaced yes)
@@ -4081,7 +4081,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 129.54 270)
 		(fields_autoplaced yes)
@@ -4103,7 +4103,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 231.14 270)
 		(fields_autoplaced yes)
@@ -4125,7 +4125,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 154.94 270)
 		(fields_autoplaced yes)
@@ -4147,7 +4147,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 105.41 17.78 0)
 		(fields_autoplaced yes)
@@ -4169,7 +4169,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 58.42 57.15 0)
 		(fields_autoplaced yes)
@@ -4191,7 +4191,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 53.34 270)
 		(fields_autoplaced yes)
@@ -4213,7 +4213,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 78.74 270)
 		(fields_autoplaced yes)
@@ -4235,7 +4235,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 205.74 270)
 		(fields_autoplaced yes)
@@ -4257,7 +4257,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 78.74 270)
 		(fields_autoplaced yes)
@@ -4279,7 +4279,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 168.91 43.18 0)
 		(fields_autoplaced yes)
@@ -4301,7 +4301,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 58.42 62.23 0)
 		(fields_autoplaced yes)
@@ -4323,7 +4323,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 105.41 68.58 0)
 		(fields_autoplaced yes)
@@ -4345,7 +4345,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 205.74 270)
 		(fields_autoplaced yes)
@@ -4367,7 +4367,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 53.34 270)
 		(fields_autoplaced yes)
@@ -4389,7 +4389,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 168.91 220.98 0)
 		(fields_autoplaced yes)
@@ -4411,7 +4411,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 168.91 68.58 0)
 		(fields_autoplaced yes)
@@ -4433,7 +4433,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 137.16 119.38 0)
 		(fields_autoplaced yes)
@@ -4455,7 +4455,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 205.74 270)
 		(fields_autoplaced yes)
@@ -4477,7 +4477,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 200.66 68.58 0)
 		(fields_autoplaced yes)
@@ -4499,7 +4499,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 129.54 270)
 		(fields_autoplaced yes)
@@ -4521,7 +4521,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 180.34 270)
 		(fields_autoplaced yes)
@@ -4543,7 +4543,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 154.94 270)
 		(fields_autoplaced yes)
@@ -4565,7 +4565,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 168.91 119.38 0)
 		(fields_autoplaced yes)
@@ -4609,7 +4609,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 154.94 270)
 		(fields_autoplaced yes)
@@ -4631,7 +4631,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 154.94 270)
 		(fields_autoplaced yes)
@@ -4653,7 +4653,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 129.54 270)
 		(fields_autoplaced yes)
@@ -4675,7 +4675,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 58.42 41.91 0)
 		(fields_autoplaced yes)
@@ -4697,7 +4697,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 58.42 39.37 0)
 		(fields_autoplaced yes)
@@ -4719,7 +4719,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 180.34 270)
 		(fields_autoplaced yes)
@@ -4741,7 +4741,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 137.16 170.18 0)
 		(fields_autoplaced yes)
@@ -4763,7 +4763,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 180.34 270)
 		(fields_autoplaced yes)
@@ -4785,7 +4785,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 205.74 270)
 		(fields_autoplaced yes)
@@ -4807,7 +4807,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 137.16 220.98 0)
 		(fields_autoplaced yes)
@@ -4829,7 +4829,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 104.14 270)
 		(fields_autoplaced yes)
@@ -4851,7 +4851,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 154.94 270)
 		(fields_autoplaced yes)
@@ -4873,7 +4873,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 200.66 195.58 0)
 		(fields_autoplaced yes)
@@ -4917,7 +4917,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 53.34 270)
 		(fields_autoplaced yes)
@@ -4939,7 +4939,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 104.14 270)
 		(fields_autoplaced yes)
@@ -4961,7 +4961,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 205.74 270)
 		(fields_autoplaced yes)
@@ -4983,7 +4983,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 58.42 49.53 0)
 		(fields_autoplaced yes)
@@ -5005,7 +5005,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 231.14 270)
 		(fields_autoplaced yes)
@@ -5027,7 +5027,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 180.34 270)
 		(fields_autoplaced yes)
@@ -5049,7 +5049,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 78.74 270)
 		(fields_autoplaced yes)
@@ -5071,7 +5071,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 53.34 270)
 		(fields_autoplaced yes)
@@ -5093,7 +5093,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 231.14 270)
 		(fields_autoplaced yes)
@@ -5115,7 +5115,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 104.14 270)
 		(fields_autoplaced yes)
@@ -5137,7 +5137,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 200.66 220.98 0)
 		(fields_autoplaced yes)
@@ -5159,7 +5159,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 104.14 270)
 		(fields_autoplaced yes)
@@ -5181,7 +5181,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 231.14 270)
 		(fields_autoplaced yes)
@@ -5203,7 +5203,7 @@
 			)
 		)
 	)
-	(global_label "A11"
+	(global_label "A2"
 		(shape input)
 		(at 105.41 27.94 270)
 		(fields_autoplaced yes)
@@ -5225,7 +5225,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 154.94 270)
 		(fields_autoplaced yes)
@@ -5247,7 +5247,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 27.94 270)
 		(fields_autoplaced yes)
@@ -5269,7 +5269,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 200.66 43.18 0)
 		(fields_autoplaced yes)
@@ -5291,7 +5291,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 58.42 52.07 0)
 		(fields_autoplaced yes)
@@ -5313,7 +5313,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 231.14 270)
 		(fields_autoplaced yes)
@@ -5335,7 +5335,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 142.24 27.94 270)
 		(fields_autoplaced yes)
@@ -5357,7 +5357,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 129.54 270)
 		(fields_autoplaced yes)
@@ -5379,7 +5379,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 27.94 270)
 		(fields_autoplaced yes)
@@ -5401,7 +5401,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 58.42 46.99 0)
 		(fields_autoplaced yes)
@@ -5423,7 +5423,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 58.42 54.61 0)
 		(fields_autoplaced yes)
@@ -5445,7 +5445,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 104.14 270)
 		(fields_autoplaced yes)
@@ -5467,7 +5467,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 53.34 270)
 		(fields_autoplaced yes)
@@ -5489,7 +5489,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 168.91 144.78 0)
 		(fields_autoplaced yes)
@@ -5511,7 +5511,7 @@
 			)
 		)
 	)
-	(global_label "A5"
+	(global_label "A8"
 		(shape input)
 		(at 168.91 154.94 270)
 		(fields_autoplaced yes)
@@ -5533,7 +5533,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 105.41 170.18 0)
 		(fields_autoplaced yes)
@@ -5555,7 +5555,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 58.42 72.39 0)
 		(fields_autoplaced yes)
@@ -5577,7 +5577,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 154.94 270)
 		(fields_autoplaced yes)
@@ -5599,7 +5599,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 180.34 270)
 		(fields_autoplaced yes)
@@ -5621,7 +5621,7 @@
 			)
 		)
 	)
-	(global_label "A6"
+	(global_label "A9"
 		(shape input)
 		(at 173.99 78.74 270)
 		(fields_autoplaced yes)
@@ -5643,7 +5643,7 @@
 			)
 		)
 	)
-	(global_label "A12"
+	(global_label "A3"
 		(shape input)
 		(at 110.49 104.14 270)
 		(fields_autoplaced yes)
@@ -5665,7 +5665,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 180.34 270)
 		(fields_autoplaced yes)
@@ -5687,7 +5687,7 @@
 			)
 		)
 	)
-	(global_label "A10"
+	(global_label "A1"
 		(shape input)
 		(at 100.33 27.94 270)
 		(fields_autoplaced yes)
@@ -5709,7 +5709,7 @@
 			)
 		)
 	)
-	(global_label "A8"
+	(global_label "A11"
 		(shape input)
 		(at 137.16 78.74 270)
 		(fields_autoplaced yes)
@@ -5731,7 +5731,7 @@
 			)
 		)
 	)
-	(global_label "A9"
+	(global_label "A12"
 		(shape input)
 		(at 200.66 144.78 0)
 		(fields_autoplaced yes)
@@ -5753,7 +5753,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 105.41 43.18 0)
 		(fields_autoplaced yes)
@@ -5775,7 +5775,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 132.08 231.14 270)
 		(fields_autoplaced yes)
@@ -5797,7 +5797,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 27.94 270)
 		(fields_autoplaced yes)
@@ -5819,7 +5819,7 @@
 			)
 		)
 	)
-	(global_label "A4"
+	(global_label "A7"
 		(shape input)
 		(at 163.83 205.74 270)
 		(fields_autoplaced yes)
@@ -5841,7 +5841,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 137.16 144.78 0)
 		(fields_autoplaced yes)
@@ -5863,7 +5863,7 @@
 			)
 		)
 	)
-	(global_label "A7"
+	(global_label "A10"
 		(shape input)
 		(at 168.91 17.78 0)
 		(fields_autoplaced yes)
@@ -5885,7 +5885,7 @@
 			)
 		)
 	)
-	(global_label "A2"
+	(global_label "A5"
 		(shape input)
 		(at 200.66 231.14 270)
 		(fields_autoplaced yes)
@@ -5907,7 +5907,7 @@
 			)
 		)
 	)
-	(global_label "A3"
+	(global_label "A6"
 		(shape input)
 		(at 205.74 78.74 270)
 		(fields_autoplaced yes)
@@ -5929,7 +5929,7 @@
 			)
 		)
 	)
-	(global_label "A1"
+	(global_label "A4"
 		(shape input)
 		(at 195.58 104.14 270)
 		(fields_autoplaced yes)
