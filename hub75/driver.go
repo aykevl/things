@@ -58,6 +58,7 @@ import (
 
 type Device struct {
 	chipSpecificSettings
+	spi               machine.SPI
 	a                 machine.Pin
 	b                 machine.Pin
 	c                 machine.Pin
@@ -78,6 +79,7 @@ type Device struct {
 
 // Config contains the configuration for a given hub75 instance.
 type Config struct {
+	SPI          machine.SPI
 	Data         machine.Pin // SPI TX
 	Clock        machine.Pin // SPI CLK
 	Latch        machine.Pin // also called strobe
@@ -99,6 +101,7 @@ func New(config Config) *Device {
 		config.Brightness = 1 // default config (and minimum)
 	}
 	d := &Device{
+		spi:        config.SPI,
 		a:          config.A,
 		b:          config.B,
 		c:          config.C,
