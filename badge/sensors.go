@@ -17,7 +17,7 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 	scalePercent := board.Display.PPI() * 100 / 120
 
 	// Create UI.
-	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
+	theme := basic.New(style.NewScale(scalePercent), screen)
 	header := theme.NewText("Sensors")
 	header.SetBackground(pixel.NewColor[T](0, 0, 255))
 	header.SetColor(pixel.NewColor[T](255, 255, 255))

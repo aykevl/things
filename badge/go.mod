@@ -1,12 +1,12 @@
 module ayke/things/badge
 
-go 1.20
+go 1.22.1
 
 require (
 	github.com/aykevl/board v0.0.0-20231124144211-feeba0ede83c
 	github.com/aykevl/ledsgo v0.0.0-20220227114919-bd2e91bb77f2
-	github.com/aykevl/tinygl v0.0.0-20240131130748-3033a2fd9182
-	tinygo.org/x/drivers v0.26.1-0.20231124130000-fef6564044f9
+	github.com/aykevl/tinygl v0.0.0-20240525115953-23da4bb20608
+	tinygo.org/x/drivers v0.31.0
 )
 
 require (
@@ -32,11 +32,12 @@ require (
 	github.com/stretchr/testify v1.8.4 // indirect
 	github.com/tevino/abool v1.2.0 // indirect
 	github.com/yuin/goldmark v1.6.0 // indirect
-	golang.org/x/image v0.14.0 // indirect
+	golang.org/x/image v0.15.0 // indirect
 	golang.org/x/mobile v0.0.0-20231108233038-35478a0c49da // indirect
-	golang.org/x/net v0.18.0 // indirect
-	golang.org/x/sys v0.14.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/text v0.21.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20231030024858-cb489e859d05 // indirect
+	tinygo.org/x/tinygl-font v0.0.0-20240511104711-920aa3dca2b2 // indirect
 )

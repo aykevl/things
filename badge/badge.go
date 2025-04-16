@@ -32,7 +32,7 @@ func run[T pixel.Color](display board.Displayer[T], touchInput board.TouchInput)
 	// Initialize the screen.
 	buf := pixel.NewImage[T](int(width), int(height)/4)
 	screen := tinygl.NewScreen[T](display, buf, board.Display.PPI())
-	theme := basic.NewTheme(style.NewScale(scalePercent), screen)
+	theme := basic.New(style.NewScale(scalePercent), screen)
 	println("scale:", scalePercent, "=>", theme.Scale.Percent())
 
 	// Create badge homescreen.
