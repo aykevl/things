@@ -3,6 +3,7 @@ package main
 import (
 	"strconv"
 	"time"
+	"runtime"
 
 	"github.com/aykevl/board"
 	"github.com/aykevl/tinygl"
@@ -31,7 +32,9 @@ func showSensors[T pixel.Color](screen *tinygl.Screen[T]) {
 	acceleration.SetAlign(tinygl.AlignLeft)
 	steps := theme.NewText("steps: ...")
 	steps.SetAlign(tinygl.AlignLeft)
-	vbox := theme.NewVBox(header, battery, voltage, temperature, acceleration, steps)
+	cpus := theme.NewText("CPU cores: " + strconv.Itoa(runtime.NumCPU()))
+	cpus.SetAlign(tinygl.AlignLeft)
+	vbox := theme.NewVBox(header, battery, voltage, temperature, acceleration, steps, cpus)
 	screen.SetChild(vbox)
 
 	// Show screen.
