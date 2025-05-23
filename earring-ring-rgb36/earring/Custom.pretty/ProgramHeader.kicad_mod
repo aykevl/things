@@ -1,7 +1,7 @@
 (footprint "ProgramHeader"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -2.28 0)
@@ -21,19 +21,6 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "d89dd48d-1c93-4ec4-a19f-b10fc7d1e9c5")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 -4.98 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "10e7830a-5cb6-49a5-9bde-03b676a57f91")
 		(effects
 			(font
 				(size 1 1)
@@ -83,25 +70,32 @@
 	(pad "1" smd circle
 		(at -3.81 0)
 		(size 1.5 1.5)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "e8dca4df-5f81-4373-905b-f2be97b6deb4")
 	)
 	(pad "2" smd rect
 		(at -1.27 0)
 		(size 1.5 1.5)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "62a7a1e1-e6c9-4cd7-a6b2-bf43f9f15a4c")
 	)
 	(pad "3" smd circle
 		(at 1.27 0)
 		(size 1.5 1.5)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "c8a7cdce-5903-46ad-92ed-14951836228c")
 	)
 	(pad "4" smd circle
 		(at 3.81 0)
 		(size 1.5 1.5)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "16053347-2a6e-4921-9833-2b455789ed60")
 	)
+	(pad "5" smd circle
+		(at 6.35 0)
+		(size 1.5 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "6eb7b62d-6912-4b83-b934-a401a48b284d")
+	)
+	(embedded_fonts no)
 )
