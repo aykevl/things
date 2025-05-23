@@ -1,7 +1,7 @@
 (footprint "MY-1220-03"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -10 0)
@@ -20,19 +20,6 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(uuid "23edab16-3f82-4bea-a8e3-d8c711f71685")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 -9.5 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "35e035bd-fb60-4b1a-8d6d-31db2f6d4dc9")
 		(effects
 			(font
 				(size 1 1)
@@ -156,7 +143,7 @@
 			(width 0.05)
 			(type solid)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.CrtYd")
 		(uuid "69e46665-7e45-41bd-9230-637383f910af")
 	)
@@ -172,24 +159,25 @@
 			)
 		)
 	)
+	(pad "" smd rect
+		(at 7.55 0)
+		(size 3.9 4.18)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "88c18f5c-9f80-4468-8f9f-ee196948a786")
+	)
 	(pad "1" smd rect
 		(at -7.55 0)
 		(size 3.9 4.18)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(thermal_bridge_angle 45)
 		(uuid "56d562cb-1a50-4a64-be60-149f3e14d385")
-	)
-	(pad "1" smd rect
-		(at 7.55 0)
-		(size 3.9 4.18)
-		(layers "F.Cu" "F.Paste" "F.Mask")
-		(thermal_bridge_angle 45)
-		(uuid "88c18f5c-9f80-4468-8f9f-ee196948a786")
 	)
 	(pad "2" smd circle
 		(at 0 0)
 		(size 7 7)
-		(layers "F.Cu" "F.Paste" "F.Mask")
+		(layers "F.Cu" "F.Mask" "F.Paste")
 		(uuid "a53ce961-e05f-4beb-a075-70aaed44c0b5")
 	)
+	(embedded_fonts no)
 )
