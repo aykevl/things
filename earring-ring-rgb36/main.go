@@ -1,0 +1,152 @@
+package main
+
+import (
+	"device/stm32"
+	"machine"
+	"runtime/volatile"
+)
+
+const (
+	A1  = machine.PA15
+	A2  = machine.PA10
+	A3  = machine.PA9
+	A4  = machine.PA8
+	A5  = machine.PA7
+	A6  = machine.PA6
+	A7  = machine.PA5
+	A8  = machine.PA4
+	A9  = machine.PA3
+	A10 = machine.PA2
+	A11 = machine.PA1
+	A12 = machine.PA0
+
+	button = machine.PB7
+)
+
+func main() {
+	// Configure button
+	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+
+	// Configure pins
+	A1.High()
+	A2.High()
+	A3.High()
+	A4.High()
+	A5.High()
+	A6.High()
+	A7.High()
+	A8.High()
+	A9.High()
+	A10.High()
+	A11.High()
+	A12.High()
+
+	// First set as an input with a pull mode.
+	// TODO: this is probably needed when sleeping (and maybe to reduce current
+	// consumption at runtime).
+	//A1.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A3.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A4.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A5.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A6.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A7.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A8.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A9.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A10.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A11.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	//A12.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+
+	// Now set as an output. The pull mode remains (this is probably a bug in
+	// the machine package, but let's rely on that for now).
+	A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A3.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A4.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A5.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A6.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A7.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A8.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A9.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A10.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A11.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A12.Configure(machine.PinConfig{Mode: machine.PinOutput})
+
+	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
+	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
+
+	setClockSpeed()
+
+	// Zero all LEDs.
+	for i := 0; i < 12; i++ {
+		setLEDs(i, 0, 0, 0)
+	}
+
+	index := 0 // 0..11, group of 3 LEDs that will be updated together
+	frame := 0
+	mode := initialMode
+	buttonPressed := false
+	for {
+		led0 := animate(mode, index+0, frame)
+		led1 := animate(mode, index+12, frame)
+		led2 := animate(mode, index+24, frame)
+		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
+
+		updateLEDs()
+
+		index++
+		if index == 12 {
+			index = 0
+			frame++
+
+			// Read the button every frame update.
+			pressed := !button.Get() // low means pressed
+			if pressed && pressed != buttonPressed {
+				mode++
+				if mode == modeLast {
+					mode = 0
+					// TODO: sleep
+				}
+				// TODO: when changing animation, clear all LEDs
+			}
+			buttonPressed = pressed
+		}
+	}
+}
+
+func setClockSpeed() {
+	// Switch to MSI.
+	stm32.RCC.CFGR.ReplaceBits(stm32.RCC_CFGR_SWS_MSI, stm32.RCC_CFGR_SW_Msk, 0)
+	for stm32.RCC.CFGR.Get()&stm32.RCC_CFGR_SW_Msk != stm32.RCC_CFGR_SWS_MSI {
+	}
+
+	// Disable PLL.
+	stm32.RCC.CR.ClearBits(stm32.RCC_CR_PLLON)
+
+	// Set power regulator to lowest voltage (1.2V).
+	stm32.RCC.APB1ENR.SetBits(stm32.RCC_APB1ENR_PWREN)
+	stm32.PWR.CR.ReplaceBits(0b11<<stm32.PWR_CR_VOS_Pos, stm32.PWR_CR_VOS_Msk, 0)
+	stm32.PWR.CR.Get()
+	stm32.RCC.APB1ENR.ClearBits(stm32.RCC_APB1ENR_PWREN)
+
+	// Disable HSI16 clock.
+	stm32.RCC.CR.ClearBits(stm32.RCC_CR_HSI16ON)
+
+	// Change flash latency to zero wait states. Saves 0.4µA or so.
+	stm32.FLASH.SetACR_LATENCY(stm32.Flash_ACR_LATENCY_WS0)
+
+	// Disable TIM21. Doesn't use much current when the clock is disabled, but
+	// it's a (very) small win. Saves 0.2µA or so.
+	stm32.RCC.SetAPB2ENR_TIM21EN(0)
+
+	// Set MSI clock speed.
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2) // range 2: around 131kHz
+
+	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
+	// directly connected to the CPU). This saves around ~1.2µA.
+	stm32.RCC.SetCFGR_PPRE1(stm32.RCC_CFGR_PPRE1_Div16)
+	stm32.RCC.SetCFGR_PPRE2(stm32.RCC_CFGR_PPRE2_Div16)
+
+	// Divide SYSCLK, for testing.
+	//stm32.RCC.SetCFGR_HPRE(stm32.RCC_CFGR_HPRE_Div512)
+}
