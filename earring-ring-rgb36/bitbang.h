@@ -2,8 +2,8 @@
 
 // bitplane[0] lo bits: 2 cycle bitplane
 // bitplane[0] hi bits: 1 cycle bitplane
-// bitplane[1] lo bits: 4 cycle bitplane
-// bitplane[1] hi bits: 8 cycle bitplane
+// bitplane[1] lo bits: 8 cycle bitplane
+// bitplane[1] hi bits: 4 cycle bitplane
 // bitplane[2] lo bits: 16 cycle bitplane
 
 static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t *bitplane) {
@@ -119,10 +119,6 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
         "rors %[led1], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A12/PA0)
         "eors %[tmp], %[xor]\n\t"
-
-        // Swap 4-cycle and 8-cycle bitplane (by rotating by 16 bits).
-        "rors %[tmp], %[N8]\n\t"
-        "rors %[tmp], %[N8]\n\t"
 
         // Store 4-cycle and 8-cycle bitplanes.
         "str %[tmp], [%[bitplane], #4]\n\t"
@@ -280,10 +276,6 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A12/PA0)
         "eors %[tmp], %[xor]\n\t"
 
-        // Swap 4-cycle and 8-cycle bitplane (by rotating by 16 bits).
-        "rors %[tmp], %[N8]\n\t"
-        "rors %[tmp], %[N8]\n\t"
-
         // Store 4-cycle and 8-cycle bitplanes.
         "str %[tmp], [%[bitplane], #4]\n\t"
 
@@ -440,10 +432,6 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
         "lsls %[tmp], #3\n\t"             // gap at the start (PA3-0)
         "eors %[tmp], %[xor]\n\t"
 
-        // Swap 4-cycle and 8-cycle bitplane (by rotating by 16 bits).
-        "rors %[tmp], %[N8]\n\t"
-        "rors %[tmp], %[N8]\n\t"
-
         // Store 4-cycle and 8-cycle bitplanes.
         "str %[tmp], [%[bitplane], #4]\n\t"
 
@@ -594,10 +582,6 @@ static void bitbang_update_bitplane_4(uint32_t led0, uint32_t led1, uint32_t led
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A12/PA0)
         "eors %[tmp], %[xor]\n\t"
 
-        // Swap 4-cycle and 8-cycle bitplane (by rotating by 16 bits).
-        "rors %[tmp], %[N8]\n\t"
-        "rors %[tmp], %[N8]\n\t"
-
         // Store 4-cycle and 8-cycle bitplanes.
         "str %[tmp], [%[bitplane], #4]\n\t"
 
@@ -647,22 +631,20 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile uint16_t *o
     // asm statement.
 
     __asm__ __volatile__(
-        "ldr %[v1], [%[bitplanes], #0]\n\t"
-        "ldr %[v2], [%[bitplanes], #4]\n\t"
+        "ldr  %[v2], [%[bitplanes], #4]\n\t"
+        "strh %[v2], [%[out]]\n\t" // 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"
+        "ldr  %[v1], [%[bitplanes], #0]\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
         "strh %[v1], [%[out]]\n\t" // 2 cycle bitplane
         "lsrs %[v1], #16\n\t"
         "strh %[v1], [%[out]]\n\t" // 1 cycle bitplane
         "strh %[v2], [%[out]]\n\t" // 4 cycle bitplane
-        "lsrs %[v2], #16\n\t"
         "nop\n\t"
-        "nop\n\t"
-        "strh %[v2], [%[out]]\n\t" // 8 cycle bitplane
-        "nop\n\t"
-        "nop\n\t"
-        "nop\n\t"
-        "nop\n\t"
-        "nop\n\t"
-        "ldr %[v1], [%[bitplanes], #8]\n\t"
+        "ldr  %[v1], [%[bitplanes], #8]\n\t"
         "strh %[v1], [%[out]]\n\t" // 16 cycle bitplane
         "nop\n\t"
         "nop\n\t"
