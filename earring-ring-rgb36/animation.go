@@ -10,12 +10,12 @@ const numLEDs = 36
 
 var leds [numLEDs]color.RGBA
 
-const initialMode = modeRainbowTrace
+const initialMode = 1 // first animation (0 is off)
 
 const (
 	modeOff = iota
-	modeNoise
 	modeRainbowTrace
+	modeNoise
 	modeFireRed
 	modeFireGreen
 	modeFireBlue
@@ -28,10 +28,10 @@ func animate(mode, led, frame int) Color {
 	switch mode {
 	case modeOff:
 		return 0 // TODO: implement
-	case modeNoise:
-		return noise(led, frame)
 	case modeRainbowTrace:
 		return rainbowTrace(led, frame)
+	case modeNoise:
+		return noise(led, frame)
 	case modeFireRed:
 		return fire(led, frame, color.RGBA{R: 255})
 	case modeFireGreen:
