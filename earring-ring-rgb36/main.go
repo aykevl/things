@@ -1,6 +1,7 @@
 package main
 
 import (
+	"device/arm"
 	"device/stm32"
 	"machine"
 	"runtime/volatile"
@@ -23,54 +24,18 @@ const (
 	button = machine.PB7
 )
 
+// Set to one from the interrupt to indicate the button was pressed.
+var buttonWake volatile.Register8
+
 func main() {
 	// Configure button
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	button.SetInterrupt(machine.PinFalling, func(p machine.Pin) {
+		buttonWake.Set(1)
+	})
 
 	// Configure pins
-	A1.High()
-	A2.High()
-	A3.High()
-	A4.High()
-	A5.High()
-	A6.High()
-	A7.High()
-	A8.High()
-	A9.High()
-	A10.High()
-	A11.High()
-	A12.High()
-
-	// First set as an input with a pull mode.
-	// TODO: this is probably needed when sleeping (and maybe to reduce current
-	// consumption at runtime).
-	//A1.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A3.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A4.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A5.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A6.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A7.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A8.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A9.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A10.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A11.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	//A12.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-
-	// Now set as an output. The pull mode remains (this is probably a bug in
-	// the machine package, but let's rely on that for now).
-	A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A3.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A4.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A5.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A6.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A7.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A8.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A9.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A10.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A11.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A12.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	configureLEDs()
 
 	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
 	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
@@ -104,10 +69,19 @@ func main() {
 			if pressed && pressed != buttonPressed {
 				mode++
 				if mode == modeLast {
+					// Last, so wrap around.
 					mode = 0
-					// TODO: sleep
 				}
-				// TODO: when changing animation, clear all LEDs
+				if mode == modeOff {
+					// Sleep until a button press, then go to the next mode.
+					sleepUntilButtonPress()
+					mode++
+				}
+
+				// Clear LEDs to be sure.
+				for i := 0; i < 12; i++ {
+					setLEDs(i, 0, 0, 0)
+				}
 			}
 			buttonPressed = pressed
 		}
@@ -123,10 +97,20 @@ func setClockSpeed() {
 	// Disable PLL.
 	stm32.RCC.CR.ClearBits(stm32.RCC_CR_PLLON)
 
-	// Set power regulator to lowest voltage (1.2V).
+	// Configure power:
+	// - change to 1.2V range.
+	// - enable LPDS or LPSDSR bit
+	// - disable Vrefint (ultra low power)
+	// - enter standby mode when entering deepsleep (PDDS=1)
+	// - clear wakeup flag
 	stm32.RCC.APB1ENR.SetBits(stm32.RCC_APB1ENR_PWREN)
-	stm32.PWR.CR.ReplaceBits(0b11<<stm32.PWR_CR_VOS_Pos, stm32.PWR_CR_VOS_Msk, 0)
-	stm32.PWR.CR.Get()
+	stm32.PWR.CR.Set(stm32.PWR_CR_VOS_V1_2<<stm32.PWR_CR_VOS_Pos |
+		stm32.PWR_CR_LPSDSR |
+		stm32.PWR_CR_ULP |
+		//stm32.PWR_CR_PDDS | // set this bit to enter standby mode (instead of stop mode)
+		stm32.PWR_CR_CWUF |
+		0)
+	stm32.PWR.CR.Get() // make sure the values have been written
 	stm32.RCC.APB1ENR.ClearBits(stm32.RCC_APB1ENR_PWREN)
 
 	// Disable HSI16 clock.
@@ -135,12 +119,15 @@ func setClockSpeed() {
 	// Change flash latency to zero wait states. Saves 0.4µA or so.
 	stm32.FLASH.SetACR_LATENCY(stm32.Flash_ACR_LATENCY_WS0)
 
+	// Disable flash during sleep.
+	stm32.FLASH.ACR.Set(stm32.Flash_ACR_SLEEP_PD)
+
 	// Disable TIM21. Doesn't use much current when the clock is disabled, but
 	// it's a (very) small win. Saves 0.2µA or so.
 	stm32.RCC.SetAPB2ENR_TIM21EN(0)
 
 	// Set MSI clock speed.
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2) // range 2: around 131kHz
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3) // range 3: around 524kHz
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
@@ -149,4 +136,25 @@ func setClockSpeed() {
 
 	// Divide SYSCLK, for testing.
 	//stm32.RCC.SetCFGR_HPRE(stm32.RCC_CFGR_HPRE_Div512)
+}
+
+func sleepUntilButtonPress() {
+	// Goal: stop mode, without RTC, with 1 GPIO pin enabled for button interrupt
+
+	// Disable GPIO pins during sleep.
+	disableLEDs()
+
+	// Enter stop mode, wake up on a button press.
+	buttonWake.Set(0)
+	arm.SCB.SCR.SetBits(arm.SCB_SCR_SLEEPDEEP)
+	for {
+		arm.Asm("wfe")
+		if buttonWake.Get() != 0 {
+			break
+		}
+	}
+	arm.SCB.SCR.ClearBits(arm.SCB_SCR_SLEEPDEEP)
+
+	// Restore GPIO pins to their previous configuration.
+	configureLEDs()
 }
