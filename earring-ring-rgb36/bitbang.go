@@ -90,7 +90,7 @@ func setLEDs(index int, led0, led1, led2 uint32) {
 	}
 }
 
-var bitplanes [12][2]uint32
+var bitplanes [12][3]uint32
 
 // Putting updateLEDs in RAM saves a bit of current consumption.
 //
