@@ -9944,7 +9944,7 @@
 			(uuid "6cfdcdb1-a99b-4c5c-b3db-1d7ffc233ac3")
 		)
 		(embedded_fonts no)
-		(model "${KICAD8_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_Push_SPST_NO_Alps_SKRK.wrl"
+		(model "${KICAD9_3DMODEL_DIR}/Button_Switch_SMD.3dshapes/SW_SPST_B3U-1000P-B.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -10279,6 +10279,17 @@
 			(uuid "c50399f3-e8c2-43c7-bfb7-a9ea85fe7382")
 		)
 		(embedded_fonts no)
+		(model "${KICAD9_3DMODEL_DIR}/Battery.3dshapes/Battery_CR1225.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -0)
+			)
+		)
 	)
 	(gr_line
 		(start 10.518141 -1.616263)
@@ -11731,8 +11742,8 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "LED earring\nv0.3"
-		(at 0 -3.4 0)
+	(gr_text "LED earring"
+		(at 0 -4.2 0)
 		(layer "B.SilkS")
 		(uuid "6a83fdba-8b60-4646-96dc-d4de9f087657")
 		(effects
@@ -11753,6 +11764,19 @@
 				(thickness 0.16)
 			)
 			(justify left bottom mirror)
+		)
+	)
+	(gr_text "CR1225"
+		(at 0 11.5 0)
+		(layer "B.SilkS")
+		(uuid "8772b555-94ce-4f5b-830f-a8fb2a38a146")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify bottom mirror)
 		)
 	)
 	(gr_text "RST\n"
@@ -11799,6 +11823,18 @@
 			(font
 				(size 0.7 0.7)
 				(thickness 0.16)
+			)
+			(justify left bottom mirror)
+		)
+	)
+	(gr_text "v1.0"
+		(at 5 0.6 315)
+		(layer "B.SilkS")
+		(uuid "f1ffe1a3-c7d1-4c87-90ff-ae4a666b7e63")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.153)
 			)
 			(justify left bottom mirror)
 		)
