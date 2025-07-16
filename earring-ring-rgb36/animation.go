@@ -16,6 +16,7 @@ const initialMode = 1 // first animation (0 is off)
 const (
 	modeOff = iota
 	modeRainbowTrace
+	modeFireAndIce
 	modeNoise
 	modeFireRed
 	modeFireGreen
@@ -33,6 +34,8 @@ func animate(mode, led, frame int) Color {
 		return 0
 	case modeRainbowTrace:
 		return rainbowTrace(led, frame)
+	case modeFireAndIce:
+		return fireAndIce(led, frame)
 	case modeNoise:
 		return noise(led, frame)
 	case modeFireRed:
@@ -100,6 +103,45 @@ func rainbowTrace(led, frame int) Color {
 		g := uint8(uint16(c.G) * 242 / 256)
 		b := uint8(uint16(c.B) * 242 / 256)
 		leds[led] = color.RGBA{r, g, b, 0}
+	}
+	c := leds[led]
+	return NewColor(c.R, c.G, c.B)
+}
+
+// Red (fire) and blue (ice) swirling around in circles.
+func fireAndIce(led, frame int) Color {
+	traceIndex2 := updateTraceIndex(led, frame)
+
+	const div = 4
+	switch led {
+	case traceIndex:
+		// First tracer (red/orange)
+		leds[led].R = leds[led].R/2 + 0xff/div
+		leds[led].G = leds[led].G/2 + 0x33/div
+		leds[led].B = 0
+	case traceIndex2:
+		// Second tracer (blue), offset 180° on the LED ring.
+		leds[led].R = leds[led].R/2 + 0x08/div
+		leds[led].G = leds[led].G / 2
+		leds[led].B += 0xff / div
+	default:
+		// Tails, dim the LEDs.
+		c := leds[led]
+		if c.R > c.B {
+			// Fire. Dim the red a bit.
+			c.R = uint8(uint16(c.R) * 248 / 256)
+			c.G = uint8(uint16(c.G) * 248 / 256)
+			if c.R < 8 {
+				c.R = 8
+			}
+		} else {
+			// Ice. Dim the blue a bit.
+			c.B = uint8(uint16(c.B) * 244 / 256)
+			if c.B < 8 {
+				c.B = 8
+			}
+		}
+		leds[led] = c
 	}
 	c := leds[led]
 	return NewColor(c.R, c.G, c.B)
