@@ -8,6 +8,7 @@ import (
 
 const numLEDs = 36
 
+// LED values, as a cache needed for some animations.
 var leds [numLEDs]color.RGBA
 
 const initialMode = 1 // first animation (0 is off)
@@ -22,12 +23,14 @@ const (
 	modeFlagLGBT
 	modeFlagTrans
 	modeLast
+
+	modeTest
 )
 
 func animate(mode, led, frame int) Color {
 	switch mode {
 	case modeOff:
-		return 0 // TODO: implement
+		return 0
 	case modeRainbowTrace:
 		return rainbowTrace(led, frame)
 	case modeNoise:
@@ -42,8 +45,11 @@ func animate(mode, led, frame int) Color {
 		return showPalette(led, frame, &flagLGBT)
 	case modeFlagTrans:
 		return showPalette(led, frame, &flagTrans)
+	case modeTest:
+		return testPulse(led, frame)
 	default:
-		return 0 // unimplemented?
+		// bug
+		return errorPattern(led, frame)
 	}
 }
 
@@ -56,11 +62,11 @@ func noise(led, frame int) Color {
 
 var traceIndex int
 
-func rainbowTrace(led, frame int) Color {
-	// This animation has two tracers.
+func updateTraceIndex(led, frame int) int {
+	// The animations have two tracers.
 	if led == 0 && frame%2 == 0 {
 		traceIndex++
-		if traceIndex == numLEDs {
+		if traceIndex >= numLEDs {
 			traceIndex = 0
 		}
 	}
@@ -68,6 +74,11 @@ func rainbowTrace(led, frame int) Color {
 	if traceIndex2 >= numLEDs {
 		traceIndex2 -= numLEDs
 	}
+	return traceIndex2
+}
+
+func rainbowTrace(led, frame int) Color {
+	traceIndex2 := updateTraceIndex(led, frame)
 
 	const div = 4
 	if led == traceIndex {
@@ -194,4 +205,43 @@ var (
 
 func showPalette(led, frame int, palette *Palette) Color {
 	return palette[led]
+}
+
+// Blink the first LED, roughly 0.5s on, 0.5s off.
+func errorPattern(led, frame int) Color {
+	if led == 0 {
+		// Roughly 500ms on, 500ms off (assuming 30fps).
+		return NewColor(uint8(frame%32)/16*128, 0, 0)
+	}
+	// Other LEDs are dark.
+	return NewColor(0, 0, 0)
+}
+
+func rotateSingleColor(led, frame int) Color {
+	idx := int(frame / 8 % 36)
+	value := uint8(0)
+	if led == idx {
+		value = 128
+	}
+	if (led+1)%36 == idx {
+		value = 128 / 2
+	}
+	if (led+2)%36 == idx {
+		value = 128 / 4
+	}
+	if (led+3)%36 == idx {
+		value = 128 / 8
+	}
+	if (led+4)%36 == idx {
+		value = 128 / 16
+	}
+	if (led+5)%36 == idx {
+		value = 128 / 32
+	}
+	return NewColor(0, 0, value)
+}
+
+// Pulse red LEDs around once per second, for testing.
+func testPulse(led, frame int) Color {
+	return NewColor(uint8((frame%32)<<3), 0, 0)
 }
