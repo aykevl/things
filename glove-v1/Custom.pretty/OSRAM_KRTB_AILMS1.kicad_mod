@@ -1,0 +1,134 @@
+(footprint "OSRAM_KRTB_AILMS1"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -1.21 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "7f61b781-150f-4fc2-b62b-add74f9a091f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "OSRAM_KRTB_AILMS1"
+		(at 0 -4.25 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "dc389313-dd5d-4268-a6ae-adc11ea265aa")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "be8a0138-12e5-4551-990c-7ed361d6d662")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7c3a2101-be06-489a-9d7f-c9001cfead60")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -2 -0.33)
+		(end 2 0.67)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "3d07bb28-f408-4f46-92f4-10d02395cc20")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -2.75 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "706a079d-20f5-482c-b096-8cace1f58da8")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd custom
+		(at -1.475 0)
+		(size 0.325 0.443)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(options
+			(clearance outline)
+			(anchor rect)
+		)
+		(primitives
+			(gr_rect
+				(start -0.4275 -0.2215)
+				(end 0.1625 0.0685)
+				(width 0)
+				(fill yes)
+			)
+		)
+		(uuid "23f19b5c-80c1-42be-9b3f-3667f7e85c59")
+	)
+	(pad "2" smd rect
+		(at -0.58 0)
+		(size 0.3 0.443)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "17a8a052-8a33-4c6a-87a8-b4a940ab06d2")
+	)
+	(pad "3" smd custom
+		(at 0.435 0)
+		(size 0.4 0.443)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(options
+			(clearance outline)
+			(anchor rect)
+		)
+		(primitives)
+		(uuid "19a6bb6d-b92c-47ec-acdc-c801b0e24a43")
+	)
+	(pad "4" smd custom
+		(at 1.4725 0)
+		(size 0.325 0.443)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(options
+			(clearance outline)
+			(anchor rect)
+		)
+		(primitives
+			(gr_rect
+				(start -0.1625 -0.2215)
+				(end 0.4275 0.0685)
+				(width 0)
+				(fill yes)
+			)
+		)
+		(uuid "3af2aaee-0b00-4172-975f-241b7c1303b1")
+	)
+	(embedded_fonts no)
+)
