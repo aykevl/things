@@ -623,10 +623,198 @@ static void bitbang_update_bitplane_4(uint32_t led0, uint32_t led1, uint32_t led
     );
 }
 
+__attribute__((noinline))
+static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t led3, uint32_t *bitplane) {
+    uint32_t tmp;
+    uint32_t N8 = 8;
+    uint32_t xor = 0b0000111111111111;
+
+    __asm__ __volatile__(
+        // Not clearing %[tmp] here since we will be shifting all 32 bits out.
+
+        // 1 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
+        "lsrs %[led0], #4\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A3/PA9)
+        "lsrs %[led1], #4\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 red   (A4/PA8)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 green (A5/PA7)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A6/PA6)
+        "lsrs %[led2], #4\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 red   (A7/PA5)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 green (A8/PA4)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 blue  (A9/PA3)
+        "lsrs %[led3], #4\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 red   (A10/PA2)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
+        "eors %[tmp], %[xor]\n\t"
+
+        // 2 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
+        "rors %[led0], %[N8]\n\t"
+        "lsrs %[led0], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A3/PA9)
+        "rors %[led1], %[N8]\n\t"
+        "lsrs %[led1], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 red   (A4/PA8)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 green (A5/PA7)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A6/PA6)
+        "rors %[led2], %[N8]\n\t"
+        "lsrs %[led2], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 red   (A7/PA5)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 green (A8/PA4)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 blue  (A9/PA3)
+        "rors %[led3], %[N8]\n\t"
+        "lsrs %[led3], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 red   (A10/PA2)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
+        "eors %[tmp], %[xor]\n\t"
+
+        // Store 1-cycle and 2-cycle bitplanes.
+        "str %[tmp], [%[bitplane]]\n\t"
+
+        // Not clearing %[tmp] here since we will be shifting all 32 bits out.
+
+        // 4 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
+        "rors %[led0], %[N8]\n\t"
+        "lsrs %[led0], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A3/PA9)
+        "rors %[led1], %[N8]\n\t"
+        "lsrs %[led1], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 red   (A4/PA8)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 green (A5/PA7)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A6/PA6)
+        "rors %[led2], %[N8]\n\t"
+        "lsrs %[led2], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 red   (A7/PA5)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 green (A8/PA4)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 blue  (A9/PA3)
+        "rors %[led3], %[N8]\n\t"
+        "lsrs %[led3], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 red   (A10/PA2)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
+        "eors %[tmp], %[xor]\n\t"
+
+        // 8 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
+        "rors %[led0], %[N8]\n\t"
+        "lsrs %[led0], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A3/PA9)
+        "rors %[led1], %[N8]\n\t"
+        "lsrs %[led1], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 red   (A4/PA8)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 green (A5/PA7)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A6/PA6)
+        "rors %[led2], %[N8]\n\t"
+        "lsrs %[led2], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 red   (A7/PA5)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 green (A8/PA4)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 blue  (A9/PA3)
+        "rors %[led3], %[N8]\n\t"
+        "lsrs %[led3], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 red   (A10/PA2)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
+        "eors %[tmp], %[xor]\n\t"
+
+        // Store 4-cycle and 8-cycle bitplanes.
+        "str %[tmp], [%[bitplane], #4]\n\t"
+
+        // 16 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
+        "rors %[led0], %[N8]\n\t"
+        "lsrs %[led0], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
+        "rors %[led0], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 blue  (A3/PA9)
+        "rors %[led1], %[N8]\n\t"
+        "lsrs %[led1], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 red   (A4/PA8)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 green (A5/PA7)
+        "rors %[led1], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED1 blue  (A6/PA6)
+        "rors %[led2], %[N8]\n\t"
+        "lsrs %[led2], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 red   (A7/PA5)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 green (A8/PA4)
+        "rors %[led2], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED2 blue  (A9/PA3)
+        "rors %[led3], %[N8]\n\t"
+        "lsrs %[led3], #9\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 red   (A10/PA2)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
+        "rors %[led3], %[N8]\n\t"
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
+        "eors %[tmp], %[xor]\n\t"
+
+        // Store 16-cycle bitplane (of which the upper bits weren't cleared).
+        "str %[tmp], [%[bitplane], #8]\n\t"
+
+        : [tmp]"=&r"(tmp),
+          [led0]"+&r"(led0),
+          [led1]"+&r"(led1),
+          [led2]"+&r"(led2),
+          [led3]"+&r"(led3)
+        : [bitplane]"r"(bitplane),
+          [N8]"r"(N8),
+          [xor]"r"(xor)
+    );
+}
+
 // This is one giant assembly function that will update all LEDs.
 static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio) {
     uint32_t v1, v2;
     uint32_t mask = 0b0000111111111111;
+    volatile void *gpiob = ((char*)(gpio) + 0x400);
 
     // Using the GPIO registers directly with memory offsets to avoid using one
     // more register:
@@ -1032,6 +1220,251 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<6))\n\t"    // [1] make A13/PB6 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // restore: set OTYPER back to the mask
+        "strh %[mask], [%[gpio], #0x4]\n\t"
+
+        /***********************************
+         * Now do all the anodes on port B *
+         ***********************************/
+
+        // set GPIOB OTYPER to clear only A13/PB6
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A13 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<5))\n\t"    // [1] make A14/PB5 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A14/PB5
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A14 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<4))\n\t"    // [1] make A15/PB4 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A15/PB4
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A15 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<3))\n\t"    // [1] make A16/PB3 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A16/PB3
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A15 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<2))\n\t"    // [1] make A17/PB2 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A17/PB2
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A15 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<1))\n\t"    // [1] make A18/PB1 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A18/PB1
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A15 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
+        "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
+        "movs %[v1], (0x7f ^ (1<<0))\n\t"    // [1] make A19/PB0 bitmask for GPIOB OTYPER
+        "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
+        "nop\n\t"                            // [11] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+
+        // set GPIOB OTYPER to clear only A19/PB0
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
+
+        // Update LEDs with A15 as anode.
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
+        "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
+        "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
+        "nop\n\t"                            // [4] nop
+        "nop\n\t"
+        "nop\n\t"
+        "nop\n\t"
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 2 cycle bitplane
+        "lsrs %[v1], #16\n\t"                // [1] move 1 cycle bitplane into lower bits
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 1 cycle bitplane
+        "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 4 cycle bitplane
+        "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
+        "nop\n\t"                            // [1] nop
+        "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "nop\n\t"                            // [15] nop
         "nop\n\t"
         "nop\n\t"
@@ -1049,12 +1482,14 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // restore: set OTYPER back to the mask
-        "strh %[mask], [%[gpio], #0x4]\n\t"
+        // restore: set GPIOB OTYPER back to the original value
+        "movs %[v1], #0x7f\n\t"
+        "strh %[v1], [%[gpiob], #0x4]\n\t"
         : [v1]"=&r"(v1),
           [v2]"=&r"(v2),
           [bitplanes]"+&r"(bitplanes)
         : [gpio]"r"(gpio),
+          [gpiob]"r"(gpiob),
           [mask]"r"(mask)
     );
 }

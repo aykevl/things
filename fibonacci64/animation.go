@@ -1,17 +1,10 @@
 package main
 
 import (
-	"image/color"
-
 	"github.com/aykevl/ledsgo"
 )
 
-const numLEDs = 36
-
-// LED values, as a cache needed for some animations.
-var leds [numLEDs]color.RGBA
-
-const initialMode = 1 // first animation (0 is off)
+const initialMode = modeTestRotate // first animation (0 is off)
 
 const (
 	modeOff = iota
@@ -19,7 +12,8 @@ const (
 	modeNoise
 	modeLast
 
-	modeTest
+	modeTestPulse
+	modeTestRotate
 )
 
 func animate(mode, led, frame int) Color {
@@ -28,10 +22,12 @@ func animate(mode, led, frame int) Color {
 		return 0
 	case modeNoise:
 		return noise(led, frame)
-	case modeTest:
+	case modeTestPulse:
 		return testPulse(led, frame)
 	case modeTestRGB:
 		return testRGB(led, frame)
+	case modeTestRotate:
+		return rotateSingleColor(led, frame)
 	default:
 		// bug
 		return errorPattern(led, frame)
@@ -56,32 +52,32 @@ func errorPattern(led, frame int) Color {
 }
 
 func rotateSingleColor(led, frame int) Color {
-	idx := int(frame / 8 % 36)
+	idx := int(frame / 16 % 36)
 	value := uint8(0)
 	if led == idx {
 		value = 128
 	}
-	if (led+1)%36 == idx {
+	if (led+1)%numLEDs == idx {
 		value = 128 / 2
 	}
-	if (led+2)%36 == idx {
+	if (led+2)%numLEDs == idx {
 		value = 128 / 4
 	}
-	if (led+3)%36 == idx {
+	if (led+3)%numLEDs == idx {
 		value = 128 / 8
 	}
-	if (led+4)%36 == idx {
+	if (led+4)%numLEDs == idx {
 		value = 128 / 16
 	}
-	if (led+5)%36 == idx {
+	if (led+5)%numLEDs == idx {
 		value = 128 / 32
 	}
-	return NewColor(0, 0, value)
+	return NewColor(value, 0, 16)
 }
 
 // Pulse red LEDs around once per second, for testing.
 func testPulse(led, frame int) Color {
-	return NewColor(uint8((frame%32)<<3), 0, 0)
+	return NewColor(uint8((frame%64)<<2), 0, 0)
 }
 
 func testRGB(led, frame int) Color {

@@ -8,6 +8,8 @@ import (
 	"unsafe"
 )
 
+const numLEDs = 64
+
 func configureLEDs() {
 	// Note: enabling a pullup would save a bit of current (because we'd avoid
 	// floating inputs) but sadly also means some LEDs get turned on slightly
@@ -80,47 +82,62 @@ func disableLEDs() {
 }
 
 func animateLEDs(mode, index, frame int) {
-	if index < 12 {
-		led0 := uint32(animate(mode, index+0, frame))
-		led1 := uint32(animate(mode, index+12, frame))
-		led2 := uint32(animate(mode, index+24, frame))
-		switch index {
-		case 0:
-			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[0][0])
-		case 1:
-			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[1][0])
-		case 2:
-			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[2][0])
-		case 3:
-			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[3][0])
-		case 4:
-			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[4][0])
-		case 5:
-			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[5][0])
-		case 6:
-			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[6][0])
-		case 7:
-			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[7][0])
-		case 8:
-			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[8][0])
-		case 9:
-			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[9][0])
-		case 10:
-			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[10][0])
-		case 11:
-			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[11][0])
-		}
-	} else {
-
+	led0 := uint32(0)
+	led1 := uint32(0)
+	led2 := uint32(0)
+	led3 := uint32(0)
+	led0 = uint32(animate(mode, index+0, frame))
+	led1 = uint32(animate(mode, index+12, frame))
+	led2 = uint32(animate(mode, index+24, frame))
+	switch index {
+	case 0: // A1
+		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[0][0])
+	case 1: // A2
+		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[1][0])
+	case 2: // A3
+		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[2][0])
+	case 3: // A4
+		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[3][0])
+	case 4: // A5
+		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[4][0])
+	case 5: // A6
+		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[5][0])
+	case 6: // A7
+		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[6][0])
+	case 7:
+		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[7][0])
+	case 8:
+		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[8][0])
+	case 9:
+		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[9][0])
+	case 10:
+		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[10][0])
+	case 11:
+		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[11][0])
+		//case 12:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[12][0])
+		//case 13:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[13][0])
+		//case 14:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[14][0])
+		//case 15:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[15][0])
+		//case 16:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[16][0])
+		//case 17:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[17][0])
+		//case 18:
+		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[18][0])
+		_ = led3
 	}
 }
 
-var bitplanes [12][3]uint32
+var bitplanes [19][3]uint32
 
 // Putting updateLEDs in RAM saves a bit of current consumption.
 // TODO: this goes through a thunk, which adds a few cycles. GCC has
 // __attribute__((long_call)) for ARM, perhaps we can also add this to Clang?
-// (It's supported in Clang, but not in the ARM backend).
+// (It's
 //
 //go:section .ramfuncs.updateLEDs
 func updateLEDs() {
