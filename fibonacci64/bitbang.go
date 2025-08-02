@@ -29,6 +29,13 @@ func configureLEDs() {
 	A10.High()
 	A11.High()
 	A12.High()
+	A13.High()
+	A14.High()
+	A15.High()
+	A16.High()
+	A17.High()
+	A18.High()
+	A19.High()
 	A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A3.Configure(machine.PinConfig{Mode: machine.PinOutput})
@@ -41,6 +48,13 @@ func configureLEDs() {
 	A10.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A11.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A12.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A13.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A14.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A15.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A16.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A17.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A18.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A19.Configure(machine.PinConfig{Mode: machine.PinOutput})
 }
 
 func disableLEDs() {
@@ -56,34 +70,48 @@ func disableLEDs() {
 	A10.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 	A11.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 	A12.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A13.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A14.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A15.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A16.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A17.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A18.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	A19.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 }
 
-func setLEDs(index int, led0, led1, led2 uint32) {
-	switch index {
-	case 0:
-		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[0][0])
-	case 1:
-		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[1][0])
-	case 2:
-		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[2][0])
-	case 3:
-		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[3][0])
-	case 4:
-		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[4][0])
-	case 5:
-		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[5][0])
-	case 6:
-		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[6][0])
-	case 7:
-		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[7][0])
-	case 8:
-		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[8][0])
-	case 9:
-		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[9][0])
-	case 10:
-		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[10][0])
-	case 11:
-		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[11][0])
+func animateLEDs(mode, index, frame int) {
+	if index < 12 {
+		led0 := uint32(animate(mode, index+0, frame))
+		led1 := uint32(animate(mode, index+12, frame))
+		led2 := uint32(animate(mode, index+24, frame))
+		switch index {
+		case 0:
+			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[0][0])
+		case 1:
+			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[1][0])
+		case 2:
+			C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[2][0])
+		case 3:
+			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[3][0])
+		case 4:
+			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[4][0])
+		case 5:
+			C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[5][0])
+		case 6:
+			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[6][0])
+		case 7:
+			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[7][0])
+		case 8:
+			C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[8][0])
+		case 9:
+			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[9][0])
+		case 10:
+			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[10][0])
+		case 11:
+			C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[11][0])
+		}
+	} else {
+
 	}
 }
 

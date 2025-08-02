@@ -9,15 +9,15 @@
 static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t *bitplane) {
     uint32_t tmp;
     uint32_t N8 = 8;
-    uint32_t xor = 0b1000011111111111;
+    uint32_t xor = 0b0000111111111111;
 
     __asm__ __volatile__(
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 1 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "lsrs %[led0], #4\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -38,10 +38,10 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 2 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -69,10 +69,10 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 4 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -95,10 +95,10 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 8 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -124,10 +124,10 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
         "str %[tmp], [%[bitplane], #4]\n\t"
 
         // 16 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -165,15 +165,15 @@ static void bitbang_update_bitplane_1(uint32_t led0, uint32_t led1, uint32_t led
 static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t *bitplane) {
     uint32_t tmp;
     uint32_t N8 = 8;
-    uint32_t xor = 0b1000011111111111;
+    uint32_t xor = 0b0000111111111111;
 
     __asm__ __volatile__(
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 1 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "lsrs %[led0], #4\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -194,10 +194,10 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 2 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -225,10 +225,10 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 4 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -251,10 +251,10 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 8 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -280,10 +280,10 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
         "str %[tmp], [%[bitplane], #4]\n\t"
 
         // 16 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -321,15 +321,15 @@ static void bitbang_update_bitplane_2(uint32_t led0, uint32_t led1, uint32_t led
 static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t *bitplane) {
     uint32_t tmp;
     uint32_t N8 = 8;
-    uint32_t xor = 0b1000011111111111;
+    uint32_t xor = 0b0000111111111111;
 
     __asm__ __volatile__(
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 1 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "lsrs %[led0], #4\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -350,10 +350,10 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 2 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -381,10 +381,10 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
 
         // 4 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -407,10 +407,10 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
         "eors %[tmp], %[xor]\n\t"
 
         // 8 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -436,10 +436,10 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
         "str %[tmp], [%[bitplane], #4]\n\t"
 
         // 16 cycle bitplane
+        "lsls %[tmp], #4\n\t"             // gap at the start
         "rors %[led0], %[N8]\n\t"
         "lsrs %[led0], #9\n\t"
-        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA15)
-        "lsls %[tmp], #4\n\t"             // gap between PA15 and PA10
+        "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 red   (A1/PA11)
         "rors %[led0], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED0 green (A2/PA10)
         "rors %[led0], %[N8]\n\t"
@@ -477,7 +477,7 @@ static void bitbang_update_bitplane_3(uint32_t led0, uint32_t led1, uint32_t led
 static void bitbang_update_bitplane_4(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t *bitplane) {
     uint32_t tmp;
     uint32_t N8 = 8;
-    uint32_t xor = 0b1000011111111111;
+    uint32_t xor = 0b0000111111111111;
 
     __asm__ __volatile__(
         // 1 cycle bitplane
@@ -626,7 +626,7 @@ static void bitbang_update_bitplane_4(uint32_t led0, uint32_t led1, uint32_t led
 // This is one giant assembly function that will update all LEDs.
 static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio) {
     uint32_t v1, v2;
-    uint32_t mask = 0b1000011111111111;
+    uint32_t mask = 0b0000111111111111;
 
     // Using the GPIO registers directly with memory offsets to avoid using one
     // more register:
@@ -642,7 +642,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A4/PA8
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 0, 12, 24
+        // Update LEDs with A4 as anode.
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
@@ -677,7 +677,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A5/PA7
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 1, 13, 25
+        // Update LEDs with A5 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -711,7 +711,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A6/PA6
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 2, 14, 26
+        // Update LEDs with A6 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -745,7 +745,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A7/PA5
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 3, 15, 27
+        // Update LEDs with A7 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -779,7 +779,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A8/PA4
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 4, 16, 28
+        // Update LEDs with A8 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -813,7 +813,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A9/PA3
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 5, 17, 29
+        // Update LEDs with A9 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -847,7 +847,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A10/PA2
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 6, 18, 30
+        // Update LEDs with A10 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -881,7 +881,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A11/PA1
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 7, 19, 31
+        // Update LEDs with A11 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -915,7 +915,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A12/PA0
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 8, 20, 32
+        // Update LEDs with A12 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -930,8 +930,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "ldr  %[v1], [%[bitplanes], #8]\n\t" // [2] load 16 cycle bitplane
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
-        "movs %[v1], #1\n\t"                 // [3] make A1/PA15 bitmask for OTYPER
-        "lsls %[v1], %[v1], #15\n\t"
+        "movs %[v1], #1\n\t"                 // [3] make A1/PA11 bitmask for OTYPER
+        "lsls %[v1], %[v1], #11\n\t"
         "eors %[v1], %[v1], %[mask]\n\t"
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
@@ -946,10 +946,10 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set OTYPER to clear only A1/PA15
+        // set OTYPER to clear only A1/PA11
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 9, 21, 33
+        // Update LEDs with A1 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -983,7 +983,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A2/PA10
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 10, 22, 34
+        // Update LEDs with A2 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes
@@ -1017,7 +1017,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         // set OTYPER to clear only A3/PA9
         "strh %[v1], [%[gpio], #0x4]\n\t"
 
-        // Update LED 11, 23, 35
+        // Update LEDs with A3 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
         "lsrs %[v2], #16\n\t"                // [1] move 4 cycle bitplane into lower bits
         "ldr  %[v1], [%[bitplanes], #0]\n\t" // [2] load 2 and 1 cycle bitplanes

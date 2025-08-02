@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	A1  = machine.PA15
+	A1  = machine.PA11
 	A2  = machine.PA10
 	A3  = machine.PA9
 	A4  = machine.PA8
@@ -20,6 +20,13 @@ const (
 	A10 = machine.PA2
 	A11 = machine.PA1
 	A12 = machine.PA0
+	A13 = machine.PB6
+	A14 = machine.PB5
+	A15 = machine.PB4
+	A16 = machine.PB3
+	A17 = machine.PB2
+	A18 = machine.PB1
+	A19 = machine.PB0
 
 	button = machine.PB7
 )
@@ -38,32 +45,30 @@ func main() {
 	configureLEDs()
 
 	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
-	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
+	stm32.GPIOA.OTYPER.Set(0b0000_1111_1111_1111)
+
+	// Set A13-A19 as open drain.
+	stm32.GPIOB.OTYPER.Set(0b0000_0000_0111_1111)
 
 	setClockSpeed()
 
 	// Zero all LEDs.
-	for i := 0; i < 12; i++ {
-		setLEDs(i, 0, 0, 0)
+	for i := 0; i < 19; i++ {
+		animateLEDs(modeOff, i, 0)
 	}
 
-	index := 0 // 0..11, group of 3 LEDs that will be updated together
+	index := 0 // 0..18, group of 3 LEDs that will be updated together
 	frame := 0
 	mode := initialMode
 	buttonPressed := false
 	for {
-		// Update 3 LEDs at a time, since that's convenient for the
-		// RGB-to-bitplane conversion.
-		led0 := animate(mode, index+0, frame)
-		led1 := animate(mode, index+12, frame)
-		led2 := animate(mode, index+24, frame)
-		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
+		animateLEDs(mode, index, frame)
 
 		// Bitbang the LEDs.
 		updateLEDs()
 
 		index++
-		if index == 12 {
+		if index == 19 {
 			index = 0
 			frame++
 
@@ -82,8 +87,8 @@ func main() {
 				}
 
 				// Clear LEDs to be sure.
-				for i := 0; i < 12; i++ {
-					setLEDs(i, 0, 0, 0)
+				for i := 0; i < 19; i++ {
+					animateLEDs(modeOff, i, 0)
 				}
 			}
 			buttonPressed = pressed
@@ -132,7 +137,7 @@ func setClockSpeed() {
 	// Set MSI clock speed.
 	// Range 2: around 262kHz (~55µA with all LEDs off)
 	// Range 3: around 524kHz (~83µA with all LEDs off)
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2)
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range4)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
