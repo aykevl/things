@@ -1114,7 +1114,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:LED_BGAR"
+		(symbol "Device:LED_RAGB"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -1130,7 +1130,7 @@
 					)
 				)
 			)
-			(property "Value" "LED_BGAR"
+			(property "Value" "LED_RAGB"
 				(at 0 -8.89 0)
 				(effects
 					(font
@@ -1156,7 +1156,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "RGB LED, blue/green/anode/red"
+			(property "Description" "RGB LED, red/anode/green/blue"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1183,7 +1183,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "LED_BGAR_0_0"
+			(symbol "LED_RAGB_0_0"
 				(text "R"
 					(at -1.905 3.81 0)
 					(effects
@@ -1209,7 +1209,7 @@
 					)
 				)
 			)
-			(symbol "LED_BGAR_0_1"
+			(symbol "LED_RAGB_0_1"
 				(polyline
 					(pts
 						(xy -1.27 6.35) (xy -1.27 3.81)
@@ -1541,7 +1541,7 @@
 					)
 				)
 			)
-			(symbol "LED_BGAR_1_1"
+			(symbol "LED_RAGB_1_1"
 				(pin passive line
 					(at -5.08 5.08 0)
 					(length 2.54)
@@ -1552,7 +1552,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1570,7 +1570,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1588,7 +1588,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1606,7 +1606,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -5218,91 +5218,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:LED_BGAR")
-		(at 128.27 100.33 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "301f1c49-a6e8-4c3f-8924-df0114d82095")
-		(property "Reference" "D1"
-			(at 137.16 99.0599 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "LED_BGAR"
-			(at 137.16 101.5999 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" "Custom:OSRAM_KRTB_AILMS1"
-			(at 129.54 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 129.54 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "RGB LED, blue/green/anode/red"
-			(at 128.27 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC" "C7212758"
-			(at 128.27 100.33 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "27d46b8d-6e1e-45cc-90e6-8941fddeddc2")
-		)
-		(pin "2"
-			(uuid "1759b001-649a-43e2-9e03-8a0ae53ce159")
-		)
-		(pin "3"
-			(uuid "2faf87c3-9abe-47b1-a419-824db315e9dd")
-		)
-		(pin "1"
-			(uuid "884e50db-f88e-4a09-b88e-8e957d8e3831")
-		)
-		(instances
-			(project ""
-				(path "/90549a1f-9455-4729-b73f-f032fe2e8ad5"
-					(reference "D1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 104.14 57.15 0)
 		(unit 1)
@@ -5740,6 +5655,82 @@
 			(project "glove-v1"
 				(path "/90549a1f-9455-4729-b73f-f032fe2e8ad5"
 					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED_RAGB")
+		(at 128.27 100.33 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "56beb707-c3c7-4ec4-9e13-1734e338adef")
+		(property "Reference" "D1"
+			(at 137.16 99.0599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED_RAGB"
+			(at 137.16 101.5999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 129.54 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 129.54 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "RGB LED, red/anode/green/blue"
+			(at 128.27 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "be61ba26-ed33-4c8b-a138-98236156cf95")
+		)
+		(pin "4"
+			(uuid "c875e5e3-14c4-4280-8084-796c72cf3535")
+		)
+		(pin "3"
+			(uuid "8c728835-3f2b-4ada-af5b-8b7e55315036")
+		)
+		(pin "2"
+			(uuid "58129bb7-64fd-49f2-abc0-26850a0c943a")
+		)
+		(instances
+			(project ""
+				(path "/90549a1f-9455-4729-b73f-f032fe2e8ad5"
+					(reference "D1")
 					(unit 1)
 				)
 			)
