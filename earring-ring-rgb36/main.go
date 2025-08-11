@@ -127,7 +127,9 @@ func setClockSpeed() {
 	stm32.RCC.SetAPB2ENR_TIM21EN(0)
 
 	// Set MSI clock speed.
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3) // range 3: around 524kHz
+	// Range 2: around 262kHz (~55µA with all LEDs off)
+	// Range 3: around 524kHz (~83µA with all LEDs off)
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
