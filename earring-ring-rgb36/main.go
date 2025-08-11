@@ -30,9 +30,6 @@ var buttonWake volatile.Register8
 func main() {
 	// Configure button
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-	button.SetInterrupt(machine.PinFalling, func(p machine.Pin) {
-		buttonWake.Set(1)
-	})
 
 	// Configure pins
 	configureLEDs()
@@ -50,13 +47,17 @@ func main() {
 	index := 0 // 0..11, group of 3 LEDs that will be updated together
 	frame := 0
 	mode := initialMode
-	buttonPressed := false
+	framesPressed := 0
+	previousMode := 0
 	for {
+		// Update 3 LEDs at a time, since that's convenient for the
+		// RGB-to-bitplane conversion.
 		led0 := animate(mode, index+0, frame)
 		led1 := animate(mode, index+12, frame)
 		led2 := animate(mode, index+24, frame)
 		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
 
+		// Bitbang the LEDs.
 		updateLEDs()
 
 		index++
@@ -66,24 +67,39 @@ func main() {
 
 			// Read the button every frame update.
 			pressed := !button.Get() // low means pressed
-			if pressed && pressed != buttonPressed {
-				mode++
-				if mode == modeLast {
-					// Last, so wrap around.
-					mode = 0
-				}
-				if mode == modeOff {
-					// Sleep until a button press, then go to the next mode.
-					sleepUntilButtonPress()
+			if framesPressed == 30 {
+				// Sleep until a button press.
+				sleepUntilButtonPress()
+
+				// To continue the startup animation, set the mode to "power
+				// on".
+				previousMode = mode
+				mode = modePowerOn
+			}
+			if !pressed && framesPressed != 0 {
+				// Move to the next mode.
+				if mode == modePowerOn {
+					// Still in the power on mode, move on to the mode before
+					// shutdown.
+					mode = previousMode
+				} else {
 					mode++
+					if mode >= modeLast {
+						// Last, so wrap around.
+						mode = 0
+					}
 				}
 
-				// Clear LEDs to be sure.
+				// Clear LEDs before moving on to the next mode.
 				for i := 0; i < 12; i++ {
 					setLEDs(i, 0, 0, 0)
 				}
 			}
-			buttonPressed = pressed
+			if pressed {
+				framesPressed++
+			} else {
+				framesPressed = 0
+			}
 		}
 	}
 }
@@ -143,6 +159,11 @@ func setClockSpeed() {
 func sleepUntilButtonPress() {
 	// Goal: stop mode, without RTC, with 1 GPIO pin enabled for button interrupt
 
+	// Enable pin interrupt.
+	button.SetInterrupt(machine.PinFalling, func(p machine.Pin) {
+		buttonWake.Set(1)
+	})
+
 	// Disable GPIO pins during sleep.
 	disableLEDs()
 
@@ -152,11 +173,56 @@ func sleepUntilButtonPress() {
 	for {
 		arm.Asm("wfe")
 		if buttonWake.Get() != 0 {
-			break
+			// Restore GPIO pins to their previous configuration.
+			configureLEDs()
+
+			// Clear LEDs to avoid flash on poweron.
+			for i := 0; i < 12; i++ {
+				setLEDs(i, 0, 0, 0)
+			}
+
+			if waitForPoweron() {
+				break
+			}
+
+			disableLEDs()
 		}
 	}
 	arm.SCB.SCR.ClearBits(arm.SCB_SCR_SLEEPDEEP)
 
-	// Restore GPIO pins to their previous configuration.
-	configureLEDs()
+	// Disable interrupt, so it won't cause flickering when switching modes.
+	button.SetInterrupt(machine.PinFalling, nil)
+}
+
+// Animation during startup, so we need a slightly longer press to power on.
+func waitForPoweron() bool {
+	frame := 0
+	index := 0
+	for {
+		// Return true if pressed for enough time, return false if released too
+		// quickly.
+		pressed := !button.Get() // low means pressed
+		if !pressed {
+			return false
+		}
+		if pressed && frame >= numLEDs/2 {
+			return true
+		}
+
+		// Update 3 LEDs at a time, since that's convenient for the
+		// RGB-to-bitplane conversion.
+		led0 := powerOn(index+0, frame)
+		led1 := powerOn(index+12, frame)
+		led2 := powerOn(index+24, frame)
+		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
+
+		// Bitbang the LEDs.
+		updateLEDs()
+
+		index++
+		if index == 12 {
+			index = 0
+			frame++
+		}
+	}
 }

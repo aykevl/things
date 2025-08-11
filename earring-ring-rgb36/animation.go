@@ -11,11 +11,10 @@ const numLEDs = 36
 // LED values, as a cache needed for some animations.
 var leds [numLEDs]color.RGBA
 
-const initialMode = 1 // first animation (0 is off)
+const initialMode = 0 // first mode
 
 const (
-	modeOff = iota
-	modeRainbowTrace
+	modeRainbowTrace = iota
 	modeFireAndIce
 	modeNoise
 	modeFireRed
@@ -26,12 +25,11 @@ const (
 	modeLast
 
 	modeTest
+	modePowerOn
 )
 
 func animate(mode, led, frame int) Color {
 	switch mode {
-	case modeOff:
-		return 0
 	case modeRainbowTrace:
 		return rainbowTrace(led, frame)
 	case modeFireAndIce:
@@ -50,6 +48,8 @@ func animate(mode, led, frame int) Color {
 		return showPalette(led, frame, &flagTrans)
 	case modeTest:
 		return testPulse(led, frame)
+	case modePowerOn:
+		return powerOn(led, frame)
 	default:
 		// bug
 		return errorPattern(led, frame)
@@ -286,4 +286,16 @@ func rotateSingleColor(led, frame int) Color {
 // Pulse red LEDs around once per second, for testing.
 func testPulse(led, frame int) Color {
 	return NewColor(uint8((frame%32)<<3), 0, 0)
+}
+
+// Startup animation. The duration until it will power on is set in
+// waitForPowerOn, but this gives a nice animation to show how far it is.
+func powerOn(led, frame int) Color {
+	if frame*2 >= numLEDs {
+		return NewColor(0, 0x7f, 0)
+	}
+	if frame*2 > led {
+		return NewColor(0, 0, 0x7f)
+	}
+	return NewColor(0, 0, 0)
 }
