@@ -28,7 +28,7 @@ const (
 	A18 = machine.PB1
 	A19 = machine.PB0
 
-	button = machine.PB7
+	button = machine.PB8
 )
 
 // Set to one from the interrupt to indicate the button was pressed.
