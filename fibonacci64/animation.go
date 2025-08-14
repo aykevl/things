@@ -4,16 +4,18 @@ import (
 	"github.com/aykevl/ledsgo"
 )
 
-const initialMode = modeTestRotate // first animation (0 is off)
+const initialMode = 1 // first animation (0 is off)
 
 const (
 	modeOff = iota
-	modeTestRGB
+	modeSpirals
+	modeScanner
 	modeNoise
 	modeLast
 
 	modeTestPulse
 	modeTestRotate
+	modeTestRGB
 )
 
 func animate(mode, led, frame int) Color {
@@ -22,6 +24,10 @@ func animate(mode, led, frame int) Color {
 		return 0
 	case modeNoise:
 		return noise(led, frame)
+	case modeSpirals:
+		return spirals(led, frame)
+	case modeScanner:
+		return scanner(led, frame)
 	case modeTestPulse:
 		return testPulse(led, frame)
 	case modeTestRGB:
@@ -34,10 +40,46 @@ func animate(mode, led, frame int) Color {
 	}
 }
 
+var multiply uint32 = 65536
+
 func noise(led, frame int) Color {
+	if led == 0 && frame%16 == 0 {
+		multiply = multiply * 33 / 32
+		println("multiply:", multiply)
+	}
 	x := uint32(frame) << 3
-	y := uint32(led)
-	c := ledsgo.PartyColors.ColorAt(ledsgo.Noise2(x, uint32(y)<<5) * 2)
+	x = 0
+	y := uint32(led) * multiply
+	c := ledsgo.PartyColors.ColorAt(ledsgo.Noise2(x, y) * 2)
+	return NewColor(c.R, c.G, c.B)
+}
+
+func scanner(led, frame int) Color {
+	// angle over 360 degrees: 137.508
+	// angle over 256 "degrees": 97.783
+	// angle over 1024 "degrees": 391.134
+	pos := (1023 - uint(led*391+frame*4)%1024) / 4
+	if pos <= 128 {
+		pos = 0
+	} else {
+		pos = pos - 128
+	}
+	return NewColor(0, uint8(pos), 0)
+}
+
+func spirals(led, frame int) Color {
+	// angle over 360 degrees: 137.508
+	// angle over 256 "degrees": 97.783
+	// angle over 1024 "degrees": 391.134
+	// angle over 32768 "degrees": 12516.3
+	variation := (int(ledsgo.Noise1(uint32(frame)<<2)) - 32768) / 64
+	pos := uint(led*(12516+variation)+frame*256) % 32768
+	if pos >= 16384 {
+		pos = 32767 - pos
+	}
+	pos = (pos * pos) >> 15
+	c := ledsgo.PartyColors.ColorAt(ledsgo.Noise2(uint32(led)<<4, uint32(frame)))
+	c = ledsgo.ApplyAlpha(c, uint8(pos>>7))
 	return NewColor(c.R, c.G, c.B)
 }
 
