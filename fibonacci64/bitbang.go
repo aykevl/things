@@ -19,25 +19,19 @@ func configureLEDs() {
 	// mode (high/low depending on anode/cathode) or analog mode which disables
 	// the output entirely.
 
-	A1.High()
-	A2.High()
-	A3.High()
-	A4.High()
-	A5.High()
-	A6.High()
-	A7.High()
-	A8.High()
-	A9.High()
-	A10.High()
-	A11.High()
-	A12.High()
-	A13.High()
-	A14.High()
-	A15.High()
-	A16.High()
-	A17.High()
-	A18.High()
-	A19.High()
+	A1.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A3.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A4.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A5.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A6.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A7.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A8.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A9.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A10.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A11.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	A12.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+
 	A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A3.Configure(machine.PinConfig{Mode: machine.PinOutput})
@@ -57,6 +51,25 @@ func configureLEDs() {
 	A17.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A18.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	A19.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A1.High()
+	A2.High()
+	A3.High()
+	A4.High()
+	A5.High()
+	A6.High()
+	A7.High()
+	A8.High()
+	A9.High()
+	A10.High()
+	A11.High()
+	A12.High()
+	A13.Low()
+	A14.Low()
+	A15.Low()
+	A16.Low()
+	A17.Low()
+	A18.Low()
+	A19.Low()
 }
 
 func disableLEDs() {
@@ -82,53 +95,109 @@ func disableLEDs() {
 }
 
 func animateLEDs(mode, index, frame int) {
-	led0 := uint32(0)
-	led1 := uint32(0)
-	led2 := uint32(0)
-	led3 := uint32(0)
-	led0 = uint32(animate(mode, index+0, frame))
-	led1 = uint32(animate(mode, index+12, frame))
-	led2 = uint32(animate(mode, index+24, frame))
 	switch index {
-	case 0: // A1
+	case 0: // A4
+		led0 := uint32(animate(mode, 36, frame))
+		led1 := uint32(animate(mode, 58, frame))
+		led2 := uint32(animate(mode, 16, frame))
 		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[0][0])
-	case 1: // A2
+	case 1: // A5
+		led0 := uint32(animate(mode, 49, frame))
+		led1 := uint32(animate(mode, 37, frame))
+		led2 := uint32(animate(mode, 29, frame))
 		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[1][0])
-	case 2: // A3
+	case 2: // A6
+		led0 := uint32(animate(mode, 62, frame))
+		led1 := uint32(animate(mode, 50, frame))
+		led2 := uint32(animate(mode, 21, frame))
 		C.bitbang_update_bitplane_1(led0, led1, led2, &bitplanes[2][0])
-	case 3: // A4
+	case 3: // A7
+		led0 := uint32(animate(mode, 41, frame))
+		led1 := uint32(animate(mode, 63, frame))
+		led2 := uint32(animate(mode, 28, frame))
 		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[3][0])
-	case 4: // A5
+	case 4: // A8
+		led0 := uint32(animate(mode, 54, frame))
+		led1 := uint32(animate(mode, 42, frame))
+		led2 := uint32(animate(mode, 20, frame))
 		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[4][0])
-	case 5: // A6
+	case 5: // A9
+		led0 := uint32(animate(mode, 46, frame))
+		led1 := uint32(animate(mode, 55, frame))
+		led2 := uint32(animate(mode, 33, frame))
 		C.bitbang_update_bitplane_2(led0, led1, led2, &bitplanes[5][0])
-	case 6: // A7
+	case 6: // A10
+		led0 := uint32(animate(mode, 59, frame))
+		led1 := uint32(animate(mode, 22, frame))
+		led2 := uint32(animate(mode, 25, frame))
 		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[6][0])
-	case 7:
+	case 7: // A11
+		led0 := uint32(animate(mode, 38, frame))
+		led1 := uint32(animate(mode, 14, frame))
+		led2 := uint32(animate(mode, 17, frame))
 		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[7][0])
-	case 8:
+	case 8: // A12
+		led0 := uint32(animate(mode, 51, frame))
+		led1 := uint32(animate(mode, 27, frame))
+		led2 := uint32(animate(mode, 9, frame))
 		C.bitbang_update_bitplane_3(led0, led1, led2, &bitplanes[8][0])
-	case 9:
+	case 9: // A1
+		led0 := uint32(animate(mode, 53, frame))
+		led1 := uint32(animate(mode, 19, frame))
+		led2 := uint32(animate(mode, 1, frame))
 		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[9][0])
-	case 10:
+	case 10: // A2
+		led0 := uint32(animate(mode, 32, frame))
+		led1 := uint32(animate(mode, 11, frame))
+		led2 := uint32(animate(mode, 6, frame))
 		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[10][0])
-	case 11:
+	case 11: // A3
+		led0 := uint32(animate(mode, 45, frame))
+		led1 := uint32(animate(mode, 24, frame))
+		led2 := uint32(animate(mode, 3, frame))
 		C.bitbang_update_bitplane_4(led0, led1, led2, &bitplanes[11][0])
-		//case 12:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[12][0])
-		//case 13:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[13][0])
-		//case 14:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[14][0])
-		//case 15:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[15][0])
-		//case 16:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[16][0])
-		//case 17:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[17][0])
-		//case 18:
-		//	C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[18][0])
-		_ = led3
+	case 12: // A13
+		led0 := uint32(animate(mode, 30, frame))
+		led1 := uint32(animate(mode, 8, frame))
+		led2 := uint32(animate(mode, 13, frame))
+		led3 := uint32(animate(mode, 34, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[12][0])
+	case 13: // A14
+		led0 := uint32(animate(mode, 43, frame))
+		led1 := uint32(animate(mode, 0, frame))
+		led2 := uint32(animate(mode, 26, frame))
+		led3 := uint32(animate(mode, 47, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[13][0])
+	case 14: // A15
+		led0 := uint32(animate(mode, 56, frame))
+		led1 := uint32(animate(mode, 2, frame))
+		led2 := uint32(animate(mode, 18, frame))
+		led3 := uint32(animate(mode, 60, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[14][0])
+	case 15: // A16
+		led0 := uint32(animate(mode, 35, frame))
+		led1 := uint32(animate(mode, 15, frame))
+		led2 := uint32(animate(mode, 5, frame))
+		led3 := uint32(animate(mode, 39, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[15][0])
+	case 16: // A17
+		led0 := uint32(animate(mode, 48, frame))
+		led1 := uint32(animate(mode, 7, frame))
+		led2 := uint32(animate(mode, 10, frame))
+		led3 := uint32(animate(mode, 52, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[16][0])
+	case 17: // A18
+		led0 := uint32(animate(mode, 61, frame))
+		led1 := uint32(animate(mode, 12, frame))
+		led2 := uint32(animate(mode, 23, frame))
+		led3 := uint32(animate(mode, 31, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[17][0])
+	case 18: // A19
+		led0 := uint32(animate(mode, 40, frame))
+		led1 := uint32(animate(mode, 4, frame))
+		led2 := uint32(animate(mode, 57, frame))
+		led3 := uint32(animate(mode, 44, frame))
+		C.bitbang_update_bitplane_all4(led0, led1, led2, led3, &bitplanes[18][0])
 	}
 }
 

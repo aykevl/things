@@ -47,9 +47,6 @@ func main() {
 	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
 	stm32.GPIOA.OTYPER.Set(0b0000_1111_1111_1111)
 
-	// Set A13-A19 as open drain.
-	stm32.GPIOB.OTYPER.Set(0b0000_0000_0111_1111)
-
 	setClockSpeed()
 
 	// Zero all LEDs.
@@ -137,7 +134,7 @@ func setClockSpeed() {
 	// Set MSI clock speed.
 	// Range 2: around 262kHz (~55µA with all LEDs off)
 	// Range 3: around 524kHz (~83µA with all LEDs off)
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range4)
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range5)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.

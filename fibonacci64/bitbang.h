@@ -627,7 +627,7 @@ __attribute__((noinline))
 static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t led2, uint32_t led3, uint32_t *bitplane) {
     uint32_t tmp;
     uint32_t N8 = 8;
-    uint32_t xor = 0b0000111111111111;
+    uint32_t mask = 0b0000111111111111;
 
     __asm__ __volatile__(
         // Not clearing %[tmp] here since we will be shifting all 32 bits out.
@@ -658,7 +658,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
         "rors %[led3], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
-        "eors %[tmp], %[xor]\n\t"
+        "eors %[tmp], %[mask]\n\t"
 
         // 2 cycle bitplane
         "lsls %[tmp], #4\n\t"             // gap at the start
@@ -690,7 +690,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
         "rors %[led3], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
-        "eors %[tmp], %[xor]\n\t"
+        "eors %[tmp], %[mask]\n\t"
 
         // Store 1-cycle and 2-cycle bitplanes.
         "str %[tmp], [%[bitplane]]\n\t"
@@ -727,7 +727,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
         "rors %[led3], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
-        "eors %[tmp], %[xor]\n\t"
+        "eors %[tmp], %[mask]\n\t"
 
         // 8 cycle bitplane
         "lsls %[tmp], #4\n\t"             // gap at the start
@@ -759,7 +759,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
         "rors %[led3], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
-        "eors %[tmp], %[xor]\n\t"
+        "eors %[tmp], %[mask]\n\t"
 
         // Store 4-cycle and 8-cycle bitplanes.
         "str %[tmp], [%[bitplane], #4]\n\t"
@@ -794,7 +794,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 green (A11/PA1)
         "rors %[led3], %[N8]\n\t"
         "adcs %[tmp], %[tmp], %[tmp]\n\t" // LED3 blue  (A12/PA0)
-        "eors %[tmp], %[xor]\n\t"
+        "eors %[tmp], %[mask]\n\t"
 
         // Store 16-cycle bitplane (of which the upper bits weren't cleared).
         "str %[tmp], [%[bitplane], #8]\n\t"
@@ -806,7 +806,7 @@ static void bitbang_update_bitplane_all4(uint32_t led0, uint32_t led1, uint32_t 
           [led3]"+&r"(led3)
         : [bitplane]"r"(bitplane),
           [N8]"r"(N8),
-          [xor]"r"(xor)
+          [mask]"r"(mask)
     );
 }
 
@@ -1221,9 +1221,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<6))\n\t"    // [1] make A13/PB6 bitmask for GPIOB OTYPER
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
-        "nop\n\t"                            // [11] nop
+        "nop\n\t"                            // [10] nop
         "nop\n\t"
         "nop\n\t"
         "nop\n\t"
@@ -1233,18 +1232,22 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "nop\n\t"
         "nop\n\t"
-        "nop\n\t"
-        "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
+        "movs %[v1], #(1<<0)\n\t"           // [2] prepare mask to toggle A12
+        "eors %[v1], %[v1], %[mask]\n\t"
+        "strh %[mask], [%[gpio], #0x4]\n\t" // [1] ** end 16 cycle bitplane (by restoring OTYPER)
 
-        // restore: set OTYPER back to the mask
-        "strh %[mask], [%[gpio], #0x4]\n\t"
+        // Quickly toggle A12 to be low for a short bit. For some reason, this
+        // reduces ghosting.
+        "strh %[v1], [%[gpio], #0x14]\n\t"
+        "strh %[mask], [%[gpio], #0x14]\n\t"
 
         /***********************************
          * Now do all the anodes on port B *
          ***********************************/
 
-        // set GPIOB OTYPER to clear only A13/PB6
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A13/PB6
+        "movs %[v1], #(1<<6)\n\t"
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A13 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1262,7 +1265,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<5))\n\t"    // [1] make A14/PB5 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<5)\n\t"            // [1] make A14/PB5 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1277,8 +1280,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A14/PB5
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A14/PB5
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A14 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1296,7 +1299,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<4))\n\t"    // [1] make A15/PB4 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<4)\n\t"            // [1] make A15/PB4 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1311,8 +1314,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A15/PB4
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A15/PB4
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A15 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1330,7 +1333,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<3))\n\t"    // [1] make A16/PB3 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<3)\n\t"            // [1] make A16/PB3 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1345,8 +1348,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A16/PB3
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A16/PB3
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A15 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1364,7 +1367,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<2))\n\t"    // [1] make A17/PB2 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<2)\n\t"            // [1] make A17/PB2 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1379,8 +1382,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A17/PB2
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A17/PB2
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A15 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1398,7 +1401,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<1))\n\t"    // [1] make A18/PB1 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<1)\n\t"            // [1] make A18/PB1 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1413,8 +1416,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A18/PB1
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A18/PB1
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A15 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1432,7 +1435,7 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"                            // [1] nop
         "strh %[v1], [%[gpio], #0x14]\n\t"   // [1] ** start 16 cycle bitplane
         "adds %[bitplanes], #12\n\t"         // [1] increment bitplanes for next 3 words
-        "movs %[v1], (0x7f ^ (1<<0))\n\t"    // [1] make A19/PB0 bitmask for GPIOB OTYPER
+        "movs %[v1], #(1<<0)\n\t"            // [1] make A19/PB0 bitmask for GPIOB ODR
         "ldr  %[v2], [%[bitplanes], #4]\n\t" // [2] load 8 and 4 cycle bitplanes
         "nop\n\t"                            // [11] nop
         "nop\n\t"
@@ -1447,8 +1450,8 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // set GPIOB OTYPER to clear only A19/PB0
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // set GPIOB ODR to clear only A19/PB0
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
 
         // Update LEDs with A15 as anode.
         "strh %[v2], [%[gpio], #0x14]\n\t"   // [1] ** start 8 cycle bitplane
@@ -1482,9 +1485,9 @@ static void bitbang_show_leds(volatile uint32_t *bitplanes, volatile void *gpio)
         "nop\n\t"
         "strh %[mask], [%[gpio], #0x14]\n\t" // [1] ** end 16 cycle bitplane
 
-        // restore: set GPIOB OTYPER back to the original value
-        "movs %[v1], #0x7f\n\t"
-        "strh %[v1], [%[gpiob], #0x4]\n\t"
+        // restore: set GPIOB ODR back to the original value
+        "movs %[v1], #0\n\t"
+        "strh %[v1], [%[gpiob], #0x14]\n\t"
         : [v1]"=&r"(v1),
           [v2]"=&r"(v2),
           [bitplanes]"+&r"(bitplanes)
