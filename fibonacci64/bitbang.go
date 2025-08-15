@@ -70,6 +70,9 @@ func configureLEDs() {
 	A17.Low()
 	A18.Low()
 	A19.Low()
+
+	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
+	stm32.GPIOA.OTYPER.Set(0b0000_1111_1111_1111)
 }
 
 func disableLEDs() {
