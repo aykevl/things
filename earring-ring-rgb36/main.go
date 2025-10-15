@@ -68,6 +68,8 @@ func main() {
 			// Read the button every frame update.
 			pressed := !button.Get() // low means pressed
 			if framesPressed == 30 {
+				turnOffAnimation(mode, frame)
+
 				// Sleep until a button press.
 				sleepUntilButtonPress()
 
@@ -154,6 +156,38 @@ func setClockSpeed() {
 
 	// Divide SYSCLK, for testing.
 	//stm32.RCC.SetCFGR_HPRE(stm32.RCC_CFGR_HPRE_Div512)
+}
+
+// Show an animation during shutdown. It keeps the current animation, but
+// freezes it in place, and turns off LEDs in sequence.
+func turnOffAnimation(mode, frame int) {
+	for i := range 36 / 3 {
+		for index := range 12 {
+			// Shut down LEDs in groups of 3.
+			// We have to calculate the animation for two reasons:
+			//  1. The animation may change in brightness if we don't call
+			//     animate() to slow it down the same way as the normal
+			//     animation.
+			//  2. The 3 LEDs we can update at a time are spread over the ring
+			//     of LEDs, not sequentially next to each other.
+			led0 := animate(mode, index+0, frame)
+			if index+0 < i*3 {
+				led0 = 0
+			}
+			led1 := animate(mode, index+12, frame)
+			if index+12 < i*3 {
+				led1 = 0
+			}
+			led2 := animate(mode, index+24, frame)
+			if index+24 < i*3 {
+				led2 = 0
+			}
+			setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
+
+			// Bitbang the LEDs.
+			updateLEDs()
+		}
+	}
 }
 
 func sleepUntilButtonPress() {
