@@ -77,24 +77,26 @@ func main() {
 				// on".
 				previousMode = mode
 				mode = modePowerOn
+				frame = 0
+				framesPressed = -0x8000_0000 // don't switch to the next animation on button release
 			}
-			if !pressed && framesPressed != 0 {
-				// Move to the next mode.
-				if mode == modePowerOn {
-					// Still in the power on mode, move on to the mode before
-					// shutdown.
+			if mode == modePowerOn {
+				if frame == numLEDs/2 {
 					mode = previousMode
-				} else {
+				}
+			} else {
+				if !pressed && framesPressed > 0 {
+					// Move to the next mode.
 					mode++
 					if mode >= modeLast {
 						// Last, so wrap around.
 						mode = 0
 					}
-				}
 
-				// Clear LEDs before moving on to the next mode.
-				for i := 0; i < 12; i++ {
-					setLEDs(i, 0, 0, 0)
+					// Clear LEDs before moving on to the next mode.
+					for i := 0; i < 12; i++ {
+						setLEDs(i, 0, 0, 0)
+					}
 				}
 			}
 			if pressed {
@@ -201,25 +203,22 @@ func sleepUntilButtonPress() {
 	// Disable GPIO pins during sleep.
 	disableLEDs()
 
+	// Clear LEDs to avoid flash on poweron.
+	for i := 0; i < 12; i++ {
+		setLEDs(i, 0, 0, 0)
+	}
+
 	// Enter stop mode, wake up on a button press.
 	buttonWake.Set(0)
 	arm.SCB.SCR.SetBits(arm.SCB_SCR_SLEEPDEEP)
 	for {
 		arm.Asm("wfe")
 		if buttonWake.Get() != 0 {
-			// Restore GPIO pins to their previous configuration.
-			configureLEDs()
-
-			// Clear LEDs to avoid flash on poweron.
-			for i := 0; i < 12; i++ {
-				setLEDs(i, 0, 0, 0)
-			}
-
+			// Wait a second and check that the button doesn't get released
+			// during this time.
 			if waitForPoweron() {
 				break
 			}
-
-			disableLEDs()
 		}
 	}
 	arm.SCB.SCR.ClearBits(arm.SCB_SCR_SLEEPDEEP)
@@ -228,35 +227,22 @@ func sleepUntilButtonPress() {
 	button.SetInterrupt(machine.PinFalling, nil)
 }
 
-// Animation during startup, so we need a slightly longer press to power on.
+// Wait for a bit before turning on.
 func waitForPoweron() bool {
-	frame := 0
-	index := 0
-	for {
-		// Return true if pressed for enough time, return false if released too
-		// quickly.
+	for range 12 * 30 {
 		pressed := !button.Get() // low means pressed
 		if !pressed {
+			// Button was released early, shut down device again.
 			return false
 		}
-		if pressed && frame >= numLEDs/2 {
-			return true
-		}
 
-		// Update 3 LEDs at a time, since that's convenient for the
-		// RGB-to-bitplane conversion.
-		led0 := powerOn(index+0, frame)
-		led1 := powerOn(index+12, frame)
-		led2 := powerOn(index+24, frame)
-		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
-
-		// Bitbang the LEDs.
+		// Do this just to delay stuff a little.
 		updateLEDs()
-
-		index++
-		if index == 12 {
-			index = 0
-			frame++
-		}
 	}
+
+	// Turn on LEDs again after power down.
+	configureLEDs()
+
+	// Indicate that the chip should start up again.
+	return true
 }

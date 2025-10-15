@@ -291,11 +291,8 @@ func testPulse(led, frame int) Color {
 // Startup animation. The duration until it will power on is set in
 // waitForPowerOn, but this gives a nice animation to show how far it is.
 func powerOn(led, frame int) Color {
-	if frame*2 >= numLEDs {
-		return NewColor(0, 0x7f, 0)
-	}
 	if frame*2 > led {
-		return NewColor(0, 0, 0x7f)
+		return NewColor(0, 0x3f, 0) // green
 	}
 	return NewColor(0, 0, 0)
 }
