@@ -1,0 +1,5 @@
+/production
+/badge-backups
+/fp-info-cache
+~*.lck
+

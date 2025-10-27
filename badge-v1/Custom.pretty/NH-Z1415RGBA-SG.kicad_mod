@@ -1,0 +1,121 @@
+(footprint "NH-Z1415RGBA-SG"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "8ba379d6-4a24-4896-809c-e6bd3efccbb6")
+		(effects
+			(font
+				(size 0.3 0.3)
+				(thickness 0.05)
+			)
+		)
+	)
+	(property "Value" "NH-Z1415RGBA-SG"
+		(at 0 -3.1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "5e7d8624-ca29-474d-bb49-0fab255a458f")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 -4.1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7371e996-4fab-4fac-9945-46da531faf4e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 -4.1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "9286eaeb-5325-4b0e-81ca-7044ed310eca")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_poly
+		(pts
+			(xy 0.3 0.225) (xy -0.05 0.575) (xy 0.3 0.575)
+		)
+		(stroke
+			(width 0.01)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "7d1e462e-614d-4959-b8ec-12d69b4bb7e4")
+	)
+	(fp_rect
+		(start -0.8 -0.75)
+		(end 0.8 0.75)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "c112f07a-4b07-49ba-add9-b320d3ae374e")
+	)
+	(pad "1" smd rect
+		(at 0.65 -0.4)
+		(size 0.5 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "ea2b0178-e3ce-49e7-a11d-0bc565fc91eb")
+	)
+	(pad "2" smd rect
+		(at 0.65 0.4)
+		(size 0.5 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "15c81043-dfbf-494b-8174-c1ccd00321ac")
+	)
+	(pad "3" smd rect
+		(at -0.65 0.4)
+		(size 0.5 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "663cb5fa-9493-4417-a350-d07ff7b9468d")
+	)
+	(pad "4" smd rect
+		(at -0.65 -0.4)
+		(size 0.5 0.4)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(thermal_bridge_angle 45)
+		(uuid "0708dba6-fcc9-49e7-bc37-ed9364de9ead")
+	)
+	(embedded_fonts no)
+	(model "../NH-Z1415RGBA-SG-Body.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)
