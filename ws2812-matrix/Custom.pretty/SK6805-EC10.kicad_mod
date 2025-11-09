@@ -1,0 +1,110 @@
+(footprint "SK6805-EC10"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "Dwgs.User")
+		(uuid "93565af1-b87d-4c83-b9a7-ff761aebf40e")
+		(effects
+			(font
+				(size 0.1 0.1)
+				(thickness 0.025)
+			)
+		)
+	)
+	(property "Value" "SK6805-EC10"
+		(at 0 -3.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6a98c297-d87f-463e-a178-46e36ff35954")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "61364227-0867-4ded-87ee-c765c377d11c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3cd22769-0166-489d-ad45-fbe2da46e1f2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_poly
+		(pts
+			(xy 0.03 -0.4539) (xy -0.07 -0.3539) (xy 0.03 -0.2539)
+		)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill yes)
+		(layer "F.SilkS")
+		(uuid "ad1c6afa-b7f2-4adf-90a2-33f51856a44a")
+	)
+	(pad "1" smd rect
+		(at -0.335 -0.335)
+		(size 0.37 0.37)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.051)
+		(uuid "0607cbac-082d-4665-8573-d31f5730b76c")
+	)
+	(pad "2" smd rect
+		(at -0.335 0.335)
+		(size 0.37 0.37)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.051)
+		(uuid "e70478e7-9dcf-4f28-9a68-708fe542bb2c")
+	)
+	(pad "3" smd rect
+		(at 0.335 0.335)
+		(size 0.37 0.37)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.051)
+		(uuid "11f51041-8b6e-4079-a6b8-77a0b4c46bbe")
+	)
+	(pad "4" smd rect
+		(at 0.335 -0.335)
+		(size 0.37 0.37)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(solder_mask_margin 0.051)
+		(uuid "b36df9cc-9d70-4407-89f8-4cbb613534f9")
+	)
+	(embedded_fonts no)
+	(model "/home/ayke/src/ayke/things/third_party/lcsc/C22394946.step"
+		(offset
+			(xyz 0 0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -90)
+		)
+	)
+)

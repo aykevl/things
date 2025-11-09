@@ -1,0 +1,84 @@
+(footprint "WS2812-conn"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "dad36f4d-d1d1-4a64-86eb-729e46155d19")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "WS2812-conn"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "94f300c5-d8b5-4a6a-8907-38175fb8d67a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "6408bd80-496b-47fd-818c-916161e4c3cb")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "40495347-70c1-4a4b-b47d-6f38b1fc6670")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(pad "1" thru_hole rect
+		(at 0 0)
+		(size 1.8 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Paste" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "f841450e-0d53-40a5-a899-0c28b170daf9")
+	)
+	(pad "2" thru_hole rect
+		(at 2.54 0)
+		(size 1.8 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Paste" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "c86765c3-c5c4-451f-a1ba-652cf57985cb")
+	)
+	(pad "3" thru_hole rect
+		(at 5.08 0)
+		(size 1.8 1.6)
+		(drill 1)
+		(layers "*.Cu" "*.Paste" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "445e342d-bb98-42db-b0fc-1c790b0e7043")
+	)
+	(embedded_fonts no)
+)
