@@ -7,7 +7,7 @@
 		(at 0 0 0)
 		(unlocked yes)
 		(layer "Dwgs.User")
-		(uuid "93565af1-b87d-4c83-b9a7-ff761aebf40e")
+		(uuid "a83c1955-7281-4ed1-b314-0aa7f4276f92")
 		(effects
 			(font
 				(size 0.15 0.15)
@@ -20,7 +20,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "6a98c297-d87f-463e-a178-46e36ff35954")
+		(uuid "cd13ddd0-bf1b-44ca-8335-17ce8aea9fe0")
 		(effects
 			(font
 				(size 1 1)
@@ -33,7 +33,7 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "61364227-0867-4ded-87ee-c765c377d11c")
+		(uuid "625b23db-1c6c-4cc0-b602-94b31829213d")
 		(effects
 			(font
 				(size 1 1)
@@ -46,11 +46,23 @@
 		(unlocked yes)
 		(layer "F.Fab")
 		(hide yes)
-		(uuid "3cd22769-0166-489d-ad45-fbe2da46e1f2")
+		(uuid "60978258-c0a3-4275-a516-beaf26dd23db")
 		(effects
 			(font
 				(size 1 1)
 				(thickness 0.15)
+			)
+		)
+	)
+	(property "Rotation Offset" "180"
+		(at 0 0 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "c21cb1e4-aafe-4651-97de-5e3a1fc1a154")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
 			)
 		)
 	)
