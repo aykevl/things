@@ -9757,7 +9757,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 173.99 0)
 			(effects
 				(font
@@ -9786,7 +9786,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 175.26 0)
 			(effects
 				(font
@@ -9841,7 +9841,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 267.97 0)
 			(effects
 				(font
@@ -9870,7 +9870,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 266.7 0)
 			(effects
 				(font
@@ -9925,7 +9925,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 161.29 0)
 			(effects
 				(font
@@ -9954,7 +9954,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 160.02 0)
 			(effects
 				(font
@@ -10009,7 +10009,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 130.81 0)
 			(effects
 				(font
@@ -10038,7 +10038,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 129.54 0)
 			(effects
 				(font
@@ -10093,7 +10093,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 252.73 0)
 			(effects
 				(font
@@ -10122,7 +10122,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 251.46 0)
 			(effects
 				(font
@@ -10177,7 +10177,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 173.99 0)
 			(effects
 				(font
@@ -10206,7 +10206,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 175.26 0)
 			(effects
 				(font
@@ -10261,7 +10261,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 298.45 0)
 			(effects
 				(font
@@ -10290,7 +10290,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 297.18 0)
 			(effects
 				(font
@@ -10345,7 +10345,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 176.53 0)
 			(effects
 				(font
@@ -10374,7 +10374,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 175.26 0)
 			(effects
 				(font
@@ -10429,7 +10429,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 191.77 0)
 			(effects
 				(font
@@ -10458,7 +10458,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 190.5 0)
 			(effects
 				(font
@@ -10513,7 +10513,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 115.57 0)
 			(effects
 				(font
@@ -10542,7 +10542,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 114.3 0)
 			(effects
 				(font
@@ -10597,7 +10597,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 143.51 0)
 			(effects
 				(font
@@ -10626,7 +10626,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 144.78 0)
 			(effects
 				(font
@@ -10681,7 +10681,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 222.25 0)
 			(effects
 				(font
@@ -10710,7 +10710,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 220.98 0)
 			(effects
 				(font
@@ -10765,7 +10765,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 85.09 0)
 			(effects
 				(font
@@ -10794,7 +10794,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 83.82 0)
 			(effects
 				(font
@@ -10849,7 +10849,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 69.85 0)
 			(effects
 				(font
@@ -10878,7 +10878,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 68.58 0)
 			(effects
 				(font
@@ -11012,7 +11012,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 207.01 0)
 			(effects
 				(font
@@ -11041,7 +11041,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 205.74 0)
 			(effects
 				(font
@@ -11175,7 +11175,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 191.77 0)
 			(effects
 				(font
@@ -11204,7 +11204,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 190.5 0)
 			(effects
 				(font
@@ -11259,7 +11259,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 130.81 0)
 			(effects
 				(font
@@ -11288,7 +11288,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 129.54 0)
 			(effects
 				(font
@@ -11343,7 +11343,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 234.95 0)
 			(effects
 				(font
@@ -11372,7 +11372,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 236.22 0)
 			(effects
 				(font
@@ -11427,7 +11427,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 204.47 0)
 			(effects
 				(font
@@ -11456,7 +11456,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 205.74 0)
 			(effects
 				(font
@@ -11511,7 +11511,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 143.51 0)
 			(effects
 				(font
@@ -11540,7 +11540,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 144.78 0)
 			(effects
 				(font
@@ -11595,7 +11595,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 173.99 0)
 			(effects
 				(font
@@ -11624,7 +11624,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 175.26 0)
 			(effects
 				(font
@@ -11679,7 +11679,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 67.31 0)
 			(effects
 				(font
@@ -11708,7 +11708,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 68.58 0)
 			(effects
 				(font
@@ -11763,7 +11763,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 267.97 0)
 			(effects
 				(font
@@ -11792,7 +11792,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 266.7 0)
 			(effects
 				(font
@@ -11847,7 +11847,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 204.47 0)
 			(effects
 				(font
@@ -11876,7 +11876,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 205.74 0)
 			(effects
 				(font
@@ -11934,7 +11934,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Custom:WS2812-conn"
+		(property "Footprint" "Custom:WS2812-conn-oneside"
 			(at 424.18 53.34 0)
 			(effects
 				(font
@@ -12004,7 +12004,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 267.97 0)
 			(effects
 				(font
@@ -12033,7 +12033,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 266.7 0)
 			(effects
 				(font
@@ -12088,7 +12088,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 207.01 0)
 			(effects
 				(font
@@ -12117,7 +12117,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 205.74 0)
 			(effects
 				(font
@@ -12172,7 +12172,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 67.31 0)
 			(effects
 				(font
@@ -12201,7 +12201,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 68.58 0)
 			(effects
 				(font
@@ -12256,7 +12256,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 237.49 0)
 			(effects
 				(font
@@ -12285,7 +12285,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 236.22 0)
 			(effects
 				(font
@@ -12340,7 +12340,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 191.77 0)
 			(effects
 				(font
@@ -12369,7 +12369,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 190.5 0)
 			(effects
 				(font
@@ -12424,7 +12424,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 67.31 0)
 			(effects
 				(font
@@ -12453,7 +12453,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 68.58 0)
 			(effects
 				(font
@@ -12508,7 +12508,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 283.21 0)
 			(effects
 				(font
@@ -12537,7 +12537,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 281.94 0)
 			(effects
 				(font
@@ -12671,7 +12671,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 295.91 0)
 			(effects
 				(font
@@ -12700,7 +12700,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 297.18 0)
 			(effects
 				(font
@@ -12755,7 +12755,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 191.77 0)
 			(effects
 				(font
@@ -12784,7 +12784,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 190.5 0)
 			(effects
 				(font
@@ -12839,7 +12839,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 189.23 0)
 			(effects
 				(font
@@ -12868,7 +12868,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 190.5 0)
 			(effects
 				(font
@@ -12923,7 +12923,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 298.45 0)
 			(effects
 				(font
@@ -12952,7 +12952,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 297.18 0)
 			(effects
 				(font
@@ -13007,7 +13007,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 85.09 0)
 			(effects
 				(font
@@ -13036,7 +13036,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 83.82 0)
 			(effects
 				(font
@@ -13091,7 +13091,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 82.55 0)
 			(effects
 				(font
@@ -13120,7 +13120,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 83.82 0)
 			(effects
 				(font
@@ -13175,7 +13175,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 161.29 0)
 			(effects
 				(font
@@ -13204,7 +13204,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 160.02 0)
 			(effects
 				(font
@@ -13259,7 +13259,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 100.33 0)
 			(effects
 				(font
@@ -13288,7 +13288,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 99.06 0)
 			(effects
 				(font
@@ -13343,7 +13343,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 237.49 0)
 			(effects
 				(font
@@ -13372,7 +13372,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 236.22 0)
 			(effects
 				(font
@@ -13427,7 +13427,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 128.27 0)
 			(effects
 				(font
@@ -13456,7 +13456,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 129.54 0)
 			(effects
 				(font
@@ -13511,7 +13511,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 234.95 0)
 			(effects
 				(font
@@ -13540,7 +13540,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 236.22 0)
 			(effects
 				(font
@@ -13595,7 +13595,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 207.01 0)
 			(effects
 				(font
@@ -13624,7 +13624,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 205.74 0)
 			(effects
 				(font
@@ -13679,7 +13679,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 252.73 0)
 			(effects
 				(font
@@ -13708,7 +13708,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 251.46 0)
 			(effects
 				(font
@@ -13763,7 +13763,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 207.01 0)
 			(effects
 				(font
@@ -13792,7 +13792,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 205.74 0)
 			(effects
 				(font
@@ -13847,7 +13847,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 161.29 0)
 			(effects
 				(font
@@ -13876,7 +13876,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 160.02 0)
 			(effects
 				(font
@@ -13997,7 +13997,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 143.51 0)
 			(effects
 				(font
@@ -14026,7 +14026,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 144.78 0)
 			(effects
 				(font
@@ -14147,7 +14147,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 130.81 0)
 			(effects
 				(font
@@ -14176,7 +14176,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 129.54 0)
 			(effects
 				(font
@@ -14231,7 +14231,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 265.43 0)
 			(effects
 				(font
@@ -14260,7 +14260,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 266.7 0)
 			(effects
 				(font
@@ -14315,7 +14315,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 158.75 0)
 			(effects
 				(font
@@ -14344,7 +14344,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 160.02 0)
 			(effects
 				(font
@@ -14399,7 +14399,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 295.91 0)
 			(effects
 				(font
@@ -14428,7 +14428,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 297.18 0)
 			(effects
 				(font
@@ -14483,7 +14483,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 113.03 0)
 			(effects
 				(font
@@ -14512,7 +14512,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 114.3 0)
 			(effects
 				(font
@@ -14567,7 +14567,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 85.09 0)
 			(effects
 				(font
@@ -14596,7 +14596,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 83.82 0)
 			(effects
 				(font
@@ -14651,7 +14651,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 252.73 0)
 			(effects
 				(font
@@ -14680,7 +14680,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 251.46 0)
 			(effects
 				(font
@@ -14735,7 +14735,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 97.79 0)
 			(effects
 				(font
@@ -14764,7 +14764,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 99.06 0)
 			(effects
 				(font
@@ -14819,7 +14819,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 189.23 0)
 			(effects
 				(font
@@ -14848,7 +14848,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 190.5 0)
 			(effects
 				(font
@@ -14903,7 +14903,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 267.97 0)
 			(effects
 				(font
@@ -14932,7 +14932,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 266.7 0)
 			(effects
 				(font
@@ -14987,7 +14987,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 234.95 0)
 			(effects
 				(font
@@ -15016,7 +15016,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 236.22 0)
 			(effects
 				(font
@@ -15071,7 +15071,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 128.27 0)
 			(effects
 				(font
@@ -15100,7 +15100,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 129.54 0)
 			(effects
 				(font
@@ -15155,7 +15155,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 97.79 0)
 			(effects
 				(font
@@ -15184,7 +15184,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 99.06 0)
 			(effects
 				(font
@@ -15239,7 +15239,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 113.03 0)
 			(effects
 				(font
@@ -15268,7 +15268,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 114.3 0)
 			(effects
 				(font
@@ -15323,7 +15323,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 69.85 0)
 			(effects
 				(font
@@ -15352,7 +15352,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 68.58 0)
 			(effects
 				(font
@@ -15407,7 +15407,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 267.97 0)
 			(effects
 				(font
@@ -15436,7 +15436,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 266.7 0)
 			(effects
 				(font
@@ -15491,7 +15491,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 161.29 0)
 			(effects
 				(font
@@ -15520,7 +15520,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 160.02 0)
 			(effects
 				(font
@@ -15575,7 +15575,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 173.99 0)
 			(effects
 				(font
@@ -15604,7 +15604,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 175.26 0)
 			(effects
 				(font
@@ -15659,7 +15659,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 158.75 0)
 			(effects
 				(font
@@ -15688,7 +15688,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 160.02 0)
 			(effects
 				(font
@@ -15743,7 +15743,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 69.85 0)
 			(effects
 				(font
@@ -15772,7 +15772,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 68.58 0)
 			(effects
 				(font
@@ -15827,7 +15827,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 283.21 0)
 			(effects
 				(font
@@ -15856,7 +15856,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 281.94 0)
 			(effects
 				(font
@@ -15911,7 +15911,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 280.67 0)
 			(effects
 				(font
@@ -15940,7 +15940,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 281.94 0)
 			(effects
 				(font
@@ -15995,7 +15995,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 85.09 0)
 			(effects
 				(font
@@ -16024,7 +16024,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 83.82 0)
 			(effects
 				(font
@@ -16079,7 +16079,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 283.21 0)
 			(effects
 				(font
@@ -16108,7 +16108,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 281.94 0)
 			(effects
 				(font
@@ -16163,7 +16163,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 173.99 0)
 			(effects
 				(font
@@ -16192,7 +16192,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 175.26 0)
 			(effects
 				(font
@@ -16247,7 +16247,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 250.19 0)
 			(effects
 				(font
@@ -16276,7 +16276,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 251.46 0)
 			(effects
 				(font
@@ -16331,7 +16331,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 82.55 0)
 			(effects
 				(font
@@ -16360,7 +16360,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 83.82 0)
 			(effects
 				(font
@@ -16415,7 +16415,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 219.71 0)
 			(effects
 				(font
@@ -16444,7 +16444,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 220.98 0)
 			(effects
 				(font
@@ -16499,7 +16499,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 161.29 0)
 			(effects
 				(font
@@ -16528,7 +16528,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 160.02 0)
 			(effects
 				(font
@@ -16583,7 +16583,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 265.43 0)
 			(effects
 				(font
@@ -16612,7 +16612,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 266.7 0)
 			(effects
 				(font
@@ -16667,7 +16667,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 219.71 0)
 			(effects
 				(font
@@ -16696,7 +16696,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 220.98 0)
 			(effects
 				(font
@@ -16751,7 +16751,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 295.91 0)
 			(effects
 				(font
@@ -16780,7 +16780,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 297.18 0)
 			(effects
 				(font
@@ -16835,7 +16835,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 250.19 0)
 			(effects
 				(font
@@ -16864,7 +16864,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 251.46 0)
 			(effects
 				(font
@@ -16919,7 +16919,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 265.43 0)
 			(effects
 				(font
@@ -16948,7 +16948,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 266.7 0)
 			(effects
 				(font
@@ -17003,7 +17003,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 250.19 0)
 			(effects
 				(font
@@ -17032,7 +17032,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 251.46 0)
 			(effects
 				(font
@@ -17087,7 +17087,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 176.53 0)
 			(effects
 				(font
@@ -17116,7 +17116,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 175.26 0)
 			(effects
 				(font
@@ -17171,7 +17171,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 191.77 0)
 			(effects
 				(font
@@ -17200,7 +17200,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 190.5 0)
 			(effects
 				(font
@@ -17255,7 +17255,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 237.49 0)
 			(effects
 				(font
@@ -17284,7 +17284,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 236.22 0)
 			(effects
 				(font
@@ -17339,7 +17339,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 69.85 0)
 			(effects
 				(font
@@ -17368,7 +17368,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 68.58 0)
 			(effects
 				(font
@@ -17423,7 +17423,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 113.03 0)
 			(effects
 				(font
@@ -17452,7 +17452,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 114.3 0)
 			(effects
 				(font
@@ -17507,7 +17507,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 252.73 0)
 			(effects
 				(font
@@ -17536,7 +17536,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 251.46 0)
 			(effects
 				(font
@@ -17591,7 +17591,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 265.43 0)
 			(effects
 				(font
@@ -17620,7 +17620,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 266.7 0)
 			(effects
 				(font
@@ -17675,7 +17675,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 283.21 0)
 			(effects
 				(font
@@ -17704,7 +17704,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 281.94 0)
 			(effects
 				(font
@@ -17759,7 +17759,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 222.25 0)
 			(effects
 				(font
@@ -17788,7 +17788,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 220.98 0)
 			(effects
 				(font
@@ -17843,7 +17843,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 280.67 0)
 			(effects
 				(font
@@ -17872,7 +17872,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 281.94 0)
 			(effects
 				(font
@@ -17927,7 +17927,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 222.25 0)
 			(effects
 				(font
@@ -17956,7 +17956,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 220.98 0)
 			(effects
 				(font
@@ -18011,7 +18011,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 82.55 0)
 			(effects
 				(font
@@ -18040,7 +18040,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 83.82 0)
 			(effects
 				(font
@@ -18095,7 +18095,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 97.79 0)
 			(effects
 				(font
@@ -18124,7 +18124,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 99.06 0)
 			(effects
 				(font
@@ -18179,7 +18179,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 113.03 0)
 			(effects
 				(font
@@ -18208,7 +18208,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 114.3 0)
 			(effects
 				(font
@@ -18342,7 +18342,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 189.23 0)
 			(effects
 				(font
@@ -18371,7 +18371,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 190.5 0)
 			(effects
 				(font
@@ -18426,7 +18426,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 204.47 0)
 			(effects
 				(font
@@ -18455,7 +18455,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 205.74 0)
 			(effects
 				(font
@@ -18510,7 +18510,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 143.51 0)
 			(effects
 				(font
@@ -18539,7 +18539,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 144.78 0)
 			(effects
 				(font
@@ -18594,7 +18594,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 219.71 0)
 			(effects
 				(font
@@ -18623,7 +18623,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 220.98 0)
 			(effects
 				(font
@@ -18678,7 +18678,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 250.19 0)
 			(effects
 				(font
@@ -18707,7 +18707,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 251.46 0)
 			(effects
 				(font
@@ -18764,7 +18764,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:WS2812-conn"
+		(property "Footprint" "Custom:WS2812-conn-oneside"
 			(at 17.78 53.34 0)
 			(effects
 				(font
@@ -18834,7 +18834,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 100.33 0)
 			(effects
 				(font
@@ -18863,7 +18863,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 99.06 0)
 			(effects
 				(font
@@ -18918,7 +18918,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 295.91 0)
 			(effects
 				(font
@@ -18947,7 +18947,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 297.18 0)
 			(effects
 				(font
@@ -19002,7 +19002,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 283.21 0)
 			(effects
 				(font
@@ -19031,7 +19031,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 281.94 0)
 			(effects
 				(font
@@ -19086,7 +19086,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 85.09 0)
 			(effects
 				(font
@@ -19115,7 +19115,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 83.82 0)
 			(effects
 				(font
@@ -19170,7 +19170,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 97.79 0)
 			(effects
 				(font
@@ -19199,7 +19199,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 99.06 0)
 			(effects
 				(font
@@ -19333,7 +19333,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 207.01 0)
 			(effects
 				(font
@@ -19362,7 +19362,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 205.74 0)
 			(effects
 				(font
@@ -19417,7 +19417,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 234.95 0)
 			(effects
 				(font
@@ -19446,7 +19446,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 236.22 0)
 			(effects
 				(font
@@ -19501,7 +19501,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 237.49 0)
 			(effects
 				(font
@@ -19530,7 +19530,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 236.22 0)
 			(effects
 				(font
@@ -19585,7 +19585,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 265.43 0)
 			(effects
 				(font
@@ -19614,7 +19614,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 266.7 0)
 			(effects
 				(font
@@ -19669,7 +19669,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 280.67 0)
 			(effects
 				(font
@@ -19698,7 +19698,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 281.94 0)
 			(effects
 				(font
@@ -19753,7 +19753,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 280.67 0)
 			(effects
 				(font
@@ -19782,7 +19782,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 281.94 0)
 			(effects
 				(font
@@ -19837,7 +19837,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 97.79 0)
 			(effects
 				(font
@@ -19866,7 +19866,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 99.06 0)
 			(effects
 				(font
@@ -19921,7 +19921,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 100.33 0)
 			(effects
 				(font
@@ -19950,7 +19950,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 99.06 0)
 			(effects
 				(font
@@ -20005,7 +20005,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 67.31 0)
 			(effects
 				(font
@@ -20034,7 +20034,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 68.58 0)
 			(effects
 				(font
@@ -20089,7 +20089,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 82.55 0)
 			(effects
 				(font
@@ -20118,7 +20118,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 83.82 0)
 			(effects
 				(font
@@ -20173,7 +20173,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 82.55 0)
 			(effects
 				(font
@@ -20202,7 +20202,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 83.82 0)
 			(effects
 				(font
@@ -20257,7 +20257,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 189.23 0)
 			(effects
 				(font
@@ -20286,7 +20286,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 190.5 0)
 			(effects
 				(font
@@ -20341,7 +20341,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 252.73 0)
 			(effects
 				(font
@@ -20370,7 +20370,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 251.46 0)
 			(effects
 				(font
@@ -20425,7 +20425,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 219.71 0)
 			(effects
 				(font
@@ -20454,7 +20454,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 220.98 0)
 			(effects
 				(font
@@ -20509,7 +20509,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 280.67 0)
 			(effects
 				(font
@@ -20538,7 +20538,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 281.94 0)
 			(effects
 				(font
@@ -20659,7 +20659,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 295.91 0)
 			(effects
 				(font
@@ -20688,7 +20688,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 297.18 0)
 			(effects
 				(font
@@ -20743,7 +20743,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 219.71 0)
 			(effects
 				(font
@@ -20772,7 +20772,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 220.98 0)
 			(effects
 				(font
@@ -20827,7 +20827,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 113.03 0)
 			(effects
 				(font
@@ -20856,7 +20856,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 114.3 0)
 			(effects
 				(font
@@ -20911,7 +20911,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 115.57 0)
 			(effects
 				(font
@@ -20940,7 +20940,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 114.3 0)
 			(effects
 				(font
@@ -20995,7 +20995,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 173.99 0)
 			(effects
 				(font
@@ -21024,7 +21024,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 175.26 0)
 			(effects
 				(font
@@ -21079,7 +21079,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 295.91 0)
 			(effects
 				(font
@@ -21108,7 +21108,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 297.18 0)
 			(effects
 				(font
@@ -21163,7 +21163,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 283.21 0)
 			(effects
 				(font
@@ -21192,7 +21192,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 281.94 0)
 			(effects
 				(font
@@ -21247,7 +21247,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 204.47 0)
 			(effects
 				(font
@@ -21276,7 +21276,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 205.74 0)
 			(effects
 				(font
@@ -21331,7 +21331,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 191.77 0)
 			(effects
 				(font
@@ -21360,7 +21360,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 190.5 0)
 			(effects
 				(font
@@ -21415,7 +21415,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 283.21 0)
 			(effects
 				(font
@@ -21444,7 +21444,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 281.94 0)
 			(effects
 				(font
@@ -21499,7 +21499,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 115.57 0)
 			(effects
 				(font
@@ -21528,7 +21528,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 114.3 0)
 			(effects
 				(font
@@ -21583,7 +21583,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 146.05 0)
 			(effects
 				(font
@@ -21612,7 +21612,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 144.78 0)
 			(effects
 				(font
@@ -21667,7 +21667,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 85.09 0)
 			(effects
 				(font
@@ -21696,7 +21696,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 83.82 0)
 			(effects
 				(font
@@ -21751,7 +21751,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 265.43 0)
 			(effects
 				(font
@@ -21780,7 +21780,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 266.7 0)
 			(effects
 				(font
@@ -21835,7 +21835,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 161.29 0)
 			(effects
 				(font
@@ -21864,7 +21864,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 160.02 0)
 			(effects
 				(font
@@ -21919,7 +21919,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 250.19 0)
 			(effects
 				(font
@@ -21948,7 +21948,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 251.46 0)
 			(effects
 				(font
@@ -22003,7 +22003,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 113.03 0)
 			(effects
 				(font
@@ -22032,7 +22032,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 114.3 0)
 			(effects
 				(font
@@ -22087,7 +22087,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 158.75 0)
 			(effects
 				(font
@@ -22116,7 +22116,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 160.02 0)
 			(effects
 				(font
@@ -22171,7 +22171,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 146.05 0)
 			(effects
 				(font
@@ -22200,7 +22200,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 144.78 0)
 			(effects
 				(font
@@ -22255,7 +22255,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 146.05 0)
 			(effects
 				(font
@@ -22284,7 +22284,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 144.78 0)
 			(effects
 				(font
@@ -22405,7 +22405,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 82.55 0)
 			(effects
 				(font
@@ -22434,7 +22434,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 83.82 0)
 			(effects
 				(font
@@ -22489,7 +22489,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 67.31 0)
 			(effects
 				(font
@@ -22518,7 +22518,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 68.58 0)
 			(effects
 				(font
@@ -22573,7 +22573,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 207.01 0)
 			(effects
 				(font
@@ -22602,7 +22602,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 205.74 0)
 			(effects
 				(font
@@ -22657,7 +22657,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 219.71 0)
 			(effects
 				(font
@@ -22686,7 +22686,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 220.98 0)
 			(effects
 				(font
@@ -22741,7 +22741,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 176.53 0)
 			(effects
 				(font
@@ -22770,7 +22770,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 175.26 0)
 			(effects
 				(font
@@ -22904,7 +22904,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 265.43 0)
 			(effects
 				(font
@@ -22933,7 +22933,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 266.7 0)
 			(effects
 				(font
@@ -22988,7 +22988,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 115.57 0)
 			(effects
 				(font
@@ -23017,7 +23017,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 114.3 0)
 			(effects
 				(font
@@ -23072,7 +23072,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 97.79 0)
 			(effects
 				(font
@@ -23101,7 +23101,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 99.06 0)
 			(effects
 				(font
@@ -23156,7 +23156,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 250.19 0)
 			(effects
 				(font
@@ -23185,7 +23185,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 251.46 0)
 			(effects
 				(font
@@ -23372,7 +23372,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 265.43 0)
 			(effects
 				(font
@@ -23401,7 +23401,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 266.7 0)
 			(effects
 				(font
@@ -23456,7 +23456,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 158.75 0)
 			(effects
 				(font
@@ -23485,7 +23485,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 160.02 0)
 			(effects
 				(font
@@ -23540,7 +23540,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 237.49 0)
 			(effects
 				(font
@@ -23569,7 +23569,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 236.22 0)
 			(effects
 				(font
@@ -23624,7 +23624,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 115.57 0)
 			(effects
 				(font
@@ -23653,7 +23653,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 114.3 0)
 			(effects
 				(font
@@ -23708,7 +23708,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 222.25 0)
 			(effects
 				(font
@@ -23737,7 +23737,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 220.98 0)
 			(effects
 				(font
@@ -23792,7 +23792,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 189.23 0)
 			(effects
 				(font
@@ -23821,7 +23821,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 190.5 0)
 			(effects
 				(font
@@ -23876,7 +23876,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 204.47 0)
 			(effects
 				(font
@@ -23905,7 +23905,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 205.74 0)
 			(effects
 				(font
@@ -23960,7 +23960,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 204.47 0)
 			(effects
 				(font
@@ -23989,7 +23989,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 205.74 0)
 			(effects
 				(font
@@ -24044,7 +24044,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 100.33 0)
 			(effects
 				(font
@@ -24073,7 +24073,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 99.06 0)
 			(effects
 				(font
@@ -24128,7 +24128,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 189.23 0)
 			(effects
 				(font
@@ -24157,7 +24157,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 190.5 0)
 			(effects
 				(font
@@ -24212,7 +24212,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 204.47 0)
 			(effects
 				(font
@@ -24241,7 +24241,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 205.74 0)
 			(effects
 				(font
@@ -24296,7 +24296,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 234.95 0)
 			(effects
 				(font
@@ -24325,7 +24325,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 236.22 0)
 			(effects
 				(font
@@ -24380,7 +24380,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 298.45 0)
 			(effects
 				(font
@@ -24409,7 +24409,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 297.18 0)
 			(effects
 				(font
@@ -24464,7 +24464,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 222.25 0)
 			(effects
 				(font
@@ -24493,7 +24493,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 220.98 0)
 			(effects
 				(font
@@ -24548,7 +24548,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 143.51 0)
 			(effects
 				(font
@@ -24577,7 +24577,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 144.78 0)
 			(effects
 				(font
@@ -24632,7 +24632,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 128.27 0)
 			(effects
 				(font
@@ -24661,7 +24661,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 129.54 0)
 			(effects
 				(font
@@ -24716,7 +24716,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 161.29 0)
 			(effects
 				(font
@@ -24745,7 +24745,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 160.02 0)
 			(effects
 				(font
@@ -24800,7 +24800,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 237.49 0)
 			(effects
 				(font
@@ -24829,7 +24829,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 236.22 0)
 			(effects
 				(font
@@ -24884,7 +24884,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 115.57 0)
 			(effects
 				(font
@@ -24913,7 +24913,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 114.3 0)
 			(effects
 				(font
@@ -24968,7 +24968,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 298.45 0)
 			(effects
 				(font
@@ -24997,7 +24997,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 297.18 0)
 			(effects
 				(font
@@ -25118,7 +25118,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 130.81 0)
 			(effects
 				(font
@@ -25147,7 +25147,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 129.54 0)
 			(effects
 				(font
@@ -25281,7 +25281,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 146.05 0)
 			(effects
 				(font
@@ -25310,7 +25310,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 144.78 0)
 			(effects
 				(font
@@ -25365,7 +25365,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 191.77 0)
 			(effects
 				(font
@@ -25394,7 +25394,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 190.5 0)
 			(effects
 				(font
@@ -25449,7 +25449,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 219.71 0)
 			(effects
 				(font
@@ -25478,7 +25478,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 220.98 0)
 			(effects
 				(font
@@ -25533,7 +25533,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 267.97 0)
 			(effects
 				(font
@@ -25562,7 +25562,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 266.7 0)
 			(effects
 				(font
@@ -25617,7 +25617,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 69.85 0)
 			(effects
 				(font
@@ -25646,7 +25646,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 68.58 0)
 			(effects
 				(font
@@ -25701,7 +25701,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 280.67 0)
 			(effects
 				(font
@@ -25730,7 +25730,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 281.94 0)
 			(effects
 				(font
@@ -25785,7 +25785,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 222.25 0)
 			(effects
 				(font
@@ -25814,7 +25814,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 220.98 0)
 			(effects
 				(font
@@ -25869,7 +25869,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 222.25 0)
 			(effects
 				(font
@@ -25898,7 +25898,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 220.98 0)
 			(effects
 				(font
@@ -25953,7 +25953,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 207.01 0)
 			(effects
 				(font
@@ -25982,7 +25982,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 205.74 0)
 			(effects
 				(font
@@ -26037,7 +26037,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 234.95 0)
 			(effects
 				(font
@@ -26066,7 +26066,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 236.22 0)
 			(effects
 				(font
@@ -26121,7 +26121,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 176.53 0)
 			(effects
 				(font
@@ -26150,7 +26150,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 175.26 0)
 			(effects
 				(font
@@ -26205,7 +26205,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 252.73 0)
 			(effects
 				(font
@@ -26234,7 +26234,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 251.46 0)
 			(effects
 				(font
@@ -26289,7 +26289,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 128.27 0)
 			(effects
 				(font
@@ -26318,7 +26318,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 129.54 0)
 			(effects
 				(font
@@ -26373,7 +26373,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 130.81 0)
 			(effects
 				(font
@@ -26402,7 +26402,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 129.54 0)
 			(effects
 				(font
@@ -26457,7 +26457,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 69.85 0)
 			(effects
 				(font
@@ -26486,7 +26486,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 68.58 0)
 			(effects
 				(font
@@ -26541,7 +26541,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 130.81 0)
 			(effects
 				(font
@@ -26570,7 +26570,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 129.54 0)
 			(effects
 				(font
@@ -26625,7 +26625,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 69.85 0)
 			(effects
 				(font
@@ -26654,7 +26654,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 68.58 0)
 			(effects
 				(font
@@ -26709,7 +26709,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 100.33 0)
 			(effects
 				(font
@@ -26738,7 +26738,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 99.06 0)
 			(effects
 				(font
@@ -26793,7 +26793,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 115.57 0)
 			(effects
 				(font
@@ -26822,7 +26822,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 114.3 0)
 			(effects
 				(font
@@ -26943,7 +26943,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 113.03 0)
 			(effects
 				(font
@@ -26972,7 +26972,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 114.3 0)
 			(effects
 				(font
@@ -27027,7 +27027,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 280.67 0)
 			(effects
 				(font
@@ -27056,7 +27056,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 281.94 0)
 			(effects
 				(font
@@ -27111,7 +27111,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 100.33 0)
 			(effects
 				(font
@@ -27140,7 +27140,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 99.06 0)
 			(effects
 				(font
@@ -27195,7 +27195,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 298.45 0)
 			(effects
 				(font
@@ -27224,7 +27224,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 297.18 0)
 			(effects
 				(font
@@ -27279,7 +27279,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 234.95 0)
 			(effects
 				(font
@@ -27308,7 +27308,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 236.22 0)
 			(effects
 				(font
@@ -27363,7 +27363,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 176.53 0)
 			(effects
 				(font
@@ -27392,7 +27392,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 175.26 0)
 			(effects
 				(font
@@ -27447,7 +27447,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 158.75 0)
 			(effects
 				(font
@@ -27476,7 +27476,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 160.02 0)
 			(effects
 				(font
@@ -27531,7 +27531,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 207.01 0)
 			(effects
 				(font
@@ -27560,7 +27560,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 205.74 0)
 			(effects
 				(font
@@ -27615,7 +27615,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 143.51 0)
 			(effects
 				(font
@@ -27644,7 +27644,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 144.78 0)
 			(effects
 				(font
@@ -27699,7 +27699,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 158.75 0)
 			(effects
 				(font
@@ -27728,7 +27728,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 160.02 0)
 			(effects
 				(font
@@ -27783,7 +27783,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 130.81 0)
 			(effects
 				(font
@@ -27812,7 +27812,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 129.54 0)
 			(effects
 				(font
@@ -27867,7 +27867,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 173.99 0)
 			(effects
 				(font
@@ -27896,7 +27896,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 175.26 0)
 			(effects
 				(font
@@ -27951,7 +27951,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 146.05 0)
 			(effects
 				(font
@@ -27980,7 +27980,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 144.78 0)
 			(effects
 				(font
@@ -28035,7 +28035,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 267.97 0)
 			(effects
 				(font
@@ -28064,7 +28064,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 266.7 0)
 			(effects
 				(font
@@ -28119,7 +28119,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 158.75 0)
 			(effects
 				(font
@@ -28148,7 +28148,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 160.02 0)
 			(effects
 				(font
@@ -28203,7 +28203,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 250.19 0)
 			(effects
 				(font
@@ -28232,7 +28232,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 251.46 0)
 			(effects
 				(font
@@ -28287,7 +28287,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 298.45 0)
 			(effects
 				(font
@@ -28316,7 +28316,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 297.18 0)
 			(effects
 				(font
@@ -28371,7 +28371,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 176.53 0)
 			(effects
 				(font
@@ -28400,7 +28400,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 175.26 0)
 			(effects
 				(font
@@ -28455,7 +28455,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 130.81 0)
 			(effects
 				(font
@@ -28484,7 +28484,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 129.54 0)
 			(effects
 				(font
@@ -28539,7 +28539,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 161.29 0)
 			(effects
 				(font
@@ -28568,7 +28568,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 160.02 0)
 			(effects
 				(font
@@ -28623,7 +28623,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 219.71 0)
 			(effects
 				(font
@@ -28652,7 +28652,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 220.98 0)
 			(effects
 				(font
@@ -28707,7 +28707,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 100.33 0)
 			(effects
 				(font
@@ -28736,7 +28736,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 99.06 0)
 			(effects
 				(font
@@ -28791,7 +28791,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 250.19 0)
 			(effects
 				(font
@@ -28820,7 +28820,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 251.46 0)
 			(effects
 				(font
@@ -28875,7 +28875,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 237.49 0)
 			(effects
 				(font
@@ -28904,7 +28904,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 236.22 0)
 			(effects
 				(font
@@ -28959,7 +28959,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 82.55 0)
 			(effects
 				(font
@@ -28988,7 +28988,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 83.82 0)
 			(effects
 				(font
@@ -29043,7 +29043,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 266.7 234.95 0)
 			(effects
 				(font
@@ -29072,7 +29072,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 259.08 236.22 0)
 			(effects
 				(font
@@ -29127,7 +29127,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 191.77 0)
 			(effects
 				(font
@@ -29156,7 +29156,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 190.5 0)
 			(effects
 				(font
@@ -29211,7 +29211,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 146.05 0)
 			(effects
 				(font
@@ -29240,7 +29240,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 144.78 0)
 			(effects
 				(font
@@ -29295,7 +29295,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 237.49 0)
 			(effects
 				(font
@@ -29324,7 +29324,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 236.22 0)
 			(effects
 				(font
@@ -29379,7 +29379,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 128.27 0)
 			(effects
 				(font
@@ -29408,7 +29408,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 129.54 0)
 			(effects
 				(font
@@ -29463,7 +29463,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 67.31 0)
 			(effects
 				(font
@@ -29492,7 +29492,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 68.58 0)
 			(effects
 				(font
@@ -29547,7 +29547,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 85.09 0)
 			(effects
 				(font
@@ -29576,7 +29576,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 83.82 0)
 			(effects
 				(font
@@ -29631,7 +29631,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 97.79 0)
 			(effects
 				(font
@@ -29660,7 +29660,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 99.06 0)
 			(effects
 				(font
@@ -29715,7 +29715,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 173.99 0)
 			(effects
 				(font
@@ -29744,7 +29744,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 175.26 0)
 			(effects
 				(font
@@ -29799,7 +29799,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 67.31 0)
 			(effects
 				(font
@@ -29828,7 +29828,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 68.58 0)
 			(effects
 				(font
@@ -29883,7 +29883,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 295.91 0)
 			(effects
 				(font
@@ -29912,7 +29912,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 297.18 0)
 			(effects
 				(font
@@ -29967,7 +29967,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 189.23 0)
 			(effects
 				(font
@@ -29996,7 +29996,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 190.5 0)
 			(effects
 				(font
@@ -30051,7 +30051,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 419.1 189.23 0)
 			(effects
 				(font
@@ -30080,7 +30080,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 411.48 190.5 0)
 			(effects
 				(font
@@ -30135,7 +30135,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 143.51 0)
 			(effects
 				(font
@@ -30164,7 +30164,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 144.78 0)
 			(effects
 				(font
@@ -30219,7 +30219,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 124.46 69.85 0)
 			(effects
 				(font
@@ -30248,7 +30248,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 132.08 68.58 0)
 			(effects
 				(font
@@ -30303,7 +30303,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 158.75 0)
 			(effects
 				(font
@@ -30332,7 +30332,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 160.02 0)
 			(effects
 				(font
@@ -30387,7 +30387,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 295.91 0)
 			(effects
 				(font
@@ -30416,7 +30416,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 297.18 0)
 			(effects
 				(font
@@ -30471,7 +30471,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 317.5 204.47 0)
 			(effects
 				(font
@@ -30500,7 +30500,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 309.88 205.74 0)
 			(effects
 				(font
@@ -30555,7 +30555,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 128.27 0)
 			(effects
 				(font
@@ -30584,7 +30584,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 129.54 0)
 			(effects
 				(font
@@ -30639,7 +30639,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 327.66 252.73 0)
 			(effects
 				(font
@@ -30668,7 +30668,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 335.28 251.46 0)
 			(effects
 				(font
@@ -30723,7 +30723,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 176.53 0)
 			(effects
 				(font
@@ -30752,7 +30752,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 175.26 0)
 			(effects
 				(font
@@ -30807,7 +30807,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 252.73 0)
 			(effects
 				(font
@@ -30836,7 +30836,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 251.46 0)
 			(effects
 				(font
@@ -30891,7 +30891,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 85.09 0)
 			(effects
 				(font
@@ -30920,7 +30920,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 83.82 0)
 			(effects
 				(font
@@ -30975,7 +30975,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 114.3 113.03 0)
 			(effects
 				(font
@@ -31004,7 +31004,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 106.68 114.3 0)
 			(effects
 				(font
@@ -31059,7 +31059,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 146.05 0)
 			(effects
 				(font
@@ -31088,7 +31088,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 144.78 0)
 			(effects
 				(font
@@ -31143,7 +31143,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 280.67 0)
 			(effects
 				(font
@@ -31172,7 +31172,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 281.94 0)
 			(effects
 				(font
@@ -31227,7 +31227,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 146.05 0)
 			(effects
 				(font
@@ -31256,7 +31256,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 144.78 0)
 			(effects
 				(font
@@ -31311,7 +31311,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 63.5 128.27 0)
 			(effects
 				(font
@@ -31340,7 +31340,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 55.88 129.54 0)
 			(effects
 				(font
@@ -31461,7 +31461,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 22.86 100.33 0)
 			(effects
 				(font
@@ -31490,7 +31490,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 30.48 99.06 0)
 			(effects
 				(font
@@ -31545,7 +31545,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 97.79 0)
 			(effects
 				(font
@@ -31574,7 +31574,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 99.06 0)
 			(effects
 				(font
@@ -31629,7 +31629,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 283.21 0)
 			(effects
 				(font
@@ -31658,7 +31658,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 281.94 0)
 			(effects
 				(font
@@ -31713,7 +31713,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 67.31 0)
 			(effects
 				(font
@@ -31742,7 +31742,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 68.58 0)
 			(effects
 				(font
@@ -31797,7 +31797,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 267.97 0)
 			(effects
 				(font
@@ -31826,7 +31826,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 266.7 0)
 			(effects
 				(font
@@ -31881,7 +31881,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 368.3 128.27 0)
 			(effects
 				(font
@@ -31910,7 +31910,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 360.68 129.54 0)
 			(effects
 				(font
@@ -32031,7 +32031,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 175.26 222.25 0)
 			(effects
 				(font
@@ -32060,7 +32060,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 182.88 220.98 0)
 			(effects
 				(font
@@ -32115,7 +32115,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 165.1 82.55 0)
 			(effects
 				(font
@@ -32144,7 +32144,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 157.48 83.82 0)
 			(effects
 				(font
@@ -32199,7 +32199,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 73.66 298.45 0)
 			(effects
 				(font
@@ -32228,7 +32228,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 81.28 297.18 0)
 			(effects
 				(font
@@ -32283,7 +32283,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 276.86 115.57 0)
 			(effects
 				(font
@@ -32312,7 +32312,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 284.48 114.3 0)
 			(effects
 				(font
@@ -32367,7 +32367,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 215.9 143.51 0)
 			(effects
 				(font
@@ -32396,7 +32396,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 208.28 144.78 0)
 			(effects
 				(font
@@ -32451,7 +32451,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 226.06 176.53 0)
 			(effects
 				(font
@@ -32480,7 +32480,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 233.68 175.26 0)
 			(effects
 				(font
@@ -32535,7 +32535,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Custom:SK6805-EC10"
+		(property "Footprint" "Custom:SK6805-EC14"
 			(at 378.46 298.45 0)
 			(effects
 				(font
@@ -32564,7 +32564,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C22394946"
+		(property "LCSC" "C2909055"
 			(at 386.08 297.18 0)
 			(effects
 				(font

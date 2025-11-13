@@ -1,0 +1,81 @@
+(footprint "WS2812-conn-oneside"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -0.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "ccf410e1-858c-4d1e-8f82-5bd185056a55")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "WS2812-conn-oneside"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "170b72ed-0b4e-48f8-9458-ab3b69ac5f24")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "b4293300-97e0-461c-bb6c-2574f2432468")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "f3f86c42-08db-4684-87ac-a6c1422a925c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd exclude_from_pos_files exclude_from_bom dnp)
+	(pad "1" smd roundrect
+		(at -2.54 0)
+		(size 2 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1333333333)
+		(uuid "65cebd81-8d1a-406d-aa71-37e69a0c4fff")
+	)
+	(pad "2" smd roundrect
+		(at 0 0)
+		(size 2 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1333333333)
+		(uuid "1aa9cca2-30d7-409b-8cb8-019d8a626797")
+	)
+	(pad "3" smd roundrect
+		(at 2.54 0)
+		(size 2 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(roundrect_rratio 0.1333333333)
+		(uuid "d87da4fa-7181-41df-bebd-64ed15d3ea50")
+	)
+	(embedded_fonts no)
+)
