@@ -17,6 +17,10 @@ var adapter = bluetooth.DefaultAdapter
 const bindkey = "d7fe7a79883ec7ef0e43c39ce7ade70f" // yes this is public, I know, don't worry
 
 func main() {
+	// Disable VCC pin. Saves ~0.04mA.
+	machine.D013.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	machine.D013.Low()
+
 	// Configure CO2 sensor.
 	i2c := machine.I2C0
 	err := i2c.Configure(machine.I2CConfig{
@@ -28,14 +32,14 @@ func main() {
 	sensor := scd4x.New(i2c)
 	err = sensor.Configure()
 	checkError(err)
-	err = sensor.StartLowPowerPeriodicMeasurement()
-	checkError(err)
 
 	// Configure Bluetooth.
 	err = adapter.Enable()
 	checkError(err)
 	adv := adapter.DefaultAdvertisement()
 	opts := bluetooth.AdvertisementOptions{
+		// TODO: make unconnectable for lower power consumption
+		// (Probably doesn't matter much, but still)
 		// Use the longest duration recommended by Apple.
 		// This is still definitely long enough to be detected by Home Assistant
 		// (the value only updates every 30s anyway).
@@ -63,35 +67,43 @@ func main() {
 	temp := payload.AddTemperature2()
 	hum := payload.AddHumidity0()
 
+	// Discard first measurement.
+	println("discarding first measurement (5s)")
+	err = sensor.MeasureSingleShot()
+	checkError(err)
+	time.Sleep(time.Second * 5) // 5000ms wait time, following the datasheet
+
+	nextMeasurement := time.Now()
 	for {
-		ready, err := sensor.DataReady()
+		// Do one measurement.
+		// TODO: update go.mod after the relevant PRs are merged to make this
+		// call available.
+		err = sensor.MeasureSingleShot()
 		checkError(err)
-		if ready {
-			err := sensor.Update(drivers.Concentration | drivers.Temperature | drivers.Humidity)
-			checkError(err)
+		time.Sleep(time.Second * 5) // 5000ms wait time, following the datasheet
 
-			println("co2:        ", sensor.CO2())
-			println("temperature:", sensor.Temperature())
-			println("humidity:   ", sensor.Humidity())
+		// Read the result.
+		err = sensor.Update(drivers.Concentration | drivers.Temperature | drivers.Humidity)
+		checkError(err)
 
-			// Update Bluetooth data.
-			adv.Stop()
-			co2.Set(uint16(sensor.CO2()))
-			temp.Set(int16(sensor.Temperature() / 10))
-			hum.Set(uint8(sensor.Humidity() / 100))
-			opts.ServiceData[0].Data = payload.EncryptedData()
-			err = adv.Configure(opts)
-			checkError(err)
-			err = adv.Start()
-			checkError(err)
+		println("co2:        ", sensor.CO2())
+		println("temperature:", sensor.Temperature())
+		println("humidity:   ", sensor.Humidity())
 
-			// Data is ready every ~30 seconds. Try again very close to the next
-			// expected readout.
-			time.Sleep(time.Second * 29)
-		} else {
-			// Not yet ready, try in one second.
-			time.Sleep(time.Second)
-		}
+		// Update Bluetooth data.
+		adv.Stop()
+		co2.Set(uint16(sensor.CO2()))
+		temp.Set(int16(sensor.Temperature() / 10))
+		hum.Set(uint8(sensor.Humidity() / 100))
+		opts.ServiceData[0].Data = payload.EncryptedData()
+		err = adv.Configure(opts)
+		checkError(err)
+		err = adv.Start()
+		checkError(err)
+
+		// Do one measurement every 5 minutes.
+		nextMeasurement = nextMeasurement.Add(time.Minute * 5)
+		time.Sleep(nextMeasurement.Sub(time.Now()))
 	}
 }
 
