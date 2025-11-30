@@ -3,7 +3,7 @@ module github.com/aykevl/things/co2sensor
 go 1.24.0
 
 require (
-	codeberg.org/maaike328p/bthome v0.0.0-20251127120110-8fa77ae44098
+	codeberg.org/maaike328p/bthome v0.0.0-20251130103231-1a6cb1d466e5
 	tinygo.org/x/bluetooth v0.13.1-0.20251127112129-035e7dd7d9c3
 	tinygo.org/x/drivers v0.33.1-0.20251121125739-7b0b788e07d7
 )

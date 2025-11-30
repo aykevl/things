@@ -21,6 +21,14 @@ func main() {
 	machine.D013.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	machine.D013.Low()
 
+	// Configure ADC for VDDH.
+	machine.InitADC()
+	vddh := machine.ADC_VDDH
+	vddh.Configure(machine.ADCConfig{
+		SampleTime: 10, // or higher
+		Reference:  1200,
+	})
+
 	// Configure CO2 sensor.
 	i2c := machine.I2C0
 	err := i2c.Configure(machine.I2CConfig{
@@ -45,7 +53,7 @@ func main() {
 		// (the value only updates every 30s anyway).
 		// https://developer.apple.com/accessories/Accessory-Design-Guidelines.pdf
 		Interval:  bluetooth.NewDuration(1285 * time.Millisecond),
-		LocalName: "CO2", // max 5 characters
+		LocalName: "", // max 2 characters
 		ServiceData: []bluetooth.ServiceDataElement{
 			{
 				UUID: bluetooth.New16BitUUID(bthome.ServiceUUID),
@@ -66,6 +74,7 @@ func main() {
 	co2 := payload.AddCO2()
 	temp := payload.AddTemperature2()
 	hum := payload.AddHumidity0()
+	voltage := payload.AddVoltage3()
 
 	// Discard first measurement.
 	println("discarding first measurement (5s)")
@@ -75,6 +84,16 @@ func main() {
 
 	nextMeasurement := time.Now()
 	for {
+		// Measure voltage right after coming out of sleep, for the highest
+		// accuracy.
+		vddhValue := machine.ADC_VDDH.Get()
+		// Convert value to millivolts:
+		//   millivolts = value / 0xffff * 1.2 * 5 * 1000
+		//   millivolts = value / 0xffff * 6000
+		//   millivolts = value * 6000 / 0xffff
+		millivolts := uint16(uint32(vddhValue) * 6000 / 0xffff)
+		voltage.Set(millivolts)
+
 		// Do one measurement.
 		// TODO: update go.mod after the relevant PRs are merged to make this
 		// call available.
