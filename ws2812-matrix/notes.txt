@@ -1,0 +1,8 @@
+# attempt 1
+Inner: 1mm radius
+Outer: 0.5mm radius
+Box around LED: 1.8x2.0mm (excluding fillet)
+Box around connector: 1.0x2.0mm (excluding fillet)
+
+# attempt 2
+4mm box in each hole, fillet 1.4mm
