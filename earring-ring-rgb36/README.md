@@ -29,6 +29,10 @@ You normally don't need to connect RST, but it is exposed since it's possible to
 
 I found the easiest way to program these earrings is using a clip with pogo-pins, like [this one](https://nl.aliexpress.com/item/1005006712952020.html) (2.54mm distance, single row, 4 or 5 pins depending on needs). It makes quick iteration much easier.
 
+Then, when the wires are connected correctly, you can program them like this (replace the `-programmer` flag as needed):
+
+    tinygo flash -target=stm32l0x1 -opt=2 -programmer=cmsis-dap
+
 ## Credits
 
 I got a lot of inspiration from the earrings made by [California STEAM](https://www.tindie.com/stores/californiasteam/). Unfortunately they're not shipping to Europe so I had to make my own 🙂
