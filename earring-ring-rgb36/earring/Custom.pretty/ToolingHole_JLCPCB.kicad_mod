@@ -1,7 +1,7 @@
 (footprint "ToolingHole_JLCPCB"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -0.5 0)
@@ -22,19 +22,6 @@
 		(layer "F.Fab")
 		(hide yes)
 		(uuid "12136128-17f6-4f18-bf5d-ee2ff891c131")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "a1420132-2125-4ef6-8283-fc0eee3a70de")
 		(effects
 			(font
 				(size 1 1)
@@ -68,7 +55,7 @@
 			)
 		)
 	)
-	(attr through_hole)
+	(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
 	(pad "" np_thru_hole circle
 		(at 0 0)
 		(size 1.152 1.152)
@@ -78,4 +65,5 @@
 		(clearance 0.248)
 		(uuid "43525128-76ef-49e0-a99e-4c0085d5d3f1")
 	)
+	(embedded_fonts no)
 )
