@@ -2,6 +2,8 @@
 
 These earrings are the next version of my [RGB earrings](../earring-ring). They contain 36 RGB LEDs that are controlled with a variant on Charlieplexing.
 
+![A pair of these earrings, the left one showing a pride flag and the right one showing a trans flag](images/earring-pride.jpg)
+
 ## Improvements
 
 Changes compared to the previous 18 LED earrings:
