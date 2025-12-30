@@ -18,6 +18,8 @@ Overall the result is that the earrings look nicer, use less power, and are a li
 
 ## Programming
 
+Before you start, you need to have [TinyGo installed](https://tinygo.org/getting-started/install/).
+
 For programming, you will need an SWD programmer. Both ST-Link and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
 
   * Connect VCC to 3.3V, or don't connect it if you have a battery inserted (make sure to _never_ connect VCC when a battery is inserted!).
