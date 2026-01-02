@@ -234,6 +234,142 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Custom:GMA2718H09-F42-4P"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at 0.508 13.208 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "GMA2718H09-F42-4P"
+				(at 10.668 10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "GMA2718H09-F42-4P_1_0"
+				(pin power_in line
+					(at -3.81 10.16 270)
+					(length 2.54)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -3.81 -11.43 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -1.27 -11.43 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "OUTPUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "GMA2718H09-F42-4P_1_1"
+				(rectangle
+					(start -7.62 7.62)
+					(end 7.62 -8.89)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:Battery_Cell"
 			(pin_numbers
 				(hide yes)
@@ -2952,6 +3088,12 @@
 		(uuid "18d336e2-7773-4809-bb65-6132fcf212bd")
 	)
 	(junction
+		(at 69.85 133.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "788758f4-bdb1-4622-8fed-c6f2ec8b54b6")
+	)
+	(junction
 		(at 66.04 22.86)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2992,10 +3134,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f2993e78-b688-453a-a860-dfd1ec127545")
-	)
-	(no_connect
-		(at 48.26 62.23)
-		(uuid "b0295857-7dcc-4f1a-917b-22d28158dc5d")
 	)
 	(wire
 		(pts
@@ -3099,6 +3237,16 @@
 	)
 	(wire
 		(pts
+			(xy 68.58 133.35) (xy 69.85 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6f2b28cf-daeb-4419-8d35-5041faaf426c")
+	)
+	(wire
+		(pts
 			(xy 44.45 67.31) (xy 44.45 88.9)
 		)
 		(stroke
@@ -3196,6 +3344,16 @@
 			(type default)
 		)
 		(uuid "9ce42120-8120-450f-9141-0efd1677b7cc")
+	)
+	(wire
+		(pts
+			(xy 69.85 133.35) (xy 71.12 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9f4fefba-2225-4fa3-8937-f8e0de6a189a")
 	)
 	(wire
 		(pts
@@ -3463,28 +3621,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "NRST"
-		(shape input)
-		(at 48.26 64.77 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "13ee0ffe-abea-48fe-9969-08e41783b7ce")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 40.4972 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -4457,6 +4593,28 @@
 			)
 		)
 	)
+	(global_label "MIC_SENSE"
+		(shape input)
+		(at 48.26 57.15 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4d8a525e-8f10-4645-80e3-e990e1e43168")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 34.9335 57.15 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A4"
 		(shape input)
 		(at 168.91 170.18 0)
@@ -4871,6 +5029,28 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "PHOTO_VCC"
+		(shape input)
+		(at 48.26 62.23 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "6437e242-80b7-4057-9e91-fef8eac3919b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 34.4495 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -5623,6 +5803,28 @@
 			)
 		)
 	)
+	(global_label "MIC_SENSE"
+		(shape input)
+		(at 82.55 119.38 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "966a1b8b-de23-4d88-bd48-ad063b5ad12e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 95.8765 119.38 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A5"
 		(shape input)
 		(at 137.16 119.38 0)
@@ -5817,28 +6019,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "PHOTO_VCC"
-		(shape input)
-		(at 48.26 57.15 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "a0cd8e8b-7bb2-4a1c-89d4-c47266eba698")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 34.4495 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
 				(hide yes)
 			)
 		)
@@ -6274,6 +6454,28 @@
 		(uuid "c18ee9b8-0810-4a9e-8619-3ebfba5b3783")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 195.58 58.8047 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "MIC_VCC"
+		(shape input)
+		(at 48.26 64.77 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c3d3a2fd-3f8f-4def-a9cf-9d0f29423e87")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 37.3524 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6829,6 +7031,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "MIC_VCC"
+		(shape input)
+		(at 68.58 111.76 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e06378bf-8784-4e07-8f56-0ede0fd9c4bb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 68.58 100.8524 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -11505,6 +11729,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 69.85 133.35 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b6d6f462-761d-4fc1-8759-5f1dfe08d402")
+		(property "Reference" "#PWR06"
+			(at 69.85 139.7 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 69.85 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 69.85 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 69.85 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 69.85 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "694ba02e-c942-456d-a120-a1050b78208f")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "#PWR06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:LED_ARGB")
 		(at 168.91 48.26 90)
 		(unit 1)
@@ -12080,6 +12370,82 @@
 			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D33")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Custom:GMA2718H09-F42-4P")
+		(at 72.39 121.92 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "c891999f-0c75-40e2-9f97-fae64f673451")
+		(property "Reference" "U1"
+			(at 63.5 121.2849 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "GMA2718H09-F42-4P"
+			(at 63.5 123.8249 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Custom:GMA2718H09-F42-4P"
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 72.39 121.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "42fc3351-26c8-4907-9742-be9d55ea56d9")
+		)
+		(pin "1"
+			(uuid "f7dfd25e-809d-4670-aac7-8d8355473f92")
+		)
+		(pin "3"
+			(uuid "03a68d60-8681-4f0c-a67f-2088caa26210")
+		)
+		(pin "2"
+			(uuid "6ff273ec-edbe-4332-97f8-9e7a2b3eed12")
+		)
+		(instances
+			(project ""
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "U1")
 					(unit 1)
 				)
 			)
