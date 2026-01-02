@@ -6198,7 +6198,7 @@
 				)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "10k"
 			(at 0 1.17 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -6234,7 +6234,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C11702"
+		(property "LCSC" "C25756"
 			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
