@@ -11661,7 +11661,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "ac46743d-558a-4c13-a091-7a394cc422f6")
+			(uuid "e6117fa1-f62e-43eb-9da9-7ab293cdb844")
 		)
 		(fp_line
 			(start -6.6 5.1)
@@ -11671,7 +11671,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "2bd55644-9f61-40e1-abc9-2514e7a6d352")
+			(uuid "c6a081b4-90a5-44c2-b6e2-5b647cd70c93")
 		)
 		(fp_line
 			(start -6.6 5.1)
@@ -11681,7 +11681,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "cdcbff01-acf0-415e-95b4-baf4d097779c")
+			(uuid "f7dc4548-93a0-40f3-99e7-263aa402bca5")
 		)
 		(fp_line
 			(start -3.6 -6.9)
@@ -11691,7 +11691,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "128b66a3-aa1e-44fa-8071-4816db3e4a73")
+			(uuid "5cc57a6c-8ad8-4d34-a90f-e56001ed03e3")
 		)
 		(fp_line
 			(start -3.6 -6.9)
@@ -11701,7 +11701,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "524e3bfc-c9ab-41b9-9f94-106d11c445c6")
+			(uuid "39e86e07-c86e-4737-af1f-3911f0ceeb56")
 		)
 		(fp_line
 			(start 3.6 -6.9)
@@ -11711,7 +11711,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "06a7056d-3b1a-42d2-8a6d-ee02bc66235a")
+			(uuid "507216c6-08d2-4b78-bf58-c16c238c31c4")
 		)
 		(fp_line
 			(start 6.6 -3.6)
@@ -11721,7 +11721,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "d86e8be6-192a-479b-8161-03e72f53c047")
+			(uuid "13a7b446-0e83-498b-b48a-96d74303088f")
 		)
 		(fp_line
 			(start 6.6 5.1)
@@ -11731,7 +11731,7 @@
 				(type default)
 			)
 			(layer "B.SilkS")
-			(uuid "540e39d8-5145-4525-a9fd-2e9296557698")
+			(uuid "202095b4-19e2-4ade-8d9e-cbfa805fe1ef")
 		)
 		(fp_poly
 			(pts
@@ -11744,7 +11744,7 @@
 			)
 			(fill no)
 			(layer "B.CrtYd")
-			(uuid "6e645126-ed57-47d3-bba9-d570ac500a29")
+			(uuid "2ae2ae54-38f0-4d61-b2fb-221c74e4b3b6")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 7 180)
@@ -11764,7 +11764,7 @@
 			(size 3.9 4.18)
 			(layers "B.Cu" "B.Mask" "B.Paste")
 			(thermal_bridge_angle 45)
-			(uuid "95aae2af-b9c8-4597-ba00-fab5a08ae740")
+			(uuid "ff45ab76-1398-4a65-a91b-2ae37f0ad0a4")
 		)
 		(pad "1" smd rect
 			(at -7.55 0)
@@ -11788,7 +11788,30 @@
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Battery.3dshapes/Battery_CR1225.wrl"
 			(offset
+				(xyz 0 -0.4 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -0)
+			)
+		)
+		(model "${KICAD9_3DMODEL_DIR}/Battery.3dshapes/BatteryHolder_Keystone_3000_1x12mm.step"
+			(hide yes)
+			(offset
 				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -180)
+			)
+		)
+		(model "../../../third_party/lcsc/C964818.wrl"
+			(offset
+				(xyz 0 0 3.14)
 			)
 			(scale
 				(xyz 1 1 1)
