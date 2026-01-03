@@ -226,7 +226,7 @@
 				(type default)
 			)
 			(layer "F.SilkS")
-			(uuid "bd92e21d-2492-4ba8-9564-def125cfc04f")
+			(uuid "a1716013-a662-418a-9043-a955c212ce7d")
 		)
 		(fp_line
 			(start 1 -0.5)
@@ -236,7 +236,7 @@
 				(type default)
 			)
 			(layer "F.SilkS")
-			(uuid "31d4dcae-234a-4e0c-bd53-a16a6bddc342")
+			(uuid "c204b93c-ddd8-4b61-a018-1d6fbd7978ab")
 		)
 		(fp_circle
 			(center -0.630278 -0.45)
@@ -247,7 +247,7 @@
 			)
 			(fill yes)
 			(layer "F.SilkS")
-			(uuid "d555a3a5-a985-4ce0-b8d6-92f7d020b2e3")
+			(uuid "405fc3d2-19e8-4577-b0a3-86cd84157b1b")
 		)
 		(fp_rect
 			(start -0.925 -1.375)
@@ -258,7 +258,7 @@
 			)
 			(fill no)
 			(layer "F.CrtYd")
-			(uuid "e4c2ea86-4b1b-494a-9ac9-568100174cba")
+			(uuid "0784e1b1-dd27-4040-86d6-fdf4fb5f1c99")
 		)
 		(pad "1" smd rect
 			(at -0.505 -0.965)
@@ -297,6 +297,17 @@
 			(uuid "681efda4-43cc-4af5-b498-3e856373e938")
 		)
 		(embedded_fonts no)
+		(model "../../../third_party/lcsc/C5142165.step"
+			(offset
+				(xyz 0 0 0.5)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -0 -0 -0)
+			)
+		)
 	)
 	(footprint "Custom:NH-Z1415RGBA-SG"
 		(layer "F.Cu")
@@ -9471,133 +9482,6 @@
 				(xyz 0 0 0)
 			)
 		)
-	)
-	(footprint "Custom:ToolingHoleWithMouseBytes"
-		(layer "F.Cu")
-		(uuid "e389428f-e045-4c26-b6e9-c4f02474d682")
-		(at 0 14.2)
-		(property "Reference" "REF**"
-			(at 0 -5.1 0)
-			(unlocked yes)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "e8ee09f9-caa6-4900-b42a-23c2e17e3b85")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.1)
-				)
-			)
-		)
-		(property "Value" "ToolingHoleWithMouseBytes"
-			(at 0 -3.6 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "14a8aea8-3c84-4d85-ab56-95faa8acf148")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "497f5b52-a0b2-4d9e-985f-4c1dcce33b87")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "0d9aff04-74fb-4eb7-8964-30c4153ab793")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(attr through_hole board_only dnp)
-		(fp_line
-			(start -1.7 0)
-			(end -1.7 -1.83)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "Edge.Cuts")
-			(uuid "455f7049-ef22-4661-8abe-b60fff1a7e6d")
-		)
-		(fp_line
-			(start 1.7 0)
-			(end 1.7 -1.83)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "Edge.Cuts")
-			(uuid "e3a5816f-6832-4afe-b4af-b3b9e2eaaada")
-		)
-		(fp_arc
-			(start 1.7 0)
-			(mid 0 1.7)
-			(end -1.7 0)
-			(stroke
-				(width 0.05)
-				(type default)
-			)
-			(layer "Edge.Cuts")
-			(uuid "a6950f0d-c0ea-434e-9186-e2d3b4e63358")
-		)
-		(pad "" np_thru_hole circle
-			(at -1.143 -1.778)
-			(size 0.5 0.5)
-			(drill 0.5)
-			(layers "*.Mask")
-			(uuid "e48b064f-916e-4bb4-aadb-8b791f8e7786")
-		)
-		(pad "" np_thru_hole circle
-			(at -0.381 -1.778)
-			(size 0.5 0.5)
-			(drill 0.5)
-			(layers "*.Mask")
-			(uuid "a2e6c99c-c93b-4950-a5aa-36a9316d0ac9")
-		)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 1.152 1.152)
-			(drill 1.152)
-			(layers "*.Mask")
-			(solder_mask_margin 0.148)
-			(clearance 0.248)
-			(uuid "90c7cadc-a1de-407d-8e3b-30a372c3d2d9")
-		)
-		(pad "" np_thru_hole circle
-			(at 0.381 -1.778)
-			(size 0.5 0.5)
-			(drill 0.5)
-			(layers "*.Mask")
-			(uuid "6b056456-cb2f-48c7-8fdc-1cca5c6ef834")
-		)
-		(pad "" np_thru_hole circle
-			(at 1.143 -1.778)
-			(size 0.5 0.5)
-			(drill 0.5)
-			(layers "*.Mask")
-			(uuid "700d7789-d681-4965-a7f3-9bc4c1b4978c")
-		)
-		(embedded_fonts no)
 	)
 	(footprint "Custom:NH-Z1415RGBA-SG"
 		(layer "F.Cu")

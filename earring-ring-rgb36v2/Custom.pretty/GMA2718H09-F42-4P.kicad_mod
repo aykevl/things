@@ -133,4 +133,15 @@
 		(uuid "e98e6822-a404-4cdf-a090-1fb9011ee030")
 	)
 	(embedded_fonts no)
+	(model "../../../third_party/lcsc/C5142165.step"
+		(offset
+			(xyz 0 0 0.5)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
 )
