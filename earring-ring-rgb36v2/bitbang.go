@@ -60,6 +60,14 @@ func disableLEDs() {
 	A12.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 }
 
+// This function really shouldn't be inlined, since it is called in a few places
+// and if it's inlined all of the long assembly for generating bitplanes is also
+// inlined there.
+//
+// Size could be further reduced by not inlining the individual
+// bitbang_update_bitplane_x functions but this seems fine for now.
+//
+//go:noinline
 func setLEDs(index int, led0, led1, led2 uint32) {
 	switch index {
 	case 0:
