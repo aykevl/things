@@ -1,0 +1,125 @@
+(footprint "KXT311LHS"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "f935e276-9796-45da-86ac-7d1ffdda118c")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "KXT311LHS"
+		(at 0 -3.7 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "757741f9-cd76-4b04-b3f6-5f27d33dedc2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "54b48f36-908d-49f5-a93b-02f07298abea")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "4da7f81d-87cf-4f2f-a724-9f76b0a31677")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "LCSC" "C221820"
+		(at 0 -4.7 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "2bc76536-ff3f-45dc-bffb-3f2cd56cae3c")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(attr smd board_only exclude_from_pos_files exclude_from_bom)
+	(fp_line
+		(start -1 -1.1)
+		(end 1 -1.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "cd89f5c8-2763-4c1f-9578-cd39bf22f153")
+	)
+	(fp_line
+		(start -1 1.1)
+		(end 1 1.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "42316269-b5f2-44d9-8577-8fc24d6199f8")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -2.2 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "ab710d1c-53d2-482e-a1e4-f19ea1932910")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" smd rect
+		(at -1.625 0)
+		(size 0.55 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "76da73ae-ae7c-402d-9306-4c45df41cc7f")
+	)
+	(pad "2" smd rect
+		(at 1.625 0)
+		(size 0.55 1.5)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "ee9e3914-48ff-45ec-9f84-a8fc1de1ce56")
+	)
+	(embedded_fonts no)
+	(model "/home/ayke/src/ayke/things/third_party/lcsc/C221820.wrl"
+		(offset
+			(xyz 0 0 0.26)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -0 -0 -0)
+		)
+	)
+)

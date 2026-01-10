@@ -3088,6 +3088,12 @@
 		(uuid "18d336e2-7773-4809-bb65-6132fcf212bd")
 	)
 	(junction
+		(at 63.5 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "28b26f41-d963-4222-9c15-9a097b4c3197")
+	)
+	(junction
 		(at 69.85 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3197,6 +3203,26 @@
 	)
 	(wire
 		(pts
+			(xy 40.64 67.31) (xy 48.26 67.31)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f2c3165-64a3-479b-b2bf-4260e170e201")
+	)
+	(wire
+		(pts
+			(xy 63.5 87.63) (xy 63.5 90.17)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c4a6f8a-39e7-41a3-ae98-e2bbf4fd8023")
+	)
+	(wire
+		(pts
 			(xy 31.75 152.4) (xy 31.75 149.86)
 		)
 		(stroke
@@ -3247,13 +3273,13 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 67.31) (xy 44.45 88.9)
+			(xy 34.29 87.63) (xy 31.75 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7377d1ea-b094-443b-8574-10e5eadafc47")
+		(uuid "718f28e8-bfc8-4376-9817-7fb20b309e6d")
 	)
 	(wire
 		(pts
@@ -3287,7 +3313,17 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 80.01) (xy 63.5 90.17)
+			(xy 50.8 87.63) (xy 63.5 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7f227b4e-a1ce-459b-8eec-c7d010606752")
+	)
+	(wire
+		(pts
+			(xy 63.5 80.01) (xy 63.5 87.63)
 		)
 		(stroke
 			(width 0)
@@ -3314,6 +3350,16 @@
 			(type default)
 		)
 		(uuid "82f4dd43-aa5f-4f0d-bc1f-19883ac9efe1")
+	)
+	(wire
+		(pts
+			(xy 40.64 67.31) (xy 40.64 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84237d1d-7bbc-4096-8fa5-0d82230dc99b")
 	)
 	(wire
 		(pts
@@ -3357,16 +3403,6 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 67.31) (xy 48.26 67.31)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c0776b33-c674-4764-99df-4ebdf70d43d5")
-	)
-	(wire
-		(pts
 			(xy 20.32 54.61) (xy 22.86 54.61)
 		)
 		(stroke
@@ -3404,6 +3440,16 @@
 			(type default)
 		)
 		(uuid "e83dd98e-3839-4561-b1a1-9e4cdd374c4a")
+	)
+	(wire
+		(pts
+			(xy 19.05 87.63) (xy 21.59 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e909157e-388e-48b9-828f-a717143546d0")
 	)
 	(global_label "A6R"
 		(shape input)
@@ -3555,6 +3601,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "A2"
+		(shape input)
+		(at 34.29 87.63 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0e34bccb-4eac-4fca-b2ed-620551537dcf")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 34.29 82.3467 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -6969,6 +7037,28 @@
 			)
 		)
 	)
+	(global_label "A1R"
+		(shape input)
+		(at 19.05 87.63 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "da71a5d1-579a-4842-ac11-98ae70053d64")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 19.05 81.0767 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "A12R"
 		(shape input)
 		(at 142.24 27.94 270)
@@ -8765,6 +8855,74 @@
 			(project ""
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 26.67 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "37cc6e05-e0e6-4785-948f-b556ef93992f")
+		(property "Reference" "SW2"
+			(at 26.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 26.67 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Custom:KXT311LHS"
+			(at 26.67 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 26.67 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 26.67 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3b262684-b9b7-433d-9715-54ee98b7800d")
+		)
+		(pin "2"
+			(uuid "ebf962cb-dc5c-42ad-833a-41d4bec68aa2")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "SW2")
 					(unit 1)
 				)
 			)
@@ -11326,72 +11484,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 34.29 88.9 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "a3a9cace-f950-47af-86e5-3f0ab79c13e7")
-		(property "Reference" "#PWR01"
-			(at 34.29 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 34.29 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 34.29 88.9 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "18dbc75c-05d0-458e-b2ac-29ab29d73cb8")
-		)
-		(instances
-			(project "earring"
-				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
-					(reference "#PWR01")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:LED_ARGB")
 		(at 137.16 200.66 90)
 		(unit 1)
@@ -13020,16 +13112,16 @@
 	)
 	(symbol
 		(lib_id "Switch:SW_Push")
-		(at 39.37 88.9 0)
+		(at 45.72 87.63 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "e57faae0-2c39-4e1e-a67e-c3b9417cafdb")
 		(property "Reference" "SW1"
-			(at 39.37 81.28 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13037,7 +13129,7 @@
 			)
 		)
 		(property "Value" "SW_Push"
-			(at 39.37 83.82 0)
+			(at 45.72 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13045,7 +13137,7 @@
 			)
 		)
 		(property "Footprint" "Button_Switch_SMD:SW_Push_SPST_NO_Alps_SKRK"
-			(at 39.37 83.82 0)
+			(at 45.72 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13054,7 +13146,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 39.37 83.82 0)
+			(at 45.72 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13063,7 +13155,7 @@
 			)
 		)
 		(property "Description" "Push button switch, generic, two pins"
-			(at 39.37 88.9 0)
+			(at 45.72 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13072,7 +13164,7 @@
 			)
 		)
 		(property "LCSC" "C561519"
-			(at 39.37 88.9 0)
+			(at 45.72 87.63 0)
 			(effects
 				(font
 					(size 1.27 1.27)
