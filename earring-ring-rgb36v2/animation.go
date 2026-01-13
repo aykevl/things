@@ -22,6 +22,7 @@ const (
 	modeFireBlue
 	modeFlagLGBT
 	modeFlagTrans
+	modeSoundReactive
 	modeLast
 
 	modeTest
@@ -46,6 +47,8 @@ func animate(mode, led, frame int) Color {
 		return showPalette(led, frame, &flagLGBT)
 	case modeFlagTrans:
 		return showPalette(led, frame, &flagTrans)
+	case modeSoundReactive:
+		return soundReactive(led, frame)
 	case modeTest:
 		return testPulse(led, frame)
 	case modePowerOn:
@@ -53,6 +56,15 @@ func animate(mode, led, frame int) Color {
 	default:
 		// bug
 		return errorPattern(led, frame)
+	}
+}
+
+func animationNeedsMic(mode int) bool {
+	switch mode {
+	case modeSoundReactive:
+		return true
+	default:
+		return false
 	}
 }
 
@@ -247,6 +259,18 @@ var (
 
 func showPalette(led, frame int, palette *Palette) Color {
 	return palette[led]
+}
+
+// Basic sound reactive animation.
+func soundReactive(led, frame int) Color {
+	intensity := int(powerBufferSum)*(256/len(powerBuffer)) - led*64
+	if intensity > 255 {
+		return NewColor(255, 0, 0)
+	} else if intensity < 0 {
+		return NewColor(0, 0, 0)
+	} else {
+		return NewColor(uint8(intensity), 0, 0)
+	}
 }
 
 // Blink the first LED, roughly 0.5s on, 0.5s off.

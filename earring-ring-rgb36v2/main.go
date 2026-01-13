@@ -50,6 +50,10 @@ func main() {
 	framesPressed := 0
 	previousMode := 0
 	for {
+		if animationNeedsMic(mode) {
+			updateMic()
+		}
+
 		// Update 3 LEDs at a time, since that's convenient for the
 		// RGB-to-bitplane conversion.
 		led0 := animate(mode, index+0, frame)
@@ -70,8 +74,16 @@ func main() {
 			if framesPressed == 30 {
 				turnOffAnimation(mode, frame)
 
+				// Always disable the microphone when sleeping.
+				disableMic()
+
 				// Sleep until a button press.
 				sleepUntilButtonPress()
+
+				// Woke up again, so start up interfaces.
+				if animationNeedsMic(mode) {
+					enableMic()
+				}
 
 				// To continue the startup animation, set the mode to "power
 				// on".
@@ -96,6 +108,13 @@ func main() {
 					// Clear LEDs before moving on to the next mode.
 					for i := 0; i < 12; i++ {
 						setLEDs(i, 0, 0, 0)
+					}
+
+					// Only enable the microphone when needed.
+					if animationNeedsMic(mode) {
+						enableMic()
+					} else {
+						disableMic()
 					}
 				}
 			}
