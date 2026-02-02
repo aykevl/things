@@ -22,7 +22,7 @@ Overall the result is that the earrings look nicer, use less power, and are a li
 
 Before you start, you need to have [TinyGo installed](https://tinygo.org/getting-started/install/).
 
-For programming, you will need an SWD programmer. Both ST-Link and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
+For programming, you will need an SWD programmer. Both [ST-Link](https://www.aliexpress.com/w/wholesale-st%2525252dlink-v2.html) and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
 
   * Connect VCC to 3.3V, or don't connect it if you have a battery inserted (make sure to _never_ connect VCC when a battery is inserted!).
   * Connect GND to the programmer GND.
@@ -33,9 +33,11 @@ You normally don't need to connect RST, but it is exposed since it's possible to
 
 I found the easiest way to program these earrings is using a clip with pogo-pins, like [this one](https://nl.aliexpress.com/item/1005006712952020.html) (2.54mm distance, single row, 4 or 5 pins depending on needs). It makes quick iteration much easier.
 
-Then, when the wires are connected correctly, you can program them like this (replace the `-programmer` flag as needed):
+Then, when the wires are connected correctly, you can program them like this (use `-programmer=cmsis-dap` if you are using a DAPLink programmer):
 
-    tinygo flash -target=stm32l0x1 -opt=2 -programmer=cmsis-dap
+    tinygo flash -target=stm32l0x1 -opt=2 -programmer=stlink-v2
+
+It should flash the binary to the earring, though it might need a few tries - for some reason the low clock frequency of the chip makes flashing a little bit less reliable.
 
 ## Writing your own patterns
 
