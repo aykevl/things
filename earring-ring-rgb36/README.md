@@ -37,6 +37,80 @@ Then, when the wires are connected correctly, you can program them like this (re
 
     tinygo flash -target=stm32l0x1 -opt=2 -programmer=cmsis-dap
 
+## Writing your own patterns
+
+You can write your own pattern and flash it to the earring! All you need is some extra (cheap) hardware and some software on your own computer - see above.
+
+First we need to add a new mode constant:
+
+```diff
+ const (
+ 	modeRainbowTrace = iota
+ 	modeFireAndIce
+ 	modeNoise
+ 	modeFireRed
+ 	modeFireGreen
+ 	modeFireBlue
+ 	modeFlagLGBT
+ 	modeFlagTrans
++	modeCustom
+ 	modeLast
+```
+
+You can also reorder/remove modes here if you want, as long as you keep the `= iota` on the first and keep `modeLast` at the end.
+
+Next we add the mode to the `animate` function:
+
+```go
+func animate(mode, led, frame int) Color {
+	switch mode {
+	...
+	case modeCustom:
+		return myCustomAnimation(led, frame)
+	...
+	}
+}
+```
+
+And lastly we can write our own animation:
+
+```go
+func myCustomAnimation(led, frame int) Color {
+	return NewColor(255, 0, 0)
+}
+```
+
+How it works is that there are two parameters: the LED number (0..35) and the frame (running at about 30 frames per second, depending on the complexity of the animation). And the function just returns the RGB color for that particular LED, similar to a [pixel shader](https://en.wikipedia.org/wiki/Shader#Pixel_shaders). In this case we just return the static color red, but you can do more interesting things too! Here is an animation that rotates a single color around:
+
+```go
+func myCustomAnimation(led, frame int) Color {
+	return NewColor(uint8((frame-led)%36)*4, 0, 0)
+}
+```
+
+And here is a more advanced animation similar to the ["sparkle" mode of the HALO-90](https://github.com/openKolibri/halo-90/blob/master/readme.md#sparkle). It uses a [xorshift](https://en.wikipedia.org/wiki/Xorshift) function to achieve something that looks reasonably random:
+
+```go
+var xorshift32State uint32 = 1
+
+// See https://en.wikipedia.org/wiki/Xorshift
+func xorshift32() uint32 {
+	xorshift32State ^= xorshift32State << 13
+	xorshift32State ^= xorshift32State >> 17
+	xorshift32State ^= xorshift32State << 5
+	return xorshift32State
+}
+
+func myCustomAnimation(led, frame int) Color {
+	if xorshift32()%16 == 0 {
+		return NewColor(uint8(xorshift32()%64), 0, 0)
+	}
+	return NewColor(0, 0, 0)
+}
+```
+
+You can also take a look at all the other animations in the file to get some ideas of what you can do. However, make sure to keep it simple! The earring is running at a low frequency and if the animation is too complex it will run slowly and the LEDs will be much dimmer.
+
 ## Credits
 
 I got a lot of inspiration from the earrings made by [California STEAM](https://www.tindie.com/stores/californiasteam/). Unfortunately they're not shipping to Europe so I had to make my own 🙂
