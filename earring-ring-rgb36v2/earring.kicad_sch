@@ -8243,7 +8243,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Push_SPST_NO_Alps_SKRK"
+		(property "Footprint" "Custom:SW_Push_SPST_NO_Alps_SKRK"
 			(at 26.67 82.55 0)
 			(effects
 				(font
@@ -12255,7 +12255,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Push_SPST_NO_Alps_SKRK"
+		(property "Footprint" "Custom:SW_Push_SPST_NO_Alps_SKRK"
 			(at 45.72 82.55 0)
 			(effects
 				(font
