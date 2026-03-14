@@ -2761,6 +2761,26 @@
 	)
 	(wire
 		(pts
+			(xy 34.29 62.23) (xy 48.26 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f915d73-7282-4f63-a4fe-4d6369175a18")
+	)
+	(wire
+		(pts
+			(xy 34.29 87.63) (xy 34.29 62.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3123f09d-4d5f-42d6-ada1-d992104fcf3b")
+	)
+	(wire
+		(pts
 			(xy 40.64 67.31) (xy 48.26 67.31)
 		)
 		(stroke
@@ -3109,28 +3129,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "A2"
-		(shape input)
-		(at 34.29 87.63 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "0e34bccb-4eac-4fca-b2ed-620551537dcf")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 34.29 82.3467 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -6479,7 +6477,7 @@
 			)
 		)
 	)
-	(global_label "A1R"
+	(global_label "A3"
 		(shape input)
 		(at 19.05 87.63 90)
 		(fields_autoplaced yes)
@@ -6491,7 +6489,7 @@
 		)
 		(uuid "da71a5d1-579a-4842-ac11-98ae70053d64")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 19.05 81.0767 90)
+			(at 19.05 82.3467 90)
 			(effects
 				(font
 					(size 1.27 1.27)
