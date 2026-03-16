@@ -1,0 +1,5 @@
+/production
+/earringv3-backups
+/fp-info-cache
+~*.lck
+*.bak
