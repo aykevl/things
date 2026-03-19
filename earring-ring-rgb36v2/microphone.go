@@ -46,8 +46,8 @@ func addPower(power uint16) {
 //go:noinline
 func enableMic() {
 	// Power on microphone.
-	machine.PB6.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	machine.PB6.High()
+	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	machine.PB1.High()
 
 	// Provide clock to ADC.
 	// Note that PCLK2 is divided when the mic is disabled to save power (~1µA),
@@ -99,10 +99,11 @@ func enableMic() {
 //go:noinline
 func disableMic() {
 	// Disable power to the microphone.
-	machine.PB6.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 
 	// Shut down ADC.
 	stm32.RCC.APB2RSTR.Set(stm32.RCC_APB2RSTR_ADCRST)
+	stm32.RCC.APB2RSTR.Set(0)
 	stm32.RCC.SetAPB2ENR_ADCEN(0)
 	stm32.RCC.SetCFGR_PPRE2(stm32.RCC_CFGR_PPRE2_Div16)
 }
