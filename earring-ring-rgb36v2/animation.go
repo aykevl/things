@@ -14,14 +14,10 @@ var leds [numLEDs]color.RGBA
 const initialMode = 0 // first mode
 
 const (
-	modeRainbowTrace = iota
-	modeFireAndIce
+	modeTrace = iota
 	modeNoise
-	modeFireRed
-	modeFireGreen
-	modeFireBlue
-	modeFlagLGBT
-	modeFlagTrans
+	modeFire
+	modeFlag
 	modeSoundReactive
 	modeLast
 
@@ -29,24 +25,33 @@ const (
 	modePowerOn
 )
 
-func animate(mode, led, frame int) Color {
+var variantsPerMode = [...]uint8{
+	modeTrace: 2,
+	modeFire:  3,
+	modeFlag:  2,
+}
+
+// Cycle to the next variant within a mode.
+func animationNextVariant(mode, variant int) int {
+	variant++
+	if mode >= len(variantsPerMode) {
+		variant = 0 // out of range
+	} else if variant >= int(variantsPerMode[mode]) {
+		variant = 0
+	}
+	return variant
+}
+
+func animate(mode, variant, led, frame int) Color {
 	switch mode {
-	case modeRainbowTrace:
-		return rainbowTrace(led, frame)
-	case modeFireAndIce:
-		return fireAndIce(led, frame)
+	case modeTrace:
+		return trace(led, frame, variant)
 	case modeNoise:
 		return noise(led, frame)
-	case modeFireRed:
-		return fire(led, frame, color.RGBA{R: 255})
-	case modeFireGreen:
-		return fire(led, frame, color.RGBA{G: 255})
-	case modeFireBlue:
-		return fire(led, frame, color.RGBA{B: 255})
-	case modeFlagLGBT:
-		return showPalette(led, frame, &flagLGBT)
-	case modeFlagTrans:
-		return showPalette(led, frame, &flagTrans)
+	case modeFire:
+		return fire(led, frame, variant)
+	case modeFlag:
+		return showFlag(led, frame, variant)
 	case modeSoundReactive:
 		return soundReactive(led, frame)
 	case modeTest:
@@ -90,6 +95,15 @@ func updateTraceIndex(led, frame int) int {
 		traceIndex2 -= numLEDs
 	}
 	return traceIndex2
+}
+
+func trace(led, frame, variant int) Color {
+	switch variant {
+	case 0:
+		return rainbowTrace(led, frame)
+	default:
+		return fireAndIce(led, frame)
+	}
 }
 
 func rainbowTrace(led, frame int) Color {
@@ -160,11 +174,18 @@ func fireAndIce(led, frame int) Color {
 }
 
 // Fire animation in various colors.
-// It is essential that this function is inlined, otherwise the fireColor isn't
-// const-propagated and the whole animation is just way too slow to be usable.
-//
-//go:inline
-func fire(led, frame int, fireColor color.RGBA) Color {
+func fire(led, frame, variant int) Color {
+	// Determine fire color.
+	var fireColor color.RGBA
+	switch variant {
+	case 0:
+		fireColor = color.RGBA{R: 255}
+	case 1:
+		fireColor = color.RGBA{G: 255}
+	default:
+		fireColor = color.RGBA{B: 255}
+	}
+
 	intensityIndex := indexFromBottom(led)
 	noiseIndex := uint32(frame) - uint32(intensityIndex)
 	if led > numLEDs/2 {
@@ -257,7 +278,14 @@ var (
 	}
 )
 
-func showPalette(led, frame int, palette *Palette) Color {
+func showFlag(led, frame, variant int) Color {
+	var palette *Palette
+	switch variant {
+	case 0:
+		palette = &flagLGBT
+	default:
+		palette = &flagTrans
+	}
 	return palette[led]
 }
 

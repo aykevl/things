@@ -47,8 +47,10 @@ func main() {
 	index := 0 // 0..11, group of 3 LEDs that will be updated together
 	frame := 0
 	mode := initialMode
+	variant := 0
 	framesPressed := 0
 	previousMode := 0
+	colorBtnWasPressed := false
 	for {
 		if animationNeedsMic(mode) {
 			updateMic()
@@ -56,9 +58,9 @@ func main() {
 
 		// Update 3 LEDs at a time, since that's convenient for the
 		// RGB-to-bitplane conversion.
-		led0 := animate(mode, index+0, frame)
-		led1 := animate(mode, index+12, frame)
-		led2 := animate(mode, index+24, frame)
+		led0 := animate(mode, variant, index+0, frame)
+		led1 := animate(mode, variant, index+12, frame)
+		led2 := animate(mode, variant, index+24, frame)
 		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
 
 		// Bitbang the LEDs.
@@ -69,10 +71,24 @@ func main() {
 			index = 0
 			frame++
 
+			// V1.2 schematic:
+			// Button 2 between A1R and A2.
+			// This layout is somewhat silly and has weird artifacts, it will be
+			// fixed in the next prototype.
+			A2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+			A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
+			A1.Low()
+			A1.Low()
+			A1.Low()
+			A1.Low()
+			colorBtnPressed := !A2.Get()
+			A2.Configure(machine.PinConfig{Mode: machine.PinInput}) // disable pull
+			A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
+
 			// Read the button every frame update.
-			pressed := !button.Get() // low means pressed
+			modePressed := !button.Get() // low means pressed
 			if framesPressed == 30 {
-				turnOffAnimation(mode, frame)
+				turnOffAnimation(mode, variant, frame)
 
 				// Always disable the microphone when sleeping.
 				disableMic()
@@ -97,9 +113,10 @@ func main() {
 					mode = previousMode
 				}
 			} else {
-				if !pressed && framesPressed > 0 {
+				if !modePressed && framesPressed > 0 {
 					// Move to the next mode.
 					mode++
+					variant = 0
 					if mode >= modeLast {
 						// Last, so wrap around.
 						mode = 0
@@ -117,8 +134,12 @@ func main() {
 						disableMic()
 					}
 				}
+				if !colorBtnPressed && colorBtnWasPressed {
+					variant = animationNextVariant(mode, variant)
+				}
+				colorBtnWasPressed = colorBtnPressed
 			}
-			if pressed {
+			if modePressed {
 				framesPressed++
 			} else {
 				framesPressed = 0
@@ -181,7 +202,7 @@ func setClockSpeed() {
 
 // Show an animation during shutdown. It keeps the current animation, but
 // freezes it in place, and turns off LEDs in sequence.
-func turnOffAnimation(mode, frame int) {
+func turnOffAnimation(mode, variant, frame int) {
 	for i := range 36 / 3 {
 		for index := range 12 {
 			// Shut down LEDs in groups of 3.
@@ -191,15 +212,15 @@ func turnOffAnimation(mode, frame int) {
 			//     animation.
 			//  2. The 3 LEDs we can update at a time are spread over the ring
 			//     of LEDs, not sequentially next to each other.
-			led0 := animate(mode, index+0, frame)
+			led0 := animate(mode, variant, index+0, frame)
 			if index+0 < i*3 {
 				led0 = 0
 			}
-			led1 := animate(mode, index+12, frame)
+			led1 := animate(mode, variant, index+12, frame)
 			if index+12 < i*3 {
 				led1 = 0
 			}
-			led2 := animate(mode, index+24, frame)
+			led2 := animate(mode, variant, index+24, frame)
 			if index+24 < i*3 {
 				led2 = 0
 			}
