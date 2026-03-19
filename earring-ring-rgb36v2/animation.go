@@ -28,7 +28,7 @@ const (
 var variantsPerMode = [...]uint8{
 	modeTrace: 2,
 	modeFire:  3,
-	modeFlag:  2,
+	modeFlag:  4,
 }
 
 // Cycle to the next variant within a mode.
@@ -276,6 +276,34 @@ var (
 		flagPastelPink, flagPastelPink, flagPastelPink, flagPastelPink,
 		flagPastelBlue, flagPastelBlue,
 	}
+
+	flagLesbianRed    = NewColor(0xB4, 0x07, 0x00)
+	flagLesbianOrange = NewColor(0xff, 0x5E, 0x00)
+	flagLesbianWhite  = NewColor(0x88, 0x88, 0xAA)
+	flagLesbianPink   = NewColor(0x90, 0x10, 0x60)
+	flagLesbianPurple = NewColor(0x40, 0x00, 0x26)
+	flagLesbian       = Palette{
+		flagLesbianRed, flagLesbianRed, flagLesbianRed, flagLesbianRed,
+		flagLesbianOrange, flagLesbianOrange, flagLesbianOrange, flagLesbianOrange,
+		flagLesbianWhite, flagLesbianWhite, flagLesbianWhite, flagLesbianWhite,
+		flagLesbianPink, flagLesbianPink, flagLesbianPink, flagLesbianPink,
+		flagLesbianPurple, flagLesbianPurple, flagLesbianPurple, flagLesbianPurple, flagLesbianPurple, flagLesbianPurple,
+		flagLesbianPink, flagLesbianPink, flagLesbianPink, flagLesbianPink,
+		flagLesbianWhite, flagLesbianWhite, flagLesbianWhite, flagLesbianWhite,
+		flagLesbianOrange, flagLesbianOrange, flagLesbianOrange, flagLesbianOrange,
+		flagLesbianRed, flagLesbianRed,
+	}
+
+	flagBiPink   = NewColor(0xD0, 0x00, 0x08)
+	flagBiPurple = NewColor(0x40, 0x00, 0x30)
+	flagBiBlue   = NewColor(0x00, 0x00, 0x80)
+	flagBi       = Palette{
+		flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink,
+		flagBiPurple, flagBiPurple, flagBiPurple, flagBiPurple,
+		flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue, flagBiBlue,
+		flagBiPurple, flagBiPurple, flagBiPurple, flagBiPurple,
+		flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink,
+	}
 )
 
 func showFlag(led, frame, variant int) Color {
@@ -283,8 +311,12 @@ func showFlag(led, frame, variant int) Color {
 	switch variant {
 	case 0:
 		palette = &flagLGBT
-	default:
+	case 1:
 		palette = &flagTrans
+	case 2:
+		palette = &flagLesbian
+	default:
+		palette = &flagBi
 	}
 	return palette[led]
 }
