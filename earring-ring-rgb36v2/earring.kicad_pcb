@@ -10728,6 +10728,20 @@
 				(justify mirror)
 			)
 		)
+		(property "LCSC" "C561519"
+			(at 0 0 180)
+			(unlocked yes)
+			(layer "B.Fab")
+			(hide yes)
+			(uuid "4f54dd16-6d39-4e48-8d99-7b0ba05a1864")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+				(justify mirror)
+			)
+		)
 		(path "/37cc6e05-e0e6-4785-948f-b556ef93992f")
 		(sheetname "/")
 		(sheetfile "earring.kicad_sch")
