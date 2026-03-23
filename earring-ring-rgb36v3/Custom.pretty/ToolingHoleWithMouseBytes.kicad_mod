@@ -1,7 +1,7 @@
 (footprint "ToolingHoleWithMouseBytes"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 0 -5.1 0)
@@ -22,19 +22,6 @@
 		(layer "F.Fab")
 		(hide yes)
 		(uuid "953fb660-4a4b-4852-a867-666c4ad394cb")
-		(effects
-			(font
-				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(unlocked yes)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "bf0997a2-7588-43ca-9b38-ab2eabc60721")
 		(effects
 			(font
 				(size 1 1)
@@ -71,7 +58,7 @@
 	(attr through_hole)
 	(fp_line
 		(start -1.7 0)
-		(end -1.7 -1.83)
+		(end -1.7 -1.5)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -81,7 +68,7 @@
 	)
 	(fp_line
 		(start 1.7 0)
-		(end 1.7 -1.83)
+		(end 1.7 -1.5)
 		(stroke
 			(width 0.05)
 			(type default)
@@ -137,4 +124,5 @@
 		(layers "*.Mask")
 		(uuid "5cf9b32e-4cbf-4fd6-93eb-538dd30ab255")
 	)
+	(embedded_fonts no)
 )

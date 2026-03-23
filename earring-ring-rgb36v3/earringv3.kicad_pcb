@@ -4689,6 +4689,133 @@
 			)
 		)
 	)
+	(footprint "Custom:ToolingHoleWithMouseBytes"
+		(layer "F.Cu")
+		(uuid "6d9eba9b-28db-4a59-ad5a-dfcd0b9bc747")
+		(at 0.007 14.078)
+		(property "Reference" "REF**"
+			(at 0 -5.1 0)
+			(unlocked yes)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "ce3e231e-fc45-4e01-b750-9b402105f040")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.1)
+				)
+			)
+		)
+		(property "Value" "ToolingHoleWithMouseBytes"
+			(at 0 -3.6 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "c5582239-ba29-4aaf-bf9d-01b5c9e8f1bf")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f2e318bf-920c-4118-9a3a-b00c1e545618")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "ac50b667-6b82-4d84-9ffc-07fa87a6be28")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
+		(attr through_hole board_only)
+		(fp_line
+			(start -1.7 0)
+			(end -1.7 -1.5)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "Edge.Cuts")
+			(uuid "53fd0a98-7022-4901-8646-3e056abcb967")
+		)
+		(fp_line
+			(start 1.7 0)
+			(end 1.7 -1.5)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "Edge.Cuts")
+			(uuid "f371b8ce-f318-4ab0-a367-6ed387029b4b")
+		)
+		(fp_arc
+			(start 1.7 0)
+			(mid 0 1.7)
+			(end -1.7 0)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(layer "Edge.Cuts")
+			(uuid "ef07e003-0126-488b-922a-f8a5c098e2ad")
+		)
+		(pad "" np_thru_hole circle
+			(at -1.143 -1.778)
+			(size 0.5 0.5)
+			(drill 0.5)
+			(layers "*.Mask")
+			(uuid "15671cf0-9686-4ead-ab82-9f5888ce2371")
+		)
+		(pad "" np_thru_hole circle
+			(at -0.381 -1.778)
+			(size 0.5 0.5)
+			(drill 0.5)
+			(layers "*.Mask")
+			(uuid "a5da4fe7-6a72-4d98-8b01-95656b687b18")
+		)
+		(pad "" np_thru_hole circle
+			(at 0 0)
+			(size 1.152 1.152)
+			(drill 1.152)
+			(layers "*.Mask")
+			(solder_mask_margin 0.148)
+			(clearance 0.248)
+			(uuid "10afb8af-9f3c-4733-8ba6-c1f551a961c2")
+		)
+		(pad "" np_thru_hole circle
+			(at 0.381 -1.778)
+			(size 0.5 0.5)
+			(drill 0.5)
+			(layers "*.Mask")
+			(uuid "81a8a88e-8783-442d-97a4-55af53dcae2f")
+		)
+		(pad "" np_thru_hole circle
+			(at 1.143 -1.778)
+			(size 0.5 0.5)
+			(drill 0.5)
+			(layers "*.Mask")
+			(uuid "58b258f7-68d7-4a40-a435-b27daaaae9ee")
+		)
+		(embedded_fonts no)
+	)
 	(footprint "Custom:NH-Z1415RGBA-SG"
 		(layer "F.Cu")
 		(uuid "6e641be9-99b0-4974-a713-d53e9b38c5ff")
@@ -8688,74 +8815,6 @@
 			)
 		)
 	)
-	(footprint "Custom:ToolingHole_JLCPCB"
-		(layer "F.Cu")
-		(uuid "ec2ded09-f412-4e8e-a47f-173650c31666")
-		(at 0 13.5)
-		(property "Reference" "H1"
-			(at 0 -0.5 0)
-			(unlocked yes)
-			(layer "F.SilkS")
-			(hide yes)
-			(uuid "bc24e797-be10-47b5-969a-bdd5168f694b")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.1)
-				)
-			)
-		)
-		(property "Value" "ToolingHole"
-			(at 0 1 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "bc81cd4b-476f-44f7-9c84-545ba1dc903d")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "c5a56621-a9ca-458a-9eb1-6e107e59f19a")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 0 0 0)
-			(unlocked yes)
-			(layer "F.Fab")
-			(hide yes)
-			(uuid "e52ed728-ef10-423c-9e0c-473b1c660634")
-			(effects
-				(font
-					(size 1 1)
-					(thickness 0.15)
-				)
-			)
-		)
-		(attr through_hole board_only exclude_from_pos_files exclude_from_bom)
-		(pad "" np_thru_hole circle
-			(at 0 0)
-			(size 1.152 1.152)
-			(drill 1.152)
-			(layers "*.Mask")
-			(solder_mask_margin 0.148)
-			(clearance 0.248)
-			(uuid "774aa5e5-73f5-4378-bd5a-fe7727abdced")
-		)
-		(embedded_fonts no)
-	)
 	(footprint "Custom:NH-Z1415RGBA-SG"
 		(layer "F.Cu")
 		(uuid "eec7c84c-f78a-44d1-a554-c7858e68a84a")
@@ -11447,7 +11506,7 @@
 		(start -11.6 -3.4)
 		(end -11.6 3.9)
 		(stroke
-			(width 0.1)
+			(width 0.001)
 			(type default)
 		)
 		(layer "Cmts.User")
@@ -11457,7 +11516,7 @@
 		(start 11.6 -3.3)
 		(end 11.6 2.7)
 		(stroke
-			(width 0.1)
+			(width 0.001)
 			(type default)
 		)
 		(layer "Cmts.User")
@@ -11487,14 +11546,14 @@
 	)
 	(gr_curve
 		(pts
-			(xy -1.75 13.5) (xy -1.75 12) (xy -1.75 12) (xy -2.447451 11.747764)
+			(xy -1.693 12.578) (xy -1.7 12) (xy -2.086 11.85) (xy -2.447446 11.747765)
 		)
 		(stroke
 			(width 0.05)
 			(type default)
 		)
 		(layer "Edge.Cuts")
-		(uuid "f5a6f08d-2805-476c-a2bf-aefa3484bfd8")
+		(uuid "8eec95ac-d1d4-4dcb-be27-47d6d96cc943")
 	)
 	(gr_curve
 		(pts
@@ -11518,20 +11577,9 @@
 		(layer "Edge.Cuts")
 		(uuid "90df0495-15f6-48ad-bf6e-26e2db6da178")
 	)
-	(gr_arc
-		(start 1.75 13.5)
-		(mid 0 15.25)
-		(end -1.75 13.5)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(layer "Edge.Cuts")
-		(uuid "93ad73b5-0e36-4bce-857c-4ff190a4faba")
-	)
 	(gr_curve
 		(pts
-			(xy 1.75 13.5) (xy 1.75 12) (xy 1.75 12) (xy 2.447451 11.747764)
+			(xy 1.707 12.578) (xy 1.7 12) (xy 2.1 11.85) (xy 2.44745 11.747765)
 		)
 		(stroke
 			(width 0.05)
