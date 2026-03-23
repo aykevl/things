@@ -2791,6 +2791,16 @@
 	)
 	(wire
 		(pts
+			(xy 20.32 90.17) (xy 20.32 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "49215e1b-e4a9-4ef1-827b-fd1be7db45a9")
+	)
+	(wire
+		(pts
 			(xy 63.5 87.63) (xy 63.5 90.17)
 		)
 		(stroke
@@ -2921,6 +2931,16 @@
 	)
 	(wire
 		(pts
+			(xy 20.32 87.63) (xy 21.59 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c1f18d6-f0d7-4b2f-8eec-d8aaa8f350cb")
+	)
+	(wire
+		(pts
 			(xy 29.21 30.48) (xy 39.37 30.48)
 		)
 		(stroke
@@ -2948,16 +2968,6 @@
 			(type default)
 		)
 		(uuid "a39887b8-1b07-4153-9d4d-c6b71b4ed589")
-	)
-	(wire
-		(pts
-			(xy 19.05 87.63) (xy 21.59 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e909157e-388e-48b9-828f-a717143546d0")
 	)
 	(wire
 		(pts
@@ -6477,28 +6487,6 @@
 			)
 		)
 	)
-	(global_label "A3"
-		(shape input)
-		(at 19.05 87.63 90)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "da71a5d1-579a-4842-ac11-98ae70053d64")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 19.05 82.3467 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "A12R"
 		(shape input)
 		(at 142.24 27.94 270)
@@ -8130,7 +8118,7 @@
 			(uuid "23100017-6f25-439b-a2eb-f9297ababb90")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R2")
 					(unit 1)
@@ -8207,7 +8195,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb32776d")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R5")
 					(unit 1)
@@ -8352,7 +8340,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb32776e")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R3")
 					(unit 1)
@@ -8506,7 +8494,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb32776f")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R6")
 					(unit 1)
@@ -8588,7 +8576,7 @@
 			(uuid "5818b936-ed6e-465c-bad6-fdeea4989100")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "Q1")
 					(unit 1)
@@ -8683,6 +8671,72 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 20.32 90.17 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4131dedd-134f-4da4-b522-ebc7bcaa2dcd")
+		(property "Reference" "#PWR07"
+			(at 20.32 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 20.32 95.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 20.32 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 20.32 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 20.32 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "b8c16e19-b9fa-46b0-a30c-32e24fdca01d")
+		)
+		(instances
+			(project "earring"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "#PWR07")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 29.21 30.48 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8739,7 +8793,7 @@
 			(uuid "f82c20a2-a059-42e1-b2db-adb6a7e0b1ef")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR09")
 					(unit 1)
@@ -8975,7 +9029,7 @@
 			(uuid "64bed839-7fba-4083-bbba-50a6a1439b6c")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR05")
 					(unit 1)
@@ -9173,7 +9227,7 @@
 			(uuid "ca4cee43-6694-4603-ad67-7446b675e817")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR04")
 					(unit 1)
@@ -9584,7 +9638,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb327770")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R9")
 					(unit 1)
@@ -9661,7 +9715,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb327771")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R7")
 					(unit 1)
@@ -10845,7 +10899,7 @@
 			(uuid "791c03bc-9c22-4ba6-9add-adc68bd23973")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D1")
 					(unit 1)
@@ -11012,7 +11066,7 @@
 			(uuid "5701ef7e-2322-4501-8942-b860d2f941ed")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "U2")
 					(unit 1)
@@ -11412,7 +11466,7 @@
 			(uuid "cf0aea88-f78f-440e-b28f-530f6070019d")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "J1")
 					(unit 1)
@@ -11574,7 +11628,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb327772")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R4")
 					(unit 1)
@@ -11744,7 +11798,7 @@
 			(uuid "6ff273ec-edbe-4332-97f8-9e7a2b3eed12")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "U1")
 					(unit 1)
@@ -11991,7 +12045,7 @@
 			(uuid "6a452b29-56a9-4c3c-9cf8-e8fdfb327773")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R8")
 					(unit 1)
@@ -12524,7 +12578,7 @@
 			(uuid "11dfdd07-6595-466e-a9a7-a2308c7b4d3c")
 		)
 		(instances
-			(project ""
+			(project "earring"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "R1")
 					(unit 1)
