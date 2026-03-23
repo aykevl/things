@@ -7364,7 +7364,7 @@
 			(uuid "39310e6d-6ee5-4299-b9ac-a5846bc8effc")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D13")
 					(unit 1)
@@ -7449,7 +7449,7 @@
 			(uuid "dbc09fdf-059b-4e93-898e-0f2551a4f41a")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D30")
 					(unit 1)
@@ -7534,7 +7534,7 @@
 			(uuid "0d551e37-be47-40e8-afc3-72ab2a8e7efc")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D24")
 					(unit 1)
@@ -7619,7 +7619,7 @@
 			(uuid "86675e15-c956-4ace-9ba7-b89411d6a9ee")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D31")
 					(unit 1)
@@ -7704,7 +7704,7 @@
 			(uuid "9a85add6-95d6-45b1-9115-a861ff005973")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D18")
 					(unit 1)
@@ -7866,7 +7866,7 @@
 			(uuid "a22fe28a-8d5c-4119-9622-a28e285e0aa0")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D6")
 					(unit 1)
@@ -7951,7 +7951,7 @@
 			(uuid "7ebcb751-892a-4681-904e-3512aabcdada")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D34")
 					(unit 1)
@@ -8107,7 +8107,7 @@
 			(uuid "0fffa47f-c26a-4263-8427-b6f55e01189a")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "C2")
 					(unit 1)
@@ -8192,7 +8192,7 @@
 			(uuid "b68b6c8b-619d-42a9-82c0-3a95a500c4ad")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D19")
 					(unit 1)
@@ -8333,6 +8333,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C22445363"
+			(at 66.04 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "24"
 			(uuid "90420d3e-4afb-4cc7-8f47-2bb7968c87df")
 		)
@@ -8433,7 +8442,7 @@
 			(uuid "47f9af19-09f5-4444-9b77-218000ff51d1")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "U1")
 					(unit 1)
@@ -8494,6 +8503,15 @@
 				(hide yes)
 			)
 		)
+		(property "LCSC" "C720477"
+			(at 50.8 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3b262684-b9b7-433d-9715-54ee98b7800d")
 		)
@@ -8501,7 +8519,7 @@
 			(uuid "ebf962cb-dc5c-42ad-833a-41d4bec68aa2")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "SW2")
 					(unit 1)
@@ -8740,7 +8758,7 @@
 			(uuid "74261d1e-4afb-4a6c-80cb-1e9ebb1888cd")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D3")
 					(unit 1)
@@ -8825,7 +8843,7 @@
 			(uuid "4ffd76be-c2fa-4652-a8ca-3cef6d407fac")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D23")
 					(unit 1)
@@ -8910,7 +8928,7 @@
 			(uuid "1b42c7da-948f-48d5-94d5-74921fe741e3")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D16")
 					(unit 1)
@@ -8976,7 +8994,7 @@
 			(uuid "64bed839-7fba-4083-bbba-50a6a1439b6c")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR05")
 					(unit 1)
@@ -9120,7 +9138,7 @@
 			(uuid "41f324a2-dd35-4dbc-a9f2-097d1c3cdf57")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR03")
 					(unit 1)
@@ -9186,7 +9204,7 @@
 			(uuid "6430495a-e626-4f84-889d-1cd5377fd342")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR08")
 					(unit 1)
@@ -9251,7 +9269,7 @@
 			(uuid "ca4cee43-6694-4603-ad67-7446b675e817")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR04")
 					(unit 1)
@@ -9336,7 +9354,7 @@
 			(uuid "c42ccc84-83e3-4765-80f2-925cb9e611c1")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D2")
 					(unit 1)
@@ -9421,7 +9439,7 @@
 			(uuid "3720dd23-6e58-4cbb-901a-ce7062da3402")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D15")
 					(unit 1)
@@ -9506,7 +9524,7 @@
 			(uuid "76b307e5-b162-4a2b-ba83-b21530a7b63a")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D22")
 					(unit 1)
@@ -9519,7 +9537,7 @@
 		(at 39.37 30.48 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "84f80fdd-ea02-4caa-8289-fe0ac6f8d617")
@@ -9655,7 +9673,7 @@
 			(uuid "b554a273-3c3e-4e96-a3b0-baf60b3f3db5")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D26")
 					(unit 1)
@@ -9740,7 +9758,7 @@
 			(uuid "a09db4d7-185e-4556-a256-29175e9507c2")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D7")
 					(unit 1)
@@ -9979,7 +9997,7 @@
 			(uuid "42b786e5-1d43-476d-ba07-a981cc76ef39")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D27")
 					(unit 1)
@@ -10064,7 +10082,7 @@
 			(uuid "1b1851c1-6888-4365-ba8d-7b198b4aec67")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D21")
 					(unit 1)
@@ -10149,7 +10167,7 @@
 			(uuid "2d8cd838-d504-4826-b840-f5e73c071a00")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D9")
 					(unit 1)
@@ -10162,7 +10180,7 @@
 		(at 39.37 22.86 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(uuid "95e493e3-a7be-4bf5-8c20-17df46768a27")
@@ -10298,7 +10316,7 @@
 			(uuid "0b058c53-6279-43f7-a767-1147552ee21c")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D5")
 					(unit 1)
@@ -10460,7 +10478,7 @@
 			(uuid "3bc25398-89cf-4879-8cb7-a258c1ae5b97")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D12")
 					(unit 1)
@@ -10545,7 +10563,7 @@
 			(uuid "2fc669a2-285c-492a-a03d-899a66869f73")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D25")
 					(unit 1)
@@ -10624,7 +10642,7 @@
 			(uuid "b89f0665-b464-4772-a3f6-7a5df23b368f")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "C1")
 					(unit 1)
@@ -10709,7 +10727,7 @@
 			(uuid "f108dee5-4690-4e45-a533-7e57f760881c")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D11")
 					(unit 1)
@@ -10794,7 +10812,7 @@
 			(uuid "7c1d2bbd-657d-4ca7-9480-64c4cb88ec57")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D36")
 					(unit 1)
@@ -10879,7 +10897,7 @@
 			(uuid "0ee34b62-1bbf-41b4-933f-a7a76c9c3785")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D10")
 					(unit 1)
@@ -10964,7 +10982,7 @@
 			(uuid "8e9051a4-c1e7-4736-8979-0570109e5225")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D17")
 					(unit 1)
@@ -11192,7 +11210,7 @@
 			(uuid "791c03bc-9c22-4ba6-9add-adc68bd23973")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D1")
 					(unit 1)
@@ -11258,7 +11276,7 @@
 			(uuid "694ba02e-c942-456d-a120-a1050b78208f")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR06")
 					(unit 1)
@@ -11343,7 +11361,7 @@
 			(uuid "c927843e-1389-41dc-862b-3b38fbfd9231")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D20")
 					(unit 1)
@@ -11428,7 +11446,7 @@
 			(uuid "57cc60e4-982a-4909-b949-7c24317bc039")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D4")
 					(unit 1)
@@ -11513,7 +11531,7 @@
 			(uuid "c0607680-a615-482a-be59-8b3fec4330cf")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D8")
 					(unit 1)
@@ -11592,7 +11610,7 @@
 			(uuid "cf0aea88-f78f-440e-b28f-530f6070019d")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "J1")
 					(unit 1)
@@ -11677,7 +11695,7 @@
 			(uuid "3b5289cc-abd0-42cb-9be5-5662e280a96e")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D35")
 					(unit 1)
@@ -11762,7 +11780,7 @@
 			(uuid "570ac1c6-ca45-4eef-91f6-47329d9827fc")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D33")
 					(unit 1)
@@ -11847,7 +11865,7 @@
 			(uuid "6ff273ec-edbe-4332-97f8-9e7a2b3eed12")
 		)
 		(instances
-			(project ""
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "U2")
 					(unit 1)
@@ -11932,7 +11950,7 @@
 			(uuid "a68cd253-b9ef-4107-9cad-6e8bbd61647a")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D14")
 					(unit 1)
@@ -12094,7 +12112,7 @@
 			(uuid "69ea3729-7959-4f61-8c4a-013a8d79ae12")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D32")
 					(unit 1)
@@ -12387,7 +12405,7 @@
 			(uuid "2c44942f-c0a5-4129-911d-d181532c6f1a")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D28")
 					(unit 1)
@@ -12453,7 +12471,7 @@
 			(uuid "103ebdae-485d-45d2-8160-5af7d12bd4ab")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR02")
 					(unit 1)
@@ -12514,7 +12532,7 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C561519"
+		(property "LCSC" "C720477"
 			(at 50.8 87.63 0)
 			(effects
 				(font
@@ -12530,7 +12548,7 @@
 			(uuid "131c04e3-99c0-4c55-8a60-18ce9e7bc604")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "SW1")
 					(unit 1)
@@ -12596,7 +12614,7 @@
 			(uuid "5a98ea0e-8f7c-4616-a922-e37ac12c7309")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "#PWR01")
 					(unit 1)
@@ -12681,7 +12699,7 @@
 			(uuid "29f949b2-fd6a-4337-bf9f-e447c80570c4")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "D29")
 					(unit 1)
@@ -12836,7 +12854,7 @@
 			(uuid "66ce99be-7718-4ac4-8f40-026b84f44673")
 		)
 		(instances
-			(project "earring"
+			(project "earringv3"
 				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
 					(reference "C3")
 					(unit 1)
