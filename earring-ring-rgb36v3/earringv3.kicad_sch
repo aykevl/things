@@ -2652,16 +2652,28 @@
 		(uuid "8f9c252c-abb5-458f-b35b-dc257163b5f8")
 	)
 	(junction
-		(at 57.15 22.86)
+		(at 58.42 22.86)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "9c58cf47-ca87-41e6-93b4-960742975420")
+		(uuid "9611e1d4-de04-4176-a69c-466c0c9aff1d")
 	)
 	(junction
 		(at 41.91 30.48)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a25c3bff-ef61-488a-835a-b7af690e28e3")
+	)
+	(junction
+		(at 45.72 30.48)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "aa1c4d9c-c429-4a44-917d-fb84a549e402")
+	)
+	(junction
+		(at 45.72 22.86)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c0117328-9788-4fcf-a641-a5d77fc8aad6")
 	)
 	(junction
 		(at 63.5 22.86)
@@ -2693,13 +2705,23 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 22.86) (xy 57.15 22.86)
+			(xy 39.37 22.86) (xy 45.72 22.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "0faeb387-0e26-4678-bab4-02058e112a2f")
+	)
+	(wire
+		(pts
+			(xy 45.72 22.86) (xy 58.42 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "194a00f9-1355-4792-9c25-7aee332649a9")
 	)
 	(wire
 		(pts
@@ -2710,6 +2732,16 @@
 			(type default)
 		)
 		(uuid "28aaf5a1-0010-430a-92fb-1d42fc9787fc")
+	)
+	(wire
+		(pts
+			(xy 58.42 22.86) (xy 63.5 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3310cf4f-7ab5-4271-bba5-add0c0767286")
 	)
 	(wire
 		(pts
@@ -2730,6 +2762,16 @@
 			(type default)
 		)
 		(uuid "4c4a6f8a-39e7-41a3-ae98-e2bbf4fd8023")
+	)
+	(wire
+		(pts
+			(xy 45.72 30.48) (xy 58.42 30.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "534147b4-b0c1-400f-8a9d-0fe136fb19e3")
 	)
 	(wire
 		(pts
@@ -2813,16 +2855,6 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 22.86) (xy 63.5 22.86)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8566b0a2-6c31-4b8a-a679-b18d61592388")
-	)
-	(wire
-		(pts
 			(xy 59.69 127) (xy 68.58 127)
 		)
 		(stroke
@@ -2853,7 +2885,7 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 30.48) (xy 57.15 30.48)
+			(xy 41.91 30.48) (xy 45.72 30.48)
 		)
 		(stroke
 			(width 0)
@@ -8278,6 +8310,85 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 58.42 26.67 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "225b6fc6-ce05-4595-8f33-7bbcc9485dc9")
+		(property "Reference" "C4"
+			(at 54.61 25.3999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1uF"
+			(at 54.61 27.9399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
+			(at 57.4548 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 58.42 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 58.42 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "LCSC" "C1525"
+			(at 58.42 26.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "88cd15c7-932a-499e-bec0-b3db538cb147")
+		)
+		(pin "2"
+			(uuid "6e6dec2d-26aa-4059-a12e-9e40009e5759")
+		)
+		(instances
+			(project "earringv3"
+				(path "/5b672b97-2486-4be1-9927-7141d9b63fb2"
+					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "MCU_ST_STM32U0:STM32U073KCUx")
 		(at 66.04 59.69 0)
 		(unit 1)
@@ -10573,7 +10684,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 57.15 26.67 0)
+		(at 45.72 26.67 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -10582,7 +10693,7 @@
 		(dnp no)
 		(uuid "9b72c84a-3636-450a-83e9-4354f3e1c6eb")
 		(property "Reference" "C1"
-			(at 53.34 25.3999 0)
+			(at 41.91 25.3999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10591,7 +10702,7 @@
 			)
 		)
 		(property "Value" "10uF"
-			(at 53.34 27.9399 0)
+			(at 41.91 27.9399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10600,7 +10711,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 56.1848 30.48 0)
+			(at 44.7548 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10609,7 +10720,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 57.15 26.67 0)
+			(at 45.72 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10618,7 +10729,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 57.15 26.67 0)
+			(at 45.72 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10627,7 +10738,7 @@
 			)
 		)
 		(property "LCSC" "C15525"
-			(at 57.15 26.67 0)
+			(at 45.72 26.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
