@@ -27,6 +27,7 @@ const (
 
 var variantsPerMode = [...]uint8{
 	modeTrace: 2,
+	modeNoise: uint8(len(noisePatterns)),
 	modeFire:  3,
 	modeFlag:  uint8(len(allFlags)),
 }
@@ -47,7 +48,7 @@ func animate(mode, variant, led, frame int) Color {
 	case modeTrace:
 		return trace(led, frame, variant)
 	case modeNoise:
-		return noise(led, frame)
+		return noise(led, frame, variant)
 	case modeFire:
 		return fire(led, frame, variant)
 	case modeFlag:
@@ -73,10 +74,29 @@ func animationNeedsMic(mode int) bool {
 	}
 }
 
-func noise(led, frame int) Color {
-	x := uint32(frame) << 5
-	y := uint32(led)
-	c := ledsgo.PartyColors.ColorAt(ledsgo.Noise2(x, uint32(y)<<5) * 2)
+var noisePatterns = [...]struct {
+	speed   uint8            // higher means faster
+	spread  uint8            // higher means colors more close together
+	palette ledsgo.Palette16 // FastLED palette
+}{
+	{32, 32, ledsgo.PartyColors},
+	{32, 32, ledsgo.RainbowColors},
+	{16, 64, ledsgo.ForestColors},
+	{16, 64, ledsgo.OceanColors},
+	{16, 64, ledsgo.CloudColors},
+}
+
+// Show some Simplex noise on the earring, with various predefined patterns.
+func noise(led, frame, variant int) Color {
+	// Determine palette to show.
+	if variant >= len(noisePatterns) {
+		return NewColor(0, 0, 0) // shouldn't happen
+	}
+	pattern := &noisePatterns[variant]
+
+	x := uint32(frame) * uint32(pattern.speed)
+	y := uint32(led) * uint32(pattern.spread)
+	c := pattern.palette.ColorAt(ledsgo.Noise2(x, y) * 2)
 	return NewColor(c.R, c.G, c.B)
 }
 
