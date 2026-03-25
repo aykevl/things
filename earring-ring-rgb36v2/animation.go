@@ -28,7 +28,7 @@ const (
 var variantsPerMode = [...]uint8{
 	modeTrace: 2,
 	modeFire:  3,
-	modeFlag:  4,
+	modeFlag:  uint8(len(allFlags)),
 }
 
 // Cycle to the next variant within a mode.
@@ -277,11 +277,13 @@ var (
 		flagPastelBlue, flagPastelBlue,
 	}
 
-	flagLesbianRed    = NewColor(0xB4, 0x07, 0x00)
-	flagLesbianOrange = NewColor(0xff, 0x5E, 0x00)
-	flagLesbianWhite  = NewColor(0x88, 0x88, 0xAA)
-	flagLesbianPink   = NewColor(0x90, 0x10, 0x60)
-	flagLesbianPurple = NewColor(0x40, 0x00, 0x26)
+	// Five-stripe lesbian flag (five colors are easier to distinguish than
+	// seven).
+	flagLesbianRed    = NewColor(0xC0, 0x00, 0x00)
+	flagLesbianOrange = NewColor(0xC0, 0x40, 0x00)
+	flagLesbianWhite  = NewColor(0x60, 0x50, 0x90)
+	flagLesbianPink   = NewColor(0x40, 0x08, 0x30)
+	flagLesbianPurple = NewColor(0x20, 0x00, 0x10)
 	flagLesbian       = Palette{
 		flagLesbianRed, flagLesbianRed, flagLesbianRed, flagLesbianRed,
 		flagLesbianOrange, flagLesbianOrange, flagLesbianOrange, flagLesbianOrange,
@@ -294,6 +296,42 @@ var (
 		flagLesbianRed, flagLesbianRed,
 	}
 
+	// Flag for gay men. This is the less common 5 stripe version, since that's
+	// easier to make on the earrings. (Not sure how many men will wear these,
+	// but it's there for those who want it).
+	flagGayDarkGreen  = NewColor(0x00, 0x18, 0x08)
+	flagGayLightGreen = NewColor(0x10, 0x40, 0x20)
+	flagGayWhite      = NewColor(0x60, 0x50, 0x90)
+	flagGayLightBlue  = NewColor(0x10, 0x10, 0x90)
+	flagGayDarkBlue   = NewColor(0x08, 0x00, 0x20)
+	flagGay           = Palette{
+		flagGayDarkGreen, flagGayDarkGreen, flagGayDarkGreen, flagGayDarkGreen,
+		flagGayLightGreen, flagGayLightGreen, flagGayLightGreen, flagGayLightGreen,
+		flagGayWhite, flagGayWhite, flagGayWhite, flagGayWhite,
+		flagGayLightBlue, flagGayLightBlue, flagGayLightBlue, flagGayLightBlue,
+		flagGayDarkBlue, flagGayDarkBlue, flagGayDarkBlue, flagGayDarkBlue, flagGayDarkBlue, flagGayDarkBlue,
+		flagGayLightBlue, flagGayLightBlue, flagGayLightBlue, flagGayLightBlue,
+		flagGayWhite, flagGayWhite, flagGayWhite, flagGayWhite,
+		flagGayLightGreen, flagGayLightGreen, flagGayLightGreen, flagGayLightGreen,
+		flagGayDarkGreen, flagGayDarkGreen,
+	}
+
+	// This one really pops! While the number of LEDs for each color is
+	// balanced, it might look better with a bit more for yellow?
+	flagNonBinaryYellow = NewColor(0xaa, 0xaa, 0x00)
+	flagNonBinaryWhite  = NewColor(0x60, 0x50, 0x90)
+	flagNonBinaryPurple = NewColor(0x50, 0x00, 0x40)
+	flagNonBinaryBlack  = NewColor(0x00, 0x00, 0x00)
+	flagNonBinary       = Palette{
+		flagNonBinaryYellow, flagNonBinaryYellow, flagNonBinaryYellow, flagNonBinaryYellow,
+		flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite,
+		flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple,
+		flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack, flagNonBinaryBlack,
+		flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple, flagNonBinaryPurple,
+		flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite, flagNonBinaryWhite,
+		flagNonBinaryYellow, flagNonBinaryYellow, flagNonBinaryYellow, flagNonBinaryYellow,
+	}
+
 	flagBiPink   = NewColor(0xD0, 0x00, 0x08)
 	flagBiPurple = NewColor(0x40, 0x00, 0x30)
 	flagBiBlue   = NewColor(0x00, 0x00, 0x80)
@@ -304,21 +342,92 @@ var (
 		flagBiPurple, flagBiPurple, flagBiPurple, flagBiPurple,
 		flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink, flagBiPink,
 	}
+
+	flagPanPink   = NewColor(0xD0, 0x00, 0x10)
+	flagPanYellow = NewColor(0xaa, 0xaa, 0x00)
+	flagPanBlue   = NewColor(0x08, 0x08, 0xFF)
+	flagPan       = Palette{
+		flagPanPink, flagPanPink, flagPanPink, flagPanPink, flagPanPink, flagPanPink,
+		flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow,
+		flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue,
+		flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue, flagPanBlue,
+		flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow,
+		flagPanPink, flagPanPink, flagPanPink, flagPanPink, flagPanPink, flagPanPink,
+	}
+
+	// Hard to represent because of the black, but I did my best. Since it's a
+	// circle, the black does stand out.
+	flagAceBlack  = NewColor(0x00, 0x00, 0x00)
+	flagAceGray   = NewColor(0x10, 0x10, 0x18)
+	flagAceWhite  = NewColor(0x60, 0x50, 0x90)
+	flagAcePurple = NewColor(0x50, 0x00, 0x40)
+	flagAce       = Palette{
+		flagAceBlack, flagAceBlack, flagAceBlack, flagAceBlack,
+		flagAceGray, flagAceGray, flagAceGray, flagAceGray, flagAceGray,
+		flagAceWhite, flagAceWhite, flagAceWhite, flagAceWhite, flagAceWhite,
+		flagAcePurple, flagAcePurple, flagAcePurple, flagAcePurple, flagAcePurple, flagAcePurple, flagAcePurple, flagAcePurple,
+		flagAceWhite, flagAceWhite, flagAceWhite, flagAceWhite, flagAceWhite,
+		flagAceGray, flagAceGray, flagAceGray, flagAceGray, flagAceGray,
+		flagAceBlack, flagAceBlack, flagAceBlack, flagAceBlack,
+	}
+
+	// Aromantic flag.
+	flagAroGreen1 = NewColor(0x00, 0x80, 0x08)
+	flagAroGreen2 = NewColor(0x10, 0x60, 0x28)
+	flagAroWhite  = NewColor(0x60, 0x50, 0x90)
+	flagAroGray   = NewColor(0x10, 0x10, 0x18)
+	flagAroBlack  = NewColor(0x00, 0x00, 0x00)
+	flagAro       = Palette{
+		flagAroGreen1, flagAroGreen1, flagAroGreen1, flagAroGreen1,
+		flagAroGreen2, flagAroGreen2, flagAroGreen2, flagAroGreen2,
+		flagAroWhite, flagAroWhite, flagAroWhite, flagAroWhite,
+		flagAroGray, flagAroGray, flagAroGray, flagAroGray,
+		flagAroBlack, flagAroBlack, flagAroBlack, flagAroBlack, flagAroBlack, flagAroBlack,
+		flagAroGray, flagAroGray, flagAroGray, flagAroGray,
+		flagAroWhite, flagAroWhite, flagAroWhite, flagAroWhite,
+		flagAroGreen2, flagAroGreen2, flagAroGreen2, flagAroGreen2,
+		flagAroGreen1, flagAroGreen1,
+	}
+
+	// The new polyamory flag, with the yellow heart:
+	// https://nl.wikipedia.org/wiki/Bestand:Tricolor_Polyamory_Pride_Flag.svg
+	// It's hard to represent the dark purple at the bottom, this seems as dark
+	// and purplish as possible.
+	flagPolyBlue   = NewColor(0x08, 0x08, 0xFF)
+	flagPolyRed    = NewColor(0xC0, 0x00, 0x10)
+	flagPolyPurple = NewColor(0x08, 0x00, 0x15)
+	flagPolyYellow = NewColor(0xaa, 0xaa, 0x00)
+	flagPolyWhite  = NewColor(0x60, 0x50, 0x90)
+	flagPoly       = Palette{
+		flagPolyBlue, flagPolyBlue, flagPolyBlue, flagPolyBlue, flagPolyBlue, flagPolyBlue,
+		flagPolyRed, flagPolyRed, flagPolyRed, flagPolyRed, flagPolyRed, flagPolyRed,
+		flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple,
+		flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple, flagPolyPurple,
+		flagPolyRed, flagPolyRed, flagPolyRed, flagPolyRed,
+		flagPolyWhite, flagPolyYellow, flagPolyYellow, flagPolyYellow, flagPolyWhite, // the heart shape
+		flagPolyBlue, flagPolyBlue, flagPolyBlue,
+	}
+
+	allFlags = [...]Palette{
+		flagLGBT,
+		flagTrans,
+		flagLesbian,
+		flagGay,
+		flagNonBinary,
+		flagBi,
+		flagPan,
+		flagAce,
+		flagAro,
+		flagPoly,
+	}
 )
 
 func showFlag(led, frame, variant int) Color {
-	var palette *Palette
-	switch variant {
-	case 0:
-		palette = &flagLGBT
-	case 1:
-		palette = &flagTrans
-	case 2:
-		palette = &flagLesbian
-	default:
-		palette = &flagBi
+	if variant >= len(allFlags) {
+		// This shouldn't actually happen.
+		return NewColor(0, 0, 0)
 	}
-	return palette[led]
+	return allFlags[variant][led]
 }
 
 // Basic sound reactive animation.
