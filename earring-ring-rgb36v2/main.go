@@ -27,6 +27,10 @@ const (
 // Set to one from the interrupt to indicate the button was pressed.
 var buttonWake volatile.Register8
 
+// Saved variant for each mode (so that the variant is kept between mode
+// switches).
+var modeVariants = [modeLast]uint8{}
+
 func main() {
 	// Configure button
 	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
@@ -48,6 +52,9 @@ func main() {
 	frame := 0
 	mode := initialMode
 	variant := 0
+	if mode < len(modeVariants) {
+		variant = int(modeVariants[mode])
+	}
 	framesPressed := 0
 	previousMode := 0
 	colorBtnWasPressed := false
@@ -115,12 +122,15 @@ func main() {
 			} else {
 				if !modePressed && framesPressed > 0 {
 					// Move to the next mode.
+					if mode < len(modeVariants) {
+						modeVariants[mode] = uint8(variant)
+					}
 					mode++
-					variant = 0
 					if mode >= modeLast {
 						// Last, so wrap around.
 						mode = 0
 					}
+					variant = int(modeVariants[mode])
 
 					// Clear LEDs before moving on to the next mode.
 					for i := 0; i < 12; i++ {
