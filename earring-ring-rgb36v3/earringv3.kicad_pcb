@@ -181,7 +181,7 @@
 				)
 			)
 		)
-		(property "Value" "STM32U073KCUx"
+		(property "Value" "STM32U031K8Ux"
 			(at 0 3.83 135)
 			(layer "F.Fab")
 			(hide yes)
@@ -193,7 +193,7 @@
 				)
 			)
 		)
-		(property "Datasheet" "https://www.st.com/resource/en/datasheet/stm32u073kc.pdf"
+		(property "Datasheet" "https://www.st.com/resource/en/datasheet/stm32u031k8.pdf"
 			(at 0 0 135)
 			(layer "F.Fab")
 			(hide yes)
@@ -205,7 +205,7 @@
 				)
 			)
 		)
-		(property "Description" "STMicroelectronics Arm Cortex-M0+ MCU, 256KB flash, 40KB RAM, 56 MHz, 27 GPIO, UFQFPN32"
+		(property "Description" "STMicroelectronics Arm Cortex-M0+ MCU, 64KB flash, 12KB RAM, 27 GPIO, UFQFPN32"
 			(at 0 0 135)
 			(layer "F.Fab")
 			(hide yes)
@@ -217,7 +217,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C22445363"
+		(property "LCSC" "C22445362"
 			(at 0 0 135)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -230,8 +230,21 @@
 				)
 			)
 		)
+		(property "Rotation Offset" "270"
+			(at 0 0 0)
+			(unlocked yes)
+			(layer "F.Fab")
+			(hide yes)
+			(uuid "f63f099d-c525-4820-adb1-809b43bef934")
+			(effects
+				(font
+					(size 1 1)
+					(thickness 0.15)
+				)
+			)
+		)
 		(property ki_fp_filters "QFN*1EP*5x5mm*P0.5mm*")
-		(path "/235ce21c-54c4-4e27-8779-319e2aae0f62")
+		(path "/6ec420bc-123c-44f5-ab73-c65605fd09b3")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -1662,7 +1675,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 102.86)
 			(layer "F.Fab")
 			(hide yes)
@@ -1698,7 +1711,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 282.86)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1712,7 +1725,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/f5e752ff-d3f9-405d-8088-eb695d26b752")
+		(path "/95688115-473b-48b2-a898-4b704d5f17c8")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -2877,7 +2890,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0.000001 1.169999 102.86)
 			(layer "F.Fab")
 			(hide yes)
@@ -2913,7 +2926,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 102.86)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -2927,7 +2940,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/22066f04-3c18-41bc-8567-fe511544ca49")
+		(path "/4d21bae7-fbc9-4679-a953-d4d3c488c8ad")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -3638,7 +3651,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 77.14)
 			(layer "F.Fab")
 			(hide yes)
@@ -3674,7 +3687,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 257.14)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3688,7 +3701,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/527087fc-e6be-460e-ac68-ca016624d677")
+		(path "/ad31fe73-babe-4d79-beea-9a8d2749968c")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -4984,7 +4997,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 154.29)
 			(layer "F.Fab")
 			(hide yes)
@@ -5020,7 +5033,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 334.29)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5034,7 +5047,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/d5f27566-d61e-497d-92dd-d6b28b8e3f77")
+		(path "/3e2c1796-7a96-4e41-b9dc-07b061203043")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -5753,7 +5766,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 51.43)
 			(layer "F.Fab")
 			(hide yes)
@@ -5789,7 +5802,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 51.43)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -5803,7 +5816,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/88ff43ea-5a1e-4f1f-b883-cdda3bbfdb84")
+		(path "/5d934f17-561c-4cf6-beb1-fc1026ccea6f")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -6520,7 +6533,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 51.43)
 			(layer "F.Fab")
 			(hide yes)
@@ -6556,7 +6569,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 231.43)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6570,7 +6583,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/ca522c52-670d-4b1f-b256-f5d7427aeeb5")
+		(path "/8ce28749-7e5d-4fca-b7c4-9743a995fcd7")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -7905,7 +7918,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 25.71)
 			(layer "F.Fab")
 			(hide yes)
@@ -7941,7 +7954,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 25.71)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -7955,7 +7968,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/3a20a2c5-8a45-433b-8b35-69be66f918c5")
+		(path "/fb17a3ba-826f-4225-aecf-cce666ef4bad")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
@@ -8221,7 +8234,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at -0.000001 1.169999 77.14)
 			(layer "F.Fab")
 			(hide yes)
@@ -8257,7 +8270,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 77.14)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8530,7 +8543,7 @@
 				)
 			)
 		)
-		(property "Value" "1.5k"
+		(property "Value" "2k"
 			(at 0 1.17 25.71)
 			(layer "F.Fab")
 			(hide yes)
@@ -8566,7 +8579,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C25867"
+		(property "LCSC" "C4109"
 			(at 0 0 205.71)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -8580,7 +8593,7 @@
 			)
 		)
 		(property ki_fp_filters "R_*")
-		(path "/89cfec25-1d33-4967-968c-d4a1f12d7cee")
+		(path "/b6f8b15a-2bd6-4f59-984c-7a263b79c6a3")
 		(sheetname "/")
 		(sheetfile "earringv3.kicad_sch")
 		(attr smd)
