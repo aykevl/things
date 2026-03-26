@@ -79,11 +79,11 @@ var noisePatterns = [...]struct {
 	spread  uint8            // higher means colors more close together
 	palette ledsgo.Palette16 // FastLED palette
 }{
-	{32, 32, ledsgo.PartyColors},
-	{32, 32, ledsgo.RainbowColors},
-	{16, 64, ledsgo.ForestColors},
-	{16, 64, ledsgo.OceanColors},
-	{16, 64, ledsgo.CloudColors},
+	{10, 11, ledsgo.PartyColors},
+	{10, 11, ledsgo.RainbowColors},
+	{9, 12, ledsgo.ForestColors},
+	{9, 12, ledsgo.OceanColors},
+	{9, 12, ledsgo.CloudColors},
 }
 
 // Show some Simplex noise on the earring, with various predefined patterns.
@@ -94,9 +94,9 @@ func noise(led, frame, variant int) Color {
 	}
 	pattern := &noisePatterns[variant]
 
-	x := uint32(frame) * uint32(pattern.speed)
-	y := uint32(led) * uint32(pattern.spread)
-	c := pattern.palette.ColorAt(ledsgo.Noise2(x, y) * 2)
+	x := uint32(frame) << uint32(pattern.speed)
+	y := uint32(led) << uint32(pattern.spread)
+	c := pattern.palette.ColorAt(ledsgo.Perlin2(x, y) * 2)
 	return NewColor(c.R, c.G, c.B)
 }
 
