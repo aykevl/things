@@ -12314,8 +12314,8 @@
 		(uuid "6cd184ce-a04d-44bd-90ff-cc2ddda8a611")
 	)
 	(gr_line
-		(start 2.7 -5.85)
-		(end 3 -6.15)
+		(start 2.7 -5.65)
+		(end 3 -5.95)
 		(stroke
 			(width 0.15)
 			(type default)
@@ -12324,8 +12324,8 @@
 		(uuid "ce91d5c6-cd5e-4844-b63a-006d03d1b3a3")
 	)
 	(gr_line
-		(start 2.7 -5.85)
-		(end 3 -5.55)
+		(start 2.7 -5.65)
+		(end 3 -5.35)
 		(stroke
 			(width 0.15)
 			(type default)
@@ -12334,8 +12334,8 @@
 		(uuid "4a00ceea-3888-4357-b8dd-25d9cf36b0c4")
 	)
 	(gr_line
-		(start 2.7 -5.85)
-		(end 4.4 -5.85)
+		(start 2.7 -5.65)
+		(end 4.55 -5.65)
 		(stroke
 			(width 0.15)
 			(type default)
@@ -12354,8 +12354,8 @@
 		(uuid "45f13408-1021-4ded-bf43-8de3c0142c37")
 	)
 	(gr_line
-		(start 4.4 -5.85)
-		(end 4.4 -5.35)
+		(start 4.55 -5.65)
+		(end 4.55 -4.725)
 		(stroke
 			(width 0.15)
 			(type default)
@@ -14715,13 +14715,13 @@
 			(justify left bottom mirror)
 		)
 	)
-	(gr_text "color/\nprogram"
-		(at 6.6 -3.3 0)
+	(gr_text "variant"
+		(at 6.85 -3.325 0)
 		(layer "B.SilkS")
 		(uuid "be955142-60f3-4298-8a0b-3f1bef025cf5")
 		(effects
 			(font
-				(size 0.75 0.75)
+				(size 0.85 0.85)
 				(thickness 0.15)
 			)
 			(justify left bottom mirror)
@@ -14740,7 +14740,7 @@
 		)
 	)
 	(gr_text "LED earring"
-		(at 7.7 -4 312)
+		(at 7.6 -3.925 312)
 		(layer "B.SilkS")
 		(uuid "6a83fdba-8b60-4646-96dc-d4de9f087657")
 		(effects
@@ -14751,7 +14751,7 @@
 			(justify bottom mirror)
 		)
 	)
-	(gr_text "v1.2"
+	(gr_text "v2.0"
 		(at 5.325 0.875 315)
 		(layer "B.SilkS")
 		(uuid "f1ffe1a3-c7d1-4c87-90ff-ae4a666b7e63")
