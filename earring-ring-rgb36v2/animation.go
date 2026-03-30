@@ -25,7 +25,7 @@ const (
 var variantsPerMode = [...]uint8{
 	modeTrace: 3,
 	modeNoise: uint8(len(noisePatterns)),
-	modeFire:  3,
+	modeFire:  6,
 	modeFlag:  uint8(len(allFlags)),
 }
 
@@ -205,12 +205,18 @@ func fire(led, frame, variant int) Color {
 	// Determine fire color.
 	var fireColor color.RGBA
 	switch variant {
-	case 0:
+	case 0: // red
 		fireColor = color.RGBA{R: 255}
-	case 1:
+	case 1: // orange
+		fireColor = color.RGBA{R: 220, G: 40}
+	case 2: // green
 		fireColor = color.RGBA{G: 255}
-	default:
+	case 3: // teal-ish
+		fireColor = color.RGBA{G: 127, B: 127}
+	case 4: // blue
 		fireColor = color.RGBA{B: 255}
+	default: // purple
+		fireColor = color.RGBA{R: 127, B: 127}
 	}
 
 	intensityIndex := indexFromBottom(led)
