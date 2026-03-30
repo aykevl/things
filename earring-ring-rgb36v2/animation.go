@@ -14,6 +14,7 @@ const (
 	modeTrace = iota
 	modeNoise
 	modeFire
+	modeStatic
 	modeFlag
 	modeSoundReactive
 	modeLast
@@ -23,10 +24,11 @@ const (
 )
 
 var variantsPerMode = [...]uint8{
-	modeTrace: 3,
-	modeNoise: uint8(len(noisePatterns)),
-	modeFire:  6,
-	modeFlag:  uint8(len(allFlags)),
+	modeTrace:  3,
+	modeNoise:  uint8(len(noisePatterns)),
+	modeFire:   6,
+	modeStatic: uint8(len(staticColors)),
+	modeFlag:   uint8(len(allFlags)),
 }
 
 // Cycle to the next variant within a mode.
@@ -48,6 +50,8 @@ func animate(mode, variant, led, frame int) Color {
 		return noise(led, frame, variant)
 	case modeFire:
 		return fire(led, frame, variant)
+	case modeStatic:
+		return staticColor(led, frame, variant)
 	case modeFlag:
 		return showFlag(led, frame, variant)
 	case modeSoundReactive:
@@ -275,6 +279,31 @@ func indexFromBottom(index int) int {
 		newIndex = index - 18
 	}
 	return newIndex
+}
+
+var (
+	staticColors = [...]Color{
+		NewColor(0x99, 0x00, 0x66), // purple
+		NewColor(0xee, 0x00, 0x11), // hot pink
+		NewColor(0xff, 0x00, 0x00), // red
+		NewColor(0xcc, 0x22, 0x00), // orange
+		NewColor(0x88, 0x77, 0x00), // yellow (orange-ish)
+		NewColor(0x33, 0xcc, 0x00), // yellow (green-ish)
+		NewColor(0x00, 0xff, 0x00), // green
+		NewColor(0x00, 0xdd, 0x22), // green-turquoise
+		NewColor(0x00, 0x99, 0x66), // turquoise
+		NewColor(0x00, 0x33, 0xcc), // greenish blue
+		NewColor(0x00, 0x00, 0xff), // blue
+		NewColor(0x11, 0x00, 0xee), // purple-ish blue
+		NewColor(0x55, 0x00, 0xaa), // blueish purple
+	}
+)
+
+func staticColor(led, frame, variant int) Color {
+	if variant >= len(staticColors) {
+		return NewColor(0, 0, 0) // should be unreachable
+	}
+	return staticColors[variant]
 }
 
 type Palette [numLEDs]Color
