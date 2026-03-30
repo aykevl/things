@@ -8,9 +8,6 @@ import (
 
 const numLEDs = 36
 
-// LED values, as a cache needed for some animations.
-var leds [numLEDs]color.RGBA
-
 const initialMode = 0 // first mode
 
 const (
@@ -26,7 +23,7 @@ const (
 )
 
 var variantsPerMode = [...]uint8{
-	modeTrace: 2,
+	modeTrace: 3,
 	modeNoise: uint8(len(noisePatterns)),
 	modeFire:  3,
 	modeFlag:  uint8(len(allFlags)),
@@ -100,97 +97,107 @@ func noise(led, frame, variant int) Color {
 	return NewColor(c.R, c.G, c.B)
 }
 
-var traceIndex int
-
-func updateTraceIndex(led, frame int) int {
-	// The animations have two tracers.
-	if led == 0 && frame%2 == 0 {
-		traceIndex++
-		if traceIndex >= numLEDs {
-			traceIndex = 0
-		}
-	}
-	traceIndex2 := traceIndex + numLEDs/2
-	if traceIndex2 >= numLEDs {
-		traceIndex2 -= numLEDs
-	}
-	return traceIndex2
-}
+var traceIndex uint8
+var traceIndexFrame int
 
 func trace(led, frame, variant int) Color {
 	switch variant {
+	case 0, 1:
+		return twoTracers(led, frame, variant)
+	default:
+		return purpleCircles(led, frame)
+	}
+}
+
+func twoTracers(led, frame, variant int) Color {
+	// This essentially calculates (frame%72) but faster.
+	if frame != traceIndexFrame {
+		traceIndexFrame = frame
+		traceIndex++
+	}
+	if traceIndex >= 72 {
+		traceIndex = 0
+	}
+
+	// Calculate where in the circle we are for this LED.
+	index := uint8(led*2) + 71 - traceIndex
+	if index >= 72 {
+		index -= 72
+	}
+	if index >= 72 {
+		index -= 72
+	}
+
+	// Split out in the two traces.
+	trace := 0
+	if index >= 36 {
+		index -= 36
+		trace = 1
+	}
+
+	// Determine the color for the LED.
+	var c Color
+	switch variant {
 	case 0:
-		return rainbowTrace(led, frame)
-	default:
-		return fireAndIce(led, frame)
-	}
-}
-
-func rainbowTrace(led, frame int) Color {
-	traceIndex2 := updateTraceIndex(led, frame)
-
-	const div = 4
-	if led == traceIndex {
-		// First tracer.
-		c := ledsgo.Color{H: uint16(frame * 128), S: 255, V: 255}.Rainbow()
-		leds[led].R += c.R / div
-		leds[led].G += c.G / div
-		leds[led].B += c.B / div
-	} else if led == traceIndex2 {
-		// Second tracer, offset 180° on the color wheel and on the actual LED ring.
-		c := ledsgo.Color{H: uint16(frame*128) + 0x8000, S: 255, V: 255}.Rainbow()
-		leds[led].R += c.R / div
-		leds[led].G += c.G / div
-		leds[led].B += c.B / div
-	} else {
-		// dim LED
-		c := leds[led]
-		r := uint8(uint16(c.R) * 242 / 256)
-		g := uint8(uint16(c.G) * 242 / 256)
-		b := uint8(uint16(c.B) * 242 / 256)
-		leds[led] = color.RGBA{r, g, b, 0}
-	}
-	c := leds[led]
-	return NewColor(c.R, c.G, c.B)
-}
-
-// Red (fire) and blue (ice) swirling around in circles.
-func fireAndIce(led, frame int) Color {
-	traceIndex2 := updateTraceIndex(led, frame)
-
-	const div = 4
-	switch led {
-	case traceIndex:
-		// First tracer (red/orange)
-		leds[led].R = leds[led].R/2 + 0xff/div
-		leds[led].G = leds[led].G/2 + 0x33/div
-		leds[led].B = 0
-	case traceIndex2:
-		// Second tracer (blue), offset 180° on the LED ring.
-		leds[led].R = leds[led].R/2 + 0x08/div
-		leds[led].G = leds[led].G / 2
-		leds[led].B += 0xff / div
-	default:
-		// Tails, dim the LEDs.
-		c := leds[led]
-		if c.R > c.B {
-			// Fire. Dim the red a bit.
-			c.R = uint8(uint16(c.R) * 248 / 256)
-			c.G = uint8(uint16(c.G) * 248 / 256)
-			if c.R < 8 {
-				c.R = 8
-			}
-		} else {
-			// Ice. Dim the blue a bit.
-			c.B = uint8(uint16(c.B) * 244 / 256)
-			if c.B < 8 {
-				c.B = 8
-			}
+		// Rainbow trace.
+		var col color.RGBA
+		switch trace {
+		case 0:
+			// First tracer.
+			col = ledsgo.Color{H: uint16(frame * 128), S: 255, V: 255}.Rainbow()
+		default:
+			// Second tracer, offset 180° on the color wheel and on the actual LED ring.
+			col = ledsgo.Color{H: uint16(frame*128) + 0x8000, S: 255, V: 255}.Rainbow()
 		}
-		leds[led] = c
+		c = NewColor(
+			uint8(uint32(col.R)*(uint32(index)*7)/256),
+			uint8(uint32(col.G)*(uint32(index)*7)/256),
+			uint8(uint32(col.B)*(uint32(index)*7)/256))
+	case 1:
+		// Red (fire) and blue (ice) swirling around in circles.
+		switch trace {
+		case 0:
+			c = NewColor(index*7, index*3/8, 0)
+		default:
+			c = NewColor(index, 0, index*7)
+		}
 	}
-	c := leds[led]
-	return NewColor(c.R, c.G, c.B)
+
+	// Dim at the start (fade in)
+	if index == 35 {
+		c = NewColor(c.R()/3, c.G()/3, c.B()/3)
+	}
+
+	return c
+}
+
+// Three purple tracers running in circles.
+func purpleCircles(led, frame int) Color {
+	if frame != traceIndexFrame {
+		traceIndexFrame = frame
+		traceIndex++
+	}
+	if traceIndex >= 24 {
+		// This animation has three tracers.
+		traceIndex = 0
+	}
+
+	index := uint8(led*2) + 23 - traceIndex
+	if index >= 24 {
+		index -= 24
+	}
+	if index >= 24 {
+		index -= 24
+	}
+	if index >= 24 {
+		index -= 24
+	}
+
+	if index == 23 {
+		// fade in at the beginning
+		return NewColor(0x20, 0, 0x10)
+	}
+	return NewColor(uint8(index*10), 0, uint8(index*5))
 }
 
 // Fire animation in various colors.
