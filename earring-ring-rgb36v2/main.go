@@ -21,7 +21,8 @@ const (
 	A11 = machine.PA1
 	A12 = machine.PA0
 
-	button = machine.PB7
+	button1 = machine.PB7
+	button2 = machine.PB3
 )
 
 // Set to one from the interrupt to indicate the button was pressed.
@@ -32,8 +33,9 @@ var buttonWake volatile.Register8
 var modeVariants = [modeLast]uint8{}
 
 func main() {
-	// Configure button
-	button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	// Configure buttons
+	button1.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+	button2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
 
 	// Configure pins
 	configureLEDs()
@@ -78,29 +80,15 @@ func main() {
 			index = 0
 			frame++
 
-			// V1.2 schematic:
-			// Button 2 between A1R and A2.
-			// This layout is somewhat silly and has weird artifacts, it will be
-			// fixed in the next prototype.
-			A2.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
-			A1.Configure(machine.PinConfig{Mode: machine.PinOutput})
-			A1.Low()
-			A1.Low()
-			A1.Low()
-			A1.Low()
-			colorBtnPressed := !A2.Get()
-			A2.Configure(machine.PinConfig{Mode: machine.PinInput}) // disable pull
-			A2.Configure(machine.PinConfig{Mode: machine.PinOutput})
-
-			// Read the button every frame update.
-			modePressed := !button.Get() // low means pressed
+			// Read the mode button every frame update.
+			modePressed := !button1.Get() // low means pressed
 			if framesPressed == 30 {
 				turnOffAnimation(mode, variant, frame)
 
 				// Always disable the microphone when sleeping.
 				disableMic()
 
-				// Sleep until a button press.
+				// Sleep until the mode button is pressed.
 				sleepUntilButtonPress()
 
 				// Woke up again, so start up interfaces.
@@ -144,10 +132,14 @@ func main() {
 						disableMic()
 					}
 				}
-				if !colorBtnPressed && colorBtnWasPressed {
+
+				// Switch to the next animation variant when the variant button
+				// is released.
+				variantBtnPressed := !button2.Get()
+				if !variantBtnPressed && colorBtnWasPressed {
 					variant = animationNextVariant(mode, variant)
 				}
-				colorBtnWasPressed = colorBtnPressed
+				colorBtnWasPressed = variantBtnPressed
 			}
 			if modePressed {
 				framesPressed++
@@ -246,7 +238,7 @@ func sleepUntilButtonPress() {
 	// Goal: stop mode, without RTC, with 1 GPIO pin enabled for button interrupt
 
 	// Enable pin interrupt.
-	button.SetInterrupt(machine.PinFalling, func(p machine.Pin) {
+	button1.SetInterrupt(machine.PinFalling, func(p machine.Pin) {
 		buttonWake.Set(1)
 	})
 
@@ -274,13 +266,13 @@ func sleepUntilButtonPress() {
 	arm.SCB.SCR.ClearBits(arm.SCB_SCR_SLEEPDEEP)
 
 	// Disable interrupt, so it won't cause flickering when switching modes.
-	button.SetInterrupt(machine.PinFalling, nil)
+	button1.SetInterrupt(machine.PinFalling, nil)
 }
 
 // Wait for a bit before turning on.
 func waitForPoweron() bool {
 	for range 12 * 30 {
-		pressed := !button.Get() // low means pressed
+		pressed := !button1.Get() // low means pressed
 		if !pressed {
 			// Button was released early, shut down device again.
 			return false
