@@ -22,6 +22,7 @@ const (
 	modeFireBlue
 	modeFlagLGBT
 	modeFlagTrans
+	modeFlagPan
 	modeLast
 
 	modeTest
@@ -46,6 +47,8 @@ func animate(mode, led, frame int) Color {
 		return showPalette(led, frame, &flagLGBT)
 	case modeFlagTrans:
 		return showPalette(led, frame, &flagTrans)
+	case modeFlagPan:
+		return showPalette(led, frame, &flagPan)
 	case modeTest:
 		return testPulse(led, frame)
 	case modePowerOn:
@@ -242,6 +245,20 @@ var (
 		flagPastelWhite, flagPastelWhite, flagPastelWhite, flagPastelWhite,
 		flagPastelPink, flagPastelPink, flagPastelPink, flagPastelPink,
 		flagPastelBlue, flagPastelBlue,
+	}
+	flagPanYellow  = NewColor(0xff, 0xd8, 0x00)
+	flagPanMagenta = NewColor(0xff, 0x21, 0x8c)
+	flagPanCyan    = NewColor(0x21, 0xb1, 0xff)
+	flagPan        = Palette{
+		flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow,
+		flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow,
+		flagPanYellow, flagPanYellow, flagPanYellow, flagPanYellow,
+		flagPanMagenta, flagPanMagenta, flagPanMagenta, flagPanMagenta,
+		flagPanMagenta, flagPanMagenta, flagPanMagenta, flagPanMagenta,
+		flagPanMagenta, flagPanMagenta, flagPanMagenta, flagPanMagenta,
+		flagPanCyan, flagPanCyan, flagPanCyan, flagPanCyan,
+		flagPanCyan, flagPanCyan, flagPanCyan, flagPanCyan,
+		flagPanCyan, flagPanCyan, flagPanCyan, flagPanCyan,
 	}
 )
 
