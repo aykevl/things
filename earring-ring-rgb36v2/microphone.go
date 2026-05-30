@@ -3,48 +3,60 @@ package main
 // Microphone on the earring.
 // Some power measurements:
 //
-//  |  90µA | enabling the mic
-//  |  28µA | enabling ADC with auto-off (not used)
-//  |  34µA | enabling ADC with auto-off (read at 400Hz or so)
-//  | 124µA | combined power consumption while using the mic
+//  |  22µA | increase clock speed
+//  | 131µA | enabling the mic
+//  |  26µA | enabling the ADC and reading at 800Hz or so
+//  | 179µA | combined power consumption while using the mic
 
 import (
 	"device/stm32"
 	"machine"
+	"math/bits"
 )
 
 var (
-	sampleBuffer      [64]uint16
-	sampleBufferIndex uint8
-	sampleBufferSum   uint32
-)
-
-func addSample(sample uint16) {
-	sampleBufferSum -= uint32(sampleBuffer[sampleBufferIndex])
-	sampleBufferSum += uint32(sample)
-	sampleBuffer[sampleBufferIndex] = sample
-	sampleBufferIndex = (sampleBufferIndex + 1) % uint8(len(sampleBuffer))
-}
-
-func avgSample() uint16 {
-	return uint16(sampleBufferSum / uint32(len(sampleBuffer)))
-}
-
-var (
-	powerBuffer      [16]uint16
+	powerBuffer      [4]uint16
 	powerBufferIndex uint8
 	powerBufferSum   uint32
 )
 
+var powerNormalizer uint32 = 100 // ~silence will result in about 500
+
+// Take current power, smooth it out a little, and auto-normalize it so it
+// doesn't change too strongly and animations can be written for it somewhat
+// reasonably.
 func addPower(power uint16) {
+	// Find a number that when multiplied with powerBufferSum will be
+	// roughly in range 16384..32768.
+	factor := 1 << max(bits.LeadingZeros16(power)-3, 2)
+
+	// Slowly adjust the normalizer.
+	if factor > int(powerNormalizer) && powerNormalizer < 4096 {
+		powerNormalizer++
+	}
+	if factor < int(powerNormalizer) && powerNormalizer > 16 {
+		powerNormalizer--
+	}
+
 	powerBufferSum -= uint32(powerBuffer[powerBufferIndex])
 	powerBufferSum += uint32(power)
 	powerBuffer[powerBufferIndex] = power
 	powerBufferIndex = (powerBufferIndex + 1) % uint8(len(powerBuffer))
 }
 
+// Return the current (auto-normalized) volume. The returned value will on
+// average fall in the range 16384..32768 but will also frequently go outside
+// that range.
+func currentVolume() uint32 {
+	return powerBufferSum * powerNormalizer
+}
+
 //go:noinline
 func enableMic() {
+	// Increase system clock speed: animations with the microphone need slightly
+	// higher framerate to look good.
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3)
+
 	// Power on microphone.
 	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	machine.PB1.High()
@@ -79,21 +91,8 @@ func enableMic() {
 	// Select the channel.
 	stm32.ADC.CHSELR.Set(1 << 8) // PB0=ADC_IN8
 
-	// Read initial samples to know the average output of the microphone.
-	// The first few samples seem to be bad (microphone is still starting up?),
-	// so read a bit more than what would be needed to initialize the sample
-	// buffer.
-	for range len(sampleBuffer) + 8 {
-		// Start conversion.
-		stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
-
-		// Wait until ready.
-		for (stm32.ADC.ISR.Get() & stm32.ADC_ISR_EOC) == 0 {
-		}
-
-		// Read sample, and add it to the buffer.
-		addSample(uint16(stm32.ADC.DR.Get()))
-	}
+	// Start first continuous conversion.
+	stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
 }
 
 //go:noinline
@@ -106,27 +105,37 @@ func disableMic() {
 	stm32.RCC.APB2RSTR.Set(0)
 	stm32.RCC.SetAPB2ENR_ADCEN(0)
 	stm32.RCC.SetCFGR_PPRE2(stm32.RCC_CFGR_PPRE2_Div16)
+
+	// Restore system clock speed.
+	stm32.RCC.SetICSCR_MSIRANGE(defaultMSIRANGE)
 }
 
-func updateMic() {
-	// Read the most recent sample.
-	sample := uint16(stm32.ADC.DR.Get())
+var micSamples [12]uint16
 
-	// Remove the DC offset from the sample.
-	sampleDiff := int(sample) - int(avgSample())
-
-	// Calculate the power, which is the absolute of the sample value.
-	if sampleDiff < 0 {
-		sampleDiff = -sampleDiff
-	}
-
-	// Add this sample to the moving average of recent samples (for DC offset
-	// removal).
-	addSample(sample)
-
-	// Add this sample to the moving average of power values.
-	addPower(uint16(sampleDiff))
+func updateMic(index int) {
+	// Read sample, and add it to the buffer.
+	micSamples[index] = uint16(stm32.ADC.DR.Get())
 
 	// Start the next conversion.
 	stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
+}
+
+// Estimated microphone DC offset, continuously updated.
+var micDCOffset int = 1250 // ~1250 seems to be a good start on at least some of these
+
+// Process the samples collected in the last frame.
+func processSamples() int {
+	offset := micDCOffset
+	sampleSum := 0
+	powerSum := 0
+	for _, sample := range micSamples[:] {
+		sampleSum += int(sample)
+		sampleDiff := int(sample) - offset
+		if sampleDiff < 0 {
+			sampleDiff = -sampleDiff
+		}
+		powerSum += sampleDiff
+	}
+	micDCOffset = sampleSum / len(micSamples)
+	return powerSum
 }

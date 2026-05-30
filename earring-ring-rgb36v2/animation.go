@@ -14,6 +14,7 @@ const (
 	modeTrace = iota
 	modeNoise
 	modeFire
+	modeFireSound
 	modeStatic
 	modeFlag
 	modeSoundReactive
@@ -24,11 +25,12 @@ const (
 )
 
 var variantsPerMode = [...]uint8{
-	modeTrace:  3,
-	modeNoise:  uint8(len(noisePatterns)),
-	modeFire:   6,
-	modeStatic: uint8(len(staticColors)),
-	modeFlag:   uint8(len(allFlags)),
+	modeTrace:     3,
+	modeNoise:     uint8(len(noisePatterns)),
+	modeFire:      6,
+	modeFireSound: 6,
+	modeStatic:    uint8(len(staticColors)),
+	modeFlag:      uint8(len(allFlags)),
 }
 
 // Cycle to the next variant within a mode.
@@ -50,6 +52,8 @@ func animate(mode, variant, led, frame int) Color {
 		return noise(led, frame, variant)
 	case modeFire:
 		return fire(led, frame, variant)
+	case modeFireSound:
+		return fireSound(led, frame, variant)
 	case modeStatic:
 		return staticColor(led, frame, variant)
 	case modeFlag:
@@ -68,7 +72,7 @@ func animate(mode, variant, led, frame int) Color {
 
 func animationNeedsMic(mode int) bool {
 	switch mode {
-	case modeSoundReactive:
+	case modeSoundReactive, modeFireSound:
 		return true
 	default:
 		return false
@@ -204,25 +208,26 @@ func purpleCircles(led, frame int) Color {
 	return NewColor(uint8(index*10), 0, uint8(index*5))
 }
 
-// Fire animation in various colors.
-func fire(led, frame, variant int) Color {
-	// Determine fire color.
-	var fireColor color.RGBA
+// Determine fire color for both fire animations.
+func fireColor(variant int) color.RGBA {
 	switch variant {
 	case 0: // red
-		fireColor = color.RGBA{R: 255}
+		return color.RGBA{R: 255}
 	case 1: // orange
-		fireColor = color.RGBA{R: 220, G: 40}
+		return color.RGBA{R: 220, G: 40}
 	case 2: // green
-		fireColor = color.RGBA{G: 255}
+		return color.RGBA{G: 255}
 	case 3: // teal-ish
-		fireColor = color.RGBA{G: 127, B: 127}
+		return color.RGBA{G: 127, B: 127}
 	case 4: // blue
-		fireColor = color.RGBA{B: 255}
+		return color.RGBA{B: 255}
 	default: // purple
-		fireColor = color.RGBA{R: 127, B: 127}
+		return color.RGBA{R: 127, B: 127}
 	}
+}
 
+// Fire animation in various colors.
+func fire(led, frame, variant int) Color {
 	intensityIndex := indexFromBottom(led)
 	noiseIndex := uint32(frame) - uint32(intensityIndex)
 	if led > numLEDs/2 {
@@ -245,7 +250,61 @@ func fire(led, frame, variant int) Color {
 	// Turn it into a flame, based on the given palette.
 	// Perhaps we could use an actual 0-255 (or 0-64) palette instead? That
 	// might be faster.
-	c := coloredFlame(heat, fireColor)
+	c := coloredFlame(heat, fireColor(variant))
+	return NewColor(c.R, c.G, c.B)
+}
+
+var volumeHistory [36]uint8
+var volumeHistoryIndex uint8
+
+func fireSound(led, frame, variant int) Color {
+	// Add entry to the volume history.
+	if led == 0 {
+		vol := uint8(min(currentVolume()*3/512, 0xff))
+		volumeHistoryIndex++
+		if volumeHistoryIndex == 36 {
+			volumeHistoryIndex = 0
+		}
+		volumeHistory[volumeHistoryIndex] = vol
+	}
+
+	// LED indices calculated, so they start from the bottom and alternate
+	// between the two sides:
+	// LED 14: index 6
+	// LED 15: index 4
+	// LED 16: index 2
+	// LED 17: index 0
+	// LED 18: index 1
+	// LED 18: index 3
+	// LED 18: index 5
+	var historyIndex int
+	var intensityIndex uint8
+	if led < 18 {
+		intensityIndex = uint8(18 - led)
+		historyIndex = (17 - led) * 2
+	} else {
+		historyIndex = (led-18)*2 + 1
+		intensityIndex = uint8(led - 18)
+	}
+
+	// Calculate index into volumeHistory, since that is a circular buffer (with
+	// index 0 being the most recent and higher numbers being further in the
+	// past).
+	historyIndex = int(volumeHistoryIndex) - historyIndex
+	if historyIndex < 0 {
+		historyIndex += 36
+	}
+
+	// Cool down the flame the higher it gets.
+	heat := volumeHistory[historyIndex]
+	cooling := uint8(intensityIndex * 8)
+	if heat < uint8(cooling) {
+		heat = 0
+	} else {
+		heat -= uint8(cooling)
+	}
+
+	c := coloredFlame(heat, fireColor(variant))
 	return NewColor(c.R, c.G, c.B)
 }
 
@@ -273,7 +332,7 @@ func coloredFlame(index uint8, fireColor color.RGBA) color.RGBA {
 func indexFromBottom(index int) int {
 	// Start at the top with 18, move along the right size down to 0 at the
 	// bottom, and then resume counting upwards again:
-	// 18, 17, ..., 1, 0, 1, 2, ..., 17, 18
+	// 18, 17, ..., 1, 0, 1, 2, ..., 17
 	newIndex := 18 - index
 	if index >= 18 {
 		newIndex = index - 18
@@ -494,7 +553,8 @@ func showFlag(led, frame, variant int) Color {
 
 // Basic sound reactive animation.
 func soundReactive(led, frame int) Color {
-	intensity := int(powerBufferSum)*(256/len(powerBuffer)) - led*64
+	frameIntensity := int(currentVolume()) / 32
+	intensity := frameIntensity - led*64
 	if intensity > 255 {
 		return NewColor(255, 0, 0)
 	} else if intensity < 0 {

@@ -57,19 +57,25 @@ func main() {
 	if mode < len(modeVariants) {
 		variant = int(modeVariants[mode])
 	}
+	if animationNeedsMic(mode) {
+		enableMic()
+	}
 	framesPressed := 0
 	previousMode := 0
 	colorBtnWasPressed := false
 	for {
+		led0 := animate(mode, variant, index+0, frame)
+		led1 := animate(mode, variant, index+12, frame)
+		led2 := animate(mode, variant, index+24, frame)
+
+		// Read the ADC, intentionally done in between so that the LED power
+		// won't interfere too much with the microphone.
 		if animationNeedsMic(mode) {
-			updateMic()
+			updateMic(index)
 		}
 
 		// Update 3 LEDs at a time, since that's convenient for the
 		// RGB-to-bitplane conversion.
-		led0 := animate(mode, variant, index+0, frame)
-		led1 := animate(mode, variant, index+12, frame)
-		led2 := animate(mode, variant, index+24, frame)
 		setLEDs(index, uint32(led0), uint32(led1), uint32(led2))
 
 		// Bitbang the LEDs.
@@ -80,21 +86,21 @@ func main() {
 			index = 0
 			frame++
 
+			// Process the audio samples collected during the last frame.
+			if animationNeedsMic(mode) {
+				addPower(uint16(processSamples()))
+			}
+
 			// Read the mode button every frame update.
 			modePressed := !button1.Get() // low means pressed
 			if framesPressed == 30 {
-				turnOffAnimation(mode, variant, frame)
-
 				// Always disable the microphone when sleeping.
 				disableMic()
 
+				turnOffAnimation(mode, variant, frame)
+
 				// Sleep until the mode button is pressed.
 				sleepUntilButtonPress()
-
-				// Woke up again, so start up interfaces.
-				if animationNeedsMic(mode) {
-					enableMic()
-				}
 
 				// To continue the startup animation, set the mode to "power
 				// on".
@@ -106,6 +112,11 @@ func main() {
 			if mode == modePowerOn {
 				if frame == numLEDs/2 {
 					mode = previousMode
+
+					// Woke up again, so start up interfaces.
+					if animationNeedsMic(mode) {
+						enableMic()
+					}
 				}
 			} else {
 				if !modePressed && framesPressed > 0 {
@@ -150,6 +161,10 @@ func main() {
 	}
 }
 
+// Range 2: around 262kHz (~55µA with all LEDs off)
+// Range 3: around 524kHz (~83µA with all LEDs off)
+const defaultMSIRANGE = stm32.RCC_ICSCR_MSIRANGE_Range2
+
 func setClockSpeed() {
 	// Switch to MSI.
 	stm32.RCC.CFGR.ReplaceBits(stm32.RCC_CFGR_SWS_MSI, stm32.RCC_CFGR_SW_Msk, 0)
@@ -189,9 +204,7 @@ func setClockSpeed() {
 	stm32.RCC.SetAPB2ENR_TIM21EN(0)
 
 	// Set MSI clock speed.
-	// Range 2: around 262kHz (~55µA with all LEDs off)
-	// Range 3: around 524kHz (~83µA with all LEDs off)
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2)
+	stm32.RCC.SetICSCR_MSIRANGE(defaultMSIRANGE)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
