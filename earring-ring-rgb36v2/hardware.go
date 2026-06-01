@@ -42,6 +42,9 @@ func initHardware() {
 	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
 
 	setClockSpeed()
+
+	// Load last animation state from flash.
+	loadState()
 }
 
 func button1Pressed() bool {
@@ -254,4 +257,50 @@ func updateMic(index int) {
 
 	// Start the next conversion.
 	stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
+}
+
+func loadState() {
+	// Load previous settings from flash.
+	numPages := uint32(machine.Flash.Size()) / uint32(machine.Flash.EraseBlockSize())
+	lastPage := numPages - 1
+	machine.Flash.ReadAt(storedState[:], int64(lastPage*uint32(machine.Flash.EraseBlockSize())))
+
+	// Check whether they seem to be correct.
+	calculatedHash := hash32(storedState[:len(storedState)-4])
+	storedHash := 0 |
+		uint32(storedState[len(storedState)-4])<<0 |
+		uint32(storedState[len(storedState)-3])<<8 |
+		uint32(storedState[len(storedState)-2])<<16 |
+		uint32(storedState[len(storedState)-1])<<24
+	if calculatedHash != storedHash {
+		// Reset the state to initial.
+		storedState = [len(storedState)]uint8{0: initialMode}
+	}
+}
+
+func saveState() {
+	// Calculate the hash for this state.
+	hash := hash32(storedState[:len(storedState)-4])
+	storedState[len(storedState)-4] = uint8(hash >> 0)
+	storedState[len(storedState)-3] = uint8(hash >> 8)
+	storedState[len(storedState)-2] = uint8(hash >> 16)
+	storedState[len(storedState)-1] = uint8(hash >> 24)
+
+	// Store the state in the last page.
+	numPages := uint32(machine.Flash.Size()) / uint32(machine.Flash.EraseBlockSize())
+	lastPage := numPages - 1
+	machine.Flash.EraseBlocks(int64(lastPage), 1)
+	machine.Flash.WriteAt(storedState[:], int64(lastPage*uint32(machine.Flash.EraseBlockSize())))
+}
+
+// Get FNV-1a hash of the given memory buffer.
+//
+// https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash
+func hash32(buf []byte) uint32 {
+	var result uint32 = 2166136261 // FNV offset basis
+	for _, c := range buf {
+		result ^= uint32(c) // XOR with byte
+		result *= 16777619  // FNV prime
+	}
+	return result
 }

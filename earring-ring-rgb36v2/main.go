@@ -1,8 +1,16 @@
 package main
 
+// State: current mode, current variant, previous variants, 4 hash bytes
+var storedState [32]uint8
+
+const (
+	stateOffsetMode     = 0
+	stateOffsetVariants = 2
+)
+
 // Saved variant for each mode (so that the variant is kept between mode
 // switches).
-var modeVariants = [modeLast]uint8{}
+var modeVariants = storedState[stateOffsetVariants : stateOffsetVariants+modeLast]
 
 func main() {
 	initHardware()
@@ -14,7 +22,7 @@ func main() {
 
 	index := 0 // 0..11, group of 3 LEDs that will be updated together
 	frame := 0
-	mode := initialMode
+	mode := int(storedState[stateOffsetMode])
 	variant := 0
 	if mode < len(modeVariants) {
 		variant = int(modeVariants[mode])
@@ -82,15 +90,16 @@ func main() {
 			} else {
 				if !modePressed && framesPressed > 0 {
 					// Move to the next mode.
-					if mode < len(modeVariants) {
-						modeVariants[mode] = uint8(variant)
-					}
 					mode++
 					if mode >= modeLast {
 						// Last, so wrap around.
 						mode = 0
 					}
 					variant = int(modeVariants[mode])
+
+					// Save the current state to flash.
+					storedState[stateOffsetMode] = uint8(mode)
+					saveState()
 
 					// Clear LEDs before moving on to the next mode.
 					for i := 0; i < 12; i++ {
@@ -110,6 +119,10 @@ func main() {
 				variantBtnPressed := button2Pressed()
 				if !variantBtnPressed && colorBtnWasPressed {
 					variant = animationNextVariant(mode, variant)
+					if mode < len(modeVariants) {
+						modeVariants[mode] = uint8(variant)
+					}
+					saveState()
 				}
 				colorBtnWasPressed = variantBtnPressed
 			}
