@@ -22,6 +22,7 @@ const (
 	modeLast
 
 	modeTest
+	modeQA
 	modePowerOn
 )
 
@@ -34,6 +35,7 @@ var variantsPerMode = [...]uint8{
 	modeVUMeter:   uint8(len(staticColors)),
 	modeFlag:      uint8(len(allFlags)),
 	modeSparkle:   uint8(len(sparkleVariants)),
+	modeQA:        2,
 }
 
 // Cycle to the next variant within a mode.
@@ -69,6 +71,8 @@ func animate(mode, variant, led, frame int) Color {
 		return testPulse(led, frame)
 	case modePowerOn:
 		return powerOn(led, frame)
+	case modeQA:
+		return testQAPattern(led, frame, variant)
 	default:
 		// bug
 		return errorPattern(led, frame)
@@ -77,7 +81,7 @@ func animate(mode, variant, led, frame int) Color {
 
 func animationNeedsMic(mode int) bool {
 	switch mode {
-	case modeVUMeter, modeFireSound, modeSparkle:
+	case modeVUMeter, modeFireSound, modeSparkle, modeQA:
 		return true
 	default:
 		return false
@@ -89,7 +93,7 @@ func animationNeedsMic(mode int) bool {
 // or so which looks annoying.
 func newFrame(mode, variant int) {
 	switch mode {
-	case modeVUMeter:
+	case modeVUMeter, modeQA:
 		addPower(uint16(processSamples()))
 	case modeFireSound:
 		addPower(uint16(processSamples()))
@@ -696,4 +700,24 @@ func powerOn(led, frame int) Color {
 		return NewColor(0, 0x3f, 0) // green
 	}
 	return NewColor(0, 0, 0)
+}
+
+func testQAPattern(led, frame, variant int) Color {
+	switch variant {
+	case 0:
+		// Test all LED colors.
+		switch (frame / 32) % 4 {
+		case 0:
+			return NewColor(0xff, 0, 0)
+		case 1:
+			return NewColor(0, 0xff, 0)
+		case 2:
+			return NewColor(0, 0, 0xff)
+		default:
+			return NewColor(0xff, 0xff, 0xff)
+		}
+	default:
+		// Test microphone (after 'variant' press).
+		return vuMeter(led, frame, 0)
+	}
 }

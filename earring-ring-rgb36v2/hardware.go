@@ -273,8 +273,13 @@ func loadState() {
 		uint32(storedState[len(storedState)-2])<<16 |
 		uint32(storedState[len(storedState)-1])<<24
 	if calculatedHash != storedHash {
-		// Reset the state to initial.
-		storedState = [len(storedState)]uint8{0: initialMode}
+		if storedHash == 0 {
+			// First use: show QA pattern.
+			storedState = [len(storedState)]uint8{stateOffsetMode: modeQA}
+		} else {
+			// Reset the state to initial.
+			storedState = [len(storedState)]uint8{stateOffsetMode: initialMode}
+		}
 	}
 }
 
