@@ -1,4 +1,4 @@
-//go:build !bitbang3 && !bitbang2 && !bitbang1
+//go:build baremetal
 
 package main
 
