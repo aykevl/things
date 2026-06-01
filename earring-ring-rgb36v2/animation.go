@@ -611,22 +611,19 @@ var sparkleColors [numLEDs]Color
 var sparkleBrightness [numLEDs]uint8
 
 var sparkleVariants = [...][2]Color{
-	[2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0xff, 0x00, 0x00)}, // purple, red
 	[2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0x00, 0x99, 0x66)}, // purple, turquoise
-	[2]Color{NewColor(0xff, 0xff, 0x00), NewColor(0x00, 0xff, 0x00)}, // yellow, green
+	[2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0xff, 0x00, 0x00)}, // purple, red
 	[2]Color{NewColor(0xff, 0x00, 0x00), NewColor(0xff, 0xff, 0x00)}, // red, yellow
+	[2]Color{NewColor(0xff, 0xff, 0x00), NewColor(0x00, 0xff, 0x00)}, // yellow, green
 }
 
 func sparkleNextFrame(variant int) {
 	addPower(uint16(processSamples()))
 
-	vol := int(currentVolume()) - 16384
-	if vol < 0 {
-		return
-	}
+	vol := int(currentVolume()) - 4096
 
 	r := rand()
-	if uint32(vol) > r&0xffff {
+	if uint32(vol) > r&0x7fff {
 		// Create a new sparkle!
 
 		// Pick an index at random.
@@ -646,10 +643,10 @@ func sparkleNextFrame(variant int) {
 
 func makeSparkle(led, frame, variant int) Color {
 	dimming := sparkleBrightness[led]
-	if dimming < 8 {
+	if dimming < 32 {
 		return NewColor(0, 0, 0)
 	}
-	sparkleBrightness[led] = dimming - 8
+	sparkleBrightness[led] = dimming - 32
 	return sparkleColors[led].Scale(int(dimming))
 }
 
