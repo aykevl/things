@@ -51,8 +51,15 @@ func currentVolume() uint32 {
 	return powerBufferSum * powerNormalizer
 }
 
+var micEnabled bool
+
 //go:noinline
 func enableMic() {
+	if micEnabled {
+		return
+	}
+	micEnabled = true
+
 	// Increase system clock speed: animations with the microphone need slightly
 	// higher framerate to look good.
 	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3)
@@ -113,6 +120,11 @@ func enableMic() {
 
 //go:noinline
 func disableMic() {
+	if !micEnabled {
+		return
+	}
+	micEnabled = false
+
 	// Disable power to the microphone.
 	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 
