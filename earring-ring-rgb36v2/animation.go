@@ -80,6 +80,24 @@ func animationNeedsMic(mode int) bool {
 	}
 }
 
+// Called on every new frame, to do per-frame processing.
+// It should be very fast, otherwise the earrings will dip in brightness at 30Hz
+// or so which looks annoying.
+func newFrame(mode int) {
+	switch mode {
+	case modeVUMeter:
+		addPower(uint16(processSamples()))
+	case modeFireSound:
+		addPower(uint16(processSamples()))
+		vol := uint8(min(currentVolume()*3/512, 0xff))
+		volumeHistoryIndex++
+		if volumeHistoryIndex == 36 {
+			volumeHistoryIndex = 0
+		}
+		volumeHistory[volumeHistoryIndex] = vol
+	}
+}
+
 var noisePatterns = [...]struct {
 	speed   uint8            // higher means faster
 	spread  uint8            // higher means colors more close together
@@ -259,16 +277,6 @@ var volumeHistory [36]uint8
 var volumeHistoryIndex uint8
 
 func fireSound(led, frame, variant int) Color {
-	// Add entry to the volume history.
-	if led == 0 {
-		vol := uint8(min(currentVolume()*3/512, 0xff))
-		volumeHistoryIndex++
-		if volumeHistoryIndex == 36 {
-			volumeHistoryIndex = 0
-		}
-		volumeHistory[volumeHistoryIndex] = vol
-	}
-
 	// LED indices calculated, so they start from the bottom and alternate
 	// between the two sides:
 	// LED 14: index 6

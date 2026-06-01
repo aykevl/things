@@ -86,10 +86,9 @@ func main() {
 			index = 0
 			frame++
 
-			// Process the audio samples collected during the last frame.
-			if animationNeedsMic(mode) {
-				addPower(uint16(processSamples()))
-			}
+			// Do per animation process, such as processing audio samples
+			// collected during the previous frame.
+			newFrame(mode)
 
 			// Read the mode button every frame update.
 			modePressed := !button1.Get() // low means pressed
