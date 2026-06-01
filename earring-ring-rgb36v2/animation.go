@@ -17,7 +17,7 @@ const (
 	modeFireSound
 	modeStatic
 	modeFlag
-	modeSoundReactive
+	modeVUMeter
 	modeLast
 
 	modeTest
@@ -30,6 +30,7 @@ var variantsPerMode = [...]uint8{
 	modeFire:      6,
 	modeFireSound: 6,
 	modeStatic:    uint8(len(staticColors)),
+	modeVUMeter:   uint8(len(staticColors)),
 	modeFlag:      uint8(len(allFlags)),
 }
 
@@ -58,8 +59,8 @@ func animate(mode, variant, led, frame int) Color {
 		return staticColor(led, frame, variant)
 	case modeFlag:
 		return showFlag(led, frame, variant)
-	case modeSoundReactive:
-		return soundReactive(led, frame)
+	case modeVUMeter:
+		return vuMeter(led, frame, variant)
 	case modeTest:
 		return testPulse(led, frame)
 	case modePowerOn:
@@ -72,7 +73,7 @@ func animate(mode, variant, led, frame int) Color {
 
 func animationNeedsMic(mode int) bool {
 	switch mode {
-	case modeSoundReactive, modeFireSound:
+	case modeVUMeter, modeFireSound:
 		return true
 	default:
 		return false
@@ -551,16 +552,41 @@ func showFlag(led, frame, variant int) Color {
 	return allFlags[variant][led]
 }
 
-// Basic sound reactive animation.
-func soundReactive(led, frame int) Color {
+// Basic VU meter like animation, with different colors.
+func vuMeter(led, frame, variant int) Color {
+	// LED indices calculated, so they start from the bottom and alternate
+	// between the two sides:
+	// LED 14: index 6
+	// LED 15: index 4
+	// LED 16: index 2
+	// LED 17: index 0
+	// LED 18: index 1
+	// LED 18: index 3
+	// LED 18: index 5
+	var ledIndex int
+	if led < 18 {
+		ledIndex = (17 - led) * 2
+	} else {
+		ledIndex = (led-18)*2 + 1
+	}
+
+	// Determine color for this VU meter.
+	c := NewColor(0, 0, 0)
+	if variant < len(staticColors) {
+		c = staticColors[variant]
+	}
+
 	frameIntensity := int(currentVolume()) / 32
-	intensity := frameIntensity - led*64
+	intensity := frameIntensity - ledIndex*64
 	if intensity > 255 {
-		return NewColor(255, 0, 0)
+		return c
 	} else if intensity < 0 {
 		return NewColor(0, 0, 0)
 	} else {
-		return NewColor(uint8(intensity), 0, 0)
+		return NewColor(
+			uint8((int(c.R())*intensity)/256),
+			uint8((int(c.G())*intensity)/256),
+			uint8((int(c.B())*intensity)/256))
 	}
 }
 
