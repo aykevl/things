@@ -17,6 +17,7 @@ const (
 	modeFireSound
 	modeStatic
 	modeFlag
+	modeSparkle
 	modeVUMeter
 	modeLast
 
@@ -32,6 +33,7 @@ var variantsPerMode = [...]uint8{
 	modeStatic:    uint8(len(staticColors)),
 	modeVUMeter:   uint8(len(staticColors)),
 	modeFlag:      uint8(len(allFlags)),
+	modeSparkle:   uint8(len(sparkleVariants)),
 }
 
 // Cycle to the next variant within a mode.
@@ -61,6 +63,8 @@ func animate(mode, variant, led, frame int) Color {
 		return showFlag(led, frame, variant)
 	case modeVUMeter:
 		return vuMeter(led, frame, variant)
+	case modeSparkle:
+		return makeSparkle(led, frame, variant)
 	case modeTest:
 		return testPulse(led, frame)
 	case modePowerOn:
@@ -73,7 +77,7 @@ func animate(mode, variant, led, frame int) Color {
 
 func animationNeedsMic(mode int) bool {
 	switch mode {
-	case modeVUMeter, modeFireSound:
+	case modeVUMeter, modeFireSound, modeSparkle:
 		return true
 	default:
 		return false
@@ -83,7 +87,7 @@ func animationNeedsMic(mode int) bool {
 // Called on every new frame, to do per-frame processing.
 // It should be very fast, otherwise the earrings will dip in brightness at 30Hz
 // or so which looks annoying.
-func newFrame(mode int) {
+func newFrame(mode, variant int) {
 	switch mode {
 	case modeVUMeter:
 		addPower(uint16(processSamples()))
@@ -95,6 +99,8 @@ func newFrame(mode int) {
 			volumeHistoryIndex = 0
 		}
 		volumeHistory[volumeHistoryIndex] = vol
+	case modeSparkle:
+		sparkleNextFrame(variant)
 	}
 }
 
@@ -591,11 +597,60 @@ func vuMeter(led, frame, variant int) Color {
 	} else if intensity < 0 {
 		return NewColor(0, 0, 0)
 	} else {
-		return NewColor(
-			uint8((int(c.R())*intensity)/256),
-			uint8((int(c.G())*intensity)/256),
-			uint8((int(c.B())*intensity)/256))
+		return c.Scale(intensity)
 	}
+}
+
+// Sparkle animation!
+// Credits to this person for suggesting it:
+// https://hachyderm.io/@wmd@chaos.social/115816155535125138
+// It's been vaguely inspired by the HALO-90 animation but this one looks very
+// different.
+
+var sparkleColors [numLEDs]Color
+var sparkleBrightness [numLEDs]uint8
+
+var sparkleVariants = [...][2]Color{
+	[2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0xff, 0x00, 0x00)}, // purple, red
+	[2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0x00, 0x99, 0x66)}, // purple, turquoise
+	[2]Color{NewColor(0xff, 0xff, 0x00), NewColor(0x00, 0xff, 0x00)}, // yellow, green
+	[2]Color{NewColor(0xff, 0x00, 0x00), NewColor(0xff, 0xff, 0x00)}, // red, yellow
+}
+
+func sparkleNextFrame(variant int) {
+	addPower(uint16(processSamples()))
+
+	vol := int(currentVolume()) - 16384
+	if vol < 0 {
+		return
+	}
+
+	r := rand()
+	if uint32(vol) > r&0xffff {
+		// Create a new sparkle!
+
+		// Pick an index at random.
+		index := fastModulo36(vol & 0xff)
+
+		// Pick one of the two colors.
+		if variant > len(sparkleVariants) {
+			variant = 0 // shouldn't happen, but just to be sure
+		}
+		c := sparkleVariants[variant][r>>31]
+
+		// Store this sparkle.
+		sparkleColors[index] = c
+		sparkleBrightness[index] = 0xff
+	}
+}
+
+func makeSparkle(led, frame, variant int) Color {
+	dimming := sparkleBrightness[led]
+	if dimming < 8 {
+		return NewColor(0, 0, 0)
+	}
+	sparkleBrightness[led] = dimming - 8
+	return sparkleColors[led].Scale(int(dimming))
 }
 
 // Blink the first LED, roughly 0.5s on, 0.5s off.
