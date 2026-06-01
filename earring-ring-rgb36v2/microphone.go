@@ -93,6 +93,22 @@ func enableMic() {
 
 	// Start first continuous conversion.
 	stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
+
+	// Calibrate the DC offset.
+	sum := 0
+	const calibNum = 1024
+	for range calibNum {
+		// Wait until ready.
+		for (stm32.ADC.ISR.Get() & stm32.ADC_ISR_EOC) == 0 {
+		}
+
+		// Read sample, and add it to the buffer.
+		sum += int(stm32.ADC.DR.Get())
+
+		// Start the next conversion.
+		stm32.ADC.CR.Set(stm32.ADC_CR_ADEN | stm32.ADC_CR_ADSTART)
+	}
+	micDCOffset = sum / calibNum
 }
 
 //go:noinline
@@ -121,7 +137,7 @@ func updateMic(index int) {
 }
 
 // Estimated microphone DC offset, continuously updated.
-var micDCOffset int = 1250 // ~1250 seems to be a good start on at least some of these
+var micDCOffset int
 
 // Process the samples collected in the last frame.
 func processSamples() int {
@@ -136,6 +152,14 @@ func processSamples() int {
 		}
 		powerSum += sampleDiff
 	}
-	micDCOffset = sampleSum / len(micSamples)
+
+	// Slowly adjust the DC offset each update.
+	newOffset := sampleSum / len(micSamples)
+	if newOffset > micDCOffset {
+		micDCOffset++
+	} else {
+		micDCOffset--
+	}
+
 	return powerSum
 }
