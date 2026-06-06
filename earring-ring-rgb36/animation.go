@@ -25,6 +25,7 @@ const (
 	//modeFlagLesbian
 	//modeFlagPan
 	//modeFlagNonBinary
+	//modeSparkle
 	modeLast
 
 	modeTest
@@ -45,6 +46,8 @@ func animate(mode, led, frame int) Color {
 		return fire(led, frame, color.RGBA{G: 255})
 	case modeFireBlue:
 		return fire(led, frame, color.RGBA{B: 255})
+	case modeSparkle:
+		return makeSparkle(led, frame)
 	case modeFlagLGBT:
 		return showPalette(led, frame, &flagLGBT)
 	case modeFlagTrans:
@@ -63,6 +66,38 @@ func animate(mode, led, frame int) Color {
 		// bug
 		return errorPattern(led, frame)
 	}
+}
+
+var sparkleColors [numLEDs]Color
+var sparkleBrightness [numLEDs]uint8
+
+func sparkleNextFrame() {
+	r := rand()
+	if r > 0x7ffff {
+		// Create a new sparkle!
+
+		// Pick an index at random.
+		index := fastModulo36(int(r & 0xff))
+
+		// Pick one of the two colors.
+		c := [2]Color{NewColor(0xff, 0x00, 0xff), NewColor(0x00, 0x99, 0x66)}[r>>31]
+
+		// Store this sparkle.
+		sparkleColors[index] = c
+		sparkleBrightness[index] = 0xff
+	}
+}
+
+func makeSparkle(led, frame int) Color {
+	if led == 0 {
+		sparkleNextFrame()
+	}
+	dimming := sparkleBrightness[led]
+	if dimming < 32 {
+		return NewColor(0, 0, 0)
+	}
+	sparkleBrightness[led] = dimming - 32
+	return sparkleColors[led].Scale(int(dimming))
 }
 
 func noise(led, frame int) Color {
@@ -448,4 +483,26 @@ func powerOn(led, frame int) Color {
 		return NewColor(0, 0x3f, 0) // green
 	}
 	return NewColor(0, 0, 0)
+}
+
+var modulo36 = [256]uint8{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 0, 1, 2, 3}
+
+// Fast approximate modulo 36 operation.
+func fastModulo36(value int) int {
+	return int(modulo36[value&0xff])
+}
+
+var xorstate uint32 = 0xb90ccbd4 // just a random number to start
+
+func rand() uint32 {
+	xorstate = xorshift32(xorstate)
+	return xorstate
+}
+
+func xorshift32(state uint32) uint32 {
+	state *= 0x9ab4ffa3 // just a random number
+	state ^= state << 13
+	state ^= state >> 17
+	state ^= state << 5
+	return state
 }
