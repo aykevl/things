@@ -22,11 +22,14 @@ const (
 	modeFireBlue
 	modeFlagLGBT
 	modeFlagTrans
-	//modeFlagLesbian
-	//modeFlagPan
-	//modeFlagNonBinary
-	//modeSparkle
 	modeLast
+
+	// Some more modes that were added later.
+	modeFlagTransAnimated
+	modeFlagLesbian
+	modeFlagPan
+	modeFlagNonBinary
+	modeSparkle
 
 	modeTest
 	modePowerOn
@@ -52,6 +55,8 @@ func animate(mode, led, frame int) Color {
 		return showPalette(led, frame, &flagLGBT)
 	case modeFlagTrans:
 		return showPalette(led, frame, &flagTrans)
+	case modeFlagTransAnimated:
+		return showPaletteAnimated(led, frame, &flagTrans)
 	case modeFlagLesbian:
 		return showPalette(led, frame, &flagLesbian)
 	case modeFlagPan:
@@ -435,6 +440,10 @@ var (
 
 func showPalette(led, frame int, palette *Palette) Color {
 	return palette[led]
+}
+
+func showPaletteAnimated(led, frame int, palette *Palette) Color {
+	return palette[(frame-led+36)%36]
 }
 
 // Blink the first LED, roughly 0.5s on, 0.5s off.
