@@ -19,6 +19,9 @@ func configureLEDs() {
 	// mode (high/low depending on anode/cathode) or analog mode which disables
 	// the output entirely.
 
+	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
+	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
+
 	A1.High()
 	A2.High()
 	A3.High()
@@ -58,6 +61,9 @@ func disableLEDs() {
 	A10.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 	A11.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 	A12.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+
+	// Restore OTYPER to default value.
+	stm32.GPIOA.OTYPER.Set(0)
 }
 
 // This function really shouldn't be inlined, since it is called in a few places

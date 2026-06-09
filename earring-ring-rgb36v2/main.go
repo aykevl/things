@@ -30,9 +30,10 @@ func main() {
 	if animationNeedsMic(mode) {
 		enableMic()
 	}
-	framesPressed := 0
+	initMode(mode)
+	modeFramesPressed := 0
 	previousMode := 0
-	colorBtnWasPressed := false
+	variantBtnFramesPressed := 0
 	for {
 		led0 := animate(mode, variant, index+0, frame)
 		led1 := animate(mode, variant, index+12, frame)
@@ -62,7 +63,7 @@ func main() {
 
 			// Read the mode button every frame update.
 			modePressed := button1Pressed()
-			if framesPressed == 30 {
+			if modeFramesPressed == 30 {
 				// Always disable the microphone when sleeping.
 				disableMic()
 
@@ -76,7 +77,7 @@ func main() {
 				previousMode = mode
 				mode = modePowerOn
 				frame = 0
-				framesPressed = -0x8000_0000 // don't switch to the next animation on button release
+				modeFramesPressed = -0x8000_0000 // don't switch to the next animation on button release
 			}
 			if mode == modePowerOn {
 				if frame == numLEDs/2 {
@@ -88,7 +89,7 @@ func main() {
 					}
 				}
 			} else {
-				if !modePressed && framesPressed > 0 {
+				if !modePressed && modeFramesPressed > 0 {
 					// Move to the next mode.
 					mode++
 					if mode >= modeLast {
@@ -112,24 +113,43 @@ func main() {
 					} else {
 						disableMic()
 					}
+
+					initMode(mode)
 				}
 
 				// Switch to the next animation variant when the variant button
 				// is released.
 				variantBtnPressed := button2Pressed()
-				if !variantBtnPressed && colorBtnWasPressed {
+				if !variantBtnPressed && variantBtnFramesPressed != 0 {
 					variant = animationNextVariant(mode, variant)
 					if mode < len(modeVariants) {
 						modeVariants[mode] = uint8(variant)
 					}
 					saveState()
 				}
-				colorBtnWasPressed = variantBtnPressed
+				if variantBtnPressed {
+					variantBtnFramesPressed++
+				} else {
+					variantBtnFramesPressed = 0
+				}
+				if variantBtnFramesPressed == 30 {
+					switch mode {
+					case modeCustom0:
+						dataRecv(0)
+						customLoadPattern(0)
+					case modeCustom1:
+						dataRecv(1)
+						customLoadPattern(1)
+					case modeCustom2:
+						dataRecv(2)
+						customLoadPattern(2)
+					}
+				}
 			}
 			if modePressed {
-				framesPressed++
+				modeFramesPressed++
 			} else {
-				framesPressed = 0
+				modeFramesPressed = 0
 			}
 		}
 	}

@@ -7,6 +7,7 @@ import (
 	"device/stm32"
 	"machine"
 	"runtime/volatile"
+	"unsafe"
 )
 
 const (
@@ -25,6 +26,8 @@ const (
 
 	button1 = machine.PB7
 	button2 = machine.PB3
+
+	micPin = machine.PB1
 )
 
 // Set to one from the interrupt to indicate the button was pressed.
@@ -37,9 +40,6 @@ func initHardware() {
 
 	// Configure pins
 	configureLEDs()
-
-	// Set A1-A12 as open drain (and importantly, skip SWDIO/SWCLK)
-	stm32.GPIOA.OTYPER.Set(0b1000_0111_1111_1111)
 
 	setClockSpeed()
 
@@ -178,8 +178,8 @@ func enableMic() {
 	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3)
 
 	// Power on microphone.
-	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	machine.PB1.High()
+	micPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	micPin.High()
 
 	// Provide clock to ADC.
 	// Note that PCLK2 is divided when the mic is disabled to save power (~1µA),
@@ -239,7 +239,7 @@ func disableMic() {
 	micEnabled = false
 
 	// Disable power to the microphone.
-	machine.PB1.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
+	micPin.Configure(machine.PinConfig{Mode: machine.PinInputAnalog})
 
 	// Shut down ADC.
 	stm32.RCC.APB2RSTR.Set(stm32.RCC_APB2RSTR_ADCRST)
@@ -284,6 +284,14 @@ func loadState() {
 }
 
 func saveState() {
+	// Do not go immediately to these custom modes on startup: they might be
+	// corrupted.
+	// TODO: but how would you replace them?
+	switch storedState[stateOffsetMode] {
+	case modeCustom0, modeCustom1, modeCustom2:
+		storedState[stateOffsetMode] = initialMode
+	}
+
 	// Calculate the hash for this state.
 	hash := hash32(storedState[:len(storedState)-4])
 	storedState[len(storedState)-4] = uint8(hash >> 0)
@@ -308,4 +316,49 @@ func hash32(buf []byte) uint32 {
 		result *= 16777619  // FNV prime
 	}
 	return result
+}
+
+func loadPattern(slot int) []byte {
+	// We also store config info in flash, make sure to leave it alone.
+	patternsFlashEnd := machine.FlashDataEnd() - uintptr(machine.Flash.EraseBlockSize())
+
+	slotAddr := patternsFlashEnd - slotSize*uintptr(slot+1)
+	animationInFlash := unsafe.Slice((*uint32)(unsafe.Pointer(slotAddr)), slotSize/4)
+	copy(animationBuf[:], animationInFlash)
+
+	fileSize := int(animationInFlash[0])
+	if fileSize > slotSize-4 {
+		fileSize = 0
+	}
+
+	return unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[1:]))), fileSize)
+}
+
+// Store a pattern in flash.
+func storePattern(slot int) (ok bool) {
+	// We also store config info in flash, make sure to leave it alone.
+	patternsFlashEnd := uintptr(machine.Flash.Size()) - uintptr(machine.Flash.EraseBlockSize())
+
+	// Find the start address (in machine.Flash) for this slot.
+	slotAddr := patternsFlashEnd - slotSize*uintptr(slot+1)
+
+	// Clear flash at the destination.
+	blockStart := int(slotAddr) / int(machine.Flash.EraseBlockSize())
+	numBlocks := slotSize / int(machine.Flash.EraseBlockSize())
+	if blockStart < 0 {
+		return false
+	}
+	err := machine.Flash.EraseBlocks(int64(blockStart), int64(numBlocks))
+	if err != nil {
+		return false
+	}
+
+	// Write the pattern to flash.
+	data8 := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[:]))), len(animationBuf)*4)
+	_, err = machine.Flash.WriteAt(data8, int64(slotAddr))
+	if err != nil {
+		return false
+	}
+
+	return true
 }

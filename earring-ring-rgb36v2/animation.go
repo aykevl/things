@@ -2,7 +2,9 @@ package main
 
 import (
 	"image/color"
+	"math/bits"
 
+	"codeberg.org/maaike328p/led-editor/pattern"
 	"github.com/aykevl/ledsgo"
 )
 
@@ -20,6 +22,11 @@ const (
 	modeSparkle
 	modeVUMeter
 	modeLast
+
+	// Hidden since this is not yet fully supported.
+	modeCustom0
+	modeCustom1
+	modeCustom2
 
 	modeTest
 	modeQA
@@ -67,6 +74,12 @@ func animate(mode, variant, led, frame int) Color {
 		return vuMeter(led, frame, variant)
 	case modeSparkle:
 		return makeSparkle(led, frame, variant)
+	case modeCustom0:
+		return showCustom(led, frame, variant, 0)
+	case modeCustom1:
+		return showCustom(led, frame, variant, 1)
+	case modeCustom2:
+		return showCustom(led, frame, variant, 2)
 	case modeTest:
 		return testPulse(led, frame)
 	case modePowerOn:
@@ -105,6 +118,25 @@ func newFrame(mode, variant int) {
 		volumeHistory[volumeHistoryIndex] = vol
 	case modeSparkle:
 		sparkleNextFrame(variant)
+	case modeCustom0:
+		customNextFrame()
+	case modeCustom1:
+		customNextFrame()
+	case modeCustom2:
+		customNextFrame()
+	}
+}
+
+// Called when switching to a new mode. Can be used to initialize some state for
+// this mode.
+func initMode(mode int) {
+	switch mode {
+	case modeCustom0:
+		customLoadPattern(0)
+	case modeCustom1:
+		customLoadPattern(1)
+	case modeCustom2:
+		customLoadPattern(2)
 	}
 }
 
@@ -652,6 +684,39 @@ func makeSparkle(led, frame, variant int) Color {
 	}
 	sparkleBrightness[led] = dimming - 32
 	return sparkleColors[led].Scale(int(dimming))
+}
+
+// The loaded pattern. It is either loaded in memory, or not yet loaded.
+var customPattern pattern.Pattern
+
+func customLoadPattern(slot int) {
+	// Try to load the pattern.
+	file := loadPattern(slot)
+	customPattern = pattern.Load(file)
+
+	// TODO: call the setup function.
+}
+
+func customNextFrame() {
+	// TODO: call the nextFrame function.
+}
+
+// Show a pattern as it was loaded.
+func showCustom(led, frame, variant, slot int) Color {
+	switch customPattern.Shape() {
+	case pattern.ShapeCircle:
+		fn := customPattern.GetPixel1()
+		c := fn(led, int(frame)*30)
+		c = bits.ReverseBytes32(c << 8) // patterns use 0x00RRGGBB, we use 0x00BBGGRR so reverse
+		return Color(c)
+	default:
+		// Unsupported shape, or invalid (not loaded) pattern.
+		// Show a single LED instead.
+		if led <= slot {
+			return NewColor(0x00, 0x00, 0xff)
+		}
+		return NewColor(0, 0, 0)
+	}
 }
 
 // Blink the first LED, roughly 0.5s on, 0.5s off.
