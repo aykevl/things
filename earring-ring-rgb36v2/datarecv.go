@@ -104,17 +104,18 @@ func dataRecv(slot int) {
 	disableLEDs()
 
 	// Enable indicator lights.
-	A1.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
-	A3.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
-	A4.Configure(machine.PinConfig{Mode: machine.PinOutput})
-	A4.High()
+	A10.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
+	A12.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
+
+	A9.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	A9.High()
 	if slot >= 1 {
-		A5.Configure(machine.PinConfig{Mode: machine.PinOutput})
-		A5.High()
+		A8.Configure(machine.PinConfig{Mode: machine.PinOutput})
+		A8.High()
 	}
 	if slot >= 2 {
-		A6.Configure(machine.PinConfig{Mode: machine.PinOutput})
-		A6.High()
+		A7.Configure(machine.PinConfig{Mode: machine.PinOutput})
+		A7.High()
 	}
 
 	// Enable HSI16.
@@ -224,8 +225,9 @@ func dataRecv(slot int) {
 	// Restore the LEDs.
 	// Note: have to set the below two as input due to a bug (pull mode is not
 	// reset when switching from input to output mode).
-	A1.Configure(machine.PinConfig{Mode: machine.PinInput})
-	A3.Configure(machine.PinConfig{Mode: machine.PinInput})
+	A10.Configure(machine.PinConfig{Mode: machine.PinInput})
+	A11.Configure(machine.PinConfig{Mode: machine.PinInput})
+	A12.Configure(machine.PinConfig{Mode: machine.PinInput})
 	configureLEDs()
 }
 
