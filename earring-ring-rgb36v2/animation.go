@@ -104,7 +104,7 @@ func animationNeedsMic(mode int) bool {
 // Called on every new frame, to do per-frame processing.
 // It should be very fast, otherwise the earrings will dip in brightness at 30Hz
 // or so which looks annoying.
-func newFrame(mode, variant int) {
+func newFrame(mode, variant, frame int) {
 	switch mode {
 	case modeVUMeter, modeQA:
 		addPower(uint16(processSamples()))
@@ -119,11 +119,11 @@ func newFrame(mode, variant int) {
 	case modeSparkle:
 		sparkleNextFrame(variant)
 	case modeCustom0:
-		customNextFrame()
+		customNextFrame(frame)
 	case modeCustom1:
-		customNextFrame()
+		customNextFrame(frame)
 	case modeCustom2:
-		customNextFrame()
+		customNextFrame(frame)
 	}
 }
 
@@ -694,11 +694,19 @@ func customLoadPattern(slot int) {
 	file := loadPattern(slot)
 	customPattern = pattern.Load(file)
 
-	// TODO: call the setup function.
+	// Call the 'setup' function.
+	fn := customPattern.Setup1()
+	fn(numLEDs)
 }
 
-func customNextFrame() {
-	// TODO: call the nextFrame function.
+// Approximation, if the pattern runs fast enough.
+// We might want to use an actual timer instead some time in the future.
+const millisPerFrame = 32
+
+func customNextFrame(frame int) {
+	// Call the 'nextFrame' function.
+	fn := customPattern.NextFrame1()
+	fn(frame * millisPerFrame)
 }
 
 // Show a pattern as it was loaded.
@@ -706,7 +714,7 @@ func showCustom(led, frame, variant, slot int) Color {
 	switch customPattern.Shape() {
 	case pattern.ShapeCircle:
 		fn := customPattern.GetPixel1()
-		c := fn(led, int(frame)*30)
+		c := fn(led, int(frame)*millisPerFrame)
 		c = bits.ReverseBytes32(c << 8) // patterns use 0x00RRGGBB, we use 0x00BBGGRR so reverse
 		return Color(c)
 	default:

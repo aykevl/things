@@ -59,7 +59,7 @@ func main() {
 
 			// Do per animation process, such as processing audio samples
 			// collected during the previous frame.
-			newFrame(mode, variant)
+			newFrame(mode, variant, frame)
 
 			// Read the mode button every frame update.
 			modePressed := button1Pressed()
