@@ -189,12 +189,7 @@ func dataRecv(slot int) {
 
 	// Receive the data.
 	decoder.Initialize(animationBuf[1:], sampleRate)
-	for {
-		success := receiveData(slot)
-		if success {
-			break
-		}
-	}
+	receiveData(slot)
 
 	// Disable everything again.
 
@@ -231,8 +226,11 @@ func dataRecv(slot int) {
 	configureLEDs()
 }
 
-func receiveData(slot int) bool {
+func receiveData(slot int) {
 	decoder.Reset()
+
+	button2WasReleased := false // true once button 2 was released once (for exiting the receiver)
+	whiteWasOn := false         // used for blinking LED
 
 	// Wait for the first full symbol.
 	adcDataNextWindow(0)
@@ -256,13 +254,37 @@ func receiveData(slot int) bool {
 				// Fully received!
 				binary := decoder.Bytes()
 				animationBuf[0] = uint32(len(binary))
-				return storePattern(slot)
+				storePattern(slot)
+				return
 			}
+			decoder.Reset()
 			// Some error, restart.
-			return false
+			adcDataNextWindow(0)
+			continue
+		}
+
+		if decoder.ReceivingValid() && !whiteWasOn {
+			// Blink the LEDs white-ish.
+			A11.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
+			whiteWasOn = true
+		} else {
+			// Go back to the previous (purple) color.
+			A11.Configure(machine.PinConfig{Mode: machine.PinInput})
+			whiteWasOn = false
 		}
 
 		// Wait until the next symbol arrives.
 		adcDataNextWindow(uint32(result))
+
+		// Exit on button2 press (but don't exit immediately when button2 is
+		// still pressed due to the long press to enter receiving mode).
+		pressed := button2Pressed()
+		if !pressed {
+			button2WasReleased = true
+		}
+		if pressed && button2WasReleased {
+			// stop receiving
+			return
+		}
 	}
 }
