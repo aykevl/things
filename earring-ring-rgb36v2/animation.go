@@ -695,8 +695,10 @@ func customLoadPattern(slot int) {
 	customPattern = pattern.Load(file)
 
 	// Call the 'setup' function.
-	fn := customPattern.Setup1()
-	fn(numLEDs)
+	if customPattern.Valid() {
+		fn := customPattern.Setup1()
+		fn(numLEDs)
+	}
 }
 
 // Approximation, if the pattern runs fast enough.
@@ -705,8 +707,10 @@ const millisPerFrame = 32
 
 func customNextFrame(frame int) {
 	// Call the 'nextFrame' function.
-	fn := customPattern.NextFrame1()
-	fn(frame * millisPerFrame)
+	if customPattern.Valid() {
+		fn := customPattern.NextFrame1()
+		fn(frame * millisPerFrame)
+	}
 }
 
 // Show a pattern as it was loaded.
