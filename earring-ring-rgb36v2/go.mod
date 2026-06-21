@@ -3,7 +3,7 @@ module github.com/aykevl/things/earring-ring-rgb36v2
 go 1.24.0
 
 require (
-	codeberg.org/maaike328p/datatrans v0.0.0-20260619144300-eaabde9009c4
+	codeberg.org/maaike328p/datatrans v0.0.0-20260621153549-f3a0699ec737
 	codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260620162723-7ef83992f1b8
 	fyne.io/fyne/v2 v2.7.4
 	github.com/aykevl/ledsgo v0.0.0-20260326111253-b16f6f255ba4

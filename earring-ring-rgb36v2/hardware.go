@@ -327,7 +327,7 @@ func loadPattern(slot int) []byte {
 	copy(animationBuf[:], animationInFlash)
 
 	fileSize := int(animationInFlash[0])
-	if fileSize > slotSize-4 {
+	if fileSize > min(maxProgramSize, animationBufSize) {
 		fileSize = 0
 	}
 
@@ -354,7 +354,8 @@ func storePattern(slot int) (ok bool) {
 	}
 
 	// Write the pattern to flash.
-	data8 := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[:]))), len(animationBuf)*4)
+	data8Len := min(slotSize, len(animationBuf)*4)
+	data8 := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[:]))), data8Len)
 	_, err = machine.Flash.WriteAt(data8, int64(slotAddr))
 	if err != nil {
 		return false

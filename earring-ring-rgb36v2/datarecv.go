@@ -20,9 +20,19 @@ const (
 	windowSize = sampleRate / datatrans.SymbolsPerSecond
 )
 
+// Size of a program slot in flash memory.
 const slotSize = 1536 // 1.5kB
 
-var animationBuf [slotSize / 4]uint32
+// Maximum size of a program (smaller than slotSize because we also need to save
+// the program size).
+const maxProgramSize = slotSize - 4
+
+// Size (in bytes) of the buffer used during reception.
+// Should be bigger than the slot, so that the fountain code has some space to
+// work with.
+const animationBufSize = maxProgramSize + 1024
+
+var animationBuf [animationBufSize / 4]uint32
 
 //go:align 4
 var adcData [windowSize * 2]uint16
@@ -188,7 +198,7 @@ func dataRecv(slot int) {
 	adcDataNormalized[windowSize] = 0x7fff_ffff
 
 	// Receive the data.
-	decoder.Initialize(animationBuf[1:], sampleRate)
+	decoder.Initialize(animationBuf[1:], maxProgramSize, sampleRate)
 	receiveData(slot)
 
 	// Disable everything again.
