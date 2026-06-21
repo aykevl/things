@@ -135,9 +135,6 @@ func dataRecv(slot int) {
 	stm32.RCC.SetCFGR_HPRE(stm32.RCC_CFGR_HPRE_Div4)
 	stm32.RCC.SetCFGR_SW(stm32.RCC_CFGR_SW_HSI16)
 
-	// Reset the trim value (it will be calibrated during reception).
-	stm32.RCC.SetICSCR_HSI16TRIM(17)
-
 	// Power on microphone.
 	micPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	micPin.High()
@@ -196,6 +193,11 @@ func dataRecv(slot int) {
 	// Special marker used by the Goertzel implementation to know this is the
 	// end of the array.
 	adcDataNormalized[windowSize] = 0x7fff_ffff
+
+	// Reset the trim value (it will be calibrated during reception).
+	// This might need to be done a long time after enabling HSI16 to avoid a
+	// HardFault? Not sure.
+	stm32.RCC.SetICSCR_HSI16TRIM(16)
 
 	// Receive the data.
 	decoder.Initialize(animationBuf[1:], maxProgramSize, sampleRate)
