@@ -263,7 +263,12 @@ func receiveData(slot int) {
 		// Decoder had to stop for some reason (error or fully received).
 		if result < 0 {
 			if result == datatrans.ErrCodeReceived {
-				// Fully received!
+				// Fully received! Show green LEDs (while saving the binary):
+				A10.Configure(machine.PinConfig{Mode: machine.PinInput})
+				A11.Configure(machine.PinConfig{Mode: machine.PinInputPulldown})
+				A12.Configure(machine.PinConfig{Mode: machine.PinInput})
+
+				// Save the binary.
 				binary := decoder.Bytes()
 				animationBuf[0] = uint32(len(binary))
 				storePattern(slot)
