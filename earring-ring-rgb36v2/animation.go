@@ -724,7 +724,7 @@ func showCustom(led, frame, variant, slot int) Color {
 	default:
 		// Unsupported shape, or invalid (not loaded) pattern.
 		// Show a single LED instead.
-		if led <= slot {
+		if led < 18 && led+slot > 16 {
 			return NewColor(0x00, 0x00, 0xff)
 		}
 		return NewColor(0, 0, 0)
