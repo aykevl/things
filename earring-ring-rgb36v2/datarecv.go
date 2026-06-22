@@ -18,6 +18,9 @@ const (
 
 	// number of samples per window we do frequency analysis on
 	windowSize = sampleRate / datatrans.SymbolsPerSecond
+
+	systemClock    = 4.2e6
+	clockPrescaler = uint32(systemClock/sampleRate/2 - 1)
 )
 
 // Size of a program slot in flash memory.
@@ -131,9 +134,8 @@ func dataRecv(slot int) {
 	// Enable HSI16.
 	stm32.RCC.CR.SetBits(stm32.RCC_CR_HSI16ON)
 
-	// Switch to HSI16/4 as system clock.
-	stm32.RCC.SetCFGR_HPRE(stm32.RCC_CFGR_HPRE_Div4)
-	stm32.RCC.SetCFGR_SW(stm32.RCC_CFGR_SW_HSI16)
+	// Switch system clock to 4.2MHz.
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range6)
 
 	// Power on microphone.
 	micPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
@@ -160,8 +162,6 @@ func dataRecv(slot int) {
 	stm32.ADC.CHSELR.Set(1 << 8) // PB0=ADC_IN8
 
 	// Enable a timer, for use with the DMA.
-	const systemClock = 4e6
-	const clockPrescaler = uint32(systemClock/sampleRate/2 - 1)
 	stm32.RCC.SetAPB2ENR_TIM22EN(1)
 	stm32.TIM22.PSC.Set(clockPrescaler) // prescale so it counts at twice the samplerate
 	stm32.TIM22.ARR.Set(1)              // wraparound every other clock cycle
@@ -194,11 +194,6 @@ func dataRecv(slot int) {
 	// end of the array.
 	adcDataNormalized[windowSize] = 0x7fff_ffff
 
-	// Reset the trim value (it will be calibrated during reception).
-	// This might need to be done a long time after enabling HSI16 to avoid a
-	// HardFault? Not sure.
-	stm32.RCC.SetICSCR_HSI16TRIM(16)
-
 	// Receive the data.
 	decoder.Initialize(animationBuf[1:], maxProgramSize, sampleRate)
 	receiveData(slot)
@@ -229,6 +224,9 @@ func dataRecv(slot int) {
 	// Disable HSI16
 	stm32.RCC.CR.ClearBits(stm32.RCC_CR_HSI16ON)
 
+	// Switch system clock back to default.
+	stm32.RCC.SetICSCR_MSIRANGE(defaultMSIRANGE)
+
 	// Restore the LEDs.
 	// Note: have to set the below two as input due to a bug (pull mode is not
 	// reset when switching from input to output mode).
@@ -249,15 +247,15 @@ func receiveData(slot int) {
 	for {
 		result := decoder.ProcessSamples(adcDataNormalized[:])
 
-		// Adjust clock frequency, to calibrate to the audio source.
+		// Adjust timer prescaler, to calibrate to the audio source.
 		// This is also used to continuously adjust the frequency
-		trim := stm32.RCC.GetICSCR_HSI16TRIM()
+		trim := stm32.TIM22.PSC.Get()
 		if adj := decoder.SpeedAdjust(); adj < 0 {
-			trim = max(13, trim-1)
-			stm32.RCC.SetICSCR_HSI16TRIM(trim)
+			trim = min(clockPrescaler+4, trim+1)
+			stm32.TIM22.PSC.Set(trim)
 		} else if adj > 0 {
-			trim = min(19, trim+1)
-			stm32.RCC.SetICSCR_HSI16TRIM(trim)
+			trim = max(clockPrescaler-4, trim-1)
+			stm32.TIM22.PSC.Set(trim)
 		}
 
 		// Decoder had to stop for some reason (error or fully received).
