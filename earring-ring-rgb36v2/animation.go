@@ -707,8 +707,8 @@ const millisPerFrame = 32
 
 func customNextFrame(frame int) {
 	// Call the 'nextFrame' function.
-	if customPattern.Valid() {
-		fn := customPattern.NextFrame1()
+	fn := customPattern.NextFrame1()
+	if fn != nil {
 		fn(frame * millisPerFrame)
 	}
 }
