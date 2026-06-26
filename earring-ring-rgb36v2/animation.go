@@ -21,12 +21,10 @@ const (
 	modeFlag
 	modeSparkle
 	modeVUMeter
-	modeLast
-
-	// Hidden since this is not yet fully supported.
 	modeCustom0
 	modeCustom1
 	modeCustom2
+	modeLast
 
 	modeTest
 	modeQA
