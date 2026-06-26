@@ -19,7 +19,7 @@ I found the easiest way to program these earrings is using a clip with pogo-pins
 
 Then, when the wires are connected correctly, you can program them like this (use `-programmer=cmsis-dap` if you are using a DAPLink programmer):
 
-    tinygo flash -target=stm32l0x1 -opt=2 -programmer=stlink-v2
+    tinygo flash -target=stm32l0x1 -opt=2 -scheduler=none -gc=none -panic=trap -programmer=stlink-v2
 
 It should flash the binary to the earring, though it might need a few tries - for some reason the low clock frequency of the chip makes flashing a little bit less reliable.
 
