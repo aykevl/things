@@ -10,8 +10,8 @@ github.com/BurntSushi/toml v1.5.0 h1:W5quZX/G/csjUnuI8SUYlsHs9M38FC7znL0lIO+DvMg
 github.com/BurntSushi/toml v1.5.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da h1:u4fP3+V+W/547R/P7ezR5gH2zucphUZfQLc1ypNaXOg=
 github.com/aykevl/Go-simplex-noise v0.0.0-20191228011045-32260ebd32da/go.mod h1:Bn4qAbkSY0k0/wrXdqQ8bWPTv/Uww3uIJuQv/knzDdQ=
-github.com/aykevl/ledsgo v0.0.0-20260326111253-b16f6f255ba4 h1:47Pt2WbuQoY0IjmQYLX1bx0qO3qf0eB1oemT3fMi4A4=
-github.com/aykevl/ledsgo v0.0.0-20260326111253-b16f6f255ba4/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
+github.com/aykevl/ledsgo v0.0.0-20260626151027-da87c061fab6 h1:3ZCn4YM24i/jE2sXS9U55+VPPdn5hWWy9dcaAXs8soA=
+github.com/aykevl/ledsgo v0.0.0-20260626151027-da87c061fab6/go.mod h1:GDZBEY7gPGjvz/G3zLFirDcgbaN3nF4nvJ157+vnEro=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
