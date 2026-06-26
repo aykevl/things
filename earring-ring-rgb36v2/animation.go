@@ -132,11 +132,11 @@ func newFrame(mode, variant, frame int) {
 func initMode(mode int) {
 	switch mode {
 	case modeCustom0:
-		customLoadPattern(0)
+		customLoadPattern(0, true)
 	case modeCustom1:
-		customLoadPattern(1)
+		customLoadPattern(1, true)
 	case modeCustom2:
-		customLoadPattern(2)
+		customLoadPattern(2, true)
 	}
 }
 
@@ -689,15 +689,23 @@ func makeSparkle(led, frame, variant int) Color {
 // The loaded pattern. It is either loaded in memory, or not yet loaded.
 var customPattern pattern.Pattern
 
-func customLoadPattern(slot int) {
-	// Try to load the pattern.
-	file := loadPattern(slot)
-	customPattern = pattern.Load(file)
+var customPatternFile []byte // slice loaded in memory by loadPattern.
 
-	// Call the 'setup' function.
-	if customPattern.Valid() {
-		fn := customPattern.Setup1()
-		fn(numLEDs)
+var customPatternLoadDelay uint8 // delay in frames before running the pattern
+
+func customLoadPattern(slot int, delay bool) {
+	// Invalidate the previous pattern.
+	customPattern = pattern.Pattern{}
+
+	// Load the pattern into RAM, but do not yet initialize it.
+	// This is relatively slow.
+	customPatternFile = loadPattern(slot)
+
+	// Wait ~1s before actually loading this pattern, to give the user a chance
+	// to move past it or reflash it if it is broken.
+	customPatternLoadDelay = 1
+	if delay {
+		customPatternLoadDelay = 30
 	}
 }
 
@@ -710,25 +718,54 @@ func customNextFrame(frame int) {
 	fn := customPattern.NextFrame1()
 	if fn != nil {
 		fn(frame * millisPerFrame)
+		return
 	}
+
+	// No pattern loaded.
+	if customPatternLoadDelay > 1 {
+		// Wait a bit before actually running any code from the pattern.
+		// In particular, if the 2nd button is pressed, don't continue the
+		// countdown since the user might want to reflash the pattern with a
+		// working one (if this one is broken).
+		if !button2Pressed() {
+			customPatternLoadDelay--
+		}
+	} else if customPatternLoadDelay == 1 {
+		// We reached the end of the countdown!
+		customPatternLoadDelay = 0
+
+		// Load the pattern, it was already loaded in memory so this is fast.
+		customPattern = pattern.Load(customPatternFile)
+
+		// Check if the pattern is of the right type.
+		if customPattern.Shape() != pattern.ShapeCircle {
+			customPattern = pattern.Pattern{} // reset it, so it won't be run
+		}
+
+		// Call the 'setup' function, if the pattern was successfully loaded.
+		setup := customPattern.Setup1()
+		if setup != nil {
+			setup(numLEDs)
+		}
+	}
+	return
 }
 
 // Show a pattern as it was loaded.
 func showCustom(led, frame, variant, slot int) Color {
-	switch customPattern.Shape() {
-	case pattern.ShapeCircle:
-		fn := customPattern.GetPixel1()
+	fn := customPattern.GetPixel1()
+	if fn != nil {
 		c := fn(led, int(frame)*millisPerFrame)
 		c = bits.ReverseBytes32(c << 8) // patterns use 0x00RRGGBB, we use 0x00BBGGRR so reverse
 		return Color(c)
-	default:
-		// Unsupported shape, or invalid (not loaded) pattern.
-		// Show a single LED instead.
-		if led < 18 && led+slot > 16 {
-			return NewColor(0x00, 0x00, 0xff)
-		}
-		return NewColor(0, 0, 0)
 	}
+
+	// Unsupported shape, or invalid (not loaded) pattern.
+	// Show a single LED instead.
+	if led < 18 && led+slot > 16 {
+		return NewColor(0x00, 0x00, 0xff)
+	}
+	return NewColor(0, 0, 0)
 }
 
 // Blink the first LED, roughly 0.5s on, 0.5s off.

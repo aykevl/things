@@ -136,13 +136,13 @@ func main() {
 					switch mode {
 					case modeCustom0:
 						dataRecv(0)
-						customLoadPattern(0)
+						customLoadPattern(0, false)
 					case modeCustom1:
 						dataRecv(1)
-						customLoadPattern(1)
+						customLoadPattern(1, false)
 					case modeCustom2:
 						dataRecv(2)
-						customLoadPattern(2)
+						customLoadPattern(2, false)
 					}
 				}
 			}

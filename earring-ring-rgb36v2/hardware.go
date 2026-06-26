@@ -284,14 +284,6 @@ func loadState() {
 }
 
 func saveState() {
-	// Do not go immediately to these custom modes on startup: they might be
-	// corrupted.
-	// TODO: but how would you replace them?
-	switch storedState[stateOffsetMode] {
-	case modeCustom0, modeCustom1, modeCustom2:
-		storedState[stateOffsetMode] = initialMode
-	}
-
 	// Calculate the hash for this state.
 	hash := hash32(storedState[:len(storedState)-4])
 	storedState[len(storedState)-4] = uint8(hash >> 0)
