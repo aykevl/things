@@ -270,7 +270,9 @@ func receiveData(slot int) {
 				// Save the binary.
 				binary := decoder.Bytes()
 				animationBuf[0] = uint32(len(binary)) | hash32(binary)<<16
-				storePattern(slot)
+				if slot >= 0 { // slot < 0 means keep in RAM
+					storePattern(slot)
+				}
 				return
 			}
 			decoder.Reset()

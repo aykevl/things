@@ -313,15 +313,19 @@ func hash32(buf []byte) uint32 {
 }
 
 func loadPattern(slot int) []byte {
-	// We also store config info in flash, make sure to leave it alone.
-	patternsFlashEnd := machine.FlashDataEnd() - uintptr(machine.Flash.EraseBlockSize())
+	if slot >= 0 {
+		// Load from flash, replacing what was in animationBuf before.
 
-	slotAddr := patternsFlashEnd - slotSize*uintptr(slot+1)
-	animationInFlash := unsafe.Slice((*uint32)(unsafe.Pointer(slotAddr)), slotSize/4)
-	copy(animationBuf[:], animationInFlash)
+		// We also store config info in flash, make sure to leave it alone.
+		patternsFlashEnd := machine.FlashDataEnd() - uintptr(machine.Flash.EraseBlockSize())
 
-	fileSize := int(animationInFlash[0]) & 0xffff
-	hash := animationInFlash[0] >> 16
+		slotAddr := patternsFlashEnd - slotSize*uintptr(slot+1)
+		animationInFlash := unsafe.Slice((*uint32)(unsafe.Pointer(slotAddr)), slotSize/4)
+		copy(animationBuf[:], animationInFlash)
+	}
+
+	fileSize := int(animationBuf[0]) & 0xffff
+	hash := animationBuf[0] >> 16
 	if fileSize > min(maxProgramSize, animationBufSize) {
 		fileSize = 0
 	}

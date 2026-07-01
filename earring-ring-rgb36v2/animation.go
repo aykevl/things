@@ -98,7 +98,7 @@ func animate(mode, variant, led, frame int) Color {
 
 func animationNeedsMic(mode int) bool {
 	switch mode {
-	case modeVUMeter, modeFireSound, modeSparkle, modeQA:
+	case modeVUMeter, modeFireSound, modeSparkle:
 		return true
 	default:
 		return false
@@ -110,7 +110,7 @@ func animationNeedsMic(mode int) bool {
 // or so which looks annoying.
 func newFrame(mode, variant, frame int) {
 	switch mode {
-	case modeVUMeter, modeQA:
+	case modeVUMeter:
 		addPower(uint16(processSamples()))
 	case modeFireSound:
 		addPower(uint16(processSamples()))
@@ -127,6 +127,8 @@ func newFrame(mode, variant, frame int) {
 	case modeCustom1:
 		customNextFrame(frame, variant)
 	case modeCustom2:
+		customNextFrame(frame, variant)
+	case modeQA:
 		customNextFrame(frame, variant)
 	}
 }
@@ -827,7 +829,7 @@ func testQAPattern(led, frame, variant int) Color {
 	switch variant {
 	case 0:
 		// Test all LED colors.
-		switch (frame / 32) % 4 {
+		switch (frame / 16) % 4 {
 		case 0:
 			return NewColor(0xff, 0, 0)
 		case 1:
@@ -839,6 +841,22 @@ func testQAPattern(led, frame, variant int) Color {
 		}
 	default:
 		// Test microphone (after 'variant' press).
-		return vuMeter(led, frame, 0)
+		if !customPattern.Valid() && customPatternLoadDelay == 0 {
+			// Load the pattern at "slot" -1, which indicates it should be kept
+			// in RAM and not written to flash.
+			dataRecv(-1)
+			customLoadPattern(-1, false)
+		}
+
+		// Run this pattern from RAM, if possible.
+		fn := customPattern.GetPixel1()
+		if fn != nil {
+			c := fn(led, int(frame)*millisPerFrame)
+			c = bits.ReverseBytes32(c << 8) // patterns use 0x00RRGGBB, we use 0x00BBGGRR so reverse
+			return Color(c)
+		}
+
+		// If something fails, show a red circle.
+		return NewColor(0xff, 0x00, 0x00)
 	}
 }
