@@ -121,11 +121,14 @@ func main() {
 				// is released.
 				variantBtnPressed := button2Pressed()
 				if !variantBtnPressed && variantBtnFramesPressed != 0 {
-					variant = animationNextVariant(mode, variant)
-					if mode < len(modeVariants) {
-						modeVariants[mode] = uint8(variant)
+					newVariant := animationNextVariant(mode, variant)
+					if newVariant != variant {
+						variant = newVariant
+						if mode < len(modeVariants) {
+							modeVariants[mode] = uint8(variant)
+						}
+						saveState()
 					}
-					saveState()
 				}
 				if variantBtnPressed {
 					variantBtnFramesPressed++
@@ -133,16 +136,24 @@ func main() {
 					variantBtnFramesPressed = 0
 				}
 				if variantBtnFramesPressed == 30 {
-					switch mode {
-					case modeCustom0:
-						dataRecv(0)
-						customLoadPattern(0, false)
-					case modeCustom1:
-						dataRecv(1)
-						customLoadPattern(1, false)
-					case modeCustom2:
-						dataRecv(2)
-						customLoadPattern(2, false)
+					slot := mode - modeCustom0
+					if slot >= 0 && slot < 3 {
+						// Long press is to receive data, not to switch to the
+						// next variant.
+						variantBtnFramesPressed = 0
+
+						// Receive the data, and write it to flash.
+						dataRecv(slot)
+
+						// Immediately start running this pattern.
+						customLoadPattern(slot, false)
+
+						// Reset variant to 0, since the newly received one
+						// might have fewer variants than the one previously
+						// loaded.
+						variant = 0
+						modeVariants[mode] = uint8(variant)
+						saveState()
 					}
 				}
 			}

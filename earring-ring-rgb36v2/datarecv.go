@@ -112,6 +112,7 @@ func adcDataNextWindow(delayBefore uint32) {
 	dcOffset = dsp.CopyWithOffset(rawSamples, adcDataNormalized[:], dcOffset)
 }
 
+//go:noinline
 func dataRecv(slot int) {
 	// Reset LEDs.
 	disableLEDs()

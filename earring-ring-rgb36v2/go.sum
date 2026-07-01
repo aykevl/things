@@ -1,7 +1,7 @@
 codeberg.org/maaike328p/datatrans v0.0.0-20260621162709-eb1ca1d2023a h1:OWLhiexvKd3GcH2BrBp8G+5/H7b63hHIaajuOGgifZE=
 codeberg.org/maaike328p/datatrans v0.0.0-20260621162709-eb1ca1d2023a/go.mod h1:DYfDZVvkrenilejYzVEB0yaYlS8v4QZqo/4KJntz49w=
-codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260620162723-7ef83992f1b8 h1:EthpCPx1t9tEITUVhzmAyj1wQ0khFBEn82eOLaqGANQ=
-codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260620162723-7ef83992f1b8/go.mod h1:XK5exbn1ZcnBkKFf09oC2zq2W9VD1xzfwBBS0IG/W/0=
+codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260701152238-d49a89065b01 h1:v6S2SqUPc3P7hRzR+hStu58ZD3/1O+6yaZixjljhTNg=
+codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260701152238-d49a89065b01/go.mod h1:XK5exbn1ZcnBkKFf09oC2zq2W9VD1xzfwBBS0IG/W/0=
 fyne.io/fyne/v2 v2.7.4 h1:OVCI5mT+Onb2kA4wlmGA5pLCqKik9f4NDb5jiR1OMTc=
 fyne.io/fyne/v2 v2.7.4/go.mod h1:ZD1mmhBY75mSa97IXl3MPlICd1uNHfCXYh5hKIlVOII=
 fyne.io/systray v1.12.1 h1:ygBD6aZXwiOmZoY5N+ukbH9pih0Kq6fYgVeMYbr5skQ=

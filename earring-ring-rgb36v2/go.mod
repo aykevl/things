@@ -4,7 +4,7 @@ go 1.24.0
 
 require (
 	codeberg.org/maaike328p/datatrans v0.0.0-20260621162709-eb1ca1d2023a
-	codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260620162723-7ef83992f1b8
+	codeberg.org/maaike328p/led-editor/pattern v0.0.0-20260701152238-d49a89065b01
 	fyne.io/fyne/v2 v2.7.4
 	github.com/aykevl/ledsgo v0.0.0-20260626151027-da87c061fab6
 )

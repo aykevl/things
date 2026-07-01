@@ -46,7 +46,13 @@ var variantsPerMode = [...]uint8{
 // Cycle to the next variant within a mode.
 func animationNextVariant(mode, variant int) int {
 	variant++
-	if mode >= len(variantsPerMode) {
+	if mode == modeCustom0 || mode == modeCustom1 || mode == modeCustom2 {
+		// Custom modes have their variant defined in the program itself.
+		if variant > customPattern.MaxVariant() {
+			variant = 0
+		}
+		customPattern.SetVariant(variant)
+	} else if mode >= len(variantsPerMode) {
 		variant = 0 // out of range
 	} else if variant >= int(variantsPerMode[mode]) {
 		variant = 0
@@ -117,11 +123,11 @@ func newFrame(mode, variant, frame int) {
 	case modeSparkle:
 		sparkleNextFrame(variant)
 	case modeCustom0:
-		customNextFrame(frame)
+		customNextFrame(frame, variant)
 	case modeCustom1:
-		customNextFrame(frame)
+		customNextFrame(frame, variant)
 	case modeCustom2:
-		customNextFrame(frame)
+		customNextFrame(frame, variant)
 	}
 }
 
@@ -711,7 +717,7 @@ func customLoadPattern(slot int, delay bool) {
 // We might want to use an actual timer instead some time in the future.
 const millisPerFrame = 32
 
-func customNextFrame(frame int) {
+func customNextFrame(frame, variant int) {
 	// Call the 'nextFrame' function.
 	fn := customPattern.NextFrame1()
 	if fn != nil {
@@ -739,6 +745,9 @@ func customNextFrame(frame int) {
 		if customPattern.Shape() != pattern.ShapeCircle {
 			customPattern = pattern.Pattern{} // reset it, so it won't be run
 		}
+
+		// Set the currently active variant.
+		customPattern.SetVariant(variant)
 
 		// Call the 'setup' function, if the pattern was successfully loaded.
 		setup := customPattern.Setup1()
