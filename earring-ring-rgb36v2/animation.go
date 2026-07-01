@@ -715,7 +715,7 @@ func customLoadPattern(slot int, delay bool) {
 
 // Approximation, if the pattern runs fast enough.
 // We might want to use an actual timer instead some time in the future.
-const millisPerFrame = 32
+const millisPerFrame = 37
 
 func customNextFrame(frame, variant int) {
 	// Call the 'nextFrame' function.
