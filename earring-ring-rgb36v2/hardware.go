@@ -301,6 +301,8 @@ func saveState() {
 // Get FNV-1a hash of the given memory buffer.
 //
 // https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function#FNV-1a_hash
+//
+//go:noinline
 func hash32(buf []byte) uint32 {
 	var result uint32 = 2166136261 // FNV offset basis
 	for _, c := range buf {
@@ -318,12 +320,17 @@ func loadPattern(slot int) []byte {
 	animationInFlash := unsafe.Slice((*uint32)(unsafe.Pointer(slotAddr)), slotSize/4)
 	copy(animationBuf[:], animationInFlash)
 
-	fileSize := int(animationInFlash[0])
+	fileSize := int(animationInFlash[0]) & 0xffff
+	hash := animationInFlash[0] >> 16
 	if fileSize > min(maxProgramSize, animationBufSize) {
 		fileSize = 0
 	}
+	file := unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[1:]))), fileSize)
+	if hash != hash32(file)&0xffff {
+		file = file[:0]
+	}
 
-	return unsafe.Slice((*byte)(unsafe.Pointer(unsafe.SliceData(animationBuf[1:]))), fileSize)
+	return file
 }
 
 // Store a pattern in flash.
