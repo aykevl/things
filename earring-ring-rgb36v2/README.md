@@ -2,11 +2,9 @@
 
 These earrings are the successor to my previous [36-LED earrings](../earring-ring-rgb36). The main changes are the addition of a microphone and a second button. The software has also been greatly extended with many new animation patterns.
 
-## Programming
+## Updating firmware
 
-Before you start, you need to have [TinyGo installed](https://tinygo.org/getting-started/install/).
-
-For programming, you will need an SWD programmer. Both [ST-Link](https://www.aliexpress.com/w/wholesale-st%2525252dlink-v2.html) and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
+For writing the firmware, you will need an SWD programmer. Both [ST-Link](https://www.aliexpress.com/w/wholesale-st%2525252dlink-v2.html) and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
 
   * Connect VCC to 3.3V, or don't connect it if you have a battery inserted (make sure to _never_ connect VCC when a battery is inserted!).
   * Connect GND to the programmer GND.
@@ -15,17 +13,31 @@ For programming, you will need an SWD programmer. Both [ST-Link](https://www.ali
 
 You normally don't need to connect RST, but it is exposed since it's possible to put the chip in a state where it doesn't respond to programming anymore an you need to briefly connect RST to GND to reset it.
 
-I found the easiest way to program these earrings is using a clip with pogo-pins, like [this one](https://nl.aliexpress.com/item/1005006712952020.html) (2.54mm distance, single row, 4 or 5 pins depending on needs). It makes quick iteration much easier.
+I found the easiest way to program these earrings is using a clip with pogo-pins, like [this one](https://nl.aliexpress.com/item/1005006712952020.html) (2.54mm distance, single row, 4 or 5 pins depending on needs). It makes quick iteration much easier. However, you may also be able to hold the 3-4 wires manually to the right pads, use [stackable header pins](https://www.aliexpress.com/w/wholesale-stackable-header-pins.html) to more easily hold them there, or solder them.
 
-Then, when the wires are connected correctly, you can program them like this (use `-programmer=cmsis-dap` if you are using a DAPLink programmer):
+Once everything is in place, you can update the firmware like this:
 
-    tinygo flash -target=stm32l0x1 -opt=2 -scheduler=none -gc=none -panic=trap -programmer=stlink-v2
+    openocd -f interface/stlink.cfg -f target/stm32l0.cfg -c 'program firmware.hex verify reset exit'
+
+(Replace `stlink` with `cmsis-dap` if you have a DAPLink based programmer, which is most of them nowadays).
+
+You may need to retry programming a few times until it says `** Verified OK **`.
+
+## Modifying the firmware
+
+You can change the firmware if you want for specific customizations not possible through [custom patterns](https://aykevl.nl/projects/earrings-rgb36v2#custom-patterns).
+
+ 1. Install [TinyGo](https://tinygo.org/getting-started/install/).
+ 2. Connect the wires and programmer as described above.
+ 3. Run the following command for programming (use `-programmer=cmsis-dap` if you are using a DAPLink programmer):
+
+        tinygo flash -target=stm32l0x1 -opt=2 -scheduler=none -gc=none -panic=trap -programmer=stlink-v2
 
 It should flash the binary to the earring, though it might need a few tries - for some reason the low clock frequency of the chip makes flashing a little bit less reliable.
 
 ## Writing your own patterns
 
-You can write your own pattern and flash it to the earring! All you need is some extra (cheap) hardware and some software on your own computer - see above.
+While these earrings support [custom patterns programmed through sound](https://aykevl.nl/projects/earrings-rgb36v2#custom-patterns), you may want to modify or add to the default set of patterns.
 
 First we need to add a new mode constant:
 
@@ -95,6 +107,11 @@ func myCustomAnimation(led, frame int) Color {
 ```
 
 You can also take a look at all the other animations in the file to get some ideas of what you can do. However, make sure to keep it simple! The earring is running at a low frequency and if the animation is too complex it will run slowly and the LEDs will be much dimmer.
+
+## Version history
+
+  * 2026-06-01: initial version
+  * 2026-07-01: added [custom pattern feature](https://aykevl.nl/projects/earrings-rgb36v2#custom-patterns)
 
 ## Credits
 
