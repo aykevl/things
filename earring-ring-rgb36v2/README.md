@@ -4,7 +4,9 @@ These earrings are the successor to my previous [36-LED earrings](../earring-rin
 
 ## Updating firmware
 
-For writing the firmware, you will need an SWD programmer. Both [ST-Link](https://www.aliexpress.com/w/wholesale-st%2525252dlink-v2.html) and DAPLink programmers have been tested and work fine. You can connect the wires as indicated on the PCB itself. Specifically:
+For writing the firmware, you will need an SWD programmer. Both [ST-Link](https://www.aliexpress.com/w/wholesale-st%2525252dlink-v2.html) and DAPLink programmers have been tested and work fine. You can even use a [Raspberry Pi Pico with a special firmware](https://github.com/raspberrypi/debugprobe/releases) as a [programmer](https://pip-assets.raspberrypi.com/categories/610-raspberry-pi-pico/documents/RP-008276-DS-1-getting-started-with-pico.pdf#page=19), use GP2 as SWCLK and GP3 as SWDIO.
+
+You can connect the programmer as indicated on the PCB itself. Specifically:
 
   * Connect VCC to 3.3V, or don't connect it if you have a battery inserted (make sure to _never_ connect VCC when a battery is inserted!).
   * Connect GND to the programmer GND.
