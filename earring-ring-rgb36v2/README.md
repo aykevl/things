@@ -23,9 +23,13 @@ Once everything is in place, you can update the firmware like this:
 
 (Replace `stlink` with `cmsis-dap` if you have a DAPLink based programmer, which is most of them nowadays).
 
+Alternatively, you can use [`probe-rs`](https://probe.rs/) which is a more modern tool:
+
+    probe-rs download --verify --chip=STM32L031G6Ux --binary-format=hex firmware.hex
+
 Some tips and tricks:
 
-  * You may need to retry a few times, the earrings run at a low enough frequency that they don't always recognize a debug probe is trying to reach them. If it says `** Verified OK **` it was flashed correctly.
+  * You may need to retry a few times, the earrings run at a low enough frequency that they don't always recognize a debug probe is trying to reach them. If it says `** Verified OK **` (OpenOCD) it was flashed correctly.
   * Double check the cables if things don't work, it's easy to miss a loose wire.
   * If all else fails, you can ask if someone at a nearby hackerspace wants to help you out. Or ask me if we meet at a hacker/chaos event - I will often carry a programmer with me.
 
