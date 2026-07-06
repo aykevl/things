@@ -1,0 +1,6 @@
+{
+	"inherits": ["stm32l0x1"],
+	"scheduler": "none",
+	"gc": "none",
+	"linkerscript": "stm32l031x6.ld"
+}

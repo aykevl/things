@@ -31,7 +31,7 @@ You can change the firmware if you want for specific customizations not possible
  2. Connect the wires and programmer as described above.
  3. Run the following command for programming (use `-programmer=cmsis-dap` if you are using a DAPLink programmer):
 
-        tinygo flash -target=stm32l0x1 -opt=2 -scheduler=none -gc=none -panic=trap -programmer=stlink-v2
+        tinygo flash -target=./stm32l0x1.json -opt=2 -panic=trap -programmer=stlink
 
 It should flash the binary to the earring, though it might need a few tries - for some reason the low clock frequency of the chip makes flashing a little bit less reliable.
 
