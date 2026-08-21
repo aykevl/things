@@ -3,11 +3,11 @@ package main
 import (
 	"image/color"
 	"machine"
+	"runtime/interrupt"
 	"time"
 
 	"github.com/aykevl/ledsgo"
 	"tinygo.org/x/drivers/scd4x"
-	"tinygo.org/x/drivers/sgp30"
 	"tinygo.org/x/drivers/ws2812"
 )
 
@@ -23,7 +23,6 @@ const measurementInterval = time.Second * 5
 
 var (
 	co2Sensor *scd4x.Device
-	vocSensor *sgp30.Device
 )
 
 type ledPosition struct {
@@ -45,14 +44,15 @@ var positions = [...]ledPosition{
 }
 
 func main() {
-	led := machine.LED
-	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	time.Sleep(time.Second * 1)
+	println("start")
 
 	LED_PIN.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	strip := ws2812.New(LED_PIN)
 
-	time.Sleep(time.Second * 1)
-	println("start")
+	LED_POWER_PIN.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	LED_POWER_PIN.High()
+
 	go runSensors()
 
 	var command byte
@@ -67,7 +67,7 @@ func main() {
 		if command != 0 {
 			switch command {
 			case 'D': // disable
-				animation = poweroff
+				animation = nil
 				command = 0
 			case 'W': // white
 				animation = white
@@ -96,6 +96,18 @@ func main() {
 					command = 0
 				}
 			}
+
+			LED_POWER_PIN.Set(animation != nil)
+			if animation == nil {
+				// Set the pin to high, so current won't leak through the data
+				// pin. (This reduces current to ~1mA and turns off the LEDs).
+				LED_PIN.High()
+			}
+		}
+
+		if animation == nil {
+			time.Sleep(50 * time.Millisecond)
+			continue
 		}
 
 		// Update colors.
@@ -106,12 +118,14 @@ func main() {
 		animation(t, leds)
 
 		// Send new colors to LEDs.
+		mask := interrupt.Disable()
 		for _, c := range leds {
 			strip.WriteByte(c.G) // G
 			strip.WriteByte(c.R) // R
 			strip.WriteByte(c.B) // B
 			strip.WriteByte(c.A) // W (alpha channel, used as white channel)
 		}
+		interrupt.Restore(mask)
 		time.Sleep(1 * time.Millisecond)
 	}
 }
@@ -141,12 +155,6 @@ func white(t uint64, leds []color.RGBA) {
 	}
 }
 
-func poweroff(t uint64, leds []color.RGBA) {
-	for i := range leds {
-		leds[i] = color.RGBA{}
-	}
-}
-
 func xorshift64(x uint64) uint64 {
 	// https://en.wikipedia.org/wiki/Xorshift
 	x ^= x << 13
@@ -159,14 +167,7 @@ func runSensors() {
 	configureSensors()
 
 	for n := uint64(0); ; n++ {
-		// Sample CO₂ every 10 seconds.
-		if n%10 == 0 && co2Sensor != nil {
-			sampleCO2Sensor(co2Sensor)
-		}
-		// Sample VOC every second.
-		if vocSensor != nil {
-			sampleVOCSensor(vocSensor)
-		}
+		sampleCO2Sensor(co2Sensor)
 		time.Sleep(time.Second)
 	}
 }
@@ -195,28 +196,22 @@ func configureSensors() {
 		}
 		println("configured!")
 
-		if err := sensor.StartPeriodicMeasurement(); err != nil {
+		if err := sensor.StartLowPowerPeriodicMeasurement(); err != nil {
 			println("could not start peridic measurement:", err)
 			return
 		}
 		co2Sensor = sensor
 	}
-	{
-		sensor := sgp30.New(bus)
-		if !sensor.Connected() {
-			println("VOC sensor not connected")
-			return
-		}
-		err := sensor.Configure(sgp30.Config{})
-		if err != nil {
-			println("VOC sensor could not be configured:", err.Error())
-			return
-		}
-		vocSensor = sensor
-	}
 }
 
 func sampleCO2Sensor(sensor *scd4x.Device) {
+	if ready, err := sensor.DataReady(); err != nil {
+		println("failed to read CO2:", err.Error())
+		return
+	} else if !ready {
+		return // no data ready
+	}
+
 	co2, err := sensor.ReadCO2()
 	if err != nil {
 		println("failed to read CO2:", err.Error())
@@ -237,14 +232,4 @@ func sampleCO2Sensor(sensor *scd4x.Device) {
 	println("CO2:        ", co2)
 	println("temperature:", temperature)
 	println("humidity:   ", humidity)
-}
-
-func sampleVOCSensor(sensor *sgp30.Device) {
-	err := sensor.Update(0)
-	if err != nil {
-		println("could not read VOC sensor:", err.Error())
-		return
-	}
-	println("CO2eq:      ", sensor.CO2())
-	println("TVOC        ", sensor.TVOC())
 }
