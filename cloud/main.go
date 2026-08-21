@@ -123,7 +123,6 @@ func main() {
 			strip.WriteByte(c.G) // G
 			strip.WriteByte(c.R) // R
 			strip.WriteByte(c.B) // B
-			strip.WriteByte(c.A) // W (alpha channel, used as white channel)
 		}
 		interrupt.Restore(mask)
 		time.Sleep(1 * time.Millisecond)
