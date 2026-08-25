@@ -9,6 +9,8 @@ const (
 	LEDRed   = machine.PA3 // TIM2 channel 4
 	LEDGreen = machine.PA2 // TIM2 channel 3
 	LEDBlue  = machine.PA1 // TIM2 channel 2
+
+	Button = machine.PA0
 )
 
 func main() {
@@ -18,14 +20,29 @@ func main() {
 	LEDGreen.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	LEDBlue.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
+	Button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
+
 	machine.TIM2.Configure(machine.PWMConfig{Period: 8000 * 4})
 	machine.TIM2.Channel(LEDRed)
 	machine.TIM2.Channel(LEDGreen)
 	machine.TIM2.Channel(LEDBlue)
 	println("top:", machine.TIM2.Top())
 
+	// Main loop
+	mode := firstMode
+	buttonWasPressed := false
 	for cycles := uint32(0); ; cycles++ {
-		animation(cycles)
+		animation(cycles, mode)
+
+		// Handle button presses.
+		buttonPressed := !Button.Get()
+		if buttonPressed && !buttonWasPressed {
+			mode++
+			if mode == modeLast {
+				mode = 0
+			}
+		}
+		buttonWasPressed = buttonPressed
 	}
 }
 
