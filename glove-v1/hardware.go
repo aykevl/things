@@ -22,7 +22,7 @@ func main() {
 
 	Button.Configure(machine.PinConfig{Mode: machine.PinInputPullup})
 
-	machine.TIM2.Configure(machine.PWMConfig{Period: 8000 * 4})
+	machine.TIM2.Configure(machine.PWMConfig{Period: 2000})
 	machine.TIM2.Channel(LEDRed)
 	machine.TIM2.Channel(LEDGreen)
 	machine.TIM2.Channel(LEDBlue)
@@ -48,10 +48,14 @@ func main() {
 
 func setColor(c Color) {
 	// Top is assumed to be a fixed number.
-	const top = 1024
-	machine.TIM2.Set(3, top-uint32(c.R())) // red
-	machine.TIM2.Set(2, top-uint32(c.G())) // green
-	machine.TIM2.Set(1, top-uint32(c.B())) // blue
+	const top = 64
+	const div = 8
+	r := c.R() / div
+	g := c.G() / div
+	b := c.B() / div
+	machine.TIM2.Set(3, top-uint32(r)) // red
+	machine.TIM2.Set(2, top-uint32(g)) // green
+	machine.TIM2.Set(1, top-uint32(b)) // blue
 }
 
 // Clock speed configuration. This has been copied from earring-ring-rgb36v2 mostly.
@@ -94,7 +98,7 @@ func setClockSpeed() {
 	stm32.RCC.SetAPB2ENR_TIM21EN(0)
 
 	// Set MSI clock speed.
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3)
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range5)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
