@@ -11,25 +11,30 @@ const (
 	LEDBlue  = machine.PA1 // TIM2 channel 2
 )
 
-func initHardware() {
+func main() {
 	setClockSpeed()
 
 	LEDRed.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	LEDGreen.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	LEDBlue.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
-	machine.TIM2.Configure(machine.PWMConfig{Period: 8000})
+	machine.TIM2.Configure(machine.PWMConfig{Period: 8000 * 4})
 	machine.TIM2.Channel(LEDRed)
 	machine.TIM2.Channel(LEDGreen)
 	machine.TIM2.Channel(LEDBlue)
+	println("top:", machine.TIM2.Top())
+
+	for cycles := uint32(0); ; cycles++ {
+		animation(cycles)
+	}
 }
 
-func setColor(r, g, b uint8) {
+func setColor(c Color) {
 	// Top is assumed to be a fixed number.
-	println("top:", machine.TIM2.Top())
-	machine.TIM2.Set(3, 256-uint32(r)) // red
-	machine.TIM2.Set(2, 256-uint32(g)) // green
-	machine.TIM2.Set(1, 256-uint32(b)) // blue
+	const top = 1024
+	machine.TIM2.Set(3, top-uint32(c.R())) // red
+	machine.TIM2.Set(2, top-uint32(c.G())) // green
+	machine.TIM2.Set(1, top-uint32(c.B())) // blue
 }
 
 // Clock speed configuration. This has been copied from earring-ring-rgb36v2 mostly.
@@ -72,7 +77,7 @@ func setClockSpeed() {
 	stm32.RCC.SetAPB2ENR_TIM21EN(0)
 
 	// Set MSI clock speed.
-	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range2)
+	stm32.RCC.SetICSCR_MSIRANGE(stm32.RCC_ICSCR_MSIRANGE_Range3)
 
 	// Reduce PCLK2/PCLK1 clocks since we don't need those peripherals (GPIO is
 	// directly connected to the CPU). This saves around ~1.2µA.
