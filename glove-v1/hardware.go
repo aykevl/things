@@ -30,19 +30,23 @@ func main() {
 
 	// Main loop
 	mode := firstMode
-	buttonWasPressed := false
+	buttonPressedCycles := 0
 	for cycles := uint32(0); ; cycles++ {
 		animation(cycles, mode)
 
 		// Handle button presses.
 		buttonPressed := !Button.Get()
-		if buttonPressed && !buttonWasPressed {
+		if !buttonPressed && buttonPressedCycles != 0 {
 			mode++
 			if mode == modeLast {
 				mode = 0
 			}
 		}
-		buttonWasPressed = buttonPressed
+		if buttonPressed {
+			buttonPressedCycles++
+		} else {
+			buttonPressedCycles = 0
+		}
 	}
 }
 
