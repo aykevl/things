@@ -3,7 +3,8 @@ package main
 const (
 	modeTest = iota
 	modePurple
-	modeTrail
+	modeTrail0
+	modeTrail1
 	modeLast
 
 	firstMode = modeTest
@@ -16,8 +17,10 @@ func animation(cycles uint32, mode int) {
 		c = testPattern(cycles)
 	case modePurple:
 		c = 0x550055
-	case modeTrail:
-		c = trail(cycles)
+	case modeTrail0:
+		c = showTrail(cycles, 0)
+	case modeTrail1:
+		c = showTrail(cycles, 1)
 	}
 	setColor(c)
 }
@@ -36,37 +39,47 @@ func testPattern(cycles uint32) Color {
 	}
 }
 
-var trailColors = [...]Color{
-	0x550055,
-	0x550055,
-	0x550055,
-	0x550055,
-	0x550055,
-	0x550055,
-	0x550055,
-	0x550055,
-	0,
-	0,
-	0,
-	0,
-	0x005500,
-	0x005500,
-	0x005500,
-	0x005500,
-	0,
-	0,
-	0,
-	0,
+var trails = [...][]Color{
+	{ // green-purple
+		0x550055,
+		0x550055,
+		0x550055,
+		0x550055,
+		0,
+		0,
+		0x005500,
+		0x005500,
+		0,
+		0,
+	},
+	{ // red-purple
+		0x550000,
+		0x660000,
+		0x770000,
+		0x660000,
+		0x550000,
+		0,
+		0,
+		0x330033,
+		0x440044,
+		0x550055,
+		0x440044,
+		0x330033,
+		0,
+		0,
+	},
 }
+
 var trailIndex = uint8(255)
 
-func trail(cycles uint32) Color {
-	if cycles%2 == 0 {
+func showTrail(cycles uint32, which int) Color {
+	trail := trails[which]
+	if cycles%4 == 0 {
 		trailIndex++
 	}
-	if int(trailIndex) >= len(trailColors[:]) {
+	if int(trailIndex) >= len(trail) {
 		trailIndex = 0
 	}
 
-	return trailColors[trailIndex]
+	return trail[trailIndex]
 }
