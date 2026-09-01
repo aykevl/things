@@ -3,13 +3,14 @@ package main
 import (
 	"image/color"
 	"machine"
+	"runtime/interrupt"
 	"time"
 
 	"github.com/aykevl/ledsgo"
 	"tinygo.org/x/drivers/ws2812"
 )
 
-const NumLEDs = 30
+const NumLEDs = 50
 
 const (
 	ledPin = machine.GPIO29
@@ -19,7 +20,7 @@ var leds = make([]color.RGBA, NumLEDs)
 
 var brightness uint8 = 64
 
- var palette = ledsgo.PartyColors
+var palette = ledsgo.PartyColors
 
 func main() {
 	ledPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
@@ -30,8 +31,19 @@ func main() {
 		t := uint64(time.Now().UnixNano() >> 24)
 		noise(t, leds)
 
+		// Test pattern
+		//leds[0] = color.RGBA{R: 255}
+		//leds[1] = color.RGBA{G: 255}
+		//leds[2] = color.RGBA{B: 255}
+
 		// Send new colors to LEDs.
-		strip.WriteColors(leds)
+		mask := interrupt.Disable()
+		for _, c := range leds[:] {
+			strip.WriteByte(c.R)
+			strip.WriteByte(c.G)
+			strip.WriteByte(c.B)
+		}
+		interrupt.Restore(mask)
 		time.Sleep(1 * time.Millisecond)
 	}
 }
